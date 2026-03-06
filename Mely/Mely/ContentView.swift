@@ -7,21 +7,9 @@
 
 import SwiftUI
 
+/// 默认根视图在调试时可以通过注入切换，这里简单代理到 `AppRootView`。
 struct ContentView: View {
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   var body: some View {
-    VStack {
-      Image(systemName: "globe")
-        .imageScale(.large)
-        .foregroundStyle(.tint)
-      Text("Hello, world!")
-    }
-    .padding()
-    #if DEBUG
-      .enableInjection()
-    #endif
+    AppRootView()
   }
 }
