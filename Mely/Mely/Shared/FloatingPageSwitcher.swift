@@ -12,6 +12,10 @@ struct FloatingPageSwitcher: View {
 
   @State private var isExpanded: Bool = false
 
+  #if DEBUG
+    @ObserveInjection var redraw
+  #endif
+
   private struct Item: Identifiable {
     let id = UUID()
     let route: MainRoute
@@ -40,7 +44,7 @@ struct FloatingPageSwitcher: View {
           }
       }
 
-      VStack(alignment: .trailing, spacing: 12) {
+      HStack(alignment: .center, spacing: 0) {
         if isExpanded {
           ForEach(items) { item in
             Button {
@@ -49,21 +53,21 @@ struct FloatingPageSwitcher: View {
                 onSelect(item.route)
               }
             } label: {
-              HStack(spacing: 8) {
-                Text(item.title)
-                  .font(.subheadline.weight(.medium))
-                  .foregroundColor(.white)
+              HStack(spacing: 0) {
+                // Text(item.title)
+                //   .font(.subheadline.weight(.medium))
+                //   .foregroundColor(.white)
 
                 Image(systemName: item.icon)
                   .font(.headline)
                   .foregroundColor(.white)
               }
-              .padding(.horizontal, 14)
+              .padding(.horizontal, 16)
               .padding(.vertical, 10)
-              .background(
-                Capsule()
-                  .fill(item.color.gradient)
-              )
+              // .background(
+              //   Capsule()
+              //     .fill(item.color.gradient)
+              // )
               .shadow(color: item.color.opacity(0.35), radius: 10, x: 0, y: 6)
             }
             .transition(.move(edge: .trailing).combined(with: .opacity))
@@ -75,19 +79,24 @@ struct FloatingPageSwitcher: View {
             isExpanded.toggle()
           }
         } label: {
-          Image(systemName: isExpanded ? "xmark" : "arrow.right.circle.fill")
-            .font(.system(size: 26, weight: .bold))
-            .foregroundColor(.white)
-            .padding(18)
-            .background(
-              Circle()
-                .fill(Color.accentColor.gradient)
-            )
-            .shadow(color: .black.opacity(0.25), radius: 14, x: 0, y: 10)
+          Image(isExpanded ? "eibyitqppmfu_shou" : "eibyitqppmfu")
+            .resizable()
+            .frame(width: 68, height: 68)
+            .padding(0)
+          // .shadow(color: .black.opacity(0.25), radius: 14, x: 0, y: 10)
         }
         .accessibilityLabel("页面切换")
       }
+      .padding(.leading, isExpanded ? 14 : 0)
+      .background(
+        Capsule()
+          .fill(Color(red: 51 / 255, green: 51 / 255, blue: 51 / 255))
+          .padding(.vertical, 4)
+          .padding(.horizontal, 6)
+      )
     }
+    #if DEBUG
+      .enableInjection()
+    #endif
   }
 }
-

@@ -9,75 +9,308 @@ import SwiftUI
 
 struct ProfileView: View {
   @EnvironmentObject private var appDataStore: AppDataStore
+  @Environment(\.presentationMode) var presentationMode
+  @Binding var path: [MainRoute]
+
+  // The user ID to display. If nil, it defaults to the current logged-in user.
+  var userId: String? = nil
+
+  private var targetUserId: String? {
+    userId ?? appDataStore.currentUser?.id
+  }
+
+  private var isCurrentUser: Bool {
+    guard let current = appDataStore.currentUser?.id, let target = targetUserId else {
+      return false
+    }
+    return current == target
+  }
+
+  private var user: UserModel? {
+    guard let uid = targetUserId else { return nil }
+    return appDataStore.data.users.first(where: { $0.id == uid })
+  }
+
+  private var posts: [CommunityPostModel] {
+    guard let uid = targetUserId else { return [] }
+    return appDataStore.data.communityPosts.filter { $0.userId == uid }
+  }
+
+  /// 标签预设颜色（与发现页 CommunityPostCard 一致）
+  private let tagColors: [Color] = [
+    Color(red: 0.2, green: 0.75, blue: 0.4),
+    Color(red: 0.95, green: 0.85, blue: 0.4),
+    Color(red: 0.4, green: 0.6, blue: 0.95),
+  ]
 
   #if DEBUG
     @ObserveInjection var redraw
   #endif
 
-  @State private var isDarkModeOn: Bool = false
-
   var body: some View {
-    List {
-      Section {
-        HStack(spacing: 16) {
-          Image(systemName: "person.circle.fill")
-            .resizable()
-            .frame(width: 56, height: 56)
-            .foregroundColor(.accentColor)
+    ZStack(alignment: .top) {
+      Image("zhuyaoyebg")
+        .resizable()
+        .ignoresSafeArea()
 
-          VStack(alignment: .leading, spacing: 4) {
-            Text(appDataStore.currentUser?.name ?? "未登录用户")
-              .font(.headline)
-            Text(appDataStore.currentUser?.bio ?? "点击登录以同步数据")
-              .font(.subheadline)
-              .foregroundColor(.secondary)
+      ScrollView {
+        VStack(spacing: 0) {
+          headerView
+          postSectionHeader
+          postListView
+        }
+      }
+      .ignoresSafeArea(edges: .top)
+
+      // Custom Navigation Bar
+      HStack {
+        Button(action: {
+          presentationMode.wrappedValue.dismiss()
+        }) {
+          Image(systemName: "chevron.left")
+            .font(.system(size: 20, weight: .bold))
+            .foregroundColor(.black)
+            .padding(10)
+            .background(Circle().fill(Color.white))
+        }
+
+        Spacer()
+
+        if isCurrentUser {
+          Button(action: {
+            path.append(.settings)
+          }) {
+            Image(systemName: "gearshape.fill")
+              .font(.system(size: 20, weight: .bold))
+              .foregroundColor(.black)
+              .padding(10)
+              .background(Circle().fill(Color.white))
+          }
+        } else {
+          Button(action: {
+            // More action
+          }) {
+            Image(systemName: "ellipsis")
+              .font(.system(size: 20, weight: .bold))
+              .foregroundColor(.black)
+              .padding(10)
+              .background(Circle().fill(Color.white))
+          }
+        }
+      }
+      .padding(.horizontal, 20)
+    }
+    .navigationBarHidden(true)
+    #if DEBUG
+      .enableInjection()
+    #endif
+  }
+
+  // MARK: - Header View
+  private var headerView: some View {
+    ZStack(alignment: .bottom) {
+      Image("test")
+        .resizable()
+        .scaledToFill()
+        .frame(height: 300)
+        .cornerRadius(40, corners: [.bottomLeft, .bottomRight])
+        .ignoresSafeArea()
+
+      // Background Gradient
+      LinearGradient(
+        gradient: Gradient(colors: [Color.clear, Color(hex: "#FF1AB6")]),
+        startPoint: .top,
+        endPoint: .bottom
+      )
+      .frame(height: 300)
+      .cornerRadius(40, corners: [.bottomLeft, .bottomRight])
+
+      VStack(spacing: 16) {
+        HStack(spacing: 16) {
+          // Avatar
+          ZStack {
+            Circle()
+              .stroke(Color.white.opacity(0.5), lineWidth: 2)
+              .frame(width: 94, height: 94)
+
+            Image(systemName: user?.avatarSymbol ?? "person.crop.circle.fill")
+              .resizable()
+              .scaledToFill()
+              .frame(width: 80, height: 80)
+              .clipShape(Circle())
+              .overlay(Circle().stroke(Color.white, lineWidth: 2))
+          }
+
+          // Name
+          HStack {
+            Text(user?.name ?? "User")
+              .font(.custom("Hanchansans-Medium", size: 24))
+              .foregroundColor(.white)
+
+            if !isCurrentUser {
+              Button(action: {}) {
+                Image(systemName: "envelope.fill")
+                  .foregroundColor(.black)
+                  .padding(8)
+                  .background(Circle().fill(Color.white))
+              }
+            }
           }
 
           Spacer()
         }
-        .padding(.vertical, 4)
+        .padding(.horizontal, 20)
+
+        // Stats
+        HStack(spacing: 0) {
+          HStack(spacing: 20) {
+            VStack(spacing: 4) {
+              Text("99.9 M")
+                .font(.custom("Hanchansans-Medium", size: 18))
+                .foregroundColor(.white)
+              Text("Followers")
+                .font(.custom("Hanchansans-Medium", size: 14))
+                .foregroundColor(.white.opacity(0.7))
+            }
+
+            Rectangle()
+              .fill(Color.white.opacity(0.7))
+              .frame(width: 2, height: 26)
+
+            VStack(spacing: 4) {
+              Text("99.9 M")
+                .font(.custom("Hanchansans-Medium", size: 18))
+                .foregroundColor(.white)
+              Text("Following")
+                .font(.custom("Hanchansans-Medium", size: 14))
+                .foregroundColor(.white.opacity(0.7))
+            }
+          }
+
+          Spacer()
+
+          // Action Button
+          if isCurrentUser {
+            Button(action: { path.append(.wallet) }) {
+              HStack {
+                Image("mkirgxytewig_diamond")
+                  .resizable()
+                  .frame(width: 24, height: 24)
+                  .foregroundColor(.blue)
+                Text("\(user?.diamonds ?? 0)")
+                  .font(.custom("Hanchansans-Medium", size: 18))
+                  .foregroundColor(.black)
+              }
+              .padding(.horizontal, 16)
+              .padding(.vertical, 11)
+              .background(Color(hex: "#CBED40"))
+              .cornerRadius(20)
+            }
+          } else {
+            Button(action: {}) {
+              Text("Following")
+                .font(.system(size: 16, weight: .bold))
+                .foregroundColor(.black)
+                .padding(.horizontal, 24)
+                .padding(.vertical, 8)
+                .background(Color(hex: "CCFF00"))
+                .cornerRadius(20)
+            }
+          }
+        }
+        .padding(.horizontal, 30)
+        .padding(.bottom, 30)
       }
+      // .padding(.top, 40)
+    }
+  }
 
-      Section("偏好设置") {
-        Toggle("深色模式（示例状态）", isOn: $isDarkModeOn)
+  // MARK: - Post Section Header
 
-        NavigationLink("账号与安全") {
-          Text("账号与安全设置页面（占位）。")
-            .padding()
+  private var postSectionHeader: some View {
+    HStack {
+      Text("Post")
+        .font(.custom("Hanchansans-Medium", size: 24))
+        .foregroundColor(.white)
+
+      Image("eaynmjbwgatf_star")
+        .resizable()
+        .frame(width: 24, height: 24)
+      Spacer()
+    }
+    .padding(.horizontal, 20)
+    .padding(.top, 20)
+    .padding(.bottom, 20)
+  }
+
+  // MARK: - Post List View
+
+  private var postListView: some View {
+    LazyVStack(spacing: 20) {
+      ForEach(posts) { post in
+        NavigationLink(value: MainRoute.communityPostDetail(postId: post.id)) {
+          CommunityPostCard(
+            post: post,
+            user: appDataStore.data.users.first(where: { $0.id == post.userId }),
+            tagColors: tagColors
+          )
         }
-
-        NavigationLink("关于 Mely") {
-          VStack(alignment: .leading, spacing: 12) {
-            Text("关于 Mely")
-              .font(.title2.bold())
-            Text("这里可以放应用的版本信息、开源协议等内容。")
-              .font(.body)
-              .foregroundColor(.secondary)
-          }
-          .padding()
-        }
-      }
-
-      if appDataStore.currentUser != nil {
-        Section("账号") {
-          Button(role: .none) {
-            appDataStore.logout()
-          } label: {
-            Text("退出登录")
-              .foregroundColor(.primary)
-          }
-
-          Button(role: .destructive) {
-            appDataStore.deleteCurrentUser()
-          } label: {
-            Text("删除当前账号")
-          }
-        }
+        .buttonStyle(.plain)
       }
     }
-    .navigationTitle("我的")
-    #if DEBUG
-      .enableInjection()
-    #endif
+    .padding(.horizontal, 16)
+    .padding(.bottom, 100)  // Bottom padding for tab bar
+  }
+}
+
+// Helper for rounded corners
+extension View {
+  func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+    clipShape(RoundedCorner(radius: radius, corners: corners))
+  }
+}
+
+struct RoundedCorner: Shape {
+  var radius: CGFloat = .infinity
+  var corners: UIRectCorner = .allCorners
+
+  func path(in rect: CGRect) -> Path {
+    let path = UIBezierPath(
+      roundedRect: rect,
+      byRoundingCorners: corners,
+      cornerRadii: CGSize(width: radius, height: radius)
+    )
+    return Path(path.cgPath)
+  }
+}
+
+// Helper for Hex Color
+extension Color {
+  init(hex: String) {
+    let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+    var int: UInt64 = 0
+    Scanner(string: hex).scanHexInt64(&int)
+    let a: UInt64
+    let r: UInt64
+    let g: UInt64
+    let b: UInt64
+    switch hex.count {
+    case 3:  // RGB (12-bit)
+      (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+    case 6:  // RGB (24-bit)
+      (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+    case 8:  // ARGB (32-bit)
+      (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+    default:
+      (a, r, g, b) = (1, 1, 1, 0)
+    }
+
+    self.init(
+      .sRGB,
+      red: Double(r) / 255,
+      green: Double(g) / 255,
+      blue: Double(b) / 255,
+      opacity: Double(a) / 255
+    )
   }
 }

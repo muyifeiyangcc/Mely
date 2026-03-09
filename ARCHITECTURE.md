@@ -37,7 +37,7 @@
   - 社区页，顶部为标签筛选，下面是简单的列表占位数据。
   - `@State private var selectedTag` 就近管理当前选中的标签。
 
-- `Features/Chat/ChatView.swift`
+- `Features/Chat/MessageView.swift`
   - 聊天页，包含消息列表 + 底部输入栏。
   - `@State private var inputText` 与 `messages`，逻辑与 UI 放在同一个文件。
 
@@ -79,4 +79,3 @@
     1. 扩展 `MainRoute`。
     2. 在 `AppRootView` 的 `switch` 中增加 case。
     3. 在 `FloatingPageSwitcher` 的 `items` 中增加一项。
-

@@ -160,6 +160,8 @@ final class AppDataStore: ObservableObject {
     guard let currentId = data.currentUserId else { return }
 
     data.users.removeAll { $0.id == currentId }
+    data.communityPosts.removeAll { $0.userId == currentId }
+    data.communityComments.removeAll { $0.userId == currentId }
     data.posts.removeAll { $0.userId == currentId }
     data.messages.removeAll { $0.userId == currentId }
 
@@ -168,6 +170,15 @@ final class AppDataStore: ObservableObject {
     }
 
     data.currentUserId = nil
+    save()
+  }
+
+  /// 为当前用户增加钻石
+  func addDiamonds(_ amount: Int) {
+    guard let currentId = data.currentUserId,
+      let index = data.users.firstIndex(where: { $0.id == currentId })
+    else { return }
+    data.users[index].diamonds += amount
     save()
   }
 
@@ -186,7 +197,69 @@ final class AppDataStore: ObservableObject {
     save()
   }
 
-  func addMessage(text: String, to conversationId: String) {
+  /// 添加社区图片帖子
+  func addCommunityPost(imageName: String, tags: [String]) {
+    guard let currentUserId = data.currentUserId else { return }
+    let newPost = CommunityPostModel(
+      id: UUID().uuidString,
+      userId: currentUserId,
+      imageName: imageName,
+      tags: tags,
+      likeCount: 0,
+      commentCount: 0,
+      createdAt: Date()
+    )
+    data.communityPosts.insert(newPost, at: 0)
+    save()
+  }
+
+  /// 为指定帖子添加一条评论（支持 emoji）
+  func addCommunityComment(text: String, to postId: String) {
+    guard let currentUserId = data.currentUserId,
+      !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    else { return }
+
+    let comment = CommunityCommentModel(
+      id: UUID().uuidString,
+      postId: postId,
+      userId: currentUserId,
+      text: text,
+      createdAt: Date()
+    )
+
+    data.communityComments.append(comment)
+
+    if let index = data.communityPosts.firstIndex(where: { $0.id == postId }) {
+      data.communityPosts[index].commentCount += 1
+    }
+
+    save()
+  }
+
+  // MARK: - Challenges
+
+  func addChallenge(title: String, rule: String, coverImageName: String?) {
+    let challenge = DanceChallenge(
+      id: UUID(),
+      title: title,
+      imageName: coverImageName,
+      isJoined: false,
+      difficulty: "Medium",
+      participantsCount: 0,
+      description: rule
+    )
+    data.challenges.insert(challenge, at: 0)
+    save()
+  }
+
+  func addMessage(
+    text: String,
+    type: MessageModel.MessageType = .text,
+    imagePath: String? = nil,
+    audioPath: String? = nil,
+    audioDurationSeconds: Int? = nil,
+    to conversationId: String
+  ) {
     guard let currentUserId = data.currentUserId else { return }
 
     let message = MessageModel(
@@ -194,6 +267,10 @@ final class AppDataStore: ObservableObject {
       conversationId: conversationId,
       userId: currentUserId,
       text: text,
+      type: type,
+      imagePath: imagePath,
+      audioPath: audioPath,
+      audioDurationSeconds: audioDurationSeconds,
       createdAt: Date()
     )
 
@@ -219,6 +296,7 @@ extension AppData {
       .init(id: "u3", name: "小白", avatarSymbol: "hare.fill", bio: "正在学习 iOS。"),
       .init(id: "u4", name: "旅人", avatarSymbol: "airplane", bio: "记录一路上的见闻。"),
       .init(id: "u5", name: "深夜码农", avatarSymbol: "moon.stars.fill", bio: "晚上写代码，白天改 bug。"),
+      .init(id: "u6", name: "Wei Riley", avatarSymbol: "person.crop.circle.fill", bio: "分享运动与生活。"),
     ]
 
     // 首次启动：未登录、未同意 EULA
@@ -260,23 +338,56 @@ extension AppData {
         createdAt: Date()),
     ]
 
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    let aug1 = formatter.date(from: "2025-08-01") ?? Date()
+    let mar4 = formatter.date(from: "2025-03-04") ?? Date()
+    let communityPosts: [CommunityPostModel] = [
+      .init(
+        id: "cp1", userId: "u6", imageName: "test", tags: ["Daily", "Baby"], likeCount: 0,
+        commentCount: 2, createdAt: aug1),
+      .init(
+        id: "cp2", userId: "u6", imageName: "test", tags: ["Daily", "Fitness"], likeCount: 0,
+        commentCount: 0, createdAt: aug1),
+      .init(
+        id: "cp3", userId: "u1", imageName: "test", tags: ["分享"], likeCount: 12, commentCount: 1,
+        createdAt: Date()),
+      .init(
+        id: "cp4", userId: "u2", imageName: "test", tags: ["日常"], likeCount: 8, commentCount: 1,
+        createdAt: Date()),
+    ]
+
+    let communityComments: [CommunityCommentModel] = [
+      .init(
+        id: "cc1", postId: "cp1", userId: "u3",
+        text: "The scenery along the way seems very beautiful.", createdAt: mar4),
+      .init(id: "cc2", postId: "cp1", userId: "u4", text: "真好看 ✨", createdAt: mar4),
+      .init(id: "cc3", postId: "cp3", userId: "u2", text: "一起分享进度吧～", createdAt: Date()),
+      .init(id: "cc4", postId: "cp4", userId: "u1", text: "今天状态很好 💪", createdAt: Date()),
+    ]
+
     let conversations: [ConversationModel] = [
-      .init(id: "c1", title: "和阿木的开发碎碎念", participantUserIds: ["u1", "u2"], lastMessageId: nil),
-      .init(id: "c2", title: "小白的学习问题", participantUserIds: ["u1", "u3"], lastMessageId: nil),
+      .init(id: "c1", participantUserIds: ["u1", "u2"], lastMessageId: nil),
+      .init(id: "c2", participantUserIds: ["u1", "u3"], lastMessageId: nil),
     ]
 
     let messages: [MessageModel] = [
-      .init(id: "m1", conversationId: "c1", userId: "u2", text: "最近在做什么新玩意？", createdAt: Date()),
       .init(
-        id: "m2", conversationId: "c1", userId: "u1", text: "在折腾一个叫 Mely 的小东西。", createdAt: Date()),
-      .init(
-        id: "m3", conversationId: "c2", userId: "u3", text: "SwiftUI 的状态管理有点看不懂。", createdAt: Date()
+        id: "m1",
+        conversationId: "c1",
+        userId: "u2",
+        text: "What new gadgets are you working on lately?",
+        type: .text,
+        createdAt: Date()
       ),
       .init(
-        id: "m4", conversationId: "c2", userId: "u1", text: "先从最简单的 @State 开始就好。", createdAt: Date()
+        id: "m2",
+        conversationId: "c2",
+        userId: "u3",
+        text: "The content you shared is very interesting!",
+        type: .text,
+        createdAt: Date()
       ),
-      .init(id: "m5", conversationId: "c1", userId: "u2", text: "记得早点休息，别肝太晚。", createdAt: Date()),
-      .init(id: "m6", conversationId: "c1", userId: "u1", text: "好的，争取在今天之前睡觉。", createdAt: Date()),
     ]
 
     var conversationsWithLast = conversations
@@ -285,10 +396,15 @@ extension AppData {
       conversationsWithLast[index].lastMessageId = lastMessage?.id
     }
 
+    let challenges: [DanceChallenge] = DanceChallenge.sampleChallenges
+
     return AppData(
       users: users,
       recommendedItems: recommendedItems,
       posts: posts,
+      challenges: challenges,
+      communityPosts: communityPosts,
+      communityComments: communityComments,
       conversations: conversationsWithLast,
       messages: messages,
       currentUserId: currentUserId,
