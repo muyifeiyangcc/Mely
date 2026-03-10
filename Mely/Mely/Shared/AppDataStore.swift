@@ -109,7 +109,7 @@ final class AppDataStore: ObservableObject {
   fileprivate static func defaultVideosForChallenges(_ challenges: [DanceChallenge])
     -> [ChallengeVideo]
   {
-    challenges.flatMap { defaultVideosForChallenge($0.id) }
+    challenges.flatMap { _ in defaultVideosForChallenge() }
   }
 
   private func save() {
@@ -122,7 +122,6 @@ final class AppDataStore: ObservableObject {
   }
 
   // MARK: - Auth Error
-
   enum AuthError: LocalizedError {
     case userNotFound
     case emailAlreadyExists
@@ -265,7 +264,6 @@ final class AppDataStore: ObservableObject {
   }
 
   // MARK: - 内容变更
-
   func addPost(title: String, content: String) {
     guard let currentUserId = data.currentUserId else { return }
     let newPost = PostModel(
@@ -319,7 +317,6 @@ final class AppDataStore: ObservableObject {
   }
 
   // MARK: - Challenges
-
   func addChallenge(title: String, rule: String, coverImageName: String?) {
     let challenge = DanceChallenge(
       id: UUID().uuidString,
@@ -331,32 +328,39 @@ final class AppDataStore: ObservableObject {
       description: rule
     )
     data.challenges.insert(challenge, at: 0)
-    let defaultVideos = Self.defaultVideosForChallenge(challenge.id)
+    let defaultVideos = Self.defaultVideosForChallenge()
     data.challengeVideos.insert(contentsOf: defaultVideos, at: 0)
     save()
   }
 
-  /// 为新挑战创建 6 个默认视频（前 3 解锁，后 3 锁定 300 钻石）
-  fileprivate static func defaultVideosForChallenge(_ challengeId: String) -> [ChallengeVideo] {
+  /// 为指定挑战创建默认视频（前 3 解锁，后 3 锁定 300 钻石）
+  fileprivate static func defaultVideosForChallenge() -> [ChallengeVideo] {
+    let videoName = "Videos/testVideo"  // Bundle 中的视频资源
     return [
       ChallengeVideo(
-        id: "\(challengeId)-cv1", challengeId: challengeId, userId: "u1",
-        thumbnailName: "test", likeCount: 140_000, isLocked: false, unlockCostDiamonds: nil),
+        id: "cv1", challengeId: "id1", userId: "u1",
+        thumbnailName: "test", videoName: videoName, likeCount: 140_000, isLocked: false,
+        unlockCostDiamonds: nil),
       ChallengeVideo(
-        id: "\(challengeId)-cv2", challengeId: challengeId, userId: "u2",
-        thumbnailName: "test", likeCount: 140_000, isLocked: false, unlockCostDiamonds: nil),
+        id: "cv2", challengeId: "id2", userId: "u2",
+        thumbnailName: "test", videoName: videoName, likeCount: 140_000, isLocked: false,
+        unlockCostDiamonds: nil),
       ChallengeVideo(
-        id: "\(challengeId)-cv3", challengeId: challengeId, userId: "u3",
-        thumbnailName: "test", likeCount: 140_000, isLocked: false, unlockCostDiamonds: nil),
+        id: "cv3", challengeId: "id3", userId: "u3",
+        thumbnailName: "test", videoName: videoName, likeCount: 140_000, isLocked: false,
+        unlockCostDiamonds: nil),
       ChallengeVideo(
-        id: "\(challengeId)-cv4", challengeId: challengeId, userId: "u4",
-        thumbnailName: "test", likeCount: 140_000, isLocked: true, unlockCostDiamonds: 300),
+        id: "cv4", challengeId: "id4", userId: "u4",
+        thumbnailName: "test", videoName: videoName, likeCount: 140_000, isLocked: true,
+        unlockCostDiamonds: 300),
       ChallengeVideo(
-        id: "\(challengeId)-cv5", challengeId: challengeId, userId: "u5",
-        thumbnailName: "test", likeCount: 140_000, isLocked: true, unlockCostDiamonds: 300),
+        id: "cv5", challengeId: "id5", userId: "u5",
+        thumbnailName: "test", videoName: videoName, likeCount: 140_000, isLocked: true,
+        unlockCostDiamonds: 300),
       ChallengeVideo(
-        id: "\(challengeId)-cv6", challengeId: challengeId, userId: "u6",
-        thumbnailName: "test", likeCount: 140_000, isLocked: true, unlockCostDiamonds: 300),
+        id: "cv6", challengeId: "id6", userId: "u6",
+        thumbnailName: "test", videoName: videoName, likeCount: 140_000, isLocked: true,
+        unlockCostDiamonds: 300),
     ]
   }
 

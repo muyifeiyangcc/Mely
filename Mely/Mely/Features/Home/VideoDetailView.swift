@@ -5,6 +5,7 @@
 //  Created by yangyang on 2026/3/9.
 //
 
+import AVKit
 import SwiftUI
 
 struct VideoDetailView: View {
@@ -17,6 +18,8 @@ struct VideoDetailView: View {
 
   @Environment(\.dismiss) private var dismiss
   @EnvironmentObject private var appDataStore: AppDataStore
+  @State private var player: AVPlayer?
+  @State private var isPlaying = false
 
   private var video: ChallengeVideo? {
     appDataStore.data.challengeVideos.first { $0.id == videoId }
@@ -29,6 +32,9 @@ struct VideoDetailView: View {
 
   var body: some View {
     ZStack {
+      Color(.black)
+        .ignoresSafeArea()
+        
       // 视频背景（锁定时模糊）
       videoBackground
 
@@ -44,7 +50,9 @@ struct VideoDetailView: View {
           lockOverlay
         } else {
           // 未锁定时显示播放按钮
-          playButtonOverlay
+          if isPlaying {
+            playButtonOverlay
+          }
         }
 
         Spacer()
@@ -57,16 +65,54 @@ struct VideoDetailView: View {
     .ignoresSafeArea()
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
+    .onAppear { setupPlayer() }
+    .onChange(of: videoId) { _, _ in setupPlayer() }
+    .onDisappear { player?.pause() }
     #if DEBUG
       .enableInjection()
     #endif
+  }
+
+  private func setupPlayer() {
+    player?.pause()
+    player = nil
+    guard let v = video, v.isLocked == false,
+      let name = v.videoName, !name.isEmpty,
+      let url = urlForVideoName(name)
+    else { return }
+    let p = AVPlayer(url: url)
+    player = p
+    p.play()
+    isPlaying = true
+  }
+
+  private func urlForVideoName(_ name: String) -> URL? {
+    let parts = name.split(separator: "/").map(String.init)
+    let resourceName = parts.last ?? name
+    let subdirectory = parts.count > 1 ? parts.dropLast().joined(separator: "/") : nil
+    return Bundle.main.url(
+      forResource: resourceName, withExtension: "mp4", subdirectory: subdirectory)
+      ?? Bundle.main.url(forResource: resourceName, withExtension: "mp4")
   }
 
   // MARK: - 视频背景
 
   private var videoBackground: some View {
     Group {
-      if let name = video?.thumbnailName, !name.isEmpty {
+      if let p = player, video?.isLocked != true {
+        GeometryReader { geo in
+          let w = geo.size.width
+          let h = geo.size.height
+          let videoAspect: CGFloat = 9 / 16  // 竖屏 9:16，横屏可改为 16/9
+          let viewW = w
+          let viewH = w / videoAspect
+          VideoPlayer(player: p)
+            .disabled(true)
+            .frame(width: viewW, height: viewH)
+            .frame(width: w, height: h)
+            .clipped()
+        }
+      } else if let name = video?.thumbnailName, !name.isEmpty {
         ZStack {
           Image("dengxuanbg")
             .resizable()
@@ -79,7 +125,6 @@ struct VideoDetailView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .ignoresSafeArea()
         }
-
       } else {
         Color(red: 0.2, green: 0.2, blue: 0.3)
       }
@@ -161,22 +206,29 @@ struct VideoDetailView: View {
 
   private var playButtonOverlay: some View {
     Button {
-      // 播放/暂停
+      guard let p = player else { return }
+      if isPlaying {
+        p.pause()
+        isPlaying = false
+      } else {
+        p.play()
+        isPlaying = true
+      }
     } label: {
       ZStack {
         Circle()
           .fill(.white)
-          .frame(width: 80, height: 80)
+          .frame(width: 70, height: 70)
         Image(systemName: "play.fill")
           .font(.system(size: 32))
           .foregroundStyle(
             LinearGradient(
               colors: [
-                Color(red: 1, green: 0.4, blue: 0.55),
-                Color(red: 1, green: 0.6, blue: 0.2),
+                Color(hex: "#FF1AB6"),
+                Color(hex: "#CBED40"),
               ],
-              startPoint: .topLeading,
-              endPoint: .bottomTrailing
+              startPoint: .leading,
+              endPoint: .trailing
             )
           )
       }

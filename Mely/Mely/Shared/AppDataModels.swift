@@ -131,7 +131,6 @@ struct MessageModel: Identifiable, Codable, Equatable {
 }
 
 // MARK: - 舞蹈挑战模型
-
 struct DanceChallenge: Identifiable, Codable, Equatable {
   let id: String
   let title: String
@@ -152,6 +151,8 @@ struct ChallengeVideo: Identifiable, Codable, Equatable {
   let userId: String
   /// 缩略图资源名或占位
   let thumbnailName: String?
+  /// 视频资源名（Bundle 资源，如 "testVideo" 或 "Videos/testVideo"）
+  let videoName: String?
   /// 点赞数（如 140000 显示为 14.0W）
   let likeCount: Int
   /// 是否锁定（需付费解锁）
@@ -160,7 +161,7 @@ struct ChallengeVideo: Identifiable, Codable, Equatable {
   let unlockCostDiamonds: Int?
 
   enum CodingKeys: String, CodingKey {
-    case id, challengeId, userId, thumbnailName, likeCount, isLocked, unlockCostDiamonds
+    case id, challengeId, userId, thumbnailName, videoName, likeCount, isLocked, unlockCostDiamonds
   }
 
   init(
@@ -168,6 +169,7 @@ struct ChallengeVideo: Identifiable, Codable, Equatable {
     challengeId: String,
     userId: String,
     thumbnailName: String?,
+    videoName: String? = nil,
     likeCount: Int,
     isLocked: Bool,
     unlockCostDiamonds: Int?
@@ -176,6 +178,7 @@ struct ChallengeVideo: Identifiable, Codable, Equatable {
     self.challengeId = challengeId
     self.userId = userId
     self.thumbnailName = thumbnailName
+    self.videoName = videoName
     self.likeCount = likeCount
     self.isLocked = isLocked
     self.unlockCostDiamonds = unlockCostDiamonds
@@ -187,6 +190,7 @@ struct ChallengeVideo: Identifiable, Codable, Equatable {
     challengeId = try c.decode(String.self, forKey: .challengeId)
     userId = try c.decodeIfPresent(String.self, forKey: .userId) ?? "u6"
     thumbnailName = try c.decodeIfPresent(String.self, forKey: .thumbnailName)
+    videoName = try c.decodeIfPresent(String.self, forKey: .videoName)
     likeCount = try c.decode(Int.self, forKey: .likeCount)
     isLocked = try c.decode(Bool.self, forKey: .isLocked)
     unlockCostDiamonds = try c.decodeIfPresent(Int.self, forKey: .unlockCostDiamonds)
@@ -198,6 +202,7 @@ struct ChallengeVideo: Identifiable, Codable, Equatable {
     try c.encode(challengeId, forKey: .challengeId)
     try c.encode(userId, forKey: .userId)
     try c.encodeIfPresent(thumbnailName, forKey: .thumbnailName)
+    try c.encodeIfPresent(videoName, forKey: .videoName)
     try c.encode(likeCount, forKey: .likeCount)
     try c.encode(isLocked, forKey: .isLocked)
     try c.encodeIfPresent(unlockCostDiamonds, forKey: .unlockCostDiamonds)
@@ -215,7 +220,6 @@ struct ChallengeVideo: Identifiable, Codable, Equatable {
 }
 
 // MARK: - 社区图片帖子模型（社区广场列表）
-
 struct CommunityPostModel: Identifiable, Codable, Equatable {
   let id: String
   let userId: String
@@ -236,7 +240,6 @@ struct CommunityPostModel: Identifiable, Codable, Equatable {
 }
 
 // MARK: - 社区帖子评论模型
-
 struct CommunityCommentModel: Identifiable, Codable, Equatable {
   let id: String
   let postId: String
