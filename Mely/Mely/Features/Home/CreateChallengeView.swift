@@ -19,7 +19,9 @@ struct CreateChallengeView: View {
   @State private var title: String = ""
   @State private var rule: String = ""
   @State private var hasCover: Bool = false
+  @State private var selectedCoverImage: UIImage?
   @State private var isCreating: Bool = false
+  @State private var showImageSourcePicker: Bool = false
 
   private let ruleLimit: Int = 50
 
@@ -49,13 +51,16 @@ struct CreateChallengeView: View {
     }
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
+    .imageSourcePicker(isPresented: $showImageSourcePicker) { image in
+      selectedCoverImage = image
+      hasCover = true
+    }
     #if DEBUG
       .enableInjection()
     #endif
   }
 
   // MARK: - 顶部导航栏
-
   private var topBar: some View {
     ZStack(alignment: .leading) {
       HStack {
@@ -86,7 +91,6 @@ struct CreateChallengeView: View {
   }
 
   // MARK: - 封面上传
-
   private var coverSection: some View {
     VStack(spacing: 16) {
       ZStack {
@@ -94,20 +98,27 @@ struct CreateChallengeView: View {
           .fill(Color(red: 46 / 255, green: 53 / 255, blue: 71 / 255))
           .stroke(Color.white.opacity(0.25), lineWidth: 2)
           .frame(height: 180)
-          // .frame(height: UIScreen.main.bounds.height * 0.22)
           .padding(.horizontal, 16)
+          .clipped()
 
-        Image("gfqjfrzfemtladd")
-          .resizable()
-          .frame(width: 52, height: 52)
-          .opacity(hasCover ? 0.0 : 1.0)
+        if let image = selectedCoverImage {
+          Image(uiImage: image)
+            .resizable()
+            .scaledToFill()
+            .frame(height: 180)
+            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+            .padding(.horizontal, 16)
+        } else {
+          Image("gfqjfrzfemtladd")
+            .resizable()
+            .frame(width: 52, height: 52)
+        }
       }
       .onTapGesture {
-        // 真实项目中这里接入图片选择器；示例中仅切换状态
-        hasCover.toggle()
+        showImageSourcePicker = true
       }
 
-      Text("Cover  (0/1)")
+      Text("Cover  (\(hasCover ? 1 : 0)/1)")
         .font(.custom("Hanchansans-Medium", size: 18))
         .foregroundColor(.white)
         .padding(.vertical, 10)
@@ -118,7 +129,6 @@ struct CreateChallengeView: View {
   }
 
   // MARK: - 主题
-
   private var themeSection: some View {
     VStack(alignment: .leading, spacing: 16) {
       HStack(spacing: 10) {
@@ -147,7 +157,6 @@ struct CreateChallengeView: View {
   }
 
   // MARK: - 规则描述
-
   private var ruleSection: some View {
     VStack(alignment: .leading, spacing: 16) {
       HStack(spacing: 10) {
@@ -195,7 +204,6 @@ struct CreateChallengeView: View {
   }
 
   // MARK: - 创建按钮
-
   private var createButton: some View {
     Button {
       performCreate()
@@ -239,8 +247,11 @@ struct CreateChallengeView: View {
     guard canCreate, !isCreating else { return }
     isCreating = true
 
-    let coverName = hasCover ? "test" : nil
-    appDataStore.addChallenge(title: title, rule: rule, coverImageName: coverName)
+    var coverImageName: String? = nil
+    if let image = selectedCoverImage, let path = ImageStorageHelper.saveChallengeCover(image) {
+      coverImageName = path
+    }
+    appDataStore.addChallenge(title: title, rule: rule, coverImageName: coverImageName)
 
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
       isCreating = false

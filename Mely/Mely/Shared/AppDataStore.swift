@@ -34,11 +34,82 @@ final class AppDataStore: ObservableObject {
   init() {
     if let existing = AppDataStorage.load() {
       data = existing
+      if data.challenges.isEmpty {
+        data.challenges = Self.defaultChallenges()
+        save()
+      }
+      if data.challengeVideos.isEmpty && !data.challenges.isEmpty {
+        data.challengeVideos = Self.defaultVideosForChallenges(data.challenges)
+        save()
+      }
     } else {
       let sample = AppData.makeSample()
       data = sample
       AppDataStorage.save(sample)
     }
+  }
+
+  /// 本地持久化的默认挑战数据（首次安装或无挑战时使用）
+  fileprivate static func defaultChallenges() -> [DanceChallenge] {
+    return [
+      DanceChallenge(
+        id: "id1",
+        title: "Dance Together",
+        imageName: "test",
+        isJoined: false,
+        difficulty: "Medium",
+        participantsCount: 12_500,
+        description: "与好友共舞，享受当下。"
+      ),
+      DanceChallenge(
+        id: "id2",
+        title: "Speed Challenge",
+        imageName: "test",
+        isJoined: false,
+        difficulty: "Medium",
+        participantsCount: 12_500,
+        description: "提升你的速度和敏捷性！每周完成指定速度舞蹈挑战，赢得奖励。"
+      ),
+      DanceChallenge(
+        id: "id3",
+        title: "Flexibility Flow",
+        imageName: "test",
+        isJoined: true,
+        difficulty: "Easy",
+        participantsCount: 8_900,
+        description: "通过一系列柔韧性练习，提升你的身体柔韧度，让舞姿更优美。"
+      ),
+      DanceChallenge(
+        id: "id4",
+        title: "Cardio Blast",
+        imageName: "test",
+        isJoined: false,
+        difficulty: "Hard",
+        participantsCount: 15_300,
+        description: "高强度有氧舞蹈挑战，燃烧卡路里，提升心肺功能。"
+      ),
+      DanceChallenge(
+        id: "id5",
+        title: "Balance Master",
+        imageName: "test",
+        isJoined: false,
+        difficulty: "Medium",
+        participantsCount: 9_800,
+        description: "专注于核心力量和平衡训练，挑战你的身体控制力。"
+      ),
+    ]
+  }
+
+  /// 本地持久化的默认挑战视频数据（每个挑战 6 个视频，前 3 解锁，后 3 锁定 300 钻石）
+  fileprivate static func defaultChallengeVideos() -> [ChallengeVideo] {
+    defaultVideosForChallenges(defaultChallenges())
+  }
+
+  /// 为指定挑战列表创建默认视频（用于首次安装或迁移）
+  fileprivate static func defaultVideosForChallenges(_ challenges: [DanceChallenge])
+    -> [ChallengeVideo]
+  {
+    challenges.flatMap { defaultVideosForChallenge($0.id) }
   }
 
   private func save() {
@@ -182,6 +253,17 @@ final class AppDataStore: ObservableObject {
     save()
   }
 
+  /// 扣除当前用户钻石，余额不足时返回 false
+  func deductDiamonds(_ amount: Int) -> Bool {
+    guard let currentId = data.currentUserId,
+      let index = data.users.firstIndex(where: { $0.id == currentId })
+    else { return false }
+    guard data.users[index].diamonds >= amount else { return false }
+    data.users[index].diamonds -= amount
+    save()
+    return true
+  }
+
   // MARK: - 内容变更
 
   func addPost(title: String, content: String) {
@@ -240,7 +322,7 @@ final class AppDataStore: ObservableObject {
 
   func addChallenge(title: String, rule: String, coverImageName: String?) {
     let challenge = DanceChallenge(
-      id: UUID(),
+      id: UUID().uuidString,
       title: title,
       imageName: coverImageName,
       isJoined: false,
@@ -249,7 +331,33 @@ final class AppDataStore: ObservableObject {
       description: rule
     )
     data.challenges.insert(challenge, at: 0)
+    let defaultVideos = Self.defaultVideosForChallenge(challenge.id)
+    data.challengeVideos.insert(contentsOf: defaultVideos, at: 0)
     save()
+  }
+
+  /// 为新挑战创建 6 个默认视频（前 3 解锁，后 3 锁定 300 钻石）
+  fileprivate static func defaultVideosForChallenge(_ challengeId: String) -> [ChallengeVideo] {
+    return [
+      ChallengeVideo(
+        id: "\(challengeId)-cv1", challengeId: challengeId, userId: "u1",
+        thumbnailName: "test", likeCount: 140_000, isLocked: false, unlockCostDiamonds: nil),
+      ChallengeVideo(
+        id: "\(challengeId)-cv2", challengeId: challengeId, userId: "u2",
+        thumbnailName: "test", likeCount: 140_000, isLocked: false, unlockCostDiamonds: nil),
+      ChallengeVideo(
+        id: "\(challengeId)-cv3", challengeId: challengeId, userId: "u3",
+        thumbnailName: "test", likeCount: 140_000, isLocked: false, unlockCostDiamonds: nil),
+      ChallengeVideo(
+        id: "\(challengeId)-cv4", challengeId: challengeId, userId: "u4",
+        thumbnailName: "test", likeCount: 140_000, isLocked: true, unlockCostDiamonds: 300),
+      ChallengeVideo(
+        id: "\(challengeId)-cv5", challengeId: challengeId, userId: "u5",
+        thumbnailName: "test", likeCount: 140_000, isLocked: true, unlockCostDiamonds: 300),
+      ChallengeVideo(
+        id: "\(challengeId)-cv6", challengeId: challengeId, userId: "u6",
+        thumbnailName: "test", likeCount: 140_000, isLocked: true, unlockCostDiamonds: 300),
+    ]
   }
 
   func addMessage(
@@ -396,13 +504,15 @@ extension AppData {
       conversationsWithLast[index].lastMessageId = lastMessage?.id
     }
 
-    let challenges: [DanceChallenge] = DanceChallenge.sampleChallenges
+    let challenges: [DanceChallenge] = AppDataStore.defaultChallenges()
+    let challengeVideos: [ChallengeVideo] = AppDataStore.defaultChallengeVideos()
 
     return AppData(
       users: users,
       recommendedItems: recommendedItems,
       posts: posts,
       challenges: challenges,
+      challengeVideos: challengeVideos,
       communityPosts: communityPosts,
       communityComments: communityComments,
       conversations: conversationsWithLast,

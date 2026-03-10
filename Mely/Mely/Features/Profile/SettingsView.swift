@@ -30,17 +30,17 @@ struct SettingsView: View {
           VStack(spacing: 12) {
             // 三个设置项
             settingsListItem(
-              icon: "person.crop.circle",
+              imgName: "dsfnikrctqtc",
               title: "User Agreement",
               action: {}
             )
             settingsListItem(
-              icon: "doc.text",
+              imgName: "qzhmsmktdthf",
               title: "Privacy Agreement",
               action: {}
             )
             settingsListItem(
-              icon: "person.2.slash",
+              imgName: "ypiwomsvrfunblo",
               title: "Blocklist",
               action: {}
             )
@@ -122,15 +122,15 @@ struct SettingsView: View {
     .padding(.bottom, 4)
   }
 
-  private func settingsListItem(icon: String, title: String, action: @escaping () -> Void)
+  private func settingsListItem(imgName: String, title: String, action: @escaping () -> Void)
     -> some View
   {
     Button(action: action) {
       HStack(spacing: 14) {
-        Image(systemName: icon)
-          .font(.system(size: 20))
-          .foregroundColor(.white)
-          .frame(width: 28, height: 28)
+        Image(imgName)
+          .resizable()
+          .scaledToFit()
+          .frame(width: 26, height: 26)
 
         Text(title)
           .font(.custom("Hanchansans-Medium", size: 17))

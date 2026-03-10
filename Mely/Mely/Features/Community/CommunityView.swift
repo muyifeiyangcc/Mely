@@ -131,14 +131,16 @@ struct CommunityPostCard: View {
       .padding(.top, 12)
       .padding(.bottom, 10)
 
-      // 帖子主图
-      Image(post.imageName)
-        .resizable()
-        .aspectRatio(contentMode: .fill)
-        .frame(maxWidth: .infinity)
+      // 帖子主图：支持 Asset 名或持久化路径（CommunityImages/xxx.jpg）
+      // 用固定尺寸容器约束，避免图片固有尺寸撑开宽度
+      Rectangle()
+        .fill(Color.clear)
         .frame(height: 280)
-        .cornerRadius(16)
-        .clipped()
+        .frame(maxWidth: .infinity)
+        .overlay {
+          SmartImageView.namedOrPath(post.imageName)
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 16))
         .padding(.horizontal, 12)
 
       // 标签 + 互动区

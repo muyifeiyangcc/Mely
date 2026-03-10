@@ -20,11 +20,17 @@ enum MainRoute: Hashable {
   /// 创建舞蹈挑战
   case challengeCreate
   /// 挑战详情页
-  case challengeDetail(challengeId: UUID)
+  case challengeDetail(challengeId: String)
   /// 上传视频页（参与挑战）
-  case uploadVideo(challengeId: UUID)
+  case uploadVideo(challengeId: String)
+  /// 视频详情页（Post）
+  case videoDetail(videoId: String)
   /// 钱包页（钻石余额与购买）
   case wallet
+  /// 健身舞蹈 AI 引导页（消耗钻石进入聊天）
+  case aiGuide
+  /// 健身舞蹈 AI 提问/聊天页
+  case aiChat
 }
 
 struct AppRootView: View {
@@ -74,8 +80,14 @@ struct AppRootView: View {
                 ChallengeDetailView(path: $path, challengeId: challengeId)
               case .uploadVideo(let challengeId):
                 UploadVideoView(path: $path, challengeId: challengeId)
+              case .videoDetail(let videoId):
+                VideoDetailView(path: $path, videoId: videoId)
               case .wallet:
                 WalletView()
+              case .aiGuide:
+                AIGuideView(path: $path)
+              case .aiChat:
+                AIChatView(path: $path)
               }
             }
         }

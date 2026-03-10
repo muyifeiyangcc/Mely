@@ -24,11 +24,9 @@ struct ChatDetailView: View {
   @State private var isEmojiExpanded: Bool = false
   @State private var seedItems: [ChatItem] = []
   @State private var localItems: [ChatItem] = []
-  @State private var isPhotoSourceDialogPresented: Bool = false
-  @State private var isImagePickerPresented: Bool = false
-  @State private var imagePickerSource: ImagePickerView.Source = .photoLibrary
-  @State private var permissionDeniedMessage: String?
-  @State private var isPermissionAlertPresented: Bool = false
+  @State private var showImageSourcePicker: Bool = false
+  @State private var voicePermissionDeniedMessage: String?
+  @State private var showVoicePermissionAlert: Bool = false
   @State private var isVoiceRecording: Bool = false
   @State private var keyboardHeight: CGFloat = 0
 
@@ -90,7 +88,7 @@ struct ChatDetailView: View {
             text: $draftText,
             isVoiceExpanded: $isVoiceExpanded,
             isEmojiExpanded: $isEmojiExpanded,
-            onTapPhoto: { isPhotoSourceDialogPresented = true },
+            onTapPhoto: { showImageSourcePicker = true },
             onTapSend: { sendText() },
             onTapEmoji: { emoji in
               sendEmoji(emoji)
@@ -100,8 +98,8 @@ struct ChatDetailView: View {
             },
             onVoiceRecordingStateChanged: { isVoiceRecording = $0 },
             onVoicePermissionDenied: { msg in
-              permissionDeniedMessage = msg
-              isPermissionAlertPresented = true
+              voicePermissionDeniedMessage = msg
+              showVoicePermissionAlert = true
             }
           )
 
@@ -126,22 +124,10 @@ struct ChatDetailView: View {
       }
     }
     .toolbar(.hidden, for: .navigationBar)
-    .confirmationDialog(
-      "Select image source",
-      isPresented: $isPhotoSourceDialogPresented,
-      titleVisibility: .visible
-    ) {
-      Button("Gallery") {
-        imagePickerSource = .photoLibrary
-        requestPhotoLibraryPermissionAndPresentPicker()
-      }
-      Button("Camera") {
-        imagePickerSource = .camera
-        requestCameraPermissionAndPresentPicker()
-      }
-      Button("Cancel", role: .cancel) {}
-    }
-    .alert("Permission Required", isPresented: $isPermissionAlertPresented) {
+    .imageSourcePicker(
+      isPresented: $showImageSourcePicker, onImagePicked: { handlePickedImage($0) }
+    )
+    .alert("Permission Required", isPresented: $showVoicePermissionAlert) {
       Button("Go to Settings") {
         if let url = URL(string: UIApplication.openSettingsURLString) {
           UIApplication.shared.open(url)
@@ -149,13 +135,8 @@ struct ChatDetailView: View {
       }
       Button("Cancel", role: .cancel) {}
     } message: {
-      if let msg = permissionDeniedMessage {
+      if let msg = voicePermissionDeniedMessage {
         Text(msg)
-      }
-    }
-    .sheet(isPresented: $isImagePickerPresented) {
-      ImagePickerView(source: imagePickerSource) { image in
-        handlePickedImage(image)
       }
     }
     #if DEBUG
@@ -252,28 +233,6 @@ struct ChatDetailView: View {
     }
   }
 
-  private func requestPhotoLibraryPermissionAndPresentPicker() {
-    ImagePickerView.requestPhotoLibraryAccess { granted, message in
-      if granted {
-        isImagePickerPresented = true
-      } else if let message = message {
-        permissionDeniedMessage = message
-        isPermissionAlertPresented = true
-      }
-    }
-  }
-
-  private func requestCameraPermissionAndPresentPicker() {
-    ImagePickerView.requestCameraAccess { granted, message in
-      if granted {
-        isImagePickerPresented = true
-      } else if let message = message {
-        permissionDeniedMessage = message
-        isPermissionAlertPresented = true
-      }
-    }
-  }
-
   private func sendText() {
     let trimmed = draftText.trimmingCharacters(in: .whitespacesAndNewlines)
     guard !trimmed.isEmpty else { return }
@@ -296,50 +255,9 @@ struct ChatDetailView: View {
   }
 
   private func handlePickedImage(_ image: UIImage) {
-    guard let path = saveImageToPersistentStorage(image) else { return }
+    guard let path = ImageStorageHelper.saveChatImage(image) else { return }
     appDataStore.addMessage(text: "", type: .image, imagePath: path, to: conversationId)
   }
-
-  /// 将图片保存到 Application Support，返回相对路径（如 ChatImages/img_xxx.jpg），重启 app 后通过解析得到完整路径加载
-  private func saveImageToPersistentStorage(_ image: UIImage) -> String? {
-    guard let data = image.jpegData(compressionQuality: 0.85) else { return nil }
-
-    let fileManager = FileManager.default
-    guard
-      let appSupport = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask)
-        .first
-    else {
-      return nil
-    }
-
-    let folderURL = appSupport.appendingPathComponent("ChatImages", isDirectory: true)
-    if !fileManager.fileExists(atPath: folderURL.path) {
-      try? fileManager.createDirectory(at: folderURL, withIntermediateDirectories: true)
-    }
-
-    let fileName = "img_\(UUID().uuidString).jpg"
-    let fileURL = folderURL.appendingPathComponent(fileName)
-    do {
-      try data.write(to: fileURL, options: [.atomic])
-      // 存储相对路径，避免绝对路径在重启后失效（如模拟器容器变化）
-      return "ChatImages/\(fileName)"
-    } catch {
-      print("Failed to save image: \(error)")
-      return nil
-    }
-  }
-
-  // private func seedIfNeeded() {
-  //   guard seedItems.isEmpty else { return }
-  //   guard persistedItems.isEmpty else { return }
-
-  //   seedItems = [
-  //     ChatItem(id: "seed_demo1", isMe: false, content: .text("Hello! 😂"), timeText: "3:09 AM"),
-  //     ChatItem(id: "seed_demo2", isMe: true, content: .text("Hello! 😂"), timeText: "3:09 AM"),
-  //     ChatItem(id: "seed_img1", isMe: true, content: .imagePlaceholder, timeText: "3:09 AM"),
-  //     ChatItem(id: "seed_audio1", isMe: true, content: .audio(seconds: 15), timeText: "3:09 AM"),
-  //   ]
-  // }
 }
 
 // MARK: - Composer & Bubble Models

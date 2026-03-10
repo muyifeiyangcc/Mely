@@ -14,6 +14,8 @@ enum ImageResource {
   case asset(name: String)
   /// 本地文件路径（如聊天图片持久化路径）
   case file(path: String)
+  /// 本地资源：自动区分 Asset 名（如 "test"）与持久化文件路径（含 "/"，如 ChallengeCovers/xxx.jpg）
+  case namedOrPath(String)
   /// 远程网络 URL
   case url(URL)
   /// 已加载的 UIImage
@@ -44,6 +46,12 @@ struct SmartImageView: View {
         assetImage(name: name)
       case .file(let path):
         fileImage(path: path)
+      case .namedOrPath(let s):
+        if s.contains("/") {
+          fileImage(path: s)
+        } else {
+          assetImage(name: s)
+        }
       case .url(let url):
         urlImage(url: url)
       case .uiImage(let uiImage):
@@ -81,7 +89,7 @@ struct SmartImageView: View {
     }
   }
 
-  /// 解析图片路径：绝对路径直接使用；相对路径（如 ChatImages/xxx.jpg）解析为 Application Support 下的完整路径（兼容旧数据中的绝对路径）
+  /// 解析图片路径：绝对路径（以 / 开头）直接使用；相对路径（如 ChatImages/xxx.jpg、ChallengeCovers/xxx.jpg）解析为 Application Support 下的完整路径，重启 App 后仍能正确加载
   private func resolveImagePath(_ path: String) -> String {
     guard !path.isEmpty else { return "" }
     if path.hasPrefix("/") {
@@ -133,6 +141,13 @@ extension SmartImageView {
     -> SmartImageView
   {
     SmartImageView(resource: .file(path: path), placeholder: placeholder)
+  }
+
+  /// 本地资源：自动区分 Asset 名与持久化文件路径，兼容本地上传和 Assets 两种图片
+  static func namedOrPath(_ nameOrPath: String, placeholder: Image = Image(systemName: "photo"))
+    -> SmartImageView
+  {
+    SmartImageView(resource: .namedOrPath(nameOrPath), placeholder: placeholder)
   }
 
   /// 远程 URL

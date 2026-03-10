@@ -120,9 +120,10 @@ struct HomeView: View {
       Spacer()
 
       // AI 头像
-      ZStack(alignment: .center) {
-        Button {
-        } label: {
+      Button {
+        path.append(.aiGuide)
+      } label: {
+        ZStack(alignment: .center) {
           HStack(spacing: 26) {
             Text("Go")
               .font(.custom("Hanchansans-Medium", size: 18))
@@ -139,17 +140,15 @@ struct HomeView: View {
             Capsule()
               .fill(Color.white)
           )
+          .padding(.top, 80)
 
+          Image("dayanjiqiren")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 90, height: 90)
+            .clipShape(Circle())
         }
-        .padding(.top, 80)
-
-        Image("dayanjiqiren")
-          .resizable()
-          .scaledToFit()
-          .frame(width: 90, height: 90)
-          .clipShape(Circle())
       }
-
     }
     .background(
       Image("wangshange")
@@ -194,43 +193,7 @@ struct HomeView: View {
 
 }
 
-// MARK: - 声波效果视图
-
-struct WaveformView: View {
-  @State private var phase: CGFloat = 0
-
-  var body: some View {
-    HStack(spacing: 3) {
-      ForEach(0..<8, id: \.self) { i in
-        RoundedRectangle(cornerRadius: 2)
-          .fill(
-            LinearGradient(
-              colors: [
-                Color(red: 0.5, green: 0.4, blue: 0.9), Color(red: 0.4, green: 0.3, blue: 0.8),
-              ],
-              startPoint: .bottom,
-              endPoint: .top
-            )
-          )
-          .frame(width: 4, height: barHeight(for: i))
-      }
-    }
-    .onAppear {
-      withAnimation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true)) {
-        phase = 1
-      }
-    }
-  }
-
-  private func barHeight(for index: Int) -> CGFloat {
-    let bases: [CGFloat] = [8, 14, 20, 16, 22, 12, 18, 10]
-    let anim = sin(phase * .pi * 2 + CGFloat(index) * 0.5) * 4
-    return max(6, bases[index] + anim)
-  }
-}
-
 // MARK: - 舞蹈挑战卡片
-
 struct DanceChallengeCard: View {
   let challenge: DanceChallenge
   let onJoin: () -> Void
@@ -281,14 +244,22 @@ struct DanceChallengeCard: View {
     .buttonStyle(.plain)
     .frame(width: 220, height: 310)
     .background(
-      Image("dengxuanbg")
-        .resizable()
-        .scaledToFill()
+      challengeCoverBackground
         .frame(width: 220, height: 310)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
     )
     .padding(.top, 16)
 
+  }
+
+  /// 封面背景：SmartImageView 内部兼容 Asset 与持久化文件路径
+  @ViewBuilder
+  private var challengeCoverBackground: some View {
+    if let name = challenge.imageName {
+      SmartImageView(resource: .namedOrPath(name), contentMode: .fill)
+    } else {
+      placeholderGradient
+    }
   }
 
   private var placeholderGradient: some View {

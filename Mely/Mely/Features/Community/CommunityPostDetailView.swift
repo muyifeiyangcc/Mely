@@ -48,11 +48,13 @@ struct CommunityPostDetailView: View {
         if let post {
           ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 20) {
-              Image(post.imageName)
-                .resizable()
-                .scaledToFill()
-                .frame(maxWidth: .infinity)
+              Rectangle()
+                .fill(Color.clear)
                 .frame(height: UIScreen.main.bounds.height * 0.5)
+                .frame(maxWidth: .infinity)
+                .overlay {
+                  SmartImageView.namedOrPath(post.imageName)
+                }
                 .clipShape(
                   UnevenRoundedRectangle(
                     topLeadingRadius: 0,

@@ -9,20 +9,21 @@ import SwiftUI
 
 struct ChallengeDetailView: View {
   @Binding var path: [MainRoute]
-  let challengeId: UUID
+  let challengeId: String
 
   #if DEBUG
     @ObserveInjection var redraw
   #endif
 
   @Environment(\.dismiss) private var dismiss
+  @EnvironmentObject private var appDataStore: AppDataStore
 
   private var challenge: DanceChallenge? {
-    DanceChallenge.sampleChallenges.first { $0.id == challengeId }
+    appDataStore.data.challenges.first { $0.id == challengeId }
   }
 
   private var videos: [ChallengeVideo] {
-    ChallengeVideo.sampleVideos(forChallengeId: challengeId)
+    appDataStore.data.challengeVideos.filter { $0.challengeId == challengeId }
   }
 
   private let headerGradient = LinearGradient(
@@ -105,6 +106,12 @@ struct ChallengeDetailView: View {
         .padding(.horizontal, 20)
         .padding(.top, 30)
 
+      // 闪电图标
+      Image("bvvlvztdgkru_shandian")
+        .resizable()
+        .frame(width: 100, height: 100)
+        .padding(.trailing, 16)
+
       // 内容
       VStack {
         if let challenge = challenge {
@@ -133,12 +140,6 @@ struct ChallengeDetailView: View {
         }
       }
       .padding(.top, 50)
-
-      // 闪电图标
-      Image("bvvlvztdgkru_shandian")
-        .resizable()
-        .frame(width: 100, height: 100)
-        .padding(.trailing, 16)
     }
     .frame(width: .infinity, height: 210)
   }
@@ -154,8 +155,13 @@ struct ChallengeDetailView: View {
     ]
     return LazyVGrid(columns: columns, spacing: gridSpacing) {
       ForEach(videos) { video in
-        ChallengeVideoCell(video: video)
-          .frame(maxWidth: .infinity)
+        Button {
+          path.append(.videoDetail(videoId: video.id))
+        } label: {
+          ChallengeVideoCell(video: video)
+            .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.plain)
       }
     }
     .padding(.vertical, 8)
@@ -184,7 +190,6 @@ struct ChallengeDetailView: View {
 }
 
 // MARK: - 挑战视频单元格（已解锁 / 锁定）
-
 struct ChallengeVideoCell: View {
   let video: ChallengeVideo
   private let thumbnailHeight: CGFloat = 142
@@ -263,6 +268,7 @@ struct ChallengeVideoCell: View {
 
 #Preview {
   NavigationStack {
-    ChallengeDetailView(path: .constant([]), challengeId: DanceChallenge.sampleChallenges[0].id)
+    ChallengeDetailView(path: .constant([]), challengeId: AppData.makeSample().challenges[0].id)
+      .environmentObject(AppDataStore())
   }
 }

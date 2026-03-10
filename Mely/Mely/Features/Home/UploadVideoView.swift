@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UploadVideoView: View {
   @Binding var path: [MainRoute]
-  let challengeId: UUID
+  let challengeId: String
 
   #if DEBUG
     @ObserveInjection var redraw
@@ -183,6 +183,6 @@ struct UploadVideoView: View {
 
 #Preview {
   NavigationStack {
-    UploadVideoView(path: .constant([]), challengeId: DanceChallenge.sampleChallenges[0].id)
+    UploadVideoView(path: .constant([]), challengeId: AppData.makeSample().challenges[0].id)
   }
 }

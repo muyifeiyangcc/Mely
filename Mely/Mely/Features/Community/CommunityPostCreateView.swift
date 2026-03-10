@@ -20,7 +20,9 @@ struct CommunityPostCreateView: View {
   @State private var selectedTags: Set<String> = ["Daily"]
   private let allTags: [String] = ["Two-dimensional", "Daily", "Leisure", "Other"]
 
-  private let displayImageName = "test"
+  /// 用户选择的帖子主图
+  @State private var selectedPostImage: UIImage?
+  @State private var showImageSourcePicker: Bool = false
 
   var body: some View {
     ZStack {
@@ -50,6 +52,9 @@ struct CommunityPostCreateView: View {
     }
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
+    .imageSourcePicker(
+      isPresented: $showImageSourcePicker, onImagePicked: { selectedPostImage = $0 }
+    )
     #if DEBUG
       .enableInjection()
     #endif
@@ -85,26 +90,37 @@ struct CommunityPostCreateView: View {
 
   private var imageArea: some View {
     HStack(spacing: 16) {
-      Image(displayImageName)
-        .resizable()
-        .scaledToFill()
-        .frame(width: 160, height: 240)
-        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+      // 主图展示：选中图片或占位
+      Group {
+        if let image = selectedPostImage {
+          Image(uiImage: image)
+            .resizable()
+        } else {
+          // 点击上传图片：打开资源选择弹窗 → 权限 → 选择图片
+          Button {
+            showImageSourcePicker = true
+          } label: {
+            ZStack {
+              RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .stroke(Color.white.opacity(0.3), lineWidth: 2)
+                .background(
+                  RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(Color(red: 46 / 255, green: 53 / 255, blue: 71 / 255))
+                )
 
-      ZStack {
-        RoundedRectangle(cornerRadius: 20, style: .continuous)
-          .stroke(Color.white.opacity(0.3), lineWidth: 2)
-          .background(
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-              .fill(Color(red: 46 / 255, green: 53 / 255, blue: 71 / 255))
-          )
-
-        Image("gfqjfrzfemtladd")
-          .resizable()
-          .scaledToFit()
-          .frame(width: 40, height: 40)
+              Image("gfqjfrzfemtladd")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 40, height: 40)
+            }
+          }
+          .buttonStyle(.plain)
+          .frame(width: 160, height: 240)
+        }
       }
+      .scaledToFill()
       .frame(width: 160, height: 240)
+      .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
     }
   }
 
@@ -188,7 +204,13 @@ struct CommunityPostCreateView: View {
 
   private func performPost() {
     let tags = Array(selectedTags).sorted()
-    appDataStore.addCommunityPost(imageName: displayImageName, tags: tags)
+    var imageName = "test"
+    if let image = selectedPostImage,
+      let path = ImageStorageHelper.saveCommunityImage(image)
+    {
+      imageName = path
+    }
+    appDataStore.addCommunityPost(imageName: imageName, tags: tags)
     // 返回社区广场
     if !path.isEmpty {
       path.removeLast()

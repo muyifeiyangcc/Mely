@@ -133,7 +133,7 @@ struct MessageModel: Identifiable, Codable, Equatable {
 // MARK: - 舞蹈挑战模型
 
 struct DanceChallenge: Identifiable, Codable, Equatable {
-  let id: UUID
+  let id: String
   let title: String
   let imageName: String?
   var isJoined: Bool
@@ -141,66 +141,15 @@ struct DanceChallenge: Identifiable, Codable, Equatable {
   let participantsCount: Int
   let description: String
 
-  private static let id1 = UUID()
-  private static let id2 = UUID()
-  private static let id3 = UUID()
-  private static let id4 = UUID()
-  private static let id5 = UUID()
-
-  static let sampleChallenges: [DanceChallenge] = [
-    DanceChallenge(
-      id: id1,
-      title: "Dance Together",
-      imageName: "test",
-      isJoined: false,
-      difficulty: "Medium",
-      participantsCount: 12_500,
-      description: "与好友共舞，享受当下。"
-    ),
-    DanceChallenge(
-      id: id2,
-      title: "Speed Challenge",
-      imageName: "test",
-      isJoined: false,
-      difficulty: "Medium",
-      participantsCount: 12_500,
-      description: "提升你的速度和敏捷性！每周完成指定速度舞蹈挑战，赢得奖励。"
-    ),
-    DanceChallenge(
-      id: id3,
-      title: "Flexibility Flow",
-      imageName: "test",
-      isJoined: true,
-      difficulty: "Easy",
-      participantsCount: 8_900,
-      description: "通过一系列柔韧性练习，提升你的身体柔韧度，让舞姿更优美。"
-    ),
-    DanceChallenge(
-      id: id4,
-      title: "Cardio Blast",
-      imageName: "test",
-      isJoined: false,
-      difficulty: "Hard",
-      participantsCount: 15_300,
-      description: "高强度有氧舞蹈挑战，燃烧卡路里，提升心肺功能。"
-    ),
-    DanceChallenge(
-      id: id5,
-      title: "Balance Master",
-      imageName: "test",
-      isJoined: false,
-      difficulty: "Medium",
-      participantsCount: 9_800,
-      description: "专注于核心力量和平衡训练，挑战你的身体控制力。"
-    ),
-  ]
 }
 
 // MARK: - 挑战参与视频模型（详情页视频列表）
 
-struct ChallengeVideo: Identifiable, Equatable {
-  let id: UUID
-  let challengeId: UUID
+struct ChallengeVideo: Identifiable, Codable, Equatable {
+  let id: String
+  let challengeId: String
+  /// 视频作者用户 id（兼容旧数据缺省为 u6）
+  let userId: String
   /// 缩略图资源名或占位
   let thumbnailName: String?
   /// 点赞数（如 140000 显示为 14.0W）
@@ -209,6 +158,50 @@ struct ChallengeVideo: Identifiable, Equatable {
   let isLocked: Bool
   /// 解锁所需钻石数，锁定时有值
   let unlockCostDiamonds: Int?
+
+  enum CodingKeys: String, CodingKey {
+    case id, challengeId, userId, thumbnailName, likeCount, isLocked, unlockCostDiamonds
+  }
+
+  init(
+    id: String,
+    challengeId: String,
+    userId: String,
+    thumbnailName: String?,
+    likeCount: Int,
+    isLocked: Bool,
+    unlockCostDiamonds: Int?
+  ) {
+    self.id = id
+    self.challengeId = challengeId
+    self.userId = userId
+    self.thumbnailName = thumbnailName
+    self.likeCount = likeCount
+    self.isLocked = isLocked
+    self.unlockCostDiamonds = unlockCostDiamonds
+  }
+
+  init(from decoder: Decoder) throws {
+    let c = try decoder.container(keyedBy: CodingKeys.self)
+    id = try c.decode(String.self, forKey: .id)
+    challengeId = try c.decode(String.self, forKey: .challengeId)
+    userId = try c.decodeIfPresent(String.self, forKey: .userId) ?? "u6"
+    thumbnailName = try c.decodeIfPresent(String.self, forKey: .thumbnailName)
+    likeCount = try c.decode(Int.self, forKey: .likeCount)
+    isLocked = try c.decode(Bool.self, forKey: .isLocked)
+    unlockCostDiamonds = try c.decodeIfPresent(Int.self, forKey: .unlockCostDiamonds)
+  }
+
+  func encode(to encoder: Encoder) throws {
+    var c = encoder.container(keyedBy: CodingKeys.self)
+    try c.encode(id, forKey: .id)
+    try c.encode(challengeId, forKey: .challengeId)
+    try c.encode(userId, forKey: .userId)
+    try c.encodeIfPresent(thumbnailName, forKey: .thumbnailName)
+    try c.encode(likeCount, forKey: .likeCount)
+    try c.encode(isLocked, forKey: .isLocked)
+    try c.encodeIfPresent(unlockCostDiamonds, forKey: .unlockCostDiamonds)
+  }
 
   /// 格式化为 14.0W 形式
   var likeCountFormatted: String {
@@ -219,36 +212,6 @@ struct ChallengeVideo: Identifiable, Equatable {
     return "\(likeCount)"
   }
 
-  private static let cvid1 = UUID()
-  private static let cvid2 = UUID()
-  private static let cvid3 = UUID()
-  private static let cvid4 = UUID()
-  private static let cvid5 = UUID()
-  private static let cvid6 = UUID()
-
-  /// 示例：Dance Together 的 6 个视频，前 3 解锁，后 3 锁定 300 钻石
-  static func sampleVideos(forChallengeId challengeId: UUID) -> [ChallengeVideo] {
-    [
-      ChallengeVideo(
-        id: cvid1, challengeId: challengeId, thumbnailName: "test", likeCount: 140_000,
-        isLocked: false, unlockCostDiamonds: nil),
-      ChallengeVideo(
-        id: cvid2, challengeId: challengeId, thumbnailName: "test", likeCount: 140_000,
-        isLocked: false, unlockCostDiamonds: nil),
-      ChallengeVideo(
-        id: cvid3, challengeId: challengeId, thumbnailName: "test", likeCount: 140_000,
-        isLocked: false, unlockCostDiamonds: nil),
-      ChallengeVideo(
-        id: cvid4, challengeId: challengeId, thumbnailName: "test", likeCount: 140_000,
-        isLocked: true, unlockCostDiamonds: 300),
-      ChallengeVideo(
-        id: cvid5, challengeId: challengeId, thumbnailName: "test", likeCount: 140_000,
-        isLocked: true, unlockCostDiamonds: 300),
-      ChallengeVideo(
-        id: cvid6, challengeId: challengeId, thumbnailName: "test", likeCount: 140_000,
-        isLocked: true, unlockCostDiamonds: 300),
-    ]
-  }
 }
 
 // MARK: - 社区图片帖子模型（社区广场列表）
@@ -295,6 +258,8 @@ struct AppData: Codable, Equatable {
   var posts: [PostModel]
   /// 首页舞蹈挑战列表
   var challenges: [DanceChallenge]
+  /// 挑战参与视频列表（详情页视频网格）
+  var challengeVideos: [ChallengeVideo]
   /// 社区广场图片帖子列表
   var communityPosts: [CommunityPostModel]
   /// 社区帖子评论列表
@@ -309,14 +274,14 @@ struct AppData: Codable, Equatable {
   var hasAcceptedEULA: Bool = false
 
   enum CodingKeys: String, CodingKey {
-    case users, recommendedItems, posts, challenges, communityPosts, communityComments,
-      conversations, messages
+    case users, recommendedItems, posts, challenges, challengeVideos, communityPosts,
+      communityComments, conversations, messages
     case currentUserId, quickLoginUserId, hasAcceptedEULA
   }
 
   init(
     users: [UserModel], recommendedItems: [RecommendedItemModel], posts: [PostModel],
-    challenges: [DanceChallenge],
+    challenges: [DanceChallenge], challengeVideos: [ChallengeVideo],
     communityPosts: [CommunityPostModel], communityComments: [CommunityCommentModel],
     conversations: [ConversationModel], messages: [MessageModel],
     currentUserId: String?, quickLoginUserId: String? = nil, hasAcceptedEULA: Bool = false
@@ -325,6 +290,7 @@ struct AppData: Codable, Equatable {
     self.recommendedItems = recommendedItems
     self.posts = posts
     self.challenges = challenges
+    self.challengeVideos = challengeVideos
     self.communityPosts = communityPosts
     self.communityComments = communityComments
     self.conversations = conversations
@@ -339,9 +305,8 @@ struct AppData: Codable, Equatable {
     users = try c.decode([UserModel].self, forKey: .users)
     recommendedItems = try c.decode([RecommendedItemModel].self, forKey: .recommendedItems)
     posts = try c.decode([PostModel].self, forKey: .posts)
-    challenges =
-      try c.decodeIfPresent([DanceChallenge].self, forKey: .challenges)
-      ?? DanceChallenge.sampleChallenges
+    challenges = try c.decodeIfPresent([DanceChallenge].self, forKey: .challenges) ?? []
+    challengeVideos = try c.decodeIfPresent([ChallengeVideo].self, forKey: .challengeVideos) ?? []
     communityPosts = try c.decodeIfPresent([CommunityPostModel].self, forKey: .communityPosts) ?? []
     communityComments =
       try c.decodeIfPresent([CommunityCommentModel].self, forKey: .communityComments) ?? []
@@ -358,6 +323,7 @@ struct AppData: Codable, Equatable {
     try c.encode(recommendedItems, forKey: .recommendedItems)
     try c.encode(posts, forKey: .posts)
     try c.encode(challenges, forKey: .challenges)
+    try c.encode(challengeVideos, forKey: .challengeVideos)
     try c.encode(communityPosts, forKey: .communityPosts)
     try c.encode(communityComments, forKey: .communityComments)
     try c.encode(conversations, forKey: .conversations)
