@@ -18,6 +18,9 @@ struct ChallengeDetailView: View {
   @Environment(\.dismiss) private var dismiss
   @EnvironmentObject private var appDataStore: AppDataStore
 
+  @State private var showReportBlockSheet: Bool = false
+  @State private var showReportSheet: Bool = false
+
   private var challenge: DanceChallenge? {
     appDataStore.data.challenges.first { $0.id == challengeId }
   }
@@ -51,22 +54,11 @@ struct ChallengeDetailView: View {
         .ignoresSafeArea()
 
       VStack(spacing: 0) {
-        // 返回按钮
-        HStack {
-          Button {
-            dismiss.callAsFunction()
-          } label: {
-            Image(systemName: "chevron.left")
-              .font(.system(size: 18, weight: .semibold))
-              .foregroundColor(.black)
-              .frame(width: 44, height: 44)
-              .background(Circle().fill(Color.white))
-          }
-          .padding(.leading, 16)
-          .padding(.top, 8)
-
-          Spacer()
-        }
+        MelyTopBarView(
+          title: "",
+          onBack: { dismiss() },
+          onMoreTap: { showReportBlockSheet = true }
+        )
 
         // 挑战信息卡片
         topCard
@@ -86,6 +78,29 @@ struct ChallengeDetailView: View {
 
       }
     }
+    .overlay {
+      if showReportBlockSheet {
+        MelyReportBlockSheet(
+          isPresented: $showReportBlockSheet,
+          onReport: {
+            showReportBlockSheet = false
+            showReportSheet = true
+          },
+          onBlock: {
+            // 挑战详情页无具体用户可拉黑，仅关闭弹窗
+            showReportBlockSheet = false
+          }
+        )
+      }
+    }
+    .overlay {
+      if showReportSheet {
+        MelyReportSheet(
+          isPresented: $showReportSheet,
+          onSubmit: { _, _ in /* 举报挑战 */ }
+        )
+      }
+    }
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
     #if DEBUG
@@ -94,7 +109,6 @@ struct ChallengeDetailView: View {
   }
 
   // MARK: - 顶部：返回 + 挑战信息卡片
-
   private var topCard: some View {
     ZStack(alignment: .topTrailing) {
       // 紫色-粉色渐变卡片
@@ -145,7 +159,6 @@ struct ChallengeDetailView: View {
   }
 
   // MARK: - 视频网格（每行 3 个）
-
   private var videoGrid: some View {
     let gridSpacing: CGFloat = 12
     let columns = [
@@ -168,7 +181,6 @@ struct ChallengeDetailView: View {
   }
 
   // MARK: - 底部参与挑战按钮
-
   private var joinButton: some View {
     Button {
       path.append(.uploadVideo(challengeId: challengeId))
@@ -205,7 +217,6 @@ struct ChallengeVideoCell: View {
       }
       .frame(maxWidth: .infinity)
       .frame(height: thumbnailHeight)
-      // .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
       .clipShape(
         UnevenRoundedRectangle(
           topLeadingRadius: 16,
@@ -236,9 +247,7 @@ struct ChallengeVideoCell: View {
   private var thumbnailView: some View {
     Group {
       if let name = video.thumbnailName, !name.isEmpty {
-        Image("dengxuanbg")
-          // Image(name)
-          .resizable()
+        SmartImageView.namedOrPath(name, placeholder: Image("dengxuanbg"))
           .scaledToFill()
           .frame(maxWidth: .infinity, maxHeight: .infinity)
           .clipped()
@@ -251,24 +260,17 @@ struct ChallengeVideoCell: View {
 
   private var lockedOverlay: some View {
     HStack(spacing: 4) {
-      Image(systemName: "diamond.fill")
-        .font(.caption)
-        .foregroundColor(.blue)
+      Image("mkirgxytewig_diamond")
+        .resizable()
+        .frame(width: 20, height: 20)
       Text("-\(video.unlockCostDiamonds ?? 0)")
-        .font(.caption.weight(.medium))
+        .font(.custom("Hanchansans-Medium", size: 14))
         .foregroundColor(.white)
     }
     .padding(.horizontal, 10)
-    .padding(.vertical, 6)
+    .padding(.vertical, 5)
     .background(
       Capsule().fill(Color.black.opacity(0.5))
     )
-  }
-}
-
-#Preview {
-  NavigationStack {
-    ChallengeDetailView(path: .constant([]), challengeId: AppData.makeSample().challenges[0].id)
-      .environmentObject(AppDataStore())
   }
 }

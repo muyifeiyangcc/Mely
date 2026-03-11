@@ -6,6 +6,7 @@
 //  重启 App 后通过 SmartImageView 解析相对路径为完整路径正确显示。
 //
 
+import AVFoundation
 import UIKit
 
 enum ImageStorageHelper {
@@ -65,5 +66,84 @@ enum ImageStorageHelper {
   /// 保存社区图片，返回 CommunityImages/xxx.jpg（预留）
   static func saveCommunityImage(_ image: UIImage) -> String? {
     saveImage(image, subfolder: communitySubfolder, filePrefix: "community", compressionQuality: 0.85)
+  }
+
+  // MARK: - 挑战视频存储
+
+  /// 挑战视频文件子目录
+  static let challengeVideoSubfolder = "ChallengeVideos"
+  /// 挑战视频封面子目录
+  static let challengeVideoThumbSubfolder = "ChallengeVideoThumbnails"
+
+  /// 将视频文件复制到 Application Support 指定子目录，返回相对路径（如 ChallengeVideos/xxx.mp4）
+  static func saveVideo(from sourceURL: URL, subfolder: String = challengeVideoSubfolder) -> String? {
+    let fileManager = FileManager.default
+    guard
+      let appSupport = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+    else { return nil }
+
+    let folderURL = appSupport.appendingPathComponent(subfolder, isDirectory: true)
+    if !fileManager.fileExists(atPath: folderURL.path) {
+      try? fileManager.createDirectory(at: folderURL, withIntermediateDirectories: true)
+    }
+
+    let ext = sourceURL.pathExtension.isEmpty ? "mp4" : sourceURL.pathExtension
+    let fileName = "\(UUID().uuidString).\(ext)"
+    let destURL = folderURL.appendingPathComponent(fileName)
+
+    do {
+      if fileManager.fileExists(atPath: destURL.path) { try fileManager.removeItem(at: destURL) }
+      try fileManager.copyItem(at: sourceURL, to: destURL)
+      return "\(subfolder)/\(fileName)"
+    } catch {
+      return nil
+    }
+  }
+
+  /// 保存挑战视频封面，返回 ChallengeVideoThumbnails/xxx.jpg
+  static func saveChallengeVideoThumbnail(_ image: UIImage) -> String? {
+    saveImage(
+      image,
+      subfolder: challengeVideoThumbSubfolder,
+      filePrefix: "thumb",
+      compressionQuality: 0.8
+    )
+  }
+
+  /// 从视频 URL 生成封面图（取第一帧）
+  static func generateThumbnail(from videoURL: URL) -> UIImage? {
+    let asset = AVAsset(url: videoURL)
+    let generator = AVAssetImageGenerator(asset: asset)
+    generator.appliesPreferredTrackTransform = true
+    generator.maximumSize = CGSize(width: 640, height: 640)
+    let time = CMTime(seconds: 0, preferredTimescale: 600)
+    do {
+      let cgImage = try generator.copyCGImage(at: time, actualTime: nil)
+      return UIImage(cgImage: cgImage)
+    } catch {
+      return nil
+    }
+  }
+
+  /// 根据相对路径解析为视频完整 URL（支持 Bundle 和 Application Support）
+  static func resolveVideoURL(_ pathOrName: String) -> URL? {
+    guard !pathOrName.isEmpty else { return nil }
+    // 绝对路径
+    if pathOrName.hasPrefix("/") {
+      let url = URL(fileURLWithPath: pathOrName)
+      return FileManager.default.fileExists(atPath: pathOrName) ? url : nil
+    }
+    // Application Support 相对路径（如 ChallengeVideos/xxx.mp4）
+    if pathOrName.contains("/") {
+      guard
+        let appSupport = FileManager.default.urls(
+          for: .applicationSupportDirectory,
+          in: .userDomainMask
+        ).first
+      else { return nil }
+      let fullURL = appSupport.appendingPathComponent(pathOrName)
+      return FileManager.default.fileExists(atPath: fullURL.path) ? fullURL : nil
+    }
+    return nil
   }
 }

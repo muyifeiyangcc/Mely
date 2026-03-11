@@ -11,6 +11,8 @@ enum MainRoute: Hashable {
   case community
   case chat
   case profile
+  /// 查看指定用户的个人中心
+  case userProfile(userId: String)
   /// 设置页（独立页面）
   case settings
   /// 社区发布帖子
@@ -68,6 +70,8 @@ struct AppRootView: View {
                 MessageView()
               case .profile:
                 ProfileView(path: $path)
+              case .userProfile(let userId):
+                ProfileView(path: $path, userId: userId)
               case .settings:
                 SettingsView()
               case .communityPostCreate:

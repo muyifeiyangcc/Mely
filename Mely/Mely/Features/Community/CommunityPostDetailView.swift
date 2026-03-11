@@ -24,6 +24,10 @@ struct CommunityPostDetailView: View {
 
   @State private var commentText: String = ""
   @State private var isEmojiPanelPresented: Bool = false
+  @State private var showReportBlockSheet: Bool = false
+  @State private var showReportSheet: Bool = false
+  /// 当前举报/拉黑的目标用户 id（顶部栏为帖子作者，评论项为评论作者）
+  @State private var reportBlockTargetUserId: String?
 
   private var post: CommunityPostModel? {
     appDataStore.data.communityPosts.first(where: { $0.id == postId })
@@ -81,13 +85,51 @@ struct CommunityPostDetailView: View {
       .ignoresSafeArea(edges: .top)
 
       VStack {
-        topBar
+        // topBar
+        MelyTopBarView(
+          title: "",
+          onBack: { dismiss() },
+          onMoreTap: {
+            reportBlockTargetUserId = post?.userId
+            showReportBlockSheet = true
+          }
+        )
+
         Spacer()
       }
 
       commentInputBar
       // .offset(y: isEmojiPanelPresented ? -80 : 0)
 
+    }
+    .overlay {
+      if showReportBlockSheet {
+        MelyReportBlockSheet(
+          isPresented: $showReportBlockSheet,
+          onReport: {
+            showReportBlockSheet = false
+            showReportSheet = true
+          },
+          onBlock: {
+            let target = reportBlockTargetUserId
+            if let uid = target {
+              appDataStore.blockUser(uid: uid)
+            }
+            reportBlockTargetUserId = nil
+            showReportBlockSheet = false
+            if target == post?.userId { dismiss() }
+          }
+        )
+      }
+    }
+    .overlay {
+      if showReportSheet {
+        MelyReportSheet(
+          isPresented: $showReportSheet,
+          onSubmit: { _, _ in reportBlockTargetUserId = nil },
+          onCancel: { reportBlockTargetUserId = nil }
+        )
+      }
     }
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
@@ -130,9 +172,11 @@ struct CommunityPostDetailView: View {
           Circle()
             .fill(Color.white.opacity(0.25))
             .overlay {
-              Image(systemName: author.avatarSymbol)
-                .font(.title2)
-                .foregroundColor(.white)
+              Image(author.avatarSymbol)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 50, height: 50)
+                .clipShape(Circle())
             }
             .frame(width: 50, height: 50)
 
@@ -163,11 +207,10 @@ struct CommunityPostDetailView: View {
         }
       }
 
-      if let firstTag = post.tags.first {
-        Text(firstTag)
-          .font(.custom("Hanchansans-Medium", size: 16))
-          .foregroundColor(.white)
-      }
+      Text(post.description)
+        .font(.custom("Hanchansans-Medium", size: 16))
+        .foregroundColor(.white)
+
     }
   }
 
@@ -185,7 +228,13 @@ struct CommunityPostDetailView: View {
 
       ForEach(comments) { comment in
         CommentRow(
-          comment: comment, user: appDataStore.data.users.first { $0.id == comment.userId })
+          comment: comment,
+          user: appDataStore.data.users.first { $0.id == comment.userId },
+          onMoreTap: {
+            reportBlockTargetUserId = comment.userId
+            showReportBlockSheet = true
+          }
+        )
       }
     }
   }
@@ -278,6 +327,7 @@ struct CommunityPostDetailView: View {
 private struct CommentRow: View {
   let comment: CommunityCommentModel
   let user: UserModel?
+  var onMoreTap: (() -> Void)?
 
   var body: some View {
     VStack(spacing: 0) {
@@ -286,9 +336,11 @@ private struct CommentRow: View {
           .fill(Color.white.opacity(0.25))
           .overlay {
             if let user {
-              Image(systemName: user.avatarSymbol)
-                .font(.subheadline)
-                .foregroundColor(.white)
+              Image(user.avatarSymbol)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 38, height: 38)
+                .clipShape(Circle())
             }
           }
           .frame(width: 38, height: 38)
@@ -300,9 +352,14 @@ private struct CommentRow: View {
               .foregroundColor(.white)
             Spacer()
 
-            Image(systemName: "ellipsis")
-              .font(.system(size: 22))
-              .foregroundColor(.white)
+            Button {
+              onMoreTap?()
+            } label: {
+              Image(systemName: "ellipsis")
+                .font(.system(size: 22))
+                .foregroundColor(.white)
+            }
+            .buttonStyle(.plain)
           }
           .padding(.bottom, 4)
 

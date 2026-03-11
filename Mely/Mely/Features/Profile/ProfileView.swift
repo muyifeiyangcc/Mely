@@ -43,6 +43,9 @@ struct ProfileView: View {
     Color(red: 0.4, green: 0.6, blue: 0.95),
   ]
 
+  @State private var showReportBlockSheet: Bool = false
+  @State private var showReportSheet: Bool = false
+
   #if DEBUG
     @ObserveInjection var redraw
   #endif
@@ -68,9 +71,9 @@ struct ProfileView: View {
           presentationMode.wrappedValue.dismiss()
         }) {
           Image(systemName: "chevron.left")
-            .font(.system(size: 20, weight: .bold))
+            .font(.system(size: 20))
             .foregroundColor(.black)
-            .padding(10)
+            .padding(14)
             .background(Circle().fill(Color.white))
         }
 
@@ -80,25 +83,49 @@ struct ProfileView: View {
           Button(action: {
             path.append(.settings)
           }) {
-            Image(systemName: "gearshape.fill")
+            Image(systemName: "gearshape")
               .font(.system(size: 20, weight: .bold))
               .foregroundColor(.black)
-              .padding(10)
+              .padding(12)
               .background(Circle().fill(Color.white))
           }
         } else {
           Button(action: {
             // More action
+            showReportBlockSheet = true
           }) {
             Image(systemName: "ellipsis")
               .font(.system(size: 20, weight: .bold))
               .foregroundColor(.black)
-              .padding(10)
+              .padding(18)
               .background(Circle().fill(Color.white))
           }
         }
       }
       .padding(.horizontal, 20)
+    }
+    .overlay {
+      if showReportBlockSheet {
+        MelyReportBlockSheet(
+          isPresented: $showReportBlockSheet,
+          onReport: {
+            showReportBlockSheet = false
+            showReportSheet = true
+          },
+          onBlock: {
+            if let uid = targetUserId {
+              appDataStore.blockUser(uid: uid)
+            }
+            showReportBlockSheet = false
+            presentationMode.wrappedValue.dismiss()
+          }
+        )
+      }
+    }
+    .overlay {
+      if showReportSheet {
+        MelyReportSheet(isPresented: $showReportSheet, onSubmit: { _, _ in /* 举报用户 */ })
+      }
     }
     .navigationBarHidden(true)
     #if DEBUG
@@ -133,7 +160,7 @@ struct ProfileView: View {
               .stroke(Color.white.opacity(0.5), lineWidth: 2)
               .frame(width: 94, height: 94)
 
-            Image(systemName: user?.avatarSymbol ?? "person.crop.circle.fill")
+            Image(user?.avatarSymbol ?? "mely_defava")
               .resizable()
               .scaledToFill()
               .frame(width: 80, height: 80)
@@ -142,7 +169,7 @@ struct ProfileView: View {
           }
 
           // Name
-          HStack {
+          HStack(spacing: 20) {
             Text(user?.name ?? "User")
               .font(.custom("Hanchansans-Medium", size: 24))
               .foregroundColor(.white)
@@ -151,8 +178,11 @@ struct ProfileView: View {
               Button(action: {}) {
                 Image(systemName: "envelope.fill")
                   .foregroundColor(.black)
-                  .padding(8)
-                  .background(Circle().fill(Color.white))
+                  .padding(.horizontal, 12)
+                  .padding(.vertical, 8)
+                  .background(
+                    Rectangle().fill(Color.white).cornerRadius(
+                      16, corners: .allCorners))
               }
             }
           }
@@ -209,12 +239,12 @@ struct ProfileView: View {
           } else {
             Button(action: {}) {
               Text("Following")
-                .font(.system(size: 16, weight: .bold))
+                .font(.custom("Hanchansans-Medium", size: 17))
                 .foregroundColor(.black)
-                .padding(.horizontal, 24)
-                .padding(.vertical, 8)
-                .background(Color(hex: "CCFF00"))
-                .cornerRadius(20)
+                .padding(.horizontal, 18)
+                .padding(.vertical, 12)
+                .background(Color(hex: "#CBED40"))
+                .cornerRadius(12)
             }
           }
         }
@@ -250,6 +280,7 @@ struct ProfileView: View {
       ForEach(posts) { post in
         NavigationLink(value: MainRoute.communityPostDetail(postId: post.id)) {
           CommunityPostCard(
+            path: $path,
             post: post,
             user: appDataStore.data.users.first(where: { $0.id == post.userId }),
             tagColors: tagColors

@@ -29,6 +29,8 @@ struct ChatDetailView: View {
   @State private var showVoicePermissionAlert: Bool = false
   @State private var isVoiceRecording: Bool = false
   @State private var keyboardHeight: CGFloat = 0
+  @State private var showReportBlockSheet: Bool = false
+  @State private var showReportSheet: Bool = false
 
   var body: some View {
     GeometryReader { geo in
@@ -38,22 +40,10 @@ struct ChatDetailView: View {
           .ignoresSafeArea()
 
         VStack(spacing: 0) {
-          ChatTopBarView(
+          MelyTopBarView(
             title: conversationTitle,
-            showsBackButton: true,
             onBack: { dismiss() },
-            trailing: {
-              Button {
-                // 占位：更多
-              } label: {
-                Image(systemName: "ellipsis")
-                  .font(.system(size: 18, weight: .semibold))
-                  .foregroundColor(.white)
-                  .frame(width: 44, height: 44)
-                  .background(.white.opacity(0.15))
-                  .clipShape(Circle())
-              }
-            }
+            onMoreTap: { showReportBlockSheet = true }
           )
 
           ScrollViewReader { proxy in
@@ -123,6 +113,32 @@ struct ChatDetailView: View {
         keyboardHeight = 0
       }
     }
+    .overlay {
+      if showReportBlockSheet {
+        MelyReportBlockSheet(
+          isPresented: $showReportBlockSheet,
+          onReport: {
+            showReportBlockSheet = false
+            showReportSheet = true
+          },
+          onBlock: {
+            if let uid = otherUserId {
+              appDataStore.blockUser(uid: uid)
+            }
+            showReportBlockSheet = false
+            dismiss()
+          }
+        )
+      }
+    }
+    .overlay {
+      if showReportSheet {
+        MelyReportSheet(
+          isPresented: $showReportSheet,
+          onSubmit: { _, _ in /* 举报已提交 */ }
+        )
+      }
+    }
     .toolbar(.hidden, for: .navigationBar)
     .imageSourcePicker(
       isPresented: $showImageSourcePicker, onImagePicked: { handlePickedImage($0) }
@@ -144,34 +160,35 @@ struct ChatDetailView: View {
     #endif
   }
 
-  private var conversationTitle: String {
+  private var otherUserId: String? {
     guard
       let conversation = appDataStore.data.conversations.first(where: { $0.id == conversationId }),
       let currentId = appDataStore.data.currentUserId
-    else { return "Chat" }
-    let otherId = conversation.participantUserIds.first { $0 != currentId }
-    guard let id = otherId,
+    else { return nil }
+    return conversation.participantUserIds.first { $0 != currentId }
+  }
+
+  private var conversationTitle: String {
+    guard let id = otherUserId,
       let user = appDataStore.data.users.first(where: { $0.id == id })
-    else {
-      return "Chat"
-    }
+    else { return "Chat" }
     return user.name
   }
 
   private var meAvatarSymbol: String {
-    appDataStore.currentUser?.avatarSymbol ?? "person.crop.circle.fill"
+    appDataStore.currentUser?.avatarSymbol ?? "mely_defava"
   }
 
   private var otherAvatarSymbol: String {
     guard
       let conversation = appDataStore.data.conversations.first(where: { $0.id == conversationId }),
       let currentId = appDataStore.data.currentUserId
-    else { return "person.crop.circle.fill" }
+    else { return "mely_defava" }
     let otherId = conversation.participantUserIds.first { $0 != currentId }
     guard let id = otherId,
       let user = appDataStore.data.users.first(where: { $0.id == id })
     else {
-      return "person.crop.circle.fill"
+      return "mely_defava"
     }
     return user.avatarSymbol
   }
@@ -261,7 +278,6 @@ struct ChatDetailView: View {
 }
 
 // MARK: - Composer & Bubble Models
-
 private struct ChatComposerView: View {
   @Binding var text: String
   @Binding var isVoiceExpanded: Bool
@@ -568,7 +584,6 @@ private struct VoiceMessageBubble: View {
 }
 
 // MARK: - Bubble & Models
-
 private struct ChatBubbleRowView: View {
   let item: ChatItem
   let meAvatar: String
@@ -703,50 +718,50 @@ private struct ChatItem: Identifiable, Equatable {
   let timeText: String
 }
 
-struct ChatTopBarView<Trailing: View>: View {
-  let title: String
-  let showsBackButton: Bool
-  let onBack: () -> Void
-  @ViewBuilder let trailing: () -> Trailing
+// struct ChatTopBarView<Trailing: View>: View {
+//   let title: String
+//   let showsBackButton: Bool
+//   let onBack: () -> Void
+//   @ViewBuilder let trailing: () -> Trailing
 
-  init(
-    title: String, showsBackButton: Bool, onBack: @escaping () -> Void,
-    @ViewBuilder trailing: @escaping () -> Trailing
-  ) {
-    self.title = title
-    self.showsBackButton = showsBackButton
-    self.onBack = onBack
-    self.trailing = trailing
-  }
+//   init(
+//     title: String, showsBackButton: Bool, onBack: @escaping () -> Void,
+//     @ViewBuilder trailing: @escaping () -> Trailing
+//   ) {
+//     self.title = title
+//     self.showsBackButton = showsBackButton
+//     self.onBack = onBack
+//     self.trailing = trailing
+//   }
 
-  var body: some View {
-    HStack {
-      if showsBackButton {
-        Button(action: onBack) {
-          Image(systemName: "chevron.left")
-            .font(.system(size: 18, weight: .semibold))
-            .foregroundColor(.white)
-            .frame(width: 44, height: 44)
-            .background(.white.opacity(0.15))
-            .clipShape(Circle())
-        }
-      } else {
-        Spacer().frame(width: 44)
-      }
+//   var body: some View {
+//     HStack {
+//       if showsBackButton {
+//         Button(action: onBack) {
+//           Image(systemName: "chevron.left")
+//             .font(.system(size: 18, weight: .semibold))
+//             .foregroundColor(.white)
+//             .frame(width: 44, height: 44)
+//             .background(.white.opacity(0.15))
+//             .clipShape(Circle())
+//         }
+//       } else {
+//         Spacer().frame(width: 44)
+//       }
 
-      Spacer()
+//       Spacer()
 
-      Text(title)
-        .font(.system(size: 22, weight: .semibold))
-        .foregroundColor(.white)
+//       Text(title)
+//         .font(.system(size: 22, weight: .semibold))
+//         .foregroundColor(.white)
 
-      Spacer()
+//       Spacer()
 
-      trailing()
-        .frame(width: 44, height: 44)
-    }
-    .padding(.horizontal, 16)
-    .padding(.top, 6)
-    .padding(.bottom, 10)
-  }
-}
+//       trailing()
+//         .frame(width: 44, height: 44)
+//     }
+//     .padding(.horizontal, 16)
+//     .padding(.top, 6)
+//     .padding(.bottom, 10)
+//   }
+// }

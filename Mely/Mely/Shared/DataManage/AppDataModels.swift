@@ -4,7 +4,6 @@ struct UserModel: Identifiable, Codable, Equatable {
   let id: String
   var name: String
   var avatarSymbol: String
-  var bio: String
   /// 账号登录时使用的邮箱（快速登录用户为 nil）
   var email: String? = nil
   /// 账号密码登录使用的本地密码（示例项目中明文存储，真实项目请使用安全存储）
@@ -13,23 +12,26 @@ struct UserModel: Identifiable, Codable, Equatable {
   var isQuickUser: Bool = false
   /// 钻石数量
   var diamonds: Int = 0
+  /// 拉黑用户 id 列表
+  var blockUids: [String] = []
 
   enum CodingKeys: String, CodingKey {
-    case id, name, avatarSymbol, bio, email, password, isQuickUser, diamonds
+    case id, name, avatarSymbol, email, password, isQuickUser, diamonds, blockUids
   }
 
   init(
-    id: String, name: String, avatarSymbol: String, bio: String,
-    email: String? = nil, password: String? = nil, isQuickUser: Bool = false, diamonds: Int = 0
+    id: String, name: String, avatarSymbol: String,
+    email: String? = nil, password: String? = nil, isQuickUser: Bool = false, diamonds: Int = 0,
+    blockUids: [String] = []
   ) {
     self.id = id
     self.name = name
     self.avatarSymbol = avatarSymbol
-    self.bio = bio
     self.email = email
     self.password = password
     self.isQuickUser = isQuickUser
     self.diamonds = diamonds
+    self.blockUids = blockUids
   }
 
   init(from decoder: Decoder) throws {
@@ -37,11 +39,11 @@ struct UserModel: Identifiable, Codable, Equatable {
     id = try c.decode(String.self, forKey: .id)
     name = try c.decode(String.self, forKey: .name)
     avatarSymbol = try c.decode(String.self, forKey: .avatarSymbol)
-    bio = try c.decode(String.self, forKey: .bio)
     email = try c.decodeIfPresent(String.self, forKey: .email)
     password = try c.decodeIfPresent(String.self, forKey: .password)
     isQuickUser = try c.decodeIfPresent(Bool.self, forKey: .isQuickUser) ?? false
     diamonds = try c.decodeIfPresent(Int.self, forKey: .diamonds) ?? 0
+    blockUids = try c.decodeIfPresent([String].self, forKey: .blockUids) ?? []
   }
 
   func encode(to encoder: Encoder) throws {
@@ -49,28 +51,12 @@ struct UserModel: Identifiable, Codable, Equatable {
     try c.encode(id, forKey: .id)
     try c.encode(name, forKey: .name)
     try c.encode(avatarSymbol, forKey: .avatarSymbol)
-    try c.encode(bio, forKey: .bio)
     try c.encodeIfPresent(email, forKey: .email)
     try c.encodeIfPresent(password, forKey: .password)
     try c.encode(isQuickUser, forKey: .isQuickUser)
     try c.encode(diamonds, forKey: .diamonds)
+    try c.encode(blockUids, forKey: .blockUids)
   }
-}
-
-struct RecommendedItemModel: Identifiable, Codable, Equatable {
-  let id: String
-  let title: String
-  let summary: String
-  let userId: String
-  let createdAt: Date
-}
-
-struct PostModel: Identifiable, Codable, Equatable {
-  let id: String
-  let title: String
-  let content: String
-  let userId: String
-  let createdAt: Date
 }
 
 struct ConversationModel: Identifiable, Codable, Equatable {
@@ -139,7 +125,6 @@ struct DanceChallenge: Identifiable, Codable, Equatable {
   let difficulty: String
   let participantsCount: Int
   let description: String
-
 }
 
 // MARK: - 挑战参与视频模型（详情页视频列表）
@@ -223,9 +208,9 @@ struct ChallengeVideo: Identifiable, Codable, Equatable {
 struct CommunityPostModel: Identifiable, Codable, Equatable {
   let id: String
   let userId: String
-  /// 帖子主图资源名（Assets 或占位）
   let imageName: String
-  /// 标签，如 ["Daily", "Baby"]
+  /// 帖子描述/正文
+  var description: String
   var tags: [String]
   var likeCount: Int
   var commentCount: Int
@@ -257,8 +242,6 @@ struct CommunityCommentModel: Identifiable, Codable, Equatable {
 
 struct AppData: Codable, Equatable {
   var users: [UserModel]
-  var recommendedItems: [RecommendedItemModel]
-  var posts: [PostModel]
   /// 首页舞蹈挑战列表
   var challenges: [DanceChallenge]
   /// 挑战参与视频列表（详情页视频网格）
@@ -283,15 +266,13 @@ struct AppData: Codable, Equatable {
   }
 
   init(
-    users: [UserModel], recommendedItems: [RecommendedItemModel], posts: [PostModel],
+    users: [UserModel],
     challenges: [DanceChallenge], challengeVideos: [ChallengeVideo],
     communityPosts: [CommunityPostModel], communityComments: [CommunityCommentModel],
     conversations: [ConversationModel], messages: [MessageModel],
     currentUserId: String?, quickLoginUserId: String? = nil, hasAcceptedEULA: Bool = false
   ) {
     self.users = users
-    self.recommendedItems = recommendedItems
-    self.posts = posts
     self.challenges = challenges
     self.challengeVideos = challengeVideos
     self.communityPosts = communityPosts
@@ -306,8 +287,6 @@ struct AppData: Codable, Equatable {
   init(from decoder: Decoder) throws {
     let c = try decoder.container(keyedBy: CodingKeys.self)
     users = try c.decode([UserModel].self, forKey: .users)
-    recommendedItems = try c.decode([RecommendedItemModel].self, forKey: .recommendedItems)
-    posts = try c.decode([PostModel].self, forKey: .posts)
     challenges = try c.decodeIfPresent([DanceChallenge].self, forKey: .challenges) ?? []
     challengeVideos = try c.decodeIfPresent([ChallengeVideo].self, forKey: .challengeVideos) ?? []
     communityPosts = try c.decodeIfPresent([CommunityPostModel].self, forKey: .communityPosts) ?? []
@@ -323,8 +302,6 @@ struct AppData: Codable, Equatable {
   func encode(to encoder: Encoder) throws {
     var c = encoder.container(keyedBy: CodingKeys.self)
     try c.encode(users, forKey: .users)
-    try c.encode(recommendedItems, forKey: .recommendedItems)
-    try c.encode(posts, forKey: .posts)
     try c.encode(challenges, forKey: .challenges)
     try c.encode(challengeVideos, forKey: .challengeVideos)
     try c.encode(communityPosts, forKey: .communityPosts)

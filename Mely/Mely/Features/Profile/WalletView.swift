@@ -11,28 +11,30 @@ private struct DiamondPackage: Identifiable {
   let id: Int
   let diamonds: Int
   let price: String
-  let usePinkGradient: Bool
 }
 
 struct WalletView: View {
   @EnvironmentObject private var appDataStore: AppDataStore
   @Environment(\.dismiss) private var dismiss
+  @State private var purchasingProductId: String?
+  @State private var alertMessage: String?
+  @State private var showAlert = false
 
   #if DEBUG
     @ObserveInjection var redraw
   #endif
 
   private static let packages: [DiamondPackage] = [
-    DiamondPackage(id: 0, diamonds: 400, price: "$0.99", usePinkGradient: true),
-    DiamondPackage(id: 1, diamonds: 800, price: "$1.99", usePinkGradient: false),
-    DiamondPackage(id: 2, diamonds: 2100, price: "$3.99", usePinkGradient: false),
-    DiamondPackage(id: 3, diamonds: 2450, price: "$4.99", usePinkGradient: false),
-    DiamondPackage(id: 4, diamonds: 3950, price: "$7.99", usePinkGradient: false),
-    DiamondPackage(id: 5, diamonds: 4900, price: "$9.99", usePinkGradient: false),
-    DiamondPackage(id: 6, diamonds: 7700, price: "$14.99", usePinkGradient: false),
-    DiamondPackage(id: 7, diamonds: 9800, price: "$19.99", usePinkGradient: false),
-    DiamondPackage(id: 8, diamonds: 24500, price: "$49.99", usePinkGradient: false),
-    DiamondPackage(id: 9, diamonds: 49000, price: "$99.99", usePinkGradient: false),
+    DiamondPackage(id: 0, diamonds: 400, price: "$0.99"),
+    DiamondPackage(id: 1, diamonds: 800, price: "$1.99"),
+    DiamondPackage(id: 2, diamonds: 2100, price: "$3.99"),
+    DiamondPackage(id: 3, diamonds: 2450, price: "$4.99"),
+    DiamondPackage(id: 4, diamonds: 3950, price: "$7.99"),
+    DiamondPackage(id: 5, diamonds: 5150, price: "$9.99"),
+    DiamondPackage(id: 6, diamonds: 7700, price: "$12.99"),
+    DiamondPackage(id: 7, diamonds: 10800, price: "$19.99"),
+    DiamondPackage(id: 8, diamonds: 29400, price: "$49.99"),
+    DiamondPackage(id: 9, diamonds: 63700, price: "$99.99"),
   ]
 
   private var currentDiamonds: Int {
@@ -56,8 +58,29 @@ struct WalletView: View {
         // 钻石套餐网格
         packagesGrid
       }
+      // 全屏 loading（支付中）
+      .overlay {
+        if purchasingProductId != nil {
+          Color.black.opacity(0.5)
+            .ignoresSafeArea()
+          VStack(spacing: 12) {
+            ProgressView()
+              .scaleEffect(1.2)
+              .tint(.white)
+
+            Text("Purchasing...")
+              .font(.custom("Hanchansans-Medium", size: 16))
+              .foregroundColor(.white)
+          }
+        }
+      }
     }
     .navigationBarHidden(true)
+    .alert("Tips", isPresented: $showAlert) {
+      Button("OK", role: .cancel) { alertMessage = nil }
+    } message: {
+      if let msg = alertMessage { Text(msg) }
+    }
     #if DEBUG
       .enableInjection()
     #endif
@@ -129,9 +152,39 @@ struct WalletView: View {
     return ScrollView {
       LazyVGrid(columns: columns, spacing: 12) {
         ForEach(Self.packages) { pkg in
+          let productId = pkg.id < walletProductIds.count ? walletProductIds[pkg.id] : nil
           DiamondPackageCard(
             package: pkg,
-            onTap: { appDataStore.addDiamonds(pkg.diamonds) }
+            isSelected: purchasingProductId == productId,
+            onTap: {
+              guard let productId else {
+                alertMessage = "该套餐暂不可用"
+                showAlert = true
+                return
+              }
+              purchasingProductId = productId
+              IAPManager.shared.purchaseDiamonds(
+                productId: productId,
+                diamonds: pkg.diamonds,
+                appDataStore: appDataStore
+              ) { result in
+                Task { @MainActor in
+                  purchasingProductId = nil
+                  switch result {
+                  case .success(let diamonds):
+                    alertMessage = "Purchase successful, \(diamonds) diamonds added to your account"
+                    showAlert = true
+                  case .failure(let error):
+                    if case .cancelled = error {
+                      alertMessage = "You have cancelled the payment"
+                    } else {
+                      alertMessage = error.localizedDescription
+                    }
+                    showAlert = true
+                  }
+                }
+              }
+            }
           )
         }
       }
@@ -144,6 +197,7 @@ struct WalletView: View {
 
 private struct DiamondPackageCard: View {
   let package: DiamondPackage
+  var isSelected = false
   let onTap: () -> Void
 
   var body: some View {
@@ -160,7 +214,7 @@ private struct DiamondPackageCard: View {
 
         Text(package.price)
           .font(.custom("Hanchansans-Medium", size: 14))
-          .foregroundColor(package.usePinkGradient ? Color(hex: "#FF1AB6") : Color(hex: "#CBED40"))
+          .foregroundColor(isSelected ? Color(hex: "#FF1AB6") : Color(hex: "#CBED40"))
           .padding(.vertical, 8)
           .frame(maxWidth: .infinity)
           .background(Color.black)
@@ -171,7 +225,7 @@ private struct DiamondPackageCard: View {
       .padding(.vertical, 12)
       .background(
         LinearGradient(
-          colors: package.usePinkGradient
+          colors: isSelected
             ? [Color(hex: "#FF1AB6"), Color.white]
             : [Color(hex: "#CBED40"), Color.white],
           startPoint: .top,

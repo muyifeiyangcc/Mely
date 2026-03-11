@@ -6,15 +6,5 @@
 	<array>
 		<string>Hanchansans-Medium.otf</string>
 	</array>
-
-  <key>NSMicrophoneUsageDescription</key>
-  <string>This app requires access to your microphone to enable audio recording for voice chat. We will only access and use your recorded audio with your explicit permission.</string>
-  <key>NSCameraUsageDescription</key>
-  <string>This app requires access to your camera to capture and upload photos and videos. All captured data is stored securely on your device and will only be uploaded or shared with your explicit consent.</string>
-  <key>NSPhotoLibraryUsageDescription</key>
-  <string>This app requires access to your photo library to select and upload photos and videos. All selected files are used only for your approved purposes, stored securely on your device, and shared externally only with your prior consent.</string>
-  <key>NSLocationWhenInUseUsageDescription</key>
-  <string>This app requires access to your location to provide a personalized user experience. Your location data remains strictly confidential and will only be used with your explicit consent to improve your in-app experience.</string>
-
 </dict>
 </plist>

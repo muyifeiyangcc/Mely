@@ -89,6 +89,21 @@ struct HomeView: View {
         )
         .font(.custom("Hanchansans-Medium", size: 16))
         .foregroundColor(.white)
+        .submitLabel(.search)
+
+        // 有输入内容的时候显示一个清空按钮
+        if !searchText.isEmpty {
+          Button {
+            searchText = ""
+            // 收起键盘
+            UIApplication.shared.sendAction(
+              #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+          } label: {
+            Image(systemName: "xmark.circle.fill")
+              .font(.system(size: 20).bold())
+              .foregroundColor(.white.opacity(0.7))
+          }
+        }
       }
       .padding(.horizontal, 16)
       .padding(.vertical, 16)
@@ -102,7 +117,6 @@ struct HomeView: View {
   }
 
   // MARK: - 中间 AI 面板
-
   private var aiPanel: some View {
     HStack(alignment: .center, spacing: 0) {
       VStack(alignment: .leading, spacing: 4) {

@@ -54,49 +54,40 @@ final class AppDataStore: ObservableObject {
     return [
       DanceChallenge(
         id: "id1",
-        title: "Dance Together",
-        imageName: "test",
+        title: "Home Beat Dance Workout",
+        imageName: "q9V8ph41lXTH_tiao1",
         isJoined: false,
         difficulty: "Medium",
         participantsCount: 12_500,
-        description: "与好友共舞，享受当下。"
+        description: "work on your muscles, it's important 🏋‍♀️"
       ),
       DanceChallenge(
         id: "id2",
-        title: "Speed Challenge",
-        imageName: "test",
+        title: "uick Slim Dance Challenge",
+        imageName: "q9V8ph41lXTH_tiao2",
         isJoined: false,
         difficulty: "Medium",
         participantsCount: 12_500,
-        description: "提升你的速度和敏捷性！每周完成指定速度舞蹈挑战，赢得奖励。"
+        description: "Let’s bring this dance back for 2026"
       ),
-      DanceChallenge(
-        id: "id3",
-        title: "Flexibility Flow",
-        imageName: "test",
-        isJoined: true,
-        difficulty: "Easy",
-        participantsCount: 8_900,
-        description: "通过一系列柔韧性练习，提升你的身体柔韧度，让舞姿更优美。"
-      ),
-      DanceChallenge(
-        id: "id4",
-        title: "Cardio Blast",
-        imageName: "test",
-        isJoined: false,
-        difficulty: "Hard",
-        participantsCount: 15_300,
-        description: "高强度有氧舞蹈挑战，燃烧卡路里，提升心肺功能。"
-      ),
-      DanceChallenge(
-        id: "id5",
-        title: "Balance Master",
-        imageName: "test",
-        isJoined: false,
-        difficulty: "Medium",
-        participantsCount: 9_800,
-        description: "专注于核心力量和平衡训练，挑战你的身体控制力。"
-      ),
+      // DanceChallenge(
+      //   id: "id3",
+      //   title: "uick Slim Dance Challenge",
+      //   imageName: "I7SrplfHHwLH_feng3",
+      //   isJoined: true,
+      //   difficulty: "Easy",
+      //   participantsCount: 8_900,
+      //   description: "LET’S DANCE MONDAY Dance Mom’s Let’s Sing!! Respect "
+      // ),
+      // DanceChallenge(
+      //   id: "id4",
+      //   title: "uick Slim Dance Challenge",
+      //   imageName: "I7SrplfHHwLH_feng4",
+      //   isJoined: false,
+      //   difficulty: "Hard",
+      //   participantsCount: 15_300,
+      //   description: "Your friend who hates the gym needs this. 🦋✨"
+      // ),
     ]
   }
 
@@ -161,8 +152,7 @@ final class AppDataStore: ObservableObject {
     let newUser = UserModel(
       id: UUID().uuidString,
       name: "Quick",
-      avatarSymbol: "person.crop.circle.fill",
-      bio: "通过快速登录创建的账号。",
+      avatarSymbol: "mely_defava",
       email: nil,
       password: nil,
       isQuickUser: true
@@ -196,8 +186,7 @@ final class AppDataStore: ObservableObject {
     let newUser = UserModel(
       id: UUID().uuidString,
       name: name,
-      avatarSymbol: "envelope.fill",
-      bio: "通过邮箱登录创建的账号。",
+      avatarSymbol: "mely_defava",
       email: email,
       password: password,
       isQuickUser: false
@@ -232,7 +221,6 @@ final class AppDataStore: ObservableObject {
     data.users.removeAll { $0.id == currentId }
     data.communityPosts.removeAll { $0.userId == currentId }
     data.communityComments.removeAll { $0.userId == currentId }
-    data.posts.removeAll { $0.userId == currentId }
     data.messages.removeAll { $0.userId == currentId }
 
     if data.quickLoginUserId == currentId {
@@ -263,27 +251,25 @@ final class AppDataStore: ObservableObject {
     return true
   }
 
-  // MARK: - 内容变更
-  func addPost(title: String, content: String) {
-    guard let currentUserId = data.currentUserId else { return }
-    let newPost = PostModel(
-      id: UUID().uuidString,
-      title: title,
-      content: content,
-      userId: currentUserId,
-      createdAt: Date()
-    )
-    data.posts.insert(newPost, at: 0)
-    save()
+  /// 将指定用户 id 加入当前登录用户的拉黑列表
+  func blockUser(uid: String) {
+    guard let currentId = data.currentUserId,
+      let index = data.users.firstIndex(where: { $0.id == currentId })
+    else { return }
+    if !data.users[index].blockUids.contains(uid) {
+      data.users[index].blockUids.append(uid)
+      save()
+    }
   }
 
   /// 添加社区图片帖子
-  func addCommunityPost(imageName: String, tags: [String]) {
+  func addCommunityPost(imageName: String, tags: [String], description: String = "") {
     guard let currentUserId = data.currentUserId else { return }
     let newPost = CommunityPostModel(
       id: UUID().uuidString,
       userId: currentUserId,
       imageName: imageName,
+      description: description,
       tags: tags,
       likeCount: 0,
       commentCount: 0,
@@ -333,33 +319,52 @@ final class AppDataStore: ObservableObject {
     save()
   }
 
+  /// 添加挑战参与视频（用户上传）
+  func addChallengeVideo(
+    challengeId: String,
+    videoRelativePath: String,
+    thumbnailRelativePath: String,
+    unlockCostDiamonds: Int?
+  ) {
+    guard let currentUserId = data.currentUserId else { return }
+    let isLocked = (unlockCostDiamonds ?? 0) > 0
+    let video = ChallengeVideo(
+      id: UUID().uuidString,
+      challengeId: challengeId,
+      userId: currentUserId,
+      thumbnailName: thumbnailRelativePath,
+      videoName: videoRelativePath,
+      likeCount: 0,
+      isLocked: isLocked,
+      unlockCostDiamonds: isLocked ? unlockCostDiamonds : nil
+    )
+    data.challengeVideos.insert(video, at: 0)
+    save()
+  }
+
   /// 为指定挑战创建默认视频（前 3 解锁，后 3 锁定 300 钻石）
   fileprivate static func defaultVideosForChallenge() -> [ChallengeVideo] {
     let videoName = "Videos/testVideo"  // Bundle 中的视频资源
     return [
       ChallengeVideo(
-        id: "cv1", challengeId: "id1", userId: "u1",
-        thumbnailName: "test", videoName: videoName, likeCount: 140_000, isLocked: false,
+        id: "cv1", challengeId: "id1", userId: "u2",
+        thumbnailName: "I7SrplfHHwLH_feng1", videoName: "SKTyyB8jjAwN_pind1", likeCount: 140_000,
+        isLocked: false,
         unlockCostDiamonds: nil),
       ChallengeVideo(
-        id: "cv2", challengeId: "id2", userId: "u2",
-        thumbnailName: "test", videoName: videoName, likeCount: 140_000, isLocked: false,
-        unlockCostDiamonds: nil),
-      ChallengeVideo(
-        id: "cv3", challengeId: "id3", userId: "u3",
-        thumbnailName: "test", videoName: videoName, likeCount: 140_000, isLocked: false,
-        unlockCostDiamonds: nil),
-      ChallengeVideo(
-        id: "cv4", challengeId: "id4", userId: "u4",
-        thumbnailName: "test", videoName: videoName, likeCount: 140_000, isLocked: true,
+        id: "cv2", challengeId: "id1", userId: "u3",
+        thumbnailName: "I7SrplfHHwLH_feng2", videoName: "SKTyyB8jjAwN_pind2", likeCount: 140_000,
+        isLocked: true,
         unlockCostDiamonds: 300),
       ChallengeVideo(
-        id: "cv5", challengeId: "id5", userId: "u5",
-        thumbnailName: "test", videoName: videoName, likeCount: 140_000, isLocked: true,
-        unlockCostDiamonds: 300),
+        id: "cv3", challengeId: "id2", userId: "u4",
+        thumbnailName: "I7SrplfHHwLH_feng3", videoName: "SKTyyB8jjAwN_pind3", likeCount: 140_000,
+        isLocked: false,
+        unlockCostDiamonds: nil),
       ChallengeVideo(
-        id: "cv6", challengeId: "id6", userId: "u6",
-        thumbnailName: "test", videoName: videoName, likeCount: 140_000, isLocked: true,
+        id: "cv4", challengeId: "id2", userId: "u5",
+        thumbnailName: "I7SrplfHHwLH_feng4", videoName: "SKTyyB8jjAwN_pind4", likeCount: 140_000,
+        isLocked: true,
         unlockCostDiamonds: 300),
     ]
   }
@@ -402,53 +407,20 @@ extension AppData {
   static func makeSample() -> AppData {
     let users: [UserModel] = [
       .init(
-        id: "u1", name: "Mely", avatarSymbol: "sparkles", bio: "热爱创造的小小产品人。",
+        id: "u1", name: "a4ll1e", avatarSymbol: "Ja1iuGwTBJ8T_ava1",
         email: "mely@gmail.com", password: "123456"),
-      .init(id: "u2", name: "阿木", avatarSymbol: "leaf.fill", bio: "喜欢 SwiftUI 和 Indie Dev。"),
-      .init(id: "u3", name: "小白", avatarSymbol: "hare.fill", bio: "正在学习 iOS。"),
-      .init(id: "u4", name: "旅人", avatarSymbol: "airplane", bio: "记录一路上的见闻。"),
-      .init(id: "u5", name: "深夜码农", avatarSymbol: "moon.stars.fill", bio: "晚上写代码，白天改 bug。"),
-      .init(id: "u6", name: "Wei Riley", avatarSymbol: "person.crop.circle.fill", bio: "分享运动与生活。"),
+      .init(
+        id: "u2", name: "ouslife0", avatarSymbol: "Ja1iuGwTBJ8T_ava2"),
+      .init(id: "u3", name: "wendydavid", avatarSymbol: "Ja1iuGwTBJ8T_ava3"),
+      .init(id: "u4", name: "mcke", avatarSymbol: "Ja1iuGwTBJ8T_ava4"),
+      .init(id: "u5", name: "Karolina", avatarSymbol: "Ja1iuGwTBJ8T_ava5"),
+      .init(id: "u6", name: "Amily", avatarSymbol: "Ja1iuGwTBJ8T_ava6"),
+      .init(id: "u7", name: "Iago", avatarSymbol: "Ja1iuGwTBJ8T_ava7"),
+      .init(id: "u8", name: "Pulua", avatarSymbol: "Ja1iuGwTBJ8T_ava8"),
     ]
 
     // 首次启动：未登录、未同意 EULA
     let currentUserId: String? = nil
-
-    let recommendedItems: [RecommendedItemModel] = [
-      .init(
-        id: "r1", title: "今天开始用 SwiftUI 写点什么", summary: "从一个小组件开始，让想法慢慢长大。", userId: "u1",
-        createdAt: Date()),
-      .init(
-        id: "r2", title: "打造属于自己的 Indie App", summary: "不追热门，只解决自己在乎的问题。", userId: "u2",
-        createdAt: Date()),
-      .init(
-        id: "r3", title: "碎片时间也能迭代产品", summary: "利用通勤和碎片时间，把待办拆到足够小。", userId: "u5",
-        createdAt: Date()),
-      .init(
-        id: "r4", title: "把想法写下来再评估", summary: "先记录，再筛选，比一开始就纠结要不要做轻松很多。", userId: "u3",
-        createdAt: Date()),
-      .init(
-        id: "r5", title: "给自己留一点不联网的时间", summary: "离开信息流，你的想法会更清晰。", userId: "u4", createdAt: Date()
-      ),
-    ]
-
-    let posts: [PostModel] = [
-      .init(
-        id: "p1", title: "刚上线第一个 TestFlight 版本", content: "紧张又兴奋，欢迎大家帮忙试用。", userId: "u2",
-        createdAt: Date()),
-      .init(
-        id: "p2", title: "今天把首页 UI 重构了一遍", content: "尝试了更干净的布局，加载速度也快了。", userId: "u1",
-        createdAt: Date()),
-      .init(
-        id: "p3", title: "问一个关于本地持久化的小问题", content: "大家更喜欢 UserDefaults 还是直接上数据库？", userId: "u3",
-        createdAt: Date()),
-      .init(
-        id: "p4", title: "一个人做产品时如何保持动力", content: "分享几条自己在坚持的小习惯。", userId: "u5", createdAt: Date()
-      ),
-      .init(
-        id: "p5", title: "记录一次 App 被拒的经历", content: "总结了一些审核时容易踩坑的点。", userId: "u4",
-        createdAt: Date()),
-    ]
 
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
@@ -456,26 +428,33 @@ extension AppData {
     let mar4 = formatter.date(from: "2025-03-04") ?? Date()
     let communityPosts: [CommunityPostModel] = [
       .init(
-        id: "cp1", userId: "u6", imageName: "test", tags: ["Daily", "Baby"], likeCount: 0,
-        commentCount: 2, createdAt: aug1),
+        id: "cp1", userId: "u5", imageName: "jbTdcdQfTk5W_day11", description: "Leg day 🦵🏋️‍♀️",
+        tags: ["Daily"], likeCount: 0, commentCount: 1, createdAt: aug1),
       .init(
-        id: "cp2", userId: "u6", imageName: "test", tags: ["Daily", "Fitness"], likeCount: 0,
-        commentCount: 0, createdAt: aug1),
+        id: "cp2", userId: "u6", imageName: "jbTdcdQfTk5W_day21",
+        description: "Body transformation from fat loss to muscle gain in one year",
+        tags: ["Leisure"], likeCount: 0, commentCount: 1, createdAt: aug1),
       .init(
-        id: "cp3", userId: "u1", imageName: "test", tags: ["分享"], likeCount: 12, commentCount: 1,
-        createdAt: Date()),
+        id: "cp3", userId: "u7", imageName: "jbTdcdQfTk5W_day31",
+        description: "What I did to get a V-Shape",
+        tags: ["Daily"], likeCount: 12, commentCount: 1, createdAt: Date()),
       .init(
-        id: "cp4", userId: "u2", imageName: "test", tags: ["日常"], likeCount: 8, commentCount: 1,
-        createdAt: Date()),
+        id: "cp4", userId: "u8", imageName: "jbTdcdQfTk5W_day41",
+        description: "Late-night workout is my own medicine",
+        tags: ["other"], likeCount: 8, commentCount: 1, createdAt: Date()),
     ]
 
     let communityComments: [CommunityCommentModel] = [
       .init(
         id: "cc1", postId: "cp1", userId: "u3",
         text: "The scenery along the way seems very beautiful.", createdAt: mar4),
-      .init(id: "cc2", postId: "cp1", userId: "u4", text: "真好看 ✨", createdAt: mar4),
-      .init(id: "cc3", postId: "cp3", userId: "u2", text: "一起分享进度吧～", createdAt: Date()),
-      .init(id: "cc4", postId: "cp4", userId: "u1", text: "今天状态很好 💪", createdAt: Date()),
+      .init(id: "cc2", postId: "cp2", userId: "u4", text: "So beautiful ✨", createdAt: mar4),
+      .init(
+        id: "cc3", postId: "cp3", userId: "u2", text: "Let's share our progress!", createdAt: Date()
+      ),
+      .init(
+        id: "cc4", postId: "cp4", userId: "u5", text: "You're in great shape today. 💪",
+        createdAt: Date()),
     ]
 
     let conversations: [ConversationModel] = [
@@ -513,8 +492,6 @@ extension AppData {
 
     return AppData(
       users: users,
-      recommendedItems: recommendedItems,
-      posts: posts,
       challenges: challenges,
       challengeVideos: challengeVideos,
       communityPosts: communityPosts,

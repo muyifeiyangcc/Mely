@@ -20,15 +20,14 @@ struct FloatingPageSwitcher: View {
     let id = UUID()
     let route: MainRoute
     let icon: String
-    let title: String
     let color: Color
   }
 
   private var items: [Item] {
     [
-      .init(route: .community, icon: "person.3.fill", title: "社区", color: .blue),
-      .init(route: .chat, icon: "bubble.left.and.bubble.right.fill", title: "聊天", color: .green),
-      .init(route: .profile, icon: "person.crop.circle.fill", title: "我的", color: .orange),
+      .init(route: .community, icon: "fomukfenfipn_shequ", color: .blue),
+      .init(route: .chat, icon: "tqzeddjmrtrd_dinglin", color: .green),
+      .init(route: .profile, icon: "tqzeddjmrtrd_faxian", color: .orange),
     ]
   }
 
@@ -54,13 +53,10 @@ struct FloatingPageSwitcher: View {
               }
             } label: {
               HStack(spacing: 0) {
-                // Text(item.title)
-                //   .font(.subheadline.weight(.medium))
-                //   .foregroundColor(.white)
-
-                Image(systemName: item.icon)
-                  .font(.headline)
-                  .foregroundColor(.white)
+                Image(item.icon)
+                  .resizable()
+                  .scaledToFit()
+                  .frame(width: 33, height: 33)
               }
               .padding(.horizontal, 16)
               .padding(.vertical, 10)
@@ -68,7 +64,7 @@ struct FloatingPageSwitcher: View {
               //   Capsule()
               //     .fill(item.color.gradient)
               // )
-              .shadow(color: item.color.opacity(0.35), radius: 10, x: 0, y: 6)
+              // .shadow(color: item.color.opacity(0.35), radius: 10, x: 0, y: 6)
             }
             .transition(.move(edge: .trailing).combined(with: .opacity))
           }

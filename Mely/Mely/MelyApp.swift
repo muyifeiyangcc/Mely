@@ -21,6 +21,9 @@ struct MelyApp: App {
         Bundle(path: path)!.load()
       }
     #endif
+
+    // 初始化 StoreKit 内购（商品 ID 及加载逻辑封装在 IAPManager 内部）
+    IAPManager.shared.initialize()
   }
 
   var body: some Scene {

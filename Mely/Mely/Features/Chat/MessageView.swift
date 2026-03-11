@@ -95,7 +95,7 @@ struct MessageView: View {
     guard let id = otherId,
       let user = appDataStore.data.users.first(where: { $0.id == id })
     else {
-      return "person.crop.circle.fill"
+      return "mely_defava"
     }
     return user.avatarSymbol
   }
@@ -212,9 +212,11 @@ struct ChatListRowView: View {
         )
         .frame(width: 46, height: 46)
 
-      Image(systemName: avatarSymbol)
-        .font(.system(size: 26))
-        .foregroundColor(.white.opacity(0.9))
+      Image(avatarSymbol)
+        .resizable()
+        .scaledToFill()
+        .frame(width: 46, height: 46)
+        .clipShape(Circle())
     }
   }
 }

@@ -20,6 +20,8 @@ struct VideoDetailView: View {
   @EnvironmentObject private var appDataStore: AppDataStore
   @State private var player: AVPlayer?
   @State private var isPlaying = false
+  @State private var showReportBlockSheet: Bool = false
+  @State private var showReportSheet: Bool = false
 
   private var video: ChallengeVideo? {
     appDataStore.data.challengeVideos.first { $0.id == videoId }
@@ -34,14 +36,19 @@ struct VideoDetailView: View {
     ZStack {
       Color(.black)
         .ignoresSafeArea()
-        
+
       // 视频背景（锁定时模糊）
       videoBackground
 
       VStack(spacing: 0) {
         // 顶部导航栏
-        topBar
-          .padding(.top, 40)
+        // topBar
+        MelyTopBarView(
+          title: "Post",
+          onBack: { dismiss() },
+          onMoreTap: { showReportBlockSheet = true }
+        )
+        .padding(.top, 40)
 
         Spacer()
 
@@ -49,10 +56,8 @@ struct VideoDetailView: View {
         if video?.isLocked == true {
           lockOverlay
         } else {
-          // 未锁定时显示播放按钮
-          if isPlaying {
-            playButtonOverlay
-          }
+          // 未锁定时：可点击切换播放/暂停，仅在暂停时显示中央播放图标
+          videoTapOverlay
         }
 
         Spacer()
@@ -60,6 +65,32 @@ struct VideoDetailView: View {
         // 底部用户互动栏
         bottomInteractionBar
           .padding(.bottom, 20)
+      }
+    }
+    .overlay {
+      if showReportBlockSheet {
+        MelyReportBlockSheet(
+          isPresented: $showReportBlockSheet,
+          onReport: {
+            showReportBlockSheet = false
+            showReportSheet = true
+          },
+          onBlock: {
+            if let uid = video?.userId {
+              appDataStore.blockUser(uid: uid)
+            }
+            showReportBlockSheet = false
+            dismiss()
+          }
+        )
+      }
+    }
+    .overlay {
+      if showReportSheet {
+        MelyReportSheet(
+          isPresented: $showReportSheet,
+          onSubmit: { _, _ in /* 举报视频 */ }
+        )
       }
     }
     .ignoresSafeArea()
@@ -87,6 +118,9 @@ struct VideoDetailView: View {
   }
 
   private func urlForVideoName(_ name: String) -> URL? {
+    // 优先尝试 Application Support 本地路径（用户上传视频）
+    if let url = ImageStorageHelper.resolveVideoURL(name) { return url }
+    // 回退到 Bundle 资源
     let parts = name.split(separator: "/").map(String.init)
     let resourceName = parts.last ?? name
     let subdirectory = parts.count > 1 ? parts.dropLast().joined(separator: "/") : nil
@@ -96,7 +130,6 @@ struct VideoDetailView: View {
   }
 
   // MARK: - 视频背景
-
   private var videoBackground: some View {
     Group {
       if let p = player, video?.isLocked != true {
@@ -114,14 +147,18 @@ struct VideoDetailView: View {
         }
       } else if let name = video?.thumbnailName, !name.isEmpty {
         ZStack {
-          Image("dengxuanbg")
-            .resizable()
-            .scaledToFill()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .clipped()
-            .blur(radius: video?.isLocked == true ? 5 : 0)
+          Rectangle()
+            .fill(Color.clear)
+            .frame(height: .infinity)
+            .frame(maxWidth: .infinity)
+            .overlay {
+              SmartImageView.namedOrPath(name, placeholder: Image("dengxuanbg"))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .clipped()
+                .blur(radius: video?.isLocked == true ? 5 : 0)
+            }
 
-          Color.black.opacity(video?.isLocked == true ? 0.3 : 0)
+          Color.black.opacity(video?.isLocked == true ? 0.5 : 0)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .ignoresSafeArea()
         }
@@ -133,7 +170,6 @@ struct VideoDetailView: View {
   }
 
   // MARK: - 顶部导航栏
-
   private var topBar: some View {
     HStack {
       Button {
@@ -171,7 +207,6 @@ struct VideoDetailView: View {
   }
 
   // MARK: - 锁定遮罩层（锁形图标 + 解锁金额）
-
   private var lockOverlay: some View {
     ZStack(alignment: .bottom) {
       // 锁形图标
@@ -179,7 +214,6 @@ struct VideoDetailView: View {
         .resizable()
         .scaledToFit()
         .frame(width: 240, height: 240)
-        .shadow(color: .white.opacity(0.5), radius: 20)
 
       // 解锁金额横幅（绿色胶囊 + 钻石 -300）
       HStack(spacing: 6) {
@@ -194,82 +228,99 @@ struct VideoDetailView: View {
       .padding(.horizontal, 20)
       .padding(.vertical, 2)
       .background(
-        RoundedRectangle(cornerRadius: 20, style: .continuous)
+        RoundedRectangle(cornerRadius: 16, style: .continuous)
           .fill(Color(hex: "#CBED40"))
           .shadow(color: .white.opacity(0.5), radius: 20)
       )
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .padding(.bottom, 40)
   }
 
-  // MARK: - 播放按钮（未锁定）
+  // MARK: - 视频点击区域：点击切换播放/暂停，仅在暂停时显示中央播放图标
+  private var videoTapOverlay: some View {
+    Color.clear
+      .contentShape(Rectangle())
+      .frame(maxWidth: .infinity, maxHeight: .infinity)
+      .onTapGesture {
+        guard let p = player else { return }
+        if isPlaying {
+          p.pause()
+          isPlaying = false
+        } else {
+          p.play()
+          isPlaying = true
+        }
+      }
+      .overlay {
+        if !isPlaying {
+          Button {
+            guard let p = player else { return }
+            p.play()
+            isPlaying = true
+          } label: {
+            ZStack {
+              Circle()
+                .fill(.white)
+                .frame(width: 70, height: 70)
+              Image(systemName: "play.fill")
+                .font(.system(size: 32))
+                .foregroundStyle(
+                  LinearGradient(
+                    colors: [
+                      Color(hex: "#FF1AB6"),
+                      Color(hex: "#CBED40"),
+                    ],
+                    startPoint: .leading,
+                    endPoint: .trailing
+                  )
+                )
+            }
+          }
 
-  private var playButtonOverlay: some View {
-    Button {
-      guard let p = player else { return }
-      if isPlaying {
-        p.pause()
-        isPlaying = false
-      } else {
-        p.play()
-        isPlaying = true
+        }
       }
-    } label: {
-      ZStack {
-        Circle()
-          .fill(.white)
-          .frame(width: 70, height: 70)
-        Image(systemName: "play.fill")
-          .font(.system(size: 32))
-          .foregroundStyle(
-            LinearGradient(
-              colors: [
-                Color(hex: "#FF1AB6"),
-                Color(hex: "#CBED40"),
-              ],
-              startPoint: .leading,
-              endPoint: .trailing
-            )
-          )
-      }
-    }
-    .buttonStyle(.plain)
-    .frame(maxWidth: .infinity, maxHeight: .infinity)
   }
 
   // MARK: - 底部互动栏（头像、Following、点赞）
-
   private var bottomInteractionBar: some View {
     HStack(spacing: 12) {
       // 用户头像
       if let author {
-        Image(systemName: author.avatarSymbol)
-          .font(.system(size: 24))
-          .foregroundColor(.white)
-          .frame(width: 44, height: 44)
-          .background(
-            Circle()
-              .stroke(
-                LinearGradient(
-                  colors: [
-                    Color(red: 1, green: 0.6, blue: 0.2),
-                    Color(red: 1, green: 0.4, blue: 0.55),
-                  ],
-                  startPoint: .topLeading,
-                  endPoint: .bottomTrailing
-                ),
-                lineWidth: 2
-              )
-              .background(Circle().fill(.ultraThinMaterial))
-          )
+        Button {
+          // 跳转到用户个人中心页
+          let userId = author.id
+          path.append(.userProfile(userId: userId))
+        } label: {
+          Image(author.avatarSymbol)
+            .resizable()
+            .scaledToFill()
+            .frame(width: 54, height: 54)
+            .clipShape(Circle())
+            .background(
+              Circle()
+                .stroke(
+                  LinearGradient(
+                    colors: [
+                      Color(hex: "#FF1AB6"),
+                      Color(hex: "#CBED40"),
+                    ],
+                    startPoint: .leading,
+                    endPoint: .trailing
+                  ),
+                  lineWidth: 3
+                )
+                .background(Circle().fill(.ultraThinMaterial))
+            )
+        }
       }
 
       // Following 按钮
       Button("Following") {}
-        .font(.system(size: 14, weight: .medium))
+        .font(.custom("Hanchansans-Medium", size: 16))
         .foregroundColor(.black)
         .padding(.horizontal, 16)
-        .padding(.vertical, 10)
+        .padding(.vertical, 11)
         .background(
           RoundedRectangle(cornerRadius: 12, style: .continuous).fill(.white))
 
@@ -279,12 +330,12 @@ struct VideoDetailView: View {
           .font(.system(size: 14))
           .foregroundColor(Color(red: 1, green: 0.4, blue: 0.55))
         Text(video?.likeCountFormatted ?? "0")
-          .font(.system(size: 14, weight: .medium))
+          .font(.custom("Hanchansans-Medium", size: 16))
           .foregroundColor(.black)
       }
       .padding(.horizontal, 16)
-      .padding(.vertical, 10)
-      .background(Capsule().fill(.white))
+      .padding(.vertical, 11)
+      .background(RoundedRectangle(cornerRadius: 12, style: .continuous).fill(.white))
     }
     .padding(.horizontal, 20)
     .padding(.bottom, 34)

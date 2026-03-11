@@ -10,6 +10,8 @@ import SwiftUI
 struct SettingsView: View {
   @EnvironmentObject private var appDataStore: AppDataStore
   @Environment(\.dismiss) private var dismiss
+  @State private var showLogoutDialog = false
+  @State private var showDeleteAccountDialog = false
 
   #if DEBUG
     @ObserveInjection var redraw
@@ -54,8 +56,7 @@ struct SettingsView: View {
           if appDataStore.currentUser != nil {
             VStack(spacing: 16) {
               Button {
-                appDataStore.logout()
-                dismiss()
+                showLogoutDialog = true
               } label: {
                 Text("Log Out")
                   .font(.custom("Hanchansans-Medium", size: 18))
@@ -68,8 +69,7 @@ struct SettingsView: View {
               .buttonStyle(.plain)
 
               Button {
-                appDataStore.deleteCurrentUser()
-                dismiss()
+                showDeleteAccountDialog = true
               } label: {
                 Text("Delete Account")
                   .font(.custom("Hanchansans-Medium", size: 18))
@@ -86,6 +86,34 @@ struct SettingsView: View {
             .padding(.bottom, 48)
           }
         }
+      }
+    }
+    .overlay {
+      if showLogoutDialog {
+        MelyAlertDialog(
+          isPresented: $showLogoutDialog,
+          text: "Are you sure you want to log out?",
+          iconName: "5dEuX0FQmCW3",
+          iconSize: 68,
+          btnText: "Confirm",
+          onConfirm: {
+            appDataStore.logout()
+            dismiss()
+          }
+        )
+      }
+      if showDeleteAccountDialog {
+        MelyAlertDialog(
+          isPresented: $showDeleteAccountDialog,
+          text: "Deleting the account will clear the account data. Are you sure to delete?",
+          iconName: "HwDsxtkzn0MM",
+          iconSize: 60,
+          btnText: "Confirm",
+          onConfirm: {
+            appDataStore.deleteCurrentUser()
+            dismiss()
+          }
+        )
       }
     }
     .navigationBarHidden(true)

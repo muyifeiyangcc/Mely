@@ -16,8 +16,15 @@ struct UploadVideoView: View {
   #endif
 
   @Environment(\.dismiss) private var dismiss
+  @EnvironmentObject private var appDataStore: AppDataStore
+
   @State private var paymentText: String = ""
   @State private var isPosting: Bool = false
+  /// 选中的视频临时 URL（选择后尚未发布）
+  @State private var selectedVideoURL: URL?
+  /// 临时封面图（选择视频后生成，用于预览）
+  @State private var thumbnailImage: UIImage?
+  @State private var showVideoSourcePicker: Bool = false
 
   private let headerGradient = LinearGradient(
     colors: [
@@ -55,13 +62,20 @@ struct UploadVideoView: View {
     }
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
+    .videoSourcePicker(isPresented: $showVideoSourcePicker) { url in
+      handleVideoPicked(url)
+    }
     #if DEBUG
       .enableInjection()
     #endif
   }
 
-  // MARK: - 顶部导航栏
+  private func handleVideoPicked(_ url: URL) {
+    selectedVideoURL = url
+    thumbnailImage = ImageStorageHelper.generateThumbnail(from: url)
+  }
 
+  // MARK: - 顶部导航栏
   private var topBar: some View {
     ZStack(alignment: .leading) {
       HStack {
@@ -91,29 +105,40 @@ struct UploadVideoView: View {
   }
 
   // MARK: - 内容上传区域
-
   private var uploadArea: some View {
-    VStack {
-      Image("gfqjfrzfemtladd")
-        .resizable()
-        .frame(width: 60, height: 60)
-        .frame(maxWidth: .infinity)
-        .frame(height: UIScreen.main.bounds.height * 0.5)
-        .background(
-          RoundedRectangle(cornerRadius: 20, style: .continuous)
-            .stroke(Color.white.opacity(0.3), lineWidth: 2)
-            // .strokeBorder(Color.white.opacity(0.3), style: StrokeStyle(lineWidth: 2, dash: [8]))
-            .background(
-              RoundedRectangle(cornerRadius: 20, style: .continuous)
-                //rgb(46, 53, 71)
-                .fill(Color(red: 46 / 255, green: 53 / 255, blue: 71 / 255))
-            )
-        )
+    Button {
+      showVideoSourcePicker = true
+    } label: {
+      Group {
+        if let thumb = thumbnailImage {
+          Image(uiImage: thumb)
+            .resizable()
+            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+          // .scaledToFill()
+        } else {
+          VStack {
+            Image("gfqjfrzfemtladd")
+              .resizable()
+              .frame(width: 60, height: 60)
+          }
+        }
+      }
+      .frame(maxWidth: .infinity)
+      .frame(height: UIScreen.main.bounds.height * 0.5)
+      .clipped()
+      .background(
+        RoundedRectangle(cornerRadius: 20, style: .continuous)
+          .stroke(Color.white.opacity(0.3), lineWidth: 2)
+          .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+              .fill(Color(red: 46 / 255, green: 53 / 255, blue: 71 / 255))
+          )
+      )
     }
+    .buttonStyle(.plain)
   }
 
   // MARK: - 支付（可选）
-
   private var paymentSection: some View {
     VStack(alignment: .leading, spacing: 16) {
       HStack(spacing: 6) {
@@ -165,24 +190,50 @@ struct UploadVideoView: View {
         )
     }
     .buttonStyle(.plain)
-    .disabled(isPosting)
+    .disabled(isPosting || selectedVideoURL == nil)
+    // .opacity(selectedVideoURL == nil ? 0.6 : 1)
     .padding(.horizontal, 20)
     .padding(.bottom, 14)
   }
 
   private func performPost() {
     guard !isPosting else { return }
+    guard let videoURL = selectedVideoURL else { return }
     isPosting = true
-    // 模拟发布后返回上一页（挑战详情）
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-      isPosting = false
-      if !path.isEmpty { path.removeLast() }
-    }
-  }
-}
 
-#Preview {
-  NavigationStack {
-    UploadVideoView(path: .constant([]), challengeId: AppData.makeSample().challenges[0].id)
+    // 1. 保存视频到 Application Support
+    guard let videoPath = ImageStorageHelper.saveVideo(from: videoURL) else {
+      isPosting = false
+      return
+    }
+
+    // 2. 生成并保存封面
+    let thumbPath: String
+    if let thumb = ImageStorageHelper.generateThumbnail(from: videoURL),
+      let saved = ImageStorageHelper.saveChallengeVideoThumbnail(thumb)
+    {
+      thumbPath = saved
+    } else if let thumb = thumbnailImage,
+      let saved = ImageStorageHelper.saveChallengeVideoThumbnail(thumb)
+    {
+      thumbPath = saved
+    } else {
+      thumbPath = "test"  // 回退到占位
+    }
+
+    // 3. 解析 Payment 钻石数（可选）
+    let diamonds = Int(paymentText.trimmingCharacters(in: .whitespaces)) ?? 0
+    let unlockCost = diamonds > 0 ? diamonds : nil
+
+    // 4. 添加到 AppData
+    appDataStore.addChallengeVideo(
+      challengeId: challengeId,
+      videoRelativePath: videoPath,
+      thumbnailRelativePath: thumbPath,
+      unlockCostDiamonds: unlockCost
+    )
+
+    isPosting = false
+    if !path.isEmpty { path.removeLast() }
   }
 }

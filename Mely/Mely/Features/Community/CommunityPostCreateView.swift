@@ -18,7 +18,10 @@ struct CommunityPostCreateView: View {
   #endif
 
   @State private var selectedTags: Set<String> = ["Daily"]
-  private let allTags: [String] = ["Two-dimensional", "Daily", "Leisure", "Other"]
+  private let allTags: [String] = ["Daily", "Leisure", "Two-dimensional", "Other"]
+
+  /// 帖子描述输入
+  @State private var descriptionText: String = ""
 
   /// 用户选择的帖子主图
   @State private var selectedPostImage: UIImage?
@@ -37,7 +40,7 @@ struct CommunityPostCreateView: View {
           VStack(alignment: .leading, spacing: 24) {
             imageArea
 
-            descriptionHint
+            descriptionInput
 
             classificationSection
           }
@@ -124,17 +127,28 @@ struct CommunityPostCreateView: View {
     }
   }
 
-  private var descriptionHint: some View {
-    Text("A wonderful description is more likely to attract attention.")
+  private var descriptionInput: some View {
+    TextEditor(text: $descriptionText)
       .font(.custom("Hanchansans-Medium", size: 16))
       .foregroundColor(.white)
-      .multilineTextAlignment(.center)
-      .padding()
+      .scrollContentBackground(.hidden)
+      .padding(.horizontal, 12)
+      .padding(.vertical, 10)
+      .frame(minHeight: 100)
       .frame(maxWidth: .infinity)
       .background(
         RoundedRectangle(cornerRadius: 16, style: .continuous)
-          .fill(Color.black.opacity(0.4))
+          .fill(Color.black.opacity(0.7))
       )
+      .overlay(alignment: .topLeading) {
+        if descriptionText.isEmpty {
+          Text("A wonderful description is more likely to attract attention.")
+            .font(.custom("Hanchansans-Medium", size: 16))
+            .foregroundColor(.white.opacity(0.6))
+            .padding(16)
+            .allowsHitTesting(false)
+        }
+      }
   }
 
   private var classificationSection: some View {
@@ -183,6 +197,12 @@ struct CommunityPostCreateView: View {
     }
   }
 
+  /// 图片和描述都填写才能发布
+  private var canPost: Bool {
+    selectedPostImage != nil
+      && !descriptionText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+  }
+
   private var postButton: some View {
     Button {
       performPost()
@@ -196,21 +216,26 @@ struct CommunityPostCreateView: View {
           Capsule()
             .fill(Color(red: 203 / 255, green: 237 / 255, blue: 64 / 255))
         )
+        // .opacity(canPost ? 1 : 0.6)
     }
     .buttonStyle(.plain)
+    // .disabled(!canPost)
     .padding(.horizontal, 20)
     .padding(.bottom, 14)
   }
 
   private func performPost() {
+    guard canPost else { return }
+
+    let desc = descriptionText.trimmingCharacters(in: .whitespacesAndNewlines)
     let tags = Array(selectedTags).sorted()
     var imageName = "test"
     if let image = selectedPostImage,
-      let path = ImageStorageHelper.saveCommunityImage(image)
+      let savedPath = ImageStorageHelper.saveCommunityImage(image)
     {
-      imageName = path
+      imageName = savedPath
     }
-    appDataStore.addCommunityPost(imageName: imageName, tags: tags)
+    appDataStore.addCommunityPost(imageName: imageName, tags: tags, description: desc)
     // 返回社区广场
     if !path.isEmpty {
       path.removeLast()

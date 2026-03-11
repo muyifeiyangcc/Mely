@@ -11,6 +11,7 @@ struct AIGuideView: View {
   @Binding var path: [MainRoute]
   @EnvironmentObject private var appDataStore: AppDataStore
   @Environment(\.dismiss) private var dismiss
+  @State private var showInsufficientBalanceDialog = false
 
   #if DEBUG
     @ObserveInjection var redraw
@@ -49,6 +50,18 @@ struct AIGuideView: View {
       topBar
     }
     .toolbar(.hidden, for: .navigationBar)
+    .overlay {
+      if showInsufficientBalanceDialog {
+        MelyAlertDialog(
+          isPresented: $showInsufficientBalanceDialog,
+          text: "Sorry, your wallet balance is insufficient. Do you want to go for recharge?",
+          iconName: "kuku3kywiTUzOpQ1",
+          iconSize: 52,
+          btnText: "Confirm",
+          onConfirm: { path.append(.wallet) }
+        )
+      }
+    }
     #if DEBUG
       .enableInjection()
     #endif
@@ -185,6 +198,11 @@ struct AIGuideView: View {
   }
 
   private func startAIChat() {
+    let balance = appDataStore.currentUser?.diamonds ?? 0
+    if balance < 300 {
+      showInsufficientBalanceDialog = true
+      return
+    }
     guard appDataStore.deductDiamonds(300) else { return }
     path.append(.aiChat)
   }
