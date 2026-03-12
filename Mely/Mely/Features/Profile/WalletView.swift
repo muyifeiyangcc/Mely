@@ -90,9 +90,9 @@ struct WalletView: View {
     HStack {
       Button(action: { dismiss() }) {
         Image(systemName: "chevron.left")
-          .font(.system(size: 18, weight: .semibold))
+          .font(.system(size: 18))
           .foregroundColor(.black)
-          .frame(width: 40, height: 40)
+          .frame(width: 44, height: 44)
           .background(Circle().fill(Color.white))
       }
 

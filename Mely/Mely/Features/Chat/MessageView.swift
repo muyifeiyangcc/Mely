@@ -10,6 +10,7 @@ import SwiftUI
 struct MessageView: View {
   @EnvironmentObject private var appDataStore: AppDataStore
   @Environment(\.dismiss) private var dismiss
+  @Binding var path: [MainRoute]
 
   #if DEBUG
     @ObserveInjection var redraw
@@ -27,7 +28,7 @@ struct MessageView: View {
             dismiss.callAsFunction()
           } label: {
             Image(systemName: "chevron.left")
-              .font(.system(size: 18, weight: .semibold))
+              .font(.system(size: 18))
               .foregroundColor(.black)
               .frame(width: 44, height: 44)
               .background(.white)
@@ -42,32 +43,37 @@ struct MessageView: View {
             .frame(width: 44, height: 44)
         }
         .padding(.horizontal, 20)
-        // ChatTopBarView(title: "Message", showsBackButton: true) {
-        //   // 使用系统返回
-        // } trailing: {
-        //   EmptyView()
-        // }
 
-        ScrollView {
-          LazyVStack(spacing: 20) {
-            ForEach(appDataStore.data.conversations) { conversation in
-              NavigationLink {
-                ChatDetailView(conversationId: conversation.id)
-              } label: {
-                ChatListRowView(
-                  title: chatTitle(for: conversation),
-                  preview: chatPreview(for: conversation),
-                  timeText: chatTimeText(for: conversation),
-                  unreadCount: chatUnreadCount(for: conversation),
-                  avatarSymbol: chatAvatarSymbol(for: conversation)
-                )
-              }
-              .buttonStyle(.plain)
-            }
+        if appDataStore.filteredConversations.isEmpty {
+          VStack {
+            Spacer()
+            EmptyZhanweiView()
+            Spacer()
           }
-          .padding(.horizontal, 16)
-          .padding(.top, 6)
-          .padding(.bottom, 24)
+          .padding(.bottom, 60)
+          .frame(width: .infinity, height: .infinity)
+        } else {
+          ScrollView {
+            LazyVStack(spacing: 20) {
+              ForEach(appDataStore.filteredConversations) { conversation in
+                NavigationLink {
+                  ChatDetailView(path: $path, conversationId: conversation.id)
+                } label: {
+                  ChatListRowView(
+                    title: chatTitle(for: conversation),
+                    preview: chatPreview(for: conversation),
+                    timeText: chatTimeText(for: conversation),
+                    unreadCount: chatUnreadCount(for: conversation),
+                    avatarSymbol: chatAvatarSymbol(for: conversation)
+                  )
+                }
+                .buttonStyle(.plain)
+              }
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 12)
+            .padding(.bottom, 24)
+          }
         }
       }
     }
@@ -119,8 +125,8 @@ struct MessageView: View {
   }
 
   private func chatUnreadCount(for conversation: ConversationModel) -> Int {
-    // 示例 UI：没有未读体系时固定显示 1（与截图一致）
-    1
+    guard let currentId = appDataStore.data.currentUserId else { return 0 }
+    return conversation.unreadCountByUserId[currentId] ?? 0
   }
 
   private func lastMessage(for conversation: ConversationModel) -> MessageModel? {
@@ -131,7 +137,6 @@ struct MessageView: View {
   }
 
   // MARK: - Message Preview
-
   private func previewText(for message: MessageModel) -> String {
     switch message.type {
     case .emoji:
@@ -153,7 +158,6 @@ struct MessageView: View {
 }
 
 // MARK: - UI Pieces
-
 struct ChatListRowView: View {
   let title: String
   let preview: String
@@ -212,11 +216,7 @@ struct ChatListRowView: View {
         )
         .frame(width: 46, height: 46)
 
-      Image(avatarSymbol)
-        .resizable()
-        .scaledToFill()
-        .frame(width: 46, height: 46)
-        .clipShape(Circle())
+      UserAvatarView(avatarSymbol: avatarSymbol, size: 46)
     }
   }
 }

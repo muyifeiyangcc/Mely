@@ -22,14 +22,21 @@ struct VideoDetailView: View {
   @State private var isPlaying = false
   @State private var showReportBlockSheet: Bool = false
   @State private var showReportSheet: Bool = false
+  @State private var showInsufficientBalanceDialog: Bool = false
 
   private var video: ChallengeVideo? {
-    appDataStore.data.challengeVideos.first { $0.id == videoId }
+    appDataStore.filteredChallengeVideos.first { $0.id == videoId }
   }
 
   private var author: UserModel? {
     guard let userId = video?.userId else { return nil }
     return appDataStore.data.users.first { $0.id == userId }
+  }
+
+  /// 视频对当前用户而言是否仍为锁定（需付费且未解锁）
+  private var isEffectivelyLocked: Bool {
+    guard let v = video else { return false }
+    return appDataStore.isVideoEffectivelyLocked(v)
   }
 
   var body: some View {
@@ -42,18 +49,21 @@ struct VideoDetailView: View {
 
       VStack(spacing: 0) {
         // 顶部导航栏
-        // topBar
         MelyTopBarView(
           title: "Post",
           onBack: { dismiss() },
-          onMoreTap: { showReportBlockSheet = true }
+          onMoreTap:
+            video?.userId != appDataStore.currentUser?.id
+            ? {
+              showReportBlockSheet = true
+            } : nil
         )
-        .padding(.top, 40)
+        .padding(.top, 50)
 
         Spacer()
 
         // 锁定时显示遮罩层
-        if video?.isLocked == true {
+        if isEffectivelyLocked {
           lockOverlay
         } else {
           // 未锁定时：可点击切换播放/暂停，仅在暂停时显示中央播放图标
@@ -78,9 +88,9 @@ struct VideoDetailView: View {
           onBlock: {
             if let uid = video?.userId {
               appDataStore.blockUser(uid: uid)
+              path.removeAll()
             }
             showReportBlockSheet = false
-            dismiss()
           }
         )
       }
@@ -90,6 +100,18 @@ struct VideoDetailView: View {
         MelyReportSheet(
           isPresented: $showReportSheet,
           onSubmit: { _, _ in /* 举报视频 */ }
+        )
+      }
+    }
+    .overlay {
+      if showInsufficientBalanceDialog {
+        MelyAlertDialog(
+          isPresented: $showInsufficientBalanceDialog,
+          text: "Sorry, your wallet balance is insufficient. Do you want to go for recharge?",
+          iconName: "kuku3kywiTUzOpQ1",
+          iconSize: 52,
+          btnText: "Confirm",
+          onConfirm: { path.append(.wallet) }
         )
       }
     }
@@ -107,7 +129,7 @@ struct VideoDetailView: View {
   private func setupPlayer() {
     player?.pause()
     player = nil
-    guard let v = video, v.isLocked == false,
+    guard let v = video, !appDataStore.isVideoEffectivelyLocked(v),
       let name = v.videoName, !name.isEmpty,
       let url = urlForVideoName(name)
     else { return }
@@ -132,7 +154,7 @@ struct VideoDetailView: View {
   // MARK: - 视频背景
   private var videoBackground: some View {
     Group {
-      if let p = player, video?.isLocked != true {
+      if let p = player, !isEffectivelyLocked {
         GeometryReader { geo in
           let w = geo.size.width
           let h = geo.size.height
@@ -155,10 +177,10 @@ struct VideoDetailView: View {
               SmartImageView.namedOrPath(name, placeholder: Image("dengxuanbg"))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .clipped()
-                .blur(radius: video?.isLocked == true ? 5 : 0)
+                .blur(radius: isEffectivelyLocked ? 5 : 0)
             }
 
-          Color.black.opacity(video?.isLocked == true ? 0.5 : 0)
+          Color.black.opacity(isEffectivelyLocked ? 0.5 : 0)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .ignoresSafeArea()
         }
@@ -167,43 +189,6 @@ struct VideoDetailView: View {
       }
     }
     .ignoresSafeArea()
-  }
-
-  // MARK: - 顶部导航栏
-  private var topBar: some View {
-    HStack {
-      Button {
-        dismiss.callAsFunction()
-      } label: {
-        Image(systemName: "chevron.left")
-          .font(.system(size: 18, weight: .semibold))
-          .foregroundColor(.primary)
-          .frame(width: 44, height: 44)
-          .background(Circle().fill(.ultraThinMaterial))
-      }
-      .padding(.leading, 16)
-      .padding(.top, 8)
-
-      Spacer()
-
-      Text("Post")
-        .font(.system(size: 17, weight: .semibold))
-        .foregroundColor(.white)
-
-      Spacer()
-
-      Button {
-        // 更多选项
-      } label: {
-        Image(systemName: "ellipsis")
-          .font(.system(size: 18, weight: .semibold))
-          .foregroundColor(.primary)
-          .frame(width: 44, height: 44)
-          .background(Circle().fill(.ultraThinMaterial))
-      }
-      .padding(.trailing, 16)
-      .padding(.top, 8)
-    }
   }
 
   // MARK: - 锁定遮罩层（锁形图标 + 解锁金额）
@@ -215,23 +200,32 @@ struct VideoDetailView: View {
         .scaledToFit()
         .frame(width: 240, height: 240)
 
-      // 解锁金额横幅（绿色胶囊 + 钻石 -300）
-      HStack(spacing: 6) {
-        Image("mkirgxytewig_diamond")
-          .resizable()
-          .scaledToFit()
-          .frame(width: 50, height: 50)
-        Text("-\(video?.unlockCostDiamonds ?? 0)")
-          .font(.custom("Hanchansans-Medium", size: 28))
-          .foregroundColor(.black)
+      // 解锁金额横幅（绿色胶囊 + 钻石 -300）可点击
+      Button {
+        if appDataStore.unlockVideo(videoId: videoId) {
+          setupPlayer()
+        } else {
+          showInsufficientBalanceDialog = true
+        }
+      } label: {
+        HStack(spacing: 6) {
+          Image("mkirgxytewig_diamond")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 50, height: 50)
+          Text("-\(video?.unlockCostDiamonds ?? 0)")
+            .font(.custom("Hanchansans-Medium", size: 28))
+            .foregroundColor(.black)
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 2)
+        .background(
+          RoundedRectangle(cornerRadius: 16, style: .continuous)
+            .fill(Color(hex: "#CBED40"))
+            .shadow(color: .white.opacity(0.5), radius: 20)
+        )
       }
-      .padding(.horizontal, 20)
-      .padding(.vertical, 2)
-      .background(
-        RoundedRectangle(cornerRadius: 16, style: .continuous)
-          .fill(Color(hex: "#CBED40"))
-          .shadow(color: .white.opacity(0.5), radius: 20)
-      )
+      .buttonStyle(.plain)
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .padding(.bottom, 40)
@@ -292,10 +286,7 @@ struct VideoDetailView: View {
           let userId = author.id
           path.append(.userProfile(userId: userId))
         } label: {
-          Image(author.avatarSymbol)
-            .resizable()
-            .scaledToFill()
-            .frame(width: 54, height: 54)
+          UserAvatarView(avatarSymbol: author.avatarSymbol, size: 54)
             .clipShape(Circle())
             .background(
               Circle()
@@ -315,27 +306,50 @@ struct VideoDetailView: View {
         }
       }
 
-      // Following 按钮
-      Button("Following") {}
+      // Following / Follow 按钮（作者本人不显示）
+      if let author, author.id != appDataStore.currentUser?.id {
+        let isFollowingAuthor = appDataStore.isFollowing(author.id)
+        Button(isFollowingAuthor ? "Following" : "Follow") {
+          if isFollowingAuthor {
+            appDataStore.unfollowUser(uid: author.id)
+          } else {
+            appDataStore.followUser(uid: author.id)
+          }
+        }
         .font(.custom("Hanchansans-Medium", size: 16))
         .foregroundColor(.black)
         .padding(.horizontal, 16)
         .padding(.vertical, 11)
         .background(
           RoundedRectangle(cornerRadius: 12, style: .continuous).fill(.white))
-
-      // 点赞数
-      HStack(spacing: 4) {
-        Image(systemName: "heart.fill")
-          .font(.system(size: 14))
-          .foregroundColor(Color(red: 1, green: 0.4, blue: 0.55))
-        Text(video?.likeCountFormatted ?? "0")
-          .font(.custom("Hanchansans-Medium", size: 16))
-          .foregroundColor(.black)
       }
-      .padding(.horizontal, 16)
-      .padding(.vertical, 11)
-      .background(RoundedRectangle(cornerRadius: 12, style: .continuous).fill(.white))
+
+      // 点赞按钮
+      if let video {
+        let isLiked = appDataStore.isLiked(video.id)
+        Button {
+          if isLiked {
+            appDataStore.unlikeContent(video.id)
+          } else {
+            appDataStore.likeContent(video.id)
+          }
+        } label: {
+          HStack(spacing: 4) {
+            Image(isLiked ? "SB1tyFVKKZhI_xinfen" : "SB1tyFVKKZhI_xinhui")
+              .resizable()
+              .frame(width: 24, height: 24)
+            // .font(.system(size: 14))
+            // .foregroundColor(isLiked ? Color(red: 1, green: 0.4, blue: 0.55) : .gray)
+            Text(video.likeCountFormatted)
+              .font(.custom("Hanchansans-Medium", size: 16))
+              .foregroundColor(.black)
+          }
+        }
+        .buttonStyle(.plain)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 9)
+        .background(RoundedRectangle(cornerRadius: 12, style: .continuous).fill(.white))
+      }
     }
     .padding(.horizontal, 20)
     .padding(.bottom, 34)

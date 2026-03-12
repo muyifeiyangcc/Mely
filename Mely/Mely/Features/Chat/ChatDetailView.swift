@@ -12,6 +12,7 @@ import SwiftUI
 struct ChatDetailView: View {
   @EnvironmentObject private var appDataStore: AppDataStore
   @Environment(\.dismiss) private var dismiss
+  @Binding var path: [MainRoute]
 
   #if DEBUG
     @ObserveInjection var redraw
@@ -99,6 +100,9 @@ struct ChatDetailView: View {
       }
     }
     .ignoresSafeArea(edges: .bottom)
+    .onAppear {
+      appDataStore.clearUnreadCount(for: conversationId)
+    }
     .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification))
     { notification in
       guard let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
@@ -124,9 +128,9 @@ struct ChatDetailView: View {
           onBlock: {
             if let uid = otherUserId {
               appDataStore.blockUser(uid: uid)
+              path.removeAll()
             }
             showReportBlockSheet = false
-            dismiss()
           }
         )
       }
@@ -162,7 +166,8 @@ struct ChatDetailView: View {
 
   private var otherUserId: String? {
     guard
-      let conversation = appDataStore.data.conversations.first(where: { $0.id == conversationId }),
+      let conversation = appDataStore.filteredConversations.first(where: { $0.id == conversationId }
+      ),
       let currentId = appDataStore.data.currentUserId
     else { return nil }
     return conversation.participantUserIds.first { $0 != currentId }
@@ -181,7 +186,8 @@ struct ChatDetailView: View {
 
   private var otherAvatarSymbol: String {
     guard
-      let conversation = appDataStore.data.conversations.first(where: { $0.id == conversationId }),
+      let conversation = appDataStore.filteredConversations.first(where: { $0.id == conversationId }
+      ),
       let currentId = appDataStore.data.currentUserId
     else { return "mely_defava" }
     let otherId = conversation.participantUserIds.first { $0 != currentId }
@@ -255,6 +261,8 @@ struct ChatDetailView: View {
     guard !trimmed.isEmpty else { return }
     appDataStore.addMessage(text: trimmed, type: .text, to: conversationId)
     draftText = ""
+    UIApplication.shared.sendAction(
+      #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
   }
 
   private func sendEmoji(_ emoji: String) {
@@ -327,6 +335,7 @@ private struct ChatComposerView: View {
             .padding(.vertical, 14)
             .background(Color(red: 24 / 255, green: 32 / 255, blue: 55 / 255))
             .clipShape(Capsule(style: .continuous))
+            .submitLabel(.done)
           }
 
           Button {
@@ -694,12 +703,7 @@ private struct ChatBubbleRowView: View {
   }
 
   private func avatar(symbol: String) -> some View {
-    Image(systemName: symbol)
-      .font(.system(size: 30))
-      .foregroundColor(.white.opacity(0.9))
-      .frame(width: 36, height: 36)
-      .background(.white.opacity(0.15))
-      .clipShape(Circle())
+    UserAvatarView(avatarSymbol: symbol, size: 38)
   }
 }
 

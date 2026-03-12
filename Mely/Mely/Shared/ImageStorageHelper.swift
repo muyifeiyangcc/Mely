@@ -16,6 +16,8 @@ enum ImageStorageHelper {
   static let challengeCoverSubfolder = "ChallengeCovers"
   /// 社区图片子目录（预留）
   static let communitySubfolder = "CommunityImages"
+  /// 用户头像子目录
+  static let avatarSubfolder = "AvatarImages"
 
   /// 将图片保存到 Application Support 指定子目录，返回相对路径（如 ChallengeCovers/xxx.jpg）
   /// - Parameters:
@@ -60,12 +62,20 @@ enum ImageStorageHelper {
 
   /// 保存挑战封面，返回 ChallengeCovers/xxx.jpg
   static func saveChallengeCover(_ image: UIImage) -> String? {
-    saveImage(image, subfolder: challengeCoverSubfolder, filePrefix: "challenge_cover", compressionQuality: 0.8)
+    saveImage(
+      image, subfolder: challengeCoverSubfolder, filePrefix: "challenge_cover",
+      compressionQuality: 0.8)
   }
 
   /// 保存社区图片，返回 CommunityImages/xxx.jpg（预留）
   static func saveCommunityImage(_ image: UIImage) -> String? {
-    saveImage(image, subfolder: communitySubfolder, filePrefix: "community", compressionQuality: 0.85)
+    saveImage(
+      image, subfolder: communitySubfolder, filePrefix: "community", compressionQuality: 0.85)
+  }
+
+  /// 保存用户头像，返回 AvatarImages/xxx.jpg
+  static func saveAvatarImage(_ image: UIImage) -> String? {
+    saveImage(image, subfolder: avatarSubfolder, filePrefix: "avatar", compressionQuality: 0.9)
   }
 
   // MARK: - 挑战视频存储
@@ -76,10 +86,12 @@ enum ImageStorageHelper {
   static let challengeVideoThumbSubfolder = "ChallengeVideoThumbnails"
 
   /// 将视频文件复制到 Application Support 指定子目录，返回相对路径（如 ChallengeVideos/xxx.mp4）
-  static func saveVideo(from sourceURL: URL, subfolder: String = challengeVideoSubfolder) -> String? {
+  static func saveVideo(from sourceURL: URL, subfolder: String = challengeVideoSubfolder) -> String?
+  {
     let fileManager = FileManager.default
     guard
-      let appSupport = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+      let appSupport = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+        .first
     else { return nil }
 
     let folderURL = appSupport.appendingPathComponent(subfolder, isDirectory: true)
@@ -123,6 +135,27 @@ enum ImageStorageHelper {
     } catch {
       return nil
     }
+  }
+
+  /// 删除 Application Support 下的文件（相对路径如 ChatImages/xxx.jpg、ChallengeVideos/xxx.mp4）
+  /// 绝对路径或以 / 开头的路径会直接尝试删除
+  static func deleteFileIfExists(relativePath: String) {
+    guard !relativePath.isEmpty else { return }
+    let fileManager = FileManager.default
+    let fileURL: URL
+    if relativePath.hasPrefix("/") {
+      fileURL = URL(fileURLWithPath: relativePath)
+    } else if relativePath.contains("/"),
+      let appSupport = fileManager.urls(
+        for: .applicationSupportDirectory,
+        in: .userDomainMask
+      ).first
+    {
+      fileURL = appSupport.appendingPathComponent(relativePath)
+    } else {
+      return  // Bundle 资源名，不删除
+    }
+    try? fileManager.removeItem(at: fileURL)
   }
 
   /// 根据相对路径解析为视频完整 URL（支持 Bundle 和 Application Support）

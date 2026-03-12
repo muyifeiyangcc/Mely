@@ -15,6 +15,8 @@ enum MainRoute: Hashable {
   case userProfile(userId: String)
   /// 设置页（独立页面）
   case settings
+  /// 编辑用户信息（头像、昵称）
+  case editProfile
   /// 社区发布帖子
   case communityPostCreate
   /// 社区帖子详情
@@ -33,6 +35,12 @@ enum MainRoute: Hashable {
   case aiGuide
   /// 健身舞蹈 AI 提问/聊天页
   case aiChat
+  /// 用户列表（拉黑/关注/粉丝）
+  case userList(UserListType)
+  /// 聊天详情（当前用户与某用户的对话）
+  case chatDetail(conversationId: String)
+  /// 协议/H5 页面（用户协议、隐私政策等）
+  case webProtocol(urlString: String, title: String)
 }
 
 struct AppRootView: View {
@@ -52,6 +60,19 @@ struct AppRootView: View {
       } else {
         NavigationStack(path: $path) {
           HomeView(path: $path)
+            .overlay(alignment: .bottom) {
+              if path.isEmpty && appDataStore.showBlockSuccessToast {
+                Text("Blocked successfully")
+                  .font(.custom("Hanchansans-Medium", size: 15))
+                  .foregroundColor(.black)
+                  .padding(.horizontal, 20)
+                  .padding(.vertical, 12)
+                  .background(Capsule().fill(Color(hex: "#CBED40")))
+                  .padding(.bottom, 20)
+                  .transition(.opacity.combined(with: .move(edge: .top)))
+              }
+            }
+            .animation(.easeInOut(duration: 0.25), value: appDataStore.showBlockSuccessToast)
             .overlay(alignment: .bottomTrailing) {
               if path.isEmpty {
                 FloatingPageSwitcher { target in
@@ -67,17 +88,19 @@ struct AppRootView: View {
               case .community:
                 CommunityView(path: $path)
               case .chat:
-                MessageView()
+                MessageView(path: $path)
               case .profile:
                 ProfileView(path: $path)
               case .userProfile(let userId):
                 ProfileView(path: $path, userId: userId)
               case .settings:
-                SettingsView()
+                SettingsView(path: $path)
+              case .editProfile:
+                EditProfileView(path: $path)
               case .communityPostCreate:
                 CommunityPostCreateView(path: $path)
               case .communityPostDetail(let postId):
-                CommunityPostDetailView(postId: postId)
+                CommunityPostDetailView(path: $path, postId: postId)
               case .challengeCreate:
                 CreateChallengeView()
               case .challengeDetail(let challengeId):
@@ -92,6 +115,12 @@ struct AppRootView: View {
                 AIGuideView(path: $path)
               case .aiChat:
                 AIChatView(path: $path)
+              case .userList(let listType):
+                UserListView(path: $path, listType: listType)
+              case .chatDetail(let conversationId):
+                ChatDetailView(path: $path, conversationId: conversationId)
+              case .webProtocol(let urlString, let title):
+                WebProtocolView(urlString: urlString, title: title, path: $path)
               }
             }
         }

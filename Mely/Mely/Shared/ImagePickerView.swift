@@ -25,17 +25,23 @@ extension ImagePickerView {
           if newStatus == .authorized || newStatus == .limited {
             completion(true, nil)
           } else {
-            completion(false, "需要相册权限才能选择照片，请在设置中允许访问相册。")
+            completion(
+              false,
+              "You need album access to select photos. Please allow access to the album in the settings."
+            )
           }
         }
       }
     case .denied, .restricted:
       DispatchQueue.main.async {
-        completion(false, "需要相册权限才能选择照片，请在设置中允许访问相册。")
+        completion(
+          false,
+          "You need album access to select photos. Please allow access to the album in the settings."
+        )
       }
     @unknown default:
       DispatchQueue.main.async {
-        completion(false, "无法访问相册，请在设置中检查权限。")
+        completion(false, "Unable to access the photo album. Please check permissions in settings.")
       }
     }
   }
@@ -52,17 +58,23 @@ extension ImagePickerView {
           if granted {
             completion(true, nil)
           } else {
-            completion(false, "需要相机权限才能拍照，请在设置中允许访问相机。")
+            completion(
+              false,
+              "You need camera access to take photos. Please allow access to the camera in the settings."
+            )
           }
         }
       }
     case .denied, .restricted:
       DispatchQueue.main.async {
-        completion(false, "需要相机权限才能拍照，请在设置中允许访问相机。")
+        completion(
+          false,
+          "You need camera access to take photos. Please allow access to the camera in the settings."
+        )
       }
     @unknown default:
       DispatchQueue.main.async {
-        completion(false, "无法访问相机，请在设置中检查权限。")
+        completion(false, "Unable to access the camera. Please check permissions in settings.")
       }
     }
   }
@@ -79,17 +91,23 @@ extension ImagePickerView {
           if granted {
             completion(true, nil)
           } else {
-            completion(false, "需要麦克风权限才能录制语音，请在设置中允许访问麦克风。")
+            completion(
+              false,
+              "You need microphone access to record audio. Please allow access to the microphone in the settings."
+            )
           }
         }
       }
     case .denied, .restricted:
       DispatchQueue.main.async {
-        completion(false, "需要麦克风权限才能录制语音，请在设置中允许访问麦克风。")
+        completion(
+          false,
+          "You need microphone access to record audio. Please allow access to the microphone in the settings."
+        )
       }
     @unknown default:
       DispatchQueue.main.async {
-        completion(false, "无法访问麦克风，请在设置中检查权限。")
+        completion(false, "Unable to access the microphone. Please check permissions in settings.")
       }
     }
   }

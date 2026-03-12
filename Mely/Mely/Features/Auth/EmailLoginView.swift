@@ -55,9 +55,10 @@ struct EmailAuthView: View {
           Button {
             dismiss()
           } label: {
-            Image(systemName: "chevron.backward")
+            Image(systemName: "chevron.left")
+              .font(.system(size: 18))
               .foregroundColor(.black)
-              .padding(10)
+              .frame(width: 44, height: 44)
               .background(.white, in: Circle())
           }
           Spacer()
@@ -104,8 +105,9 @@ struct EmailAuthView: View {
 
           if let errorMessage {
             Text(errorMessage)
-              .font(.footnote)
+              .font(.custom("Hanchansans-Medium", size: 14))
               .foregroundColor(.red)
+              .padding(.horizontal, 50)
               .frame(maxWidth: .infinity, alignment: .leading)
           }
 
@@ -152,6 +154,7 @@ struct EmailAuthView: View {
         .textInputAutocapitalization(.never)
         .keyboardType(.emailAddress)
         .foregroundColor(.black)
+        .submitLabel(.done)
     }
     .padding(.horizontal, 16)
     .padding(.vertical, 16)
@@ -168,8 +171,10 @@ struct EmailAuthView: View {
       Group {
         if showPassword {
           TextField("", text: $password, prompt: Text(passwordPlaceholder).foregroundColor(.gray))
+            .submitLabel(.done)
         } else {
           SecureField("", text: $password, prompt: Text(passwordPlaceholder).foregroundColor(.gray))
+            .submitLabel(.done)
         }
       }
       .foregroundColor(.black)
@@ -200,11 +205,15 @@ struct EmailAuthView: View {
         if showConfirmPassword {
           TextField(
             "", text: $confirmPassword,
-            prompt: Text(confirmPasswordPlaceholder).foregroundColor(.gray))
+            prompt: Text(confirmPasswordPlaceholder).foregroundColor(.gray)
+          )
+          .submitLabel(.done)
         } else {
           SecureField(
             "", text: $confirmPassword,
-            prompt: Text(confirmPasswordPlaceholder).foregroundColor(.gray))
+            prompt: Text(confirmPasswordPlaceholder).foregroundColor(.gray)
+          )
+          .submitLabel(.done)
         }
       }
       .foregroundColor(.black)
@@ -221,7 +230,7 @@ struct EmailAuthView: View {
       }
     }
     .padding(.horizontal, 16)
-    .padding(.vertical, 10)
+    .padding(.vertical, 16)
     .background(.white)
   }
 
@@ -290,7 +299,6 @@ struct EmailAuthView: View {
   }
 
   // MARK: - Actions
-
   private func submit() {
     errorMessage = nil
     let trimmedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -307,7 +315,7 @@ struct EmailAuthView: View {
 
     case .signup:
       guard password == confirmPassword else {
-        errorMessage = "两次输入的密码不一致。"
+        errorMessage = "The two passwords entered do not match."
         return
       }
       do {
@@ -319,7 +327,7 @@ struct EmailAuthView: View {
 
     case .forgot:
       guard password == confirmPassword else {
-        errorMessage = "两次输入的密码不一致。"
+        errorMessage = "The two passwords entered do not match."
         return
       }
       do {

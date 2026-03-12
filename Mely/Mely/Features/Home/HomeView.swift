@@ -17,8 +17,14 @@ struct HomeView: View {
 
   @State private var searchText: String = ""
 
+  /// 挑战列表：先按拉黑过滤，再按搜索关键词过滤 title / description
   private var challenges: [DanceChallenge] {
-    appDataStore.data.challenges
+    let base = appDataStore.filteredChallenges
+    let q = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+    guard !q.isEmpty else { return base }
+    return base.filter {
+      $0.title.lowercased().contains(q) || $0.description.lowercased().contains(q)
+    }
   }
 
   private let topGradient = LinearGradient(
@@ -176,7 +182,6 @@ struct HomeView: View {
   }
 
   // MARK: - 舞蹈挑战区
-
   private var challengeSection: some View {
     VStack(alignment: .leading, spacing: 14) {
       HStack(spacing: 8) {
@@ -191,16 +196,26 @@ struct HomeView: View {
       .padding(.horizontal, 20)
       .padding(.top, 20)
 
-      ScrollView(.horizontal, showsIndicators: false) {
-        HStack(spacing: 20) {
-          ForEach(challenges) { challenge in
-            DanceChallengeCard(challenge: challenge) {
-              path.append(.challengeDetail(challengeId: challenge.id))
+      if challenges.isEmpty {
+        HStack {
+          Spacer()
+          EmptyZhanweiView()
+          Spacer()
+        }
+        .frame(width: .infinity, height: 280)
+      } else {
+        ScrollView(.horizontal, showsIndicators: false) {
+          HStack(spacing: 20) {
+            ForEach(challenges) { challenge in
+              DanceChallengeCard(challenge: challenge) {
+                path.append(.challengeDetail(challengeId: challenge.id))
+              }
             }
           }
+          .padding(.horizontal, 20)
         }
-        .padding(.horizontal, 20)
       }
+
     }
     .padding(.vertical, 12)
   }
@@ -214,12 +229,6 @@ struct DanceChallengeCard: View {
 
   var body: some View {
     ZStack(alignment: .center) {
-      // Image(challenge.imageName!)
-      //   .resizable()
-      //   .scaledToFill()
-      //   .cornerRadius(20)
-      //   .frame(width: 200, height: 280)
-
       VStack {
         HStack {
           Text(challenge.title)
@@ -290,12 +299,5 @@ struct DanceChallengeCard: View {
         .font(.system(size: 44))
         .foregroundColor(.white.opacity(0.6))
     }
-  }
-}
-
-#Preview {
-  NavigationStack {
-    HomeView(path: .constant([]))
-      .environmentObject(AppDataStore())
   }
 }

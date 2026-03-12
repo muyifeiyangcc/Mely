@@ -51,6 +51,17 @@ struct CreateChallengeView: View {
     }
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
+    .toolbar {
+      ToolbarItemGroup(placement: .keyboard) {
+        Spacer()
+        Button("Done") {
+          UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+        .font(.custom("Hanchansans-Medium", size: 16))
+        .foregroundColor(.blue)
+      }
+    }
     .imageSourcePicker(isPresented: $showImageSourcePicker) { image in
       selectedCoverImage = image
       hasCover = true
@@ -68,12 +79,12 @@ struct CreateChallengeView: View {
           dismiss.callAsFunction()
         } label: {
           Image(systemName: "chevron.left")
-            .font(.system(size: 18, weight: .semibold))
+            .font(.system(size: 18))
             .foregroundColor(.black)
             .frame(width: 44, height: 44)
             .background(Circle().fill(Color.white))
         }
-        .padding(.leading, 16)
+        .padding(.leading, 20)
 
         Spacer()
 
@@ -86,7 +97,6 @@ struct CreateChallengeView: View {
         Color.clear
           .frame(width: 44, height: 44)
       }
-      .padding(.top, 8)
     }
   }
 
@@ -133,7 +143,7 @@ struct CreateChallengeView: View {
     VStack(alignment: .leading, spacing: 16) {
       HStack(spacing: 10) {
         Text("Challenge Theme")
-          .font(.custom("Hanchansans-Medium", size: 24))
+          .font(.custom("Hanchansans-Medium", size: 22))
           .foregroundColor(.white)
         Image("eaynmjbwgatf_star")
           .resizable()
@@ -161,7 +171,7 @@ struct CreateChallengeView: View {
     VStack(alignment: .leading, spacing: 16) {
       HStack(spacing: 10) {
         Text("Rule")
-          .font(.custom("Hanchansans-Medium", size: 24))
+          .font(.custom("Hanchansans-Medium", size: 22))
           .foregroundColor(.white)
         Image("eaynmjbwgatf_star")
           .resizable()
@@ -172,7 +182,8 @@ struct CreateChallengeView: View {
         TextEditor(text: $rule)
           .font(.custom("Hanchansans-Medium", size: 16))
           .foregroundColor(.black)
-          .padding(10)
+          .padding(.horizontal, 12)
+          .padding(.vertical, 8)
           .background(
             RoundedRectangle(cornerRadius: 16, style: .continuous)
               .fill(Color.white)
@@ -219,13 +230,14 @@ struct CreateChallengeView: View {
         )
     }
     .buttonStyle(.plain)
-    .disabled(!canCreate || isCreating)
     .padding(.horizontal, 20)
     .padding(.bottom, 20)
   }
 
+  /// 图片和输入内容都填写完成后才能创建
   private var canCreate: Bool {
-    !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    selectedCoverImage != nil
+      && !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
       && !rule.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
   }
 

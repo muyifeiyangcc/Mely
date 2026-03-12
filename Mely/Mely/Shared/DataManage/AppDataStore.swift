@@ -30,6 +30,8 @@ private enum AppDataStorage {
 
 final class AppDataStore: ObservableObject {
   @Published private(set) var data: AppData
+  /// 拉黑成功后展示 2 秒 toast
+  @Published var showBlockSuccessToast: Bool = false
 
   init() {
     if let existing = AppDataStorage.load() {
@@ -54,6 +56,7 @@ final class AppDataStore: ObservableObject {
     return [
       DanceChallenge(
         id: "id1",
+        userId: "u2",
         title: "Home Beat Dance Workout",
         imageName: "q9V8ph41lXTH_tiao1",
         isJoined: false,
@@ -63,6 +66,7 @@ final class AppDataStore: ObservableObject {
       ),
       DanceChallenge(
         id: "id2",
+        userId: "u4",
         title: "uick Slim Dance Challenge",
         imageName: "q9V8ph41lXTH_tiao2",
         isJoined: false,
@@ -112,6 +116,62 @@ final class AppDataStore: ObservableObject {
     return data.users.first(where: { $0.id == id })
   }
 
+  /// 当前用户的拉黑 id 列表，用于展示层过滤
+  private var blockUids: Set<String> {
+    Set(currentUser?.blockUids ?? [])
+  }
+
+  /// 社区帖子（排除被拉黑用户）
+  var filteredCommunityPosts: [CommunityPostModel] {
+    data.communityPosts.filter { !blockUids.contains($0.userId) }
+  }
+
+  /// 舞蹈挑战（排除被拉黑用户创建）
+  var filteredChallenges: [DanceChallenge] {
+    data.challenges.filter { !blockUids.contains($0.userId) }
+  }
+
+  /// 挑战视频（排除被拉黑用户发布）
+  var filteredChallengeVideos: [ChallengeVideo] {
+    data.challengeVideos.filter { !blockUids.contains($0.userId) }
+  }
+
+  /// 社区评论（排除被拉黑用户）
+  func filteredCommunityComments(postId: String) -> [CommunityCommentModel] {
+    data.communityComments
+      .filter { $0.postId == postId && !blockUids.contains($0.userId) }
+  }
+
+  /// 会话列表（仅当前登录用户参与的会话，并排除与被拉黑用户的会话）
+  var filteredConversations: [ConversationModel] {
+    guard let currentId = data.currentUserId else { return [] }
+    return data.conversations.filter { conv in
+      conv.participantUserIds.contains(currentId)
+        && !conv.participantUserIds.contains { blockUids.contains($0) }
+    }
+  }
+
+  /// 获取或创建与指定用户的私聊会话，返回 conversationId；若无则新建后返回
+  func getOrCreateConversation(with otherUserId: String) -> String? {
+    guard let currentId = data.currentUserId,
+      currentId != otherUserId,
+      data.users.contains(where: { $0.id == otherUserId })
+    else { return nil }
+    let ids = Set([currentId, otherUserId])
+    if let existing = data.conversations.first(where: {
+      Set($0.participantUserIds) == ids
+    }) {
+      return existing.id
+    }
+    let newConv = ConversationModel(
+      id: UUID().uuidString,
+      participantUserIds: [currentId, otherUserId]
+    )
+    data.conversations.insert(newConv, at: 0)
+    save()
+    return newConv.id
+  }
+
   // MARK: - Auth Error
   enum AuthError: LocalizedError {
     case userNotFound
@@ -149,13 +209,16 @@ final class AppDataStore: ObservableObject {
       return
     }
 
+    let timestampFull = String(Int(Date().timeIntervalSince1970))
+    let lastSixDigits = timestampFull.suffix(4)
     let newUser = UserModel(
       id: UUID().uuidString,
-      name: "Quick",
+      name: "Quick\(lastSixDigits)",
       avatarSymbol: "mely_defava",
       email: nil,
       password: nil,
-      isQuickUser: true
+      isQuickUser: true,
+      diamonds: 0,
     )
 
     data.users.append(newUser)
@@ -214,20 +277,110 @@ final class AppDataStore: ObservableObject {
     save()
   }
 
-  /// 删除当前登录用户，如果是快速登录用户则同时清空 quickLoginUserId
+  /// 删除当前登录用户及其全部关联数据（视频、帖子、挑战、评论、消息、点赞、关注等），清空后回到登录选择页
   func deleteCurrentUser() {
     guard let currentId = data.currentUserId else { return }
+    guard let userIndex = data.users.firstIndex(where: { $0.id == currentId }) else { return }
 
-    data.users.removeAll { $0.id == currentId }
+    let currentUser = data.users[userIndex]
+
+    // 1. 更新点赞数：该用户点赞过的帖子/视频需减少 likeCount
+    for contentId in currentUser.likeIds {
+      if let idx = data.communityPosts.firstIndex(where: { $0.id == contentId }) {
+        data.communityPosts[idx].likeCount = max(0, data.communityPosts[idx].likeCount - 1)
+      } else if let idx = data.challengeVideos.firstIndex(where: { $0.id == contentId }) {
+        data.challengeVideos[idx].likeCount = max(0, data.challengeVideos[idx].likeCount - 1)
+      }
+    }
+
+    // 2. 该用户的帖子 ID（用于删除其帖子下的评论、以及帖子图片）
+    let userPostIds = Set(data.communityPosts.filter { $0.userId == currentId }.map(\.id))
+
+    // 3. 删除该用户帖子下的评论，并更新其他帖子被该用户评论的 commentCount
+    let commentsToRemove = data.communityComments.filter {
+      $0.userId == currentId || userPostIds.contains($0.postId)
+    }
+    for comment in commentsToRemove where !userPostIds.contains(comment.postId) {
+      if let idx = data.communityPosts.firstIndex(where: { $0.id == comment.postId }) {
+        data.communityPosts[idx].commentCount = max(
+          0,
+          data.communityPosts[idx].commentCount - 1
+        )
+      }
+    }
+    data.communityComments.removeAll { $0.userId == currentId || userPostIds.contains($0.postId) }
+
+    // 4. 该用户创建的挑战 ID（用于删除挑战及其视频）
+    let userChallengeIds = Set(data.challenges.filter { $0.userId == currentId }.map(\.id))
+
+    // 5. 收集需删除的本地文件路径
+    var filesToDelete: [String] = []
+
+    for post in data.communityPosts where post.userId == currentId {
+      if post.imageName.contains("/") { filesToDelete.append(post.imageName) }
+    }
+
+    for challenge in data.challenges where challenge.userId == currentId {
+      if let name = challenge.imageName, name.contains("/") { filesToDelete.append(name) }
+    }
+
+    let userVideoIds = Set(
+      data.challengeVideos
+        .filter { $0.userId == currentId || userChallengeIds.contains($0.challengeId) }
+        .map(\.id)
+    )
+    for video in data.challengeVideos where userVideoIds.contains(video.id) {
+      if let name = video.videoName, name.contains("/") { filesToDelete.append(name) }
+      if let thumb = video.thumbnailName, thumb.contains("/") { filesToDelete.append(thumb) }
+    }
+
+    for msg in data.messages where msg.userId == currentId {
+      if let p = msg.imagePath, p.contains("/") { filesToDelete.append(p) }
+      if let p = msg.audioPath, p.contains("/") { filesToDelete.append(p) }
+    }
+
+    if currentUser.avatarSymbol.contains("/") {
+      filesToDelete.append(currentUser.avatarSymbol)
+    }
+
+    for path in filesToDelete {
+      ImageStorageHelper.deleteFileIfExists(relativePath: path)
+    }
+
+    // 6. 删除数据
     data.communityPosts.removeAll { $0.userId == currentId }
-    data.communityComments.removeAll { $0.userId == currentId }
+    data.challenges.removeAll { $0.userId == currentId }
+    data.challengeVideos.removeAll { userVideoIds.contains($0.id) }
     data.messages.removeAll { $0.userId == currentId }
+    data.conversations.removeAll { $0.participantUserIds.contains(currentId) }
+    data.users.removeAll { $0.id == currentId }
+
+    // 7. 其他用户中移除对该用户的关注/粉丝/拉黑引用
+    for i in data.users.indices {
+      data.users[i].followIds.removeAll { $0 == currentId }
+      data.users[i].followingIds.removeAll { $0 == currentId }
+      data.users[i].blockUids.removeAll { $0 == currentId }
+    }
 
     if data.quickLoginUserId == currentId {
       data.quickLoginUserId = nil
     }
-
     data.currentUserId = nil
+    objectWillChange.send()
+    save()
+  }
+
+  /// 更新当前用户的昵称和头像
+  func updateCurrentUser(name: String? = nil, avatarSymbol: String? = nil) {
+    guard let currentId = data.currentUserId,
+      let index = data.users.firstIndex(where: { $0.id == currentId })
+    else { return }
+    if let name = name, !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+      data.users[index].name = name.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    if let avatarSymbol = avatarSymbol {
+      data.users[index].avatarSymbol = avatarSymbol
+    }
     save()
   }
 
@@ -251,15 +404,132 @@ final class AppDataStore: ObservableObject {
     return true
   }
 
-  /// 将指定用户 id 加入当前登录用户的拉黑列表
+  /// 判断视频对当前用户而言是否仍为锁定状态（需付费解锁且用户尚未解锁）
+  func isVideoEffectivelyLocked(_ video: ChallengeVideo) -> Bool {
+    guard video.isLocked else { return false }
+    guard let currentId = data.currentUserId,
+      let user = data.users.first(where: { $0.id == currentId })
+    else { return true }
+    return !user.unlockedVideoIds.contains(video.id)
+  }
+
+  /// 解锁指定视频：余额足够则扣除钻石并标记解锁，返回 true；不足返回 false
+  func unlockVideo(videoId: String) -> Bool {
+    guard let video = data.challengeVideos.first(where: { $0.id == videoId }),
+      video.isLocked,
+      let cost = video.unlockCostDiamonds, cost > 0
+    else { return false }
+    guard let currentId = data.currentUserId,
+      let userIndex = data.users.firstIndex(where: { $0.id == currentId })
+    else { return false }
+    guard !data.users[userIndex].unlockedVideoIds.contains(videoId) else { return true }
+    guard deductDiamonds(cost) else { return false }
+    objectWillChange.send()
+    data.users[userIndex].unlockedVideoIds.append(videoId)
+    save()
+    return true
+  }
+
+  /// 将指定用户 id 加入当前登录用户的拉黑列表（展示层按 blockUids 过滤，不删除数据）
   func blockUser(uid: String) {
     guard let currentId = data.currentUserId,
       let index = data.users.firstIndex(where: { $0.id == currentId })
     else { return }
-    if !data.users[index].blockUids.contains(uid) {
-      data.users[index].blockUids.append(uid)
+    guard !data.users[index].blockUids.contains(uid) else { return }
+    objectWillChange.send()
+    data.users[index].blockUids.append(uid)
+    save()
+    showBlockSuccessToast = true
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+      self?.showBlockSuccessToast = false
+    }
+  }
+
+  /// 将指定用户从当前登录用户的拉黑列表中移除
+  func unblockUser(uid: String) {
+    guard let currentId = data.currentUserId,
+      let index = data.users.firstIndex(where: { $0.id == currentId })
+    else { return }
+    objectWillChange.send()
+    data.users[index].blockUids.removeAll { $0 == uid }
+    save()
+  }
+
+  /// 当前用户关注指定用户
+  func followUser(uid: String) {
+    guard let currentId = data.currentUserId,
+      let currentIndex = data.users.firstIndex(where: { $0.id == currentId }),
+      let targetIndex = data.users.firstIndex(where: { $0.id == uid }),
+      currentId != uid
+    else { return }
+    if !data.users[currentIndex].followingIds.contains(uid) {
+      data.users[currentIndex].followingIds.append(uid)
+      data.users[targetIndex].followIds.append(currentId)
       save()
     }
+  }
+
+  /// 当前用户取关指定用户
+  func unfollowUser(uid: String) {
+    guard let currentId = data.currentUserId,
+      let currentIndex = data.users.firstIndex(where: { $0.id == currentId }),
+      let targetIndex = data.users.firstIndex(where: { $0.id == uid })
+    else { return }
+    data.users[currentIndex].followingIds.removeAll { $0 == uid }
+    data.users[targetIndex].followIds.removeAll { $0 == currentId }
+    save()
+  }
+
+  /// 当前登录用户是否已关注指定用户
+  func isFollowing(_ uid: String) -> Bool {
+    guard let currentId = data.currentUserId,
+      let currentUser = data.users.first(where: { $0.id == currentId })
+    else { return false }
+    return currentUser.followingIds.contains(uid)
+  }
+
+  /// 当前登录用户是否已点赞指定帖子/视频
+  func isLiked(_ contentId: String) -> Bool {
+    guard let currentId = data.currentUserId,
+      let currentUser = data.users.first(where: { $0.id == currentId })
+    else { return false }
+    return currentUser.likeIds.contains(contentId)
+  }
+
+  /// 点赞指定帖子或视频
+  func likeContent(_ contentId: String) {
+    guard let currentId = data.currentUserId,
+      let userIndex = data.users.firstIndex(where: { $0.id == currentId })
+    else { return }
+    guard !data.users[userIndex].likeIds.contains(contentId) else { return }
+
+    data.users[userIndex].likeIds.append(contentId)
+
+    if let postIndex = data.communityPosts.firstIndex(where: { $0.id == contentId }) {
+      data.communityPosts[postIndex].likeCount += 1
+    } else if let videoIndex = data.challengeVideos.firstIndex(where: { $0.id == contentId }) {
+      data.challengeVideos[videoIndex].likeCount += 1
+    }
+    save()
+  }
+
+  /// 取消点赞指定帖子或视频
+  func unlikeContent(_ contentId: String) {
+    guard let currentId = data.currentUserId,
+      let userIndex = data.users.firstIndex(where: { $0.id == currentId })
+    else { return }
+    guard data.users[userIndex].likeIds.contains(contentId) else { return }
+
+    data.users[userIndex].likeIds.removeAll { $0 == contentId }
+
+    if let postIndex = data.communityPosts.firstIndex(where: { $0.id == contentId }) {
+      let newCount = max(0, data.communityPosts[postIndex].likeCount - 1)
+      data.communityPosts[postIndex].likeCount = newCount
+    } else if let videoIndex = data.challengeVideos.firstIndex(where: { $0.id == contentId }) {
+      let newCount = max(0, data.challengeVideos[videoIndex].likeCount - 1)
+      data.challengeVideos[videoIndex].likeCount = newCount
+    }
+    save()
   }
 
   /// 添加社区图片帖子
@@ -304,8 +574,10 @@ final class AppDataStore: ObservableObject {
 
   // MARK: - Challenges
   func addChallenge(title: String, rule: String, coverImageName: String?) {
+    let creatorId = data.currentUserId ?? "u1"
     let challenge = DanceChallenge(
       id: UUID().uuidString,
+      userId: creatorId,
       title: title,
       imageName: coverImageName,
       isJoined: false,
@@ -348,25 +620,34 @@ final class AppDataStore: ObservableObject {
     return [
       ChallengeVideo(
         id: "cv1", challengeId: "id1", userId: "u2",
-        thumbnailName: "I7SrplfHHwLH_feng1", videoName: "SKTyyB8jjAwN_pind1", likeCount: 140_000,
+        thumbnailName: "I7SrplfHHwLH_feng1", videoName: "SKTyyB8jjAwN_pind1", likeCount: 339,
         isLocked: false,
         unlockCostDiamonds: nil),
       ChallengeVideo(
         id: "cv2", challengeId: "id1", userId: "u3",
-        thumbnailName: "I7SrplfHHwLH_feng2", videoName: "SKTyyB8jjAwN_pind2", likeCount: 140_000,
+        thumbnailName: "I7SrplfHHwLH_feng2", videoName: "SKTyyB8jjAwN_pind2", likeCount: 124,
         isLocked: true,
         unlockCostDiamonds: 300),
       ChallengeVideo(
         id: "cv3", challengeId: "id2", userId: "u4",
-        thumbnailName: "I7SrplfHHwLH_feng3", videoName: "SKTyyB8jjAwN_pind3", likeCount: 140_000,
+        thumbnailName: "I7SrplfHHwLH_feng3", videoName: "SKTyyB8jjAwN_pind3", likeCount: 56,
         isLocked: false,
         unlockCostDiamonds: nil),
       ChallengeVideo(
         id: "cv4", challengeId: "id2", userId: "u5",
-        thumbnailName: "I7SrplfHHwLH_feng4", videoName: "SKTyyB8jjAwN_pind4", likeCount: 140_000,
+        thumbnailName: "I7SrplfHHwLH_feng4", videoName: "SKTyyB8jjAwN_pind4", likeCount: 770,
         isLocked: true,
         unlockCostDiamonds: 300),
     ]
+  }
+
+  /// 清除当前用户对指定会话的未读数（进入聊天详情时调用）
+  func clearUnreadCount(for conversationId: String) {
+    guard let currentId = data.currentUserId,
+      let index = data.conversations.firstIndex(where: { $0.id == conversationId })
+    else { return }
+    data.conversations[index].unreadCountByUserId[currentId] = 0
+    save()
   }
 
   func addMessage(
@@ -395,6 +676,11 @@ final class AppDataStore: ObservableObject {
 
     if let index = data.conversations.firstIndex(where: { $0.id == conversationId }) {
       data.conversations[index].lastMessageId = message.id
+      // 发送者不增加未读，仅给其他参与者增加未读
+      for uid in data.conversations[index].participantUserIds where uid != currentUserId {
+        let cur = data.conversations[index].unreadCountByUserId[uid] ?? 0
+        data.conversations[index].unreadCountByUserId[uid] = cur + 1
+      }
     }
 
     save()
@@ -458,8 +744,12 @@ extension AppData {
     ]
 
     let conversations: [ConversationModel] = [
-      .init(id: "c1", participantUserIds: ["u1", "u2"], lastMessageId: nil),
-      .init(id: "c2", participantUserIds: ["u1", "u3"], lastMessageId: nil),
+      .init(
+        id: "c1", participantUserIds: ["u1", "u2"], lastMessageId: nil,
+        unreadCountByUserId: ["u1": 1]),
+      .init(
+        id: "c2", participantUserIds: ["u1", "u3"], lastMessageId: nil,
+        unreadCountByUserId: ["u1": 1]),
     ]
 
     let messages: [MessageModel] = [

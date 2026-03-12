@@ -22,11 +22,11 @@ struct ChallengeDetailView: View {
   @State private var showReportSheet: Bool = false
 
   private var challenge: DanceChallenge? {
-    appDataStore.data.challenges.first { $0.id == challengeId }
+    appDataStore.filteredChallenges.first { $0.id == challengeId }
   }
 
   private var videos: [ChallengeVideo] {
-    appDataStore.data.challengeVideos.filter { $0.challengeId == challengeId }
+    appDataStore.filteredChallengeVideos.filter { $0.challengeId == challengeId }
   }
 
   private let headerGradient = LinearGradient(
@@ -57,22 +57,33 @@ struct ChallengeDetailView: View {
         MelyTopBarView(
           title: "",
           onBack: { dismiss() },
-          onMoreTap: { showReportBlockSheet = true }
+          onMoreTap:
+            challenge?.userId != appDataStore.currentUser?.id
+            ? {
+              showReportBlockSheet = true
+            } : nil
         )
 
         // 挑战信息卡片
         topCard
 
-        ScrollView {
-          // 视频网格
-          videoGrid
-            .padding(.horizontal, 16)
-            .padding(.vertical, 16)
-          // .frame(minHeight: 400)
+        if videos.isEmpty {
+          VStack {
+            Spacer()
+            EmptyZhanweiView()
+            Spacer()
+          }
+          .frame(width: .infinity, height: .infinity)
+        } else {
+          ScrollView {
+            // 视频网格
+            videoGrid
+              .padding(.horizontal, 16)
+              .padding(.vertical, 16)
+            // .frame(minHeight: 400)
+          }
         }
-
-        // Spacer(minLength: 0)
-
+        
         // 底部参与挑战按钮
         joinButton
 
@@ -87,7 +98,10 @@ struct ChallengeDetailView: View {
             showReportSheet = true
           },
           onBlock: {
-            // 挑战详情页无具体用户可拉黑，仅关闭弹窗
+            if let uid = challenge?.userId {
+              appDataStore.blockUser(uid: uid)
+              path.removeAll()
+            }
             showReportBlockSheet = false
           }
         )
@@ -171,8 +185,11 @@ struct ChallengeDetailView: View {
         Button {
           path.append(.videoDetail(videoId: video.id))
         } label: {
-          ChallengeVideoCell(video: video)
-            .frame(maxWidth: .infinity)
+          ChallengeVideoCell(
+            video: video,
+            isEffectivelyLocked: appDataStore.isVideoEffectivelyLocked(video)
+          )
+          .frame(maxWidth: .infinity)
         }
         .buttonStyle(.plain)
       }
@@ -204,14 +221,16 @@ struct ChallengeDetailView: View {
 // MARK: - 挑战视频单元格（已解锁 / 锁定）
 struct ChallengeVideoCell: View {
   let video: ChallengeVideo
+  /// 对当前用户而言是否仍为锁定（需付费且未解锁）
+  let isEffectivelyLocked: Bool
   private let thumbnailHeight: CGFloat = 142
   private let cellHeight: CGFloat = 188
 
   var body: some View {
-    VStack(alignment: .leading, spacing: 6) {
+    VStack(alignment: .leading, spacing: 3) {
       ZStack(alignment: .center) {
         thumbnailView
-        if video.isLocked {
+        if isEffectivelyLocked {
           lockedOverlay
         }
       }
@@ -228,9 +247,9 @@ struct ChallengeVideoCell: View {
       )
 
       HStack(spacing: 4) {
-        Image(systemName: "heart.fill")
-          .font(.caption)
-          .foregroundColor(Color(red: 1, green: 0.4, blue: 0.55))
+        Image("SB1tyFVKKZhI_xinfen")
+          .resizable()
+          .frame(width: 22, height: 22)
         Text(video.likeCountFormatted)
           .font(.system(size: 13))
           .foregroundColor(Color(red: 255 / 255, green: 26 / 255, blue: 182 / 255))
@@ -255,7 +274,7 @@ struct ChallengeVideoCell: View {
         Color(red: 0.2, green: 0.2, blue: 0.3)
       }
     }
-    .blur(radius: video.isLocked ? 4 : 0)
+    .blur(radius: isEffectivelyLocked ? 4 : 0)
   }
 
   private var lockedOverlay: some View {

@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct VideoSourcePickerConfig {
-  var dialogTitle: String = "选择视频来源"
-  var dialogMessage: String = "从相册选择或使用相机录制"
-  var alertTitle: String = "需要权限"
-  var galleryButtonTitle: String = "相册"
-  var cameraButtonTitle: String = "相机"
-  var cancelButtonTitle: String = "取消"
-  var alertConfirmTitle: String = "确定"
+  var dialogTitle: String = "Select video source"
+  var dialogMessage: String = "Choose from photo library or camera"
+  var alertTitle: String = "Permission Required"
+  var galleryButtonTitle: String = "Gallery"
+  var cameraButtonTitle: String = "Camera"
+  var cancelButtonTitle: String = "Cancel"
+  var alertConfirmTitle: String = "Confirm"
   var showSettingsButton: Bool = true
-  var settingsButtonTitle: String = "前往设置"
+  var settingsButtonTitle: String = "Go to Settings"
 }
 
 struct VideoSourcePickerModifier: ViewModifier {

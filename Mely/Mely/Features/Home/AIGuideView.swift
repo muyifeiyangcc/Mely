@@ -73,7 +73,7 @@ struct AIGuideView: View {
         dismiss.callAsFunction()
       } label: {
         Image(systemName: "chevron.left")
-          .font(.system(size: 18, weight: .semibold))
+          .font(.system(size: 18))
           .foregroundColor(.black)
           .frame(width: 44, height: 44)
           .background(Circle().fill(Color.white))

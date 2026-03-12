@@ -120,7 +120,7 @@ struct AIChatView: View {
         inputBar
       }
     }
-    .ignoresSafeArea(edges: .bottom)
+    // .ignoresSafeArea(edges: .bottom)
     .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification))
     { notification in
       guard let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
@@ -143,10 +143,10 @@ struct AIChatView: View {
         dismiss.callAsFunction()
       } label: {
         Image(systemName: "chevron.left")
-          .font(.system(size: 18, weight: .semibold))
-          .foregroundColor(.white)
+          .font(.system(size: 18))
+          .foregroundColor(.black)
           .frame(width: 44, height: 44)
-          .background(Circle().fill(Color.white.opacity(0.2)))
+          .background(Circle().fill(Color.white))
       }
       Spacer()
       HStack(spacing: 6) {
@@ -176,26 +176,26 @@ struct AIChatView: View {
 
           Spacer()
 
-          // swap button
-          Button {
-            withAnimation(.easeInOut(duration: 0.2)) {
-              suggestedIndex = (suggestedIndex + 1) % suggestedQuestions.count
-            }
-          } label: {
-            HStack(spacing: 4) {
-              Image(systemName: "arrow.clockwise")
-                .font(.system(size: 14, weight: .semibold))
-              Text("Swap it out")
-                .font(.system(size: 14))
-            }
-            .foregroundColor(.black)
-            .padding(.horizontal, 12)
-            .padding(.vertical, 10)
-            .background(
-              Capsule()
-                .fill(aiGreen)
-            )
-          }
+          // // swap button
+          // Button {
+          //   withAnimation(.easeInOut(duration: 0.2)) {
+          //     suggestedIndex = (suggestedIndex + 1) % suggestedQuestions.count
+          //   }
+          // } label: {
+          //   HStack(spacing: 4) {
+          //     Image(systemName: "arrow.clockwise")
+          //       .font(.system(size: 14, weight: .semibold))
+          //     Text("Swap it out")
+          //       .font(.system(size: 14))
+          //   }
+          //   .foregroundColor(.black)
+          //   .padding(.horizontal, 12)
+          //   .padding(.vertical, 10)
+          //   .background(
+          //     Capsule()
+          //       .fill(aiGreen)
+          //   )
+          // }
         }
         .padding(.leading, 31)
         .padding(.trailing, 10)
@@ -303,28 +303,18 @@ struct AIChatView: View {
 
   private var inputBar: some View {
     HStack(spacing: 12) {
-      HStack {
-        TextField(
-          "",
-          text: $draftText,
-          prompt: Text("Just ask me...")
-            .foregroundColor(.gray)
-        )
-        .font(.system(size: 16))
-        .foregroundColor(.white)
-        .tint(.white)
-        .padding(.horizontal, 16)
-        .padding(.vertical, 15)
-
-        // Button {
-        //   // 语音占位，可后续接语音输入
-        // } label: {
-        //   Image(systemName: "mic.fill")
-        //     .font(.system(size: 24))
-        //     .foregroundColor(.white)
-        // }
-        // .padding(.trailing, 12)
-      }
+      TextField(
+        "",
+        text: $draftText,
+        prompt: Text("Just ask me...")
+          .foregroundColor(.gray)
+      )
+      .font(.system(size: 16))
+      .foregroundColor(.white)
+      .tint(.white)
+      .padding(.horizontal, 16)
+      .padding(.vertical, 15)
+      .submitLabel(.done)
       .background(
         Capsule()
           .fill(Color(hex: "#182037"))
@@ -333,6 +323,8 @@ struct AIChatView: View {
       Button {
         sendText(draftText.trimmingCharacters(in: .whitespacesAndNewlines))
         draftText = ""
+        UIApplication.shared.sendAction(
+          #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
       } label: {
         Image(systemName: "paperplane")
           .font(.system(size: 26))
@@ -341,8 +333,9 @@ struct AIChatView: View {
       .disabled(draftText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
     }
     .padding(.horizontal, 16)
-    .padding(.vertical, 12)
-    .padding(.bottom, max(12, keyboardHeight > 0 ? 0 : 24))
+    .padding(.top, 12)
+    .padding(.bottom, max(6, keyboardHeight > 0 ? 0 : 0))
+    // .padding(.bottom, max(6, keyboardHeight > 0 ? 0 : 24))
     .background(Color.black)
   }
 

@@ -88,6 +88,7 @@ struct MelyReportSheet: View {
             .lineLimit(4...8)
             .font(.custom("Hanchansans-Medium", size: 15))
             .foregroundColor(.white)
+
           }
           .frame(width: 235)
           .background(
@@ -146,6 +147,17 @@ struct MelyReportSheet: View {
         //     .stroke(aiPink, lineWidth: 4)
         // )
         .padding(.horizontal, 24)
+      }
+    }
+    .toolbar {
+      ToolbarItemGroup(placement: .keyboard) {
+        Spacer()
+        Button("Done") {
+          UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+        .font(.custom("Hanchansans-Medium", size: 16))
+        .foregroundColor(.blue)
       }
     }
     #if DEBUG

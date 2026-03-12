@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+struct WebProtocolRoute: Hashable {
+  let urlString: String
+  let title: String
+}
+
 struct LoginChoiceView: View {
   @EnvironmentObject private var appDataStore: AppDataStore
 
@@ -16,6 +21,7 @@ struct LoginChoiceView: View {
 
   @State private var path = NavigationPath()
   @State private var agreeLegal: Bool = true
+  @State private var isQuickLoginLoading: Bool = false
 
   var body: some View {
     NavigationStack(path: $path) {
@@ -76,19 +82,39 @@ struct LoginChoiceView: View {
             .padding(.horizontal, 36)
 
             Button {
-              appDataStore.quickLogin()
+              guard !isQuickLoginLoading else { return }
+              Task {
+                isQuickLoginLoading = true
+                do {
+                  try await Task.sleep(nanoseconds: 1_500_000_000)
+                } catch {
+                  // Ignore cancellation; we still attempt to proceed.
+                }
+                appDataStore.quickLogin()
+                isQuickLoginLoading = false
+              }
             } label: {
-              Text("I'm new")
-                .font(.custom("Hanchansans-Medium", size: 24))
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 14)
-                .background(
-                  RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .fill(Color.black)
-                )
+              Group {
+                if isQuickLoginLoading {
+                  HStack(spacing: 10) {
+                    ProgressView()
+                      .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                      .frame(width: 29, height: 29)
+                  }
+                } else {
+                  Text("I'm new")
+                    .font(.custom("Hanchansans-Medium", size: 24))
+                    .foregroundColor(.white)
+                }
+              }
+              .frame(maxWidth: .infinity)
+              .padding(.vertical, 14)
+              .background(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                  .fill(Color.black)
+              )
             }
-            .disabled(!agreeLegal)
+            .disabled(!agreeLegal || isQuickLoginLoading)
             .padding(.horizontal, 36)
 
             HStack(spacing: 4) {
@@ -113,16 +139,30 @@ struct LoginChoiceView: View {
                   )
               }
 
-              Text("Agree with ")
-                .font(.footnote)
-                + Text("User Agreement")
-                .font(.footnote.weight(.semibold))
-                .foregroundColor(.blue)
-                + Text(" and ")
-                .font(.footnote)
-                + Text("Privacy Policy")
-                .font(.footnote.weight(.semibold))
-                .foregroundColor(.blue)
+              HStack(spacing: 0) {
+                Text("Agree with ")
+                  .font(.footnote)
+                Button {
+                  path.append(
+                    WebProtocolRoute(
+                      urlString: "https://app.p2k1k490.link/users", title: "User Agreement"))
+                } label: {
+                  Text("User Agreement")
+                    .font(.footnote.weight(.semibold))
+                    .foregroundColor(.blue)
+                }
+                Text(" and ")
+                  .font(.footnote)
+                Button {
+                  path.append(
+                    WebProtocolRoute(
+                      urlString: "https://app.p2k1k490.link/privacy", title: "Privacy Policy"))
+                } label: {
+                  Text("Privacy Policy")
+                    .font(.footnote.weight(.semibold))
+                    .foregroundColor(.blue)
+                }
+              }
             }
             .padding(.top, 4)
           }
@@ -132,6 +172,9 @@ struct LoginChoiceView: View {
       }
       .navigationDestination(for: EmailAuthMode.self) { mode in
         EmailAuthView(mode: mode)
+      }
+      .navigationDestination(for: WebProtocolRoute.self) { route in
+        WebProtocolView(urlString: route.urlString, title: route.title, path: .constant([]))
       }
       #if DEBUG
         .enableInjection()

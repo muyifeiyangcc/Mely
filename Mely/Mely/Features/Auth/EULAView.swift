@@ -17,25 +17,15 @@ struct EULAView: View {
 
   var body: some View {
     ZStack {
-      LinearGradient(
-        colors: [
-          Color(red: 0.35, green: 0.0, blue: 0.6),
-          Color(red: 0.0, green: 0.35, blue: 0.7),
-        ],
-        startPoint: .top,
-        endPoint: .bottom
-      )
-      .ignoresSafeArea()
+      Image("sancaihebg")
+        .resizable()
+        .ignoresSafeArea()
 
       VStack(spacing: 16) {
         HStack {
-          Spacer()
           Text("EULA")
-            .font(.headline.bold())
+            .font(.custom("Hanchansans-Medium", size: 24))
             .foregroundColor(.white)
-            .padding(.horizontal, 16)
-            .padding(.vertical, 8)
-            .background(.ultraThinMaterial, in: Capsule())
         }
         .padding(.horizontal)
         .padding(.top, 12)
@@ -44,15 +34,26 @@ struct EULAView: View {
 
         VStack(spacing: 16) {
           ScrollView {
-            VStack(alignment: .leading, spacing: 12) {
-              Text("欢迎来到 Mely！")
-                .font(.title3.bold())
+            VStack(alignment: .leading, spacing: 16) {
               Text(
-                "为了让社区变得更好，请特别注意以下内容在应用中不被允许：\n\n1. 任何关于儿童伤害、儿童色情或与儿童相关的有害内容。\n2. 针对近期或正在发生事件的虚假或有害信息。\n3. 任何暴力、霸凌、公开宣传色情以及其他不当内容。"
+                "Welcome to Mely!"
               )
+              .font(.system(size: 20))
               Text(
-                "若发现包括但不限于以上违规内容，我们可能会删除相关内容并封禁账号。点击“我同意”按钮即表示你已阅读并同意本应用的使用条款和隐私政策。"
+                "To make a better place, the following content is not allowed inthe app in particular"
               )
+              .font(.system(size: 20))
+              .lineSpacing(4)
+              Text(
+                "1.Any content about child harm, pornography related detrimental to children.\n2. Fake and harmful messages about recent or current events.\n3. Any violence,bullying content, publicly promotes pornography and other content."
+              )
+              .font(.system(size: 20))
+              .lineSpacing(4)
+              Text(
+                "If we find any content including and not limited to the above violations your content will be deleted and account will bebanned. By clicking the above button,youagreeto the Terms of Use and Privacy Policy"
+              )
+              .font(.system(size: 20))
+              .lineSpacing(4)
             }
             .foregroundColor(.primary)
             .padding()
@@ -60,7 +61,7 @@ struct EULAView: View {
               RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(Color(.systemBackground))
             )
-            .padding(.horizontal)
+            .padding(.horizontal, 24)
             .padding(.bottom, 8)
           }
           .background(Color.clear)
@@ -74,12 +75,13 @@ struct EULAView: View {
               // 直接退出应用由系统控制，这里先不做处理
             } label: {
               Text("Cancel")
-                .font(.headline)
+                .font(.custom("Hanchansans-Medium", size: 20))
+                .foregroundColor(.black)
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 12)
+                .padding(.vertical, 15)
                 .background(
-                  RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .fill(Color(.systemGray6))
+                  RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(Color(hex: "#CBED40"))
                 )
             }
 
@@ -87,18 +89,18 @@ struct EULAView: View {
               appDataStore.markEULAAccepted()
             } label: {
               Text("I agree")
-                .font(.headline)
-                .foregroundColor(.white)
+                .font(.custom("Hanchansans-Medium", size: 20))
+                .foregroundColor(.black)
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 12)
+                .padding(.vertical, 15)
                 .background(
-                  RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .fill(hasScrolledToBottom ? Color.accentColor : Color.gray)
+                  RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(Color.white)
                 )
             }
             .disabled(!hasScrolledToBottom)
           }
-          .padding(.horizontal)
+          .padding(.horizontal, 30)
           .padding(.bottom, 24)
         }
       }

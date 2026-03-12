@@ -14,15 +14,24 @@ struct UserModel: Identifiable, Codable, Equatable {
   var diamonds: Int = 0
   /// 拉黑用户 id 列表
   var blockUids: [String] = []
+  /// 粉丝 id 列表（关注我的用户）
+  var followIds: [String] = []
+  /// 关注列表（我关注的用户 id）
+  var followingIds: [String] = []
+  /// 点赞过的帖子/视频 id 列表
+  var likeIds: [String] = []
+  /// 已解锁的视频 id 列表（付费解锁后记录）
+  var unlockedVideoIds: [String] = []
 
   enum CodingKeys: String, CodingKey {
-    case id, name, avatarSymbol, email, password, isQuickUser, diamonds, blockUids
+    case id, name, avatarSymbol, email, password, isQuickUser, diamonds, blockUids, followIds, followingIds, likeIds, unlockedVideoIds
   }
 
   init(
     id: String, name: String, avatarSymbol: String,
     email: String? = nil, password: String? = nil, isQuickUser: Bool = false, diamonds: Int = 0,
-    blockUids: [String] = []
+    blockUids: [String] = [], followIds: [String] = [], followingIds: [String] = [], likeIds: [String] = [],
+    unlockedVideoIds: [String] = []
   ) {
     self.id = id
     self.name = name
@@ -32,6 +41,10 @@ struct UserModel: Identifiable, Codable, Equatable {
     self.isQuickUser = isQuickUser
     self.diamonds = diamonds
     self.blockUids = blockUids
+    self.followIds = followIds
+    self.followingIds = followingIds
+    self.likeIds = likeIds
+    self.unlockedVideoIds = unlockedVideoIds
   }
 
   init(from decoder: Decoder) throws {
@@ -44,6 +57,10 @@ struct UserModel: Identifiable, Codable, Equatable {
     isQuickUser = try c.decodeIfPresent(Bool.self, forKey: .isQuickUser) ?? false
     diamonds = try c.decodeIfPresent(Int.self, forKey: .diamonds) ?? 0
     blockUids = try c.decodeIfPresent([String].self, forKey: .blockUids) ?? []
+    followIds = try c.decodeIfPresent([String].self, forKey: .followIds) ?? []
+    followingIds = try c.decodeIfPresent([String].self, forKey: .followingIds) ?? []
+    likeIds = try c.decodeIfPresent([String].self, forKey: .likeIds) ?? []
+    unlockedVideoIds = try c.decodeIfPresent([String].self, forKey: .unlockedVideoIds) ?? []
   }
 
   func encode(to encoder: Encoder) throws {
@@ -56,6 +73,10 @@ struct UserModel: Identifiable, Codable, Equatable {
     try c.encode(isQuickUser, forKey: .isQuickUser)
     try c.encode(diamonds, forKey: .diamonds)
     try c.encode(blockUids, forKey: .blockUids)
+    try c.encode(followIds, forKey: .followIds)
+    try c.encode(followingIds, forKey: .followingIds)
+    try c.encode(likeIds, forKey: .likeIds)
+    try c.encode(unlockedVideoIds, forKey: .unlockedVideoIds)
   }
 }
 
@@ -63,6 +84,35 @@ struct ConversationModel: Identifiable, Codable, Equatable {
   let id: String
   let participantUserIds: [String]
   var lastMessageId: String?
+  /// 各参与者的未读消息数（userId -> 未读数）
+  var unreadCountByUserId: [String: Int]
+
+  init(id: String, participantUserIds: [String], lastMessageId: String? = nil, unreadCountByUserId: [String: Int] = [:]) {
+    self.id = id
+    self.participantUserIds = participantUserIds
+    self.lastMessageId = lastMessageId
+    self.unreadCountByUserId = unreadCountByUserId
+  }
+
+  init(from decoder: Decoder) throws {
+    let c = try decoder.container(keyedBy: CodingKeys.self)
+    id = try c.decode(String.self, forKey: .id)
+    participantUserIds = try c.decode([String].self, forKey: .participantUserIds)
+    lastMessageId = try c.decodeIfPresent(String.self, forKey: .lastMessageId)
+    unreadCountByUserId = try c.decodeIfPresent([String: Int].self, forKey: .unreadCountByUserId) ?? [:]
+  }
+
+  func encode(to encoder: Encoder) throws {
+    var c = encoder.container(keyedBy: CodingKeys.self)
+    try c.encode(id, forKey: .id)
+    try c.encode(participantUserIds, forKey: .participantUserIds)
+    try c.encodeIfPresent(lastMessageId, forKey: .lastMessageId)
+    try c.encode(unreadCountByUserId, forKey: .unreadCountByUserId)
+  }
+
+  enum CodingKeys: String, CodingKey {
+    case id, participantUserIds, lastMessageId, unreadCountByUserId
+  }
 }
 
 struct MessageModel: Identifiable, Codable, Equatable {
@@ -119,12 +169,62 @@ struct MessageModel: Identifiable, Codable, Equatable {
 // MARK: - 舞蹈挑战模型
 struct DanceChallenge: Identifiable, Codable, Equatable {
   let id: String
+  /// 挑战创建者用户 id
+  let userId: String
   let title: String
   let imageName: String?
   var isJoined: Bool
   let difficulty: String
   let participantsCount: Int
   let description: String
+
+  init(
+    id: String,
+    userId: String,
+    title: String,
+    imageName: String?,
+    isJoined: Bool,
+    difficulty: String,
+    participantsCount: Int,
+    description: String
+  ) {
+    self.id = id
+    self.userId = userId
+    self.title = title
+    self.imageName = imageName
+    self.isJoined = isJoined
+    self.difficulty = difficulty
+    self.participantsCount = participantsCount
+    self.description = description
+  }
+
+  init(from decoder: Decoder) throws {
+    let c = try decoder.container(keyedBy: CodingKeys.self)
+    id = try c.decode(String.self, forKey: .id)
+    userId = try c.decodeIfPresent(String.self, forKey: .userId) ?? "u1"
+    title = try c.decode(String.self, forKey: .title)
+    imageName = try c.decodeIfPresent(String.self, forKey: .imageName)
+    isJoined = try c.decode(Bool.self, forKey: .isJoined)
+    difficulty = try c.decode(String.self, forKey: .difficulty)
+    participantsCount = try c.decode(Int.self, forKey: .participantsCount)
+    description = try c.decode(String.self, forKey: .description)
+  }
+
+  func encode(to encoder: Encoder) throws {
+    var c = encoder.container(keyedBy: CodingKeys.self)
+    try c.encode(id, forKey: .id)
+    try c.encode(userId, forKey: .userId)
+    try c.encode(title, forKey: .title)
+    try c.encodeIfPresent(imageName, forKey: .imageName)
+    try c.encode(isJoined, forKey: .isJoined)
+    try c.encode(difficulty, forKey: .difficulty)
+    try c.encode(participantsCount, forKey: .participantsCount)
+    try c.encode(description, forKey: .description)
+  }
+
+  enum CodingKeys: String, CodingKey {
+    case id, userId, title, imageName, isJoined, difficulty, participantsCount, description
+  }
 }
 
 // MARK: - 挑战参与视频模型（详情页视频列表）
@@ -139,7 +239,7 @@ struct ChallengeVideo: Identifiable, Codable, Equatable {
   /// 视频资源名（Bundle 资源，如 "testVideo" 或 "Videos/testVideo"）
   let videoName: String?
   /// 点赞数（如 140000 显示为 14.0W）
-  let likeCount: Int
+  var likeCount: Int
   /// 是否锁定（需付费解锁）
   let isLocked: Bool
   /// 解锁所需钻石数，锁定时有值

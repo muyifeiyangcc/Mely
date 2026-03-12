@@ -54,11 +54,15 @@ struct UploadVideoView: View {
           .padding(.horizontal, 20)
           .padding(.top, 24)
         }
+        .scrollDismissesKeyboard(.immediately)
 
         Spacer(minLength: 0)
 
         postButton
       }
+    }
+    .onTapGesture {
+      UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
@@ -83,12 +87,12 @@ struct UploadVideoView: View {
           dismiss.callAsFunction()
         } label: {
           Image(systemName: "chevron.left")
-            .font(.system(size: 18, weight: .semibold))
+            .font(.system(size: 18))
             .foregroundColor(.black)
             .frame(width: 44, height: 44)
             .background(Circle().fill(Color.white))
         }
-        .padding(.leading, 16)
+        .padding(.leading, 20)
 
         Spacer()
 
@@ -170,6 +174,7 @@ struct UploadVideoView: View {
           .fill(Color.white)
       )
       .keyboardType(.numberPad)
+      .submitLabel(.done)
     }
   }
 
@@ -190,8 +195,6 @@ struct UploadVideoView: View {
         )
     }
     .buttonStyle(.plain)
-    .disabled(isPosting || selectedVideoURL == nil)
-    // .opacity(selectedVideoURL == nil ? 0.6 : 1)
     .padding(.horizontal, 20)
     .padding(.bottom, 14)
   }

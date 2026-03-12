@@ -15,6 +15,7 @@ let emojiOptions: [String] = [
 struct CommunityPostDetailView: View {
   @EnvironmentObject private var appDataStore: AppDataStore
   @Environment(\.dismiss) private var dismiss
+  @Binding var path: [MainRoute]
 
   let postId: String
 
@@ -30,7 +31,7 @@ struct CommunityPostDetailView: View {
   @State private var reportBlockTargetUserId: String?
 
   private var post: CommunityPostModel? {
-    appDataStore.data.communityPosts.first(where: { $0.id == postId })
+    appDataStore.filteredCommunityPosts.first(where: { $0.id == postId })
   }
 
   private var author: UserModel? {
@@ -39,7 +40,7 @@ struct CommunityPostDetailView: View {
   }
 
   private var comments: [CommunityCommentModel] {
-    appDataStore.data.communityComments.filter { $0.postId == postId }
+    appDataStore.filteredCommunityComments(postId: postId)
   }
 
   var body: some View {
@@ -85,14 +86,14 @@ struct CommunityPostDetailView: View {
       .ignoresSafeArea(edges: .top)
 
       VStack {
-        // topBar
         MelyTopBarView(
           title: "",
           onBack: { dismiss() },
-          onMoreTap: {
-            reportBlockTargetUserId = post?.userId
-            showReportBlockSheet = true
-          }
+          onMoreTap: post?.userId != appDataStore.currentUser?.id
+            ? {
+              reportBlockTargetUserId = post?.userId
+              showReportBlockSheet = true
+            } : nil
         )
 
         Spacer()
@@ -114,10 +115,10 @@ struct CommunityPostDetailView: View {
             let target = reportBlockTargetUserId
             if let uid = target {
               appDataStore.blockUser(uid: uid)
+              path.removeAll()
             }
             reportBlockTargetUserId = nil
             showReportBlockSheet = false
-            if target == post?.userId { dismiss() }
           }
         )
       }
@@ -138,33 +139,6 @@ struct CommunityPostDetailView: View {
     #endif
   }
 
-  private var topBar: some View {
-    HStack {
-      Button {
-        dismiss.callAsFunction()
-      } label: {
-        Image(systemName: "chevron.left")
-          .font(.system(size: 18, weight: .semibold))
-          .foregroundColor(.black)
-          .frame(width: 44, height: 44)
-          .background(Circle().fill(Color.white))
-      }
-
-      Spacer()
-
-      Button {
-        // 更多
-      } label: {
-        Image(systemName: "ellipsis")
-          .font(.system(size: 18, weight: .semibold))
-          .foregroundColor(.black)
-          .frame(width: 44, height: 44)
-          .background(Circle().fill(Color.white))
-      }
-    }
-    .padding(.horizontal, 20)
-  }
-
   private func authorSection(for post: CommunityPostModel) -> some View {
     VStack(alignment: .leading, spacing: 12) {
       HStack(spacing: 10) {
@@ -172,10 +146,7 @@ struct CommunityPostDetailView: View {
           Circle()
             .fill(Color.white.opacity(0.25))
             .overlay {
-              Image(author.avatarSymbol)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 50, height: 50)
+              UserAvatarView(avatarSymbol: author.avatarSymbol, size: 50)
                 .clipShape(Circle())
             }
             .frame(width: 50, height: 50)
@@ -192,18 +163,24 @@ struct CommunityPostDetailView: View {
 
         Spacer()
 
-        Button {
-          // 关注按钮当前为静态
-        } label: {
-          Text("Following")
-            .font(.custom("Hanchansans-Medium", size: 16))
-            .foregroundColor(.black)
-            .padding(.horizontal, 16)
-            .padding(.vertical, 10)
-            .background(
-              RoundedRectangle(cornerRadius: 10, style: .continuous)
-                .fill(Color(red: 203 / 255, green: 237 / 255, blue: 64 / 255))
-            )
+        // 关注/取关按钮（作者本人不显示）
+        if let author, author.id != appDataStore.currentUser?.id {
+          let isFollowingAuthor = appDataStore.isFollowing(author.id)
+          Button(isFollowingAuthor ? "Following" : "Follow") {
+            if isFollowingAuthor {
+              appDataStore.unfollowUser(uid: author.id)
+            } else {
+              appDataStore.followUser(uid: author.id)
+            }
+          }
+          .font(.custom("Hanchansans-Medium", size: 16))
+          .foregroundColor(.black)
+          .padding(.horizontal, 16)
+          .padding(.vertical, 10)
+          .background(
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+              .fill(Color(red: 203 / 255, green: 237 / 255, blue: 64 / 255))
+          )
         }
       }
 
@@ -226,15 +203,21 @@ struct CommunityPostDetailView: View {
       }
       .padding(.bottom, 10)
 
-      ForEach(comments) { comment in
-        CommentRow(
-          comment: comment,
-          user: appDataStore.data.users.first { $0.id == comment.userId },
-          onMoreTap: {
-            reportBlockTargetUserId = comment.userId
-            showReportBlockSheet = true
-          }
-        )
+      if comments.isEmpty {
+        EmptyZhanweiView()
+          .padding(.bottom, 40)
+          .frame(width: .infinity, height: .infinity)
+      } else {
+        ForEach(comments) { comment in
+          CommentRow(
+            comment: comment,
+            user: appDataStore.data.users.first { $0.id == comment.userId },
+            onMoreTap: {
+              reportBlockTargetUserId = comment.userId
+              showReportBlockSheet = true
+            }
+          )
+        }
       }
     }
   }
@@ -257,9 +240,12 @@ struct CommunityPostDetailView: View {
           .foregroundColor(.white)
           .padding(.horizontal, 16)
           .padding(.vertical, 16)
+          .submitLabel(.done)
 
           Button {
             sendComment()
+            UIApplication.shared.sendAction(
+              #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
           } label: {
             Image(systemName: "paperplane")
               .font(Font.system(size: 24))
@@ -325,6 +311,7 @@ struct CommunityPostDetailView: View {
 }
 
 private struct CommentRow: View {
+  @EnvironmentObject private var appDataStore: AppDataStore
   let comment: CommunityCommentModel
   let user: UserModel?
   var onMoreTap: (() -> Void)?
@@ -336,10 +323,7 @@ private struct CommentRow: View {
           .fill(Color.white.opacity(0.25))
           .overlay {
             if let user {
-              Image(user.avatarSymbol)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 38, height: 38)
+              UserAvatarView(avatarSymbol: user.avatarSymbol, size: 38)
                 .clipShape(Circle())
             }
           }
@@ -352,14 +336,18 @@ private struct CommentRow: View {
               .foregroundColor(.white)
             Spacer()
 
-            Button {
-              onMoreTap?()
-            } label: {
-              Image(systemName: "ellipsis")
-                .font(.system(size: 22))
-                .foregroundColor(.white)
+            if user?.id != appDataStore.currentUser?.id {
+              Button {
+                onMoreTap?()
+              } label: {
+                Image(systemName: "ellipsis")
+                  .font(.system(size: 22))
+                  .foregroundColor(.white)
+                  .frame(width: 28, height: 28)
+                  .background(.black.opacity(0.01))
+              }
+              .buttonStyle(.plain)
             }
-            .buttonStyle(.plain)
           }
           .padding(.bottom, 4)
 
@@ -388,12 +376,5 @@ private struct CommentRow: View {
         .padding(.bottom, 6)
     }
 
-  }
-}
-
-#Preview {
-  NavigationStack {
-    CommunityPostDetailView(postId: "cp1")
-      .environmentObject(AppDataStore())
   }
 }

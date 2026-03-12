@@ -55,6 +55,17 @@ struct CommunityPostCreateView: View {
     }
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
+    .toolbar {
+      ToolbarItemGroup(placement: .keyboard) {
+        Spacer()
+        Button("Done") {
+          UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+        .font(.custom("Hanchansans-Medium", size: 16))
+        .foregroundColor(.blue)
+      }
+    }
     .imageSourcePicker(
       isPresented: $showImageSourcePicker, onImagePicked: { selectedPostImage = $0 }
     )
@@ -70,12 +81,12 @@ struct CommunityPostCreateView: View {
           dismiss.callAsFunction()
         } label: {
           Image(systemName: "chevron.left")
-            .font(.system(size: 18, weight: .semibold))
+            .font(.system(size: 18))
             .foregroundColor(.black)
             .frame(width: 44, height: 44)
             .background(Circle().fill(Color.white))
         }
-        .padding(.leading, 16)
+        .padding(.leading, 20)
 
         Spacer()
 

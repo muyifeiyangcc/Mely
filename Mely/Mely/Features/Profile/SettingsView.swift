@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsView: View {
   @EnvironmentObject private var appDataStore: AppDataStore
   @Environment(\.dismiss) private var dismiss
+  @Binding var path: [MainRoute]
   @State private var showLogoutDialog = false
   @State private var showDeleteAccountDialog = false
 
@@ -30,21 +31,25 @@ struct SettingsView: View {
 
         VStack {
           VStack(spacing: 12) {
-            // 三个设置项
+            settingsListItem(
+              imgName: "W0bVs3lHbdD2_eidt",
+              title: "Edit information",
+              action: { path.append(.editProfile) }
+            )
             settingsListItem(
               imgName: "dsfnikrctqtc",
               title: "User Agreement",
-              action: {}
+              action: { path.append(.webProtocol(urlString: "https://app.p2k1k490.link/users", title: "User Agreement")) }
             )
             settingsListItem(
               imgName: "qzhmsmktdthf",
               title: "Privacy Agreement",
-              action: {}
+              action: { path.append(.webProtocol(urlString: "https://app.p2k1k490.link/privacy", title: "Privacy Agreement")) }
             )
             settingsListItem(
               imgName: "ypiwomsvrfunblo",
               title: "Blocklist",
-              action: {}
+              action: { path.append(.userList(.blocklist)) }
             )
           }
           .padding(.horizontal, 20)
@@ -98,6 +103,7 @@ struct SettingsView: View {
           btnText: "Confirm",
           onConfirm: {
             appDataStore.logout()
+            path.removeAll()
             dismiss()
           }
         )
@@ -110,6 +116,7 @@ struct SettingsView: View {
           iconSize: 60,
           btnText: "Confirm",
           onConfirm: {
+            path.removeAll()
             appDataStore.deleteCurrentUser()
             dismiss()
           }
@@ -128,7 +135,7 @@ struct SettingsView: View {
         dismiss()
       } label: {
         Image(systemName: "chevron.left")
-          .font(.system(size: 18, weight: .bold))
+          .font(.system(size: 18))
           .foregroundColor(.black)
           .frame(width: 44, height: 44)
           .background(Circle().fill(Color.white))
@@ -146,7 +153,6 @@ struct SettingsView: View {
         .frame(width: 44, height: 44)
     }
     .padding(.horizontal, 20)
-    .padding(.top, 8)
     .padding(.bottom, 4)
   }
 

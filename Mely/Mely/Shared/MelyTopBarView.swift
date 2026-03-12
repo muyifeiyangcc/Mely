@@ -27,10 +27,10 @@ struct MelyTopBarView: View {
       // 返回按钮
       Button(action: onBack) {
         Image(systemName: "chevron.left")
-          .font(.system(size: 18, weight: .semibold))
-          .foregroundColor(.white)
+          .font(.system(size: 18))
+          .foregroundColor(.black)
           .frame(width: 44, height: 44)
-          .background(.white.opacity(0.15))
+          .background(.white)
           .clipShape(Circle())
       }
       .buttonStyle(.plain)
@@ -49,9 +49,9 @@ struct MelyTopBarView: View {
           Button(action: onMoreTap) {
             Image(systemName: "ellipsis")
               .font(.system(size: 18, weight: .semibold))
-              .foregroundColor(.white)
+              .foregroundColor(.black)
               .frame(width: 44, height: 44)
-              .background(.white.opacity(0.15))
+              .background(.white)
               .clipShape(Circle())
           }
           .buttonStyle(.plain)
@@ -61,8 +61,7 @@ struct MelyTopBarView: View {
         }
       }
     }
-    .padding(.horizontal, 16)
-    .padding(.top, 6)
+    .padding(.horizontal, 20)
     .padding(.bottom, 10)
     #if DEBUG
       .enableInjection()

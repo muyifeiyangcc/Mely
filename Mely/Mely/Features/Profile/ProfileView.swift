@@ -33,12 +33,12 @@ struct ProfileView: View {
 
   private var posts: [CommunityPostModel] {
     guard let uid = targetUserId else { return [] }
-    return appDataStore.data.communityPosts.filter { $0.userId == uid }
+    return appDataStore.filteredCommunityPosts.filter { $0.userId == uid }
   }
 
   /// 标签预设颜色（与发现页 CommunityPostCard 一致）
   private let tagColors: [Color] = [
-    Color(red: 0.2, green: 0.75, blue: 0.4),
+    Color(hex: "#CBED40"),
     Color(red: 0.95, green: 0.85, blue: 0.4),
     Color(red: 0.4, green: 0.6, blue: 0.95),
   ]
@@ -60,7 +60,16 @@ struct ProfileView: View {
         VStack(spacing: 0) {
           headerView
           postSectionHeader
-          postListView
+          if posts.isEmpty {
+            VStack {
+              Spacer()
+              EmptyZhanweiView()
+              Spacer()
+            }
+            .frame(width: .infinity, height: 300)
+          } else {
+            postListView
+          }
         }
       }
       .ignoresSafeArea(edges: .top)
@@ -71,9 +80,9 @@ struct ProfileView: View {
           presentationMode.wrappedValue.dismiss()
         }) {
           Image(systemName: "chevron.left")
-            .font(.system(size: 20))
+            .font(.system(size: 18))
             .foregroundColor(.black)
-            .padding(14)
+            .frame(width: 44, height: 44)
             .background(Circle().fill(Color.white))
         }
 
@@ -84,14 +93,13 @@ struct ProfileView: View {
             path.append(.settings)
           }) {
             Image(systemName: "gearshape")
-              .font(.system(size: 20, weight: .bold))
+              .font(.system(size: 18))
               .foregroundColor(.black)
-              .padding(12)
+              .frame(width: 44, height: 44)
               .background(Circle().fill(Color.white))
           }
         } else {
           Button(action: {
-            // More action
             showReportBlockSheet = true
           }) {
             Image(systemName: "ellipsis")
@@ -115,9 +123,9 @@ struct ProfileView: View {
           onBlock: {
             if let uid = targetUserId {
               appDataStore.blockUser(uid: uid)
+              path.removeAll()
             }
             showReportBlockSheet = false
-            presentationMode.wrappedValue.dismiss()
           }
         )
       }
@@ -160,11 +168,7 @@ struct ProfileView: View {
               .stroke(Color.white.opacity(0.5), lineWidth: 2)
               .frame(width: 94, height: 94)
 
-            Image(user?.avatarSymbol ?? "mely_defava")
-              .resizable()
-              .scaledToFill()
-              .frame(width: 80, height: 80)
-              .clipShape(Circle())
+            UserAvatarView(avatarSymbol: user?.avatarSymbol ?? "mely_defava", size: 80)
               .overlay(Circle().stroke(Color.white, lineWidth: 2))
           }
 
@@ -175,7 +179,12 @@ struct ProfileView: View {
               .foregroundColor(.white)
 
             if !isCurrentUser {
-              Button(action: {}) {
+              Button {
+                guard let otherId = targetUserId,
+                  let convId = appDataStore.getOrCreateConversation(with: otherId)
+                else { return }
+                path.append(.chatDetail(conversationId: convId))
+              } label: {
                 Image(systemName: "envelope.fill")
                   .foregroundColor(.black)
                   .padding(.horizontal, 12)
@@ -194,26 +203,60 @@ struct ProfileView: View {
         // Stats
         HStack(spacing: 0) {
           HStack(spacing: 20) {
-            VStack(spacing: 4) {
-              Text("99.9 M")
-                .font(.custom("Hanchansans-Medium", size: 18))
-                .foregroundColor(.white)
-              Text("Followers")
-                .font(.custom("Hanchansans-Medium", size: 14))
-                .foregroundColor(.white.opacity(0.7))
-            }
+            if isCurrentUser {
+              Button {
+                path.append(.userList(.followers))
+              } label: {
+                VStack(spacing: 4) {
+                  Text("\(user?.followIds.count ?? 0)")
+                    .font(.custom("Hanchansans-Medium", size: 18))
+                    .foregroundColor(.white)
+                  Text("Followers")
+                    .font(.custom("Hanchansans-Medium", size: 14))
+                    .foregroundColor(.white.opacity(0.7))
+                }
+              }
+              .buttonStyle(.plain)
 
-            Rectangle()
-              .fill(Color.white.opacity(0.7))
-              .frame(width: 2, height: 26)
+              Rectangle()
+                .fill(Color.white.opacity(0.7))
+                .frame(width: 2, height: 26)
 
-            VStack(spacing: 4) {
-              Text("99.9 M")
-                .font(.custom("Hanchansans-Medium", size: 18))
-                .foregroundColor(.white)
-              Text("Following")
-                .font(.custom("Hanchansans-Medium", size: 14))
-                .foregroundColor(.white.opacity(0.7))
+              Button {
+                path.append(.userList(.following))
+              } label: {
+                VStack(spacing: 4) {
+                  Text("\(user?.followingIds.count ?? 0)")
+                    .font(.custom("Hanchansans-Medium", size: 18))
+                    .foregroundColor(.white)
+                  Text("Following")
+                    .font(.custom("Hanchansans-Medium", size: 14))
+                    .foregroundColor(.white.opacity(0.7))
+                }
+              }
+              .buttonStyle(.plain)
+            } else {
+              VStack(spacing: 4) {
+                Text("\(user?.followIds.count ?? 0)")
+                  .font(.custom("Hanchansans-Medium", size: 18))
+                  .foregroundColor(.white)
+                Text("Followers")
+                  .font(.custom("Hanchansans-Medium", size: 14))
+                  .foregroundColor(.white.opacity(0.7))
+              }
+
+              Rectangle()
+                .fill(Color.white.opacity(0.7))
+                .frame(width: 2, height: 26)
+
+              VStack(spacing: 4) {
+                Text("\(user?.followingIds.count ?? 0)")
+                  .font(.custom("Hanchansans-Medium", size: 18))
+                  .foregroundColor(.white)
+                Text("Following")
+                  .font(.custom("Hanchansans-Medium", size: 14))
+                  .foregroundColor(.white.opacity(0.7))
+              }
             }
           }
 
@@ -237,8 +280,16 @@ struct ProfileView: View {
               .cornerRadius(20)
             }
           } else {
-            Button(action: {}) {
-              Text("Following")
+            let isFollowingTarget = (targetUserId.map { appDataStore.isFollowing($0) } ?? false)
+            Button(action: {
+              guard let uid = targetUserId else { return }
+              if isFollowingTarget {
+                appDataStore.unfollowUser(uid: uid)
+              } else {
+                appDataStore.followUser(uid: uid)
+              }
+            }) {
+              Text(isFollowingTarget ? "Following" : "Follow")
                 .font(.custom("Hanchansans-Medium", size: 17))
                 .foregroundColor(.black)
                 .padding(.horizontal, 18)
@@ -256,7 +307,6 @@ struct ProfileView: View {
   }
 
   // MARK: - Post Section Header
-
   private var postSectionHeader: some View {
     HStack {
       Text("Post")

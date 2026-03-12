@@ -39,7 +39,7 @@ struct CommunityView: View {
             dismiss()
           } label: {
             Image(systemName: "chevron.left")
-              .font(.body.weight(.semibold))
+              .font(.system(size: 18))
               .foregroundColor(.black)
               .frame(width: 44, height: 44)
               .background(Circle().fill(Color.white))
@@ -61,25 +61,34 @@ struct CommunityView: View {
         }
         .padding(.horizontal, 20)
 
-        ScrollView(.vertical, showsIndicators: false) {
-          LazyVStack(spacing: 20) {
-            ForEach(appDataStore.data.communityPosts) { post in
-              CommunityPostCard(
-                path: $path,
-                post: post,
-                user: appDataStore.data.users.first(where: { $0.id == post.userId }),
-                tagColors: tagColors,
-                onCardTap: { path.append(.communityPostDetail(postId: post.id)) },
-                onMoreTap: {
-                  reportBlockTargetUserId = post.userId
-                  showReportBlockSheet = true
-                }
-              )
-            }
+        if appDataStore.filteredCommunityPosts.isEmpty {
+          VStack {
+            Spacer()
+            EmptyZhanweiView()
+            Spacer()
           }
-          .padding(.horizontal, 16)
-          .padding(.top, 12)
-          .padding(.bottom, 32)
+          .frame(width: .infinity, height: .infinity)
+        } else {
+          ScrollView(.vertical, showsIndicators: false) {
+            LazyVStack(spacing: 20) {
+              ForEach(appDataStore.filteredCommunityPosts) { post in
+                CommunityPostCard(
+                  path: $path,
+                  post: post,
+                  user: appDataStore.data.users.first(where: { $0.id == post.userId }),
+                  tagColors: tagColors,
+                  onCardTap: { path.append(.communityPostDetail(postId: post.id)) },
+                  onMoreTap: {
+                    reportBlockTargetUserId = post.userId
+                    showReportBlockSheet = true
+                  }
+                )
+              }
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 12)
+            .padding(.bottom, 32)
+          }
         }
       }
 
@@ -95,6 +104,7 @@ struct CommunityView: View {
           onBlock: {
             if let uid = reportBlockTargetUserId {
               appDataStore.blockUser(uid: uid)
+              path.removeAll()
             }
             reportBlockTargetUserId = nil
             showReportBlockSheet = false
@@ -121,6 +131,7 @@ struct CommunityView: View {
 // MARK: - 单条社区帖子卡片（可复用）
 
 struct CommunityPostCard: View {
+  @EnvironmentObject private var appDataStore: AppDataStore
   @Binding var path: [MainRoute]
   let post: CommunityPostModel
   let user: UserModel?
@@ -140,10 +151,7 @@ struct CommunityPostCard: View {
                 // 跳转到用户个人中心页
                 path.append(.userProfile(userId: user.id))
               } label: {
-                Image(user.avatarSymbol)
-                  .resizable()
-                  .scaledToFill()
-                  .frame(width: 40, height: 40)
+                UserAvatarView(avatarSymbol: user.avatarSymbol, size: 40)
                   .clipShape(Circle())
               }
               .buttonStyle(.plain)
@@ -152,7 +160,7 @@ struct CommunityPostCard: View {
           .frame(width: 40, height: 40)
 
         VStack(alignment: .leading, spacing: 2) {
-          Text(user?.name ?? "用户")
+          Text(user?.name ?? "User")
             .font(.subheadline.weight(.medium))
             .foregroundColor(.white)
           Text(post.dateString)
@@ -162,15 +170,18 @@ struct CommunityPostCard: View {
 
         Spacer()
 
-        Button {
-          onMoreTap?()
-        } label: {
-          Image(systemName: "ellipsis")
-            .font(.body.weight(.medium))
-            .foregroundColor(.white)
-            .frame(width: 30, height: 30)
+        if user?.id != appDataStore.currentUser?.id {
+          Button {
+            onMoreTap?()
+          } label: {
+            Image(systemName: "ellipsis")
+              .font(.body.weight(.medium))
+              .foregroundColor(.white)
+              .frame(width: 30, height: 30)
+              .background(.black.opacity(0.01))
+          }
+          .buttonStyle(.plain)
         }
-        .buttonStyle(.plain)
       }
       .padding(.horizontal, 12)
       .padding(.top, 12)
@@ -219,31 +230,42 @@ struct CommunityPostCard: View {
               // 评论
             } label: {
               HStack(spacing: 4) {
-                Image(systemName: "bubble.right")
-                  .font(.subheadline)
+                Image("j3MSKYctddao_lunp")
+                  .resizable()
+                  .frame(width: 20, height: 20)
                 if post.commentCount > 0 {
                   Text("\(post.commentCount)")
-                    .font(.caption)
+                    .font(.custom("Hanchansans-Medium", size: 13))
                 }
               }
               .foregroundColor(.primary)
             }
+
             Button {
-              // 点赞
+              if appDataStore.isLiked(post.id) {
+                appDataStore.unlikeContent(post.id)
+              } else {
+                appDataStore.likeContent(post.id)
+              }
             } label: {
               HStack(spacing: 4) {
-                Image(systemName: "hand.thumbsup")
-                  .font(.subheadline)
-                if post.likeCount > 0 {
-                  Text("\(post.likeCount)")
-                    .font(.caption)
-                }
+                Image(
+                  appDataStore.isLiked(post.id) ? "n0d7NjDl3Zun_zanfen" : "n0d7NjDl3Zun_zanhei"
+                )
+                .resizable()
+                .frame(width: 20, height: 20)
+                // if post.likeCount > 0 {
+                //   Text("\(post.likeCount)")
+                //     .font(.caption)
+                // }
               }
-              .foregroundColor(.primary)
+              .foregroundColor(
+                appDataStore.isLiked(post.id) ? Color(red: 1, green: 0.4, blue: 0.55) : .primary)
             }
+            .buttonStyle(.plain)
           }
           .padding(.horizontal, 14)
-          .padding(.vertical, 8)
+          .padding(.vertical, 7)
           .background(
             RoundedRectangle(cornerRadius: 20)
               .fill(Color.white)
