@@ -28,11 +28,7 @@ struct CommunityView: View {
   ]
 
   var body: some View {
-    ZStack {
-      Image("zhuyaoyebg")
-        .resizable()
-        .ignoresSafeArea()
-
+    MelyYemianScaffold {
       VStack {
         HStack {
           Button {
@@ -91,7 +87,6 @@ struct CommunityView: View {
           }
         }
       }
-
     }
     .overlay {
       if showReportBlockSheet {

@@ -26,11 +26,7 @@ struct CreateChallengeView: View {
   private let ruleLimit: Int = 50
 
   var body: some View {
-    ZStack {
-      Image("zhuyaoyebg")
-        .resizable()
-        .ignoresSafeArea()
-
+    MelyYemianScaffold {
       VStack(spacing: 0) {
         topBar
 

@@ -2,7 +2,7 @@
 //  ChatDetailView.swift
 //  Mely
 //
-//  Created by AI on 2026/3/6.
+//  Created by yangyang on 2026/3/6.
 //
 
 import AVFoundation
@@ -34,12 +34,8 @@ struct ChatDetailView: View {
   @State private var showReportSheet: Bool = false
 
   var body: some View {
-    GeometryReader { geo in
-      ZStack {
-        Image("zhuyaoyebg")
-          .resizable()
-          .ignoresSafeArea()
-
+    MelyYemianScaffold {
+      GeometryReader { geo in
         VStack(spacing: 0) {
           MelyTopBarView(
             title: conversationTitle,

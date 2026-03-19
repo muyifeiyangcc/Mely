@@ -17,11 +17,7 @@ struct MessageView: View {
   #endif
 
   var body: some View {
-    ZStack {
-      Image("zhuyaoyebg")
-        .resizable()
-        .ignoresSafeArea()
-
+    MelyYemianScaffold {
       VStack(spacing: 12) {
         HStack {
           Button {

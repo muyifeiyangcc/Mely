@@ -29,11 +29,14 @@ struct AIGuideView: View {
   )
 
   var body: some View {
-    ZStack(alignment: .top) {
-      Image("nmhenaqqihcs")
-        .resizable()
-        .ignoresSafeArea()
-
+    MelyYemianScaffold(
+      alignment: .top,
+      background: {
+        Image("nmhenaqqihcs")
+          .resizable()
+          .ignoresSafeArea()
+      }
+    ) {
       VStack(spacing: 0) {
         // 标题 Fitness Dance / Q&A AI + 声波
         titleSection

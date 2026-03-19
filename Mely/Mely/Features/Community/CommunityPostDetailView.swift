@@ -44,11 +44,14 @@ struct CommunityPostDetailView: View {
   }
 
   var body: some View {
-    ZStack(alignment: .bottom) {
-      Image("kgubofsruboqbg")
-        .resizable()
-        .ignoresSafeArea()
-
+    MelyYemianScaffold(
+      alignment: .bottom,
+      background: {
+        Image("kgubofsruboqbg")
+          .resizable()
+          .ignoresSafeArea()
+      }
+    ) {
       VStack(spacing: 0) {
         if let post {
           ScrollView(.vertical, showsIndicators: false) {

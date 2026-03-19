@@ -4,33 +4,26 @@ struct UserModel: Identifiable, Codable, Equatable {
   let id: String
   var name: String
   var avatarSymbol: String
-  /// 账号登录时使用的邮箱（快速登录用户为 nil）
   var email: String? = nil
-  /// 账号密码登录使用的本地密码（示例项目中明文存储，真实项目请使用安全存储）
   var password: String? = nil
-  /// 是否为快速登录创建的用户
   var isQuickUser: Bool = false
-  /// 钻石数量
   var diamonds: Int = 0
-  /// 拉黑用户 id 列表
   var blockUids: [String] = []
-  /// 粉丝 id 列表（关注我的用户）
   var followIds: [String] = []
-  /// 关注列表（我关注的用户 id）
   var followingIds: [String] = []
-  /// 点赞过的帖子/视频 id 列表
   var likeIds: [String] = []
-  /// 已解锁的视频 id 列表（付费解锁后记录）
   var unlockedVideoIds: [String] = []
 
   enum CodingKeys: String, CodingKey {
-    case id, name, avatarSymbol, email, password, isQuickUser, diamonds, blockUids, followIds, followingIds, likeIds, unlockedVideoIds
+    case id, name, avatarSymbol, email, password, isQuickUser, diamonds, blockUids, followIds,
+      followingIds, likeIds, unlockedVideoIds
   }
 
   init(
     id: String, name: String, avatarSymbol: String,
     email: String? = nil, password: String? = nil, isQuickUser: Bool = false, diamonds: Int = 0,
-    blockUids: [String] = [], followIds: [String] = [], followingIds: [String] = [], likeIds: [String] = [],
+    blockUids: [String] = [], followIds: [String] = [], followingIds: [String] = [],
+    likeIds: [String] = [],
     unlockedVideoIds: [String] = []
   ) {
     self.id = id
@@ -84,10 +77,12 @@ struct ConversationModel: Identifiable, Codable, Equatable {
   let id: String
   let participantUserIds: [String]
   var lastMessageId: String?
-  /// 各参与者的未读消息数（userId -> 未读数）
   var unreadCountByUserId: [String: Int]
 
-  init(id: String, participantUserIds: [String], lastMessageId: String? = nil, unreadCountByUserId: [String: Int] = [:]) {
+  init(
+    id: String, participantUserIds: [String], lastMessageId: String? = nil,
+    unreadCountByUserId: [String: Int] = [:]
+  ) {
     self.id = id
     self.participantUserIds = participantUserIds
     self.lastMessageId = lastMessageId
@@ -99,7 +94,8 @@ struct ConversationModel: Identifiable, Codable, Equatable {
     id = try c.decode(String.self, forKey: .id)
     participantUserIds = try c.decode([String].self, forKey: .participantUserIds)
     lastMessageId = try c.decodeIfPresent(String.self, forKey: .lastMessageId)
-    unreadCountByUserId = try c.decodeIfPresent([String: Int].self, forKey: .unreadCountByUserId) ?? [:]
+    unreadCountByUserId =
+      try c.decodeIfPresent([String: Int].self, forKey: .unreadCountByUserId) ?? [:]
   }
 
   func encode(to encoder: Encoder) throws {
@@ -126,15 +122,10 @@ struct MessageModel: Identifiable, Codable, Equatable {
   let id: String
   let conversationId: String
   let userId: String
-  /// 文本内容或资源标识（如 emoji 图片名）；图片消息时可为空
   let text: String
-  /// 消息类型：普通文本、emoji、语音、图片
   let type: MessageType
-  /// 图片消息的本地文件路径。发送图片时写入此路径，随 AppData 持久化；再次进入聊天时据此路径加载并显示图片。
   var imagePath: String?
-  /// 语音消息的本地文件路径。录制完成后写入此路径，随 AppData 持久化；再次进入聊天时据此路径播放。
   var audioPath: String?
-  /// 语音消息的时长（秒），用于展示
   var audioDurationSeconds: Int?
   let createdAt: Date
 
@@ -166,10 +157,8 @@ struct MessageModel: Identifiable, Codable, Equatable {
   var isImage: Bool { type == .image }
 }
 
-// MARK: - 舞蹈挑战模型
 struct DanceChallenge: Identifiable, Codable, Equatable {
   let id: String
-  /// 挑战创建者用户 id
   let userId: String
   let title: String
   let imageName: String?
@@ -227,22 +216,14 @@ struct DanceChallenge: Identifiable, Codable, Equatable {
   }
 }
 
-// MARK: - 挑战参与视频模型（详情页视频列表）
-
 struct ChallengeVideo: Identifiable, Codable, Equatable {
   let id: String
   let challengeId: String
-  /// 视频作者用户 id（兼容旧数据缺省为 u6）
   let userId: String
-  /// 缩略图资源名或占位
   let thumbnailName: String?
-  /// 视频资源名（Bundle 资源，如 "testVideo" 或 "Videos/testVideo"）
   let videoName: String?
-  /// 点赞数（如 140000 显示为 14.0W）
   var likeCount: Int
-  /// 是否锁定（需付费解锁）
   let isLocked: Bool
-  /// 解锁所需钻石数，锁定时有值
   let unlockCostDiamonds: Int?
 
   enum CodingKeys: String, CodingKey {
@@ -293,7 +274,6 @@ struct ChallengeVideo: Identifiable, Codable, Equatable {
     try c.encodeIfPresent(unlockCostDiamonds, forKey: .unlockCostDiamonds)
   }
 
-  /// 格式化为 14.0W 形式
   var likeCountFormatted: String {
     if likeCount >= 10_000 {
       let w = Double(likeCount) / 10_000
@@ -304,19 +284,16 @@ struct ChallengeVideo: Identifiable, Codable, Equatable {
 
 }
 
-// MARK: - 社区图片帖子模型（社区广场列表）
 struct CommunityPostModel: Identifiable, Codable, Equatable {
   let id: String
   let userId: String
   let imageName: String
-  /// 帖子描述/正文
   var description: String
   var tags: [String]
   var likeCount: Int
   var commentCount: Int
   let createdAt: Date
 
-  /// 日期短格式 "MM-dd"
   var dateString: String {
     let f = DateFormatter()
     f.dateFormat = "MM-dd"
@@ -324,12 +301,10 @@ struct CommunityPostModel: Identifiable, Codable, Equatable {
   }
 }
 
-// MARK: - 社区帖子评论模型
 struct CommunityCommentModel: Identifiable, Codable, Equatable {
   let id: String
   let postId: String
   let userId: String
-  /// 评论内容，支持 emoji
   let text: String
   let createdAt: Date
 
@@ -342,21 +317,14 @@ struct CommunityCommentModel: Identifiable, Codable, Equatable {
 
 struct AppData: Codable, Equatable {
   var users: [UserModel]
-  /// 首页舞蹈挑战列表
   var challenges: [DanceChallenge]
-  /// 挑战参与视频列表（详情页视频网格）
   var challengeVideos: [ChallengeVideo]
-  /// 社区广场图片帖子列表
   var communityPosts: [CommunityPostModel]
-  /// 社区帖子评论列表
   var communityComments: [CommunityCommentModel]
   var conversations: [ConversationModel]
   var messages: [MessageModel]
-  /// 当前登录用户 id，nil 表示未登录
   var currentUserId: String?
-  /// 最近一次快速登录用户 id，用于“我是新用户”再次登录同一账号
   var quickLoginUserId: String? = nil
-  /// 是否已同意 EULA
   var hasAcceptedEULA: Bool = false
 
   enum CodingKeys: String, CodingKey {

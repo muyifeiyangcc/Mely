@@ -19,12 +19,7 @@ struct SettingsView: View {
   #endif
 
   var body: some View {
-    ZStack {
-      // 背景
-      Image("zhuyaoyebg")
-        .resizable()
-        .ignoresSafeArea()
-
+    MelyYemianScaffold {
       VStack(spacing: 0) {
         // 导航栏
         navigationBar

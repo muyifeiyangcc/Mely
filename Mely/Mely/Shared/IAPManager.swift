@@ -1,6 +1,6 @@
 //
 //  IAPManager.swift
-//  Nosty
+//  Mely
 //
 //  Created by yangyang on 2026/3/3.
 //

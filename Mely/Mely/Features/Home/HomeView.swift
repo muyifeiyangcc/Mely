@@ -34,12 +34,7 @@ struct HomeView: View {
   )
 
   var body: some View {
-    ZStack {
-      // 深色背景
-      Image("zhuyaoyebg")
-        .resizable()
-        .ignoresSafeArea()
-
+    MelyYemianScaffold {
       ScrollView(.vertical, showsIndicators: false) {
         VStack(alignment: .leading, spacing: 0) {
           // 顶部信息栏 + 搜索

@@ -20,11 +20,7 @@ struct WebProtocolView: View {
   #endif
 
   var body: some View {
-    ZStack {
-      Image("zhuyaoyebg")
-        .resizable()
-        .ignoresSafeArea()
-
+    MelyYemianScaffold {
       VStack(spacing: 0) {
         MelyTopBarView(title: title, onBack: { dismiss() })
           .padding(.top, 50)

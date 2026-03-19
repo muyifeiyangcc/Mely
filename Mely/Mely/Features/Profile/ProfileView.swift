@@ -51,11 +51,7 @@ struct ProfileView: View {
   #endif
 
   var body: some View {
-    ZStack(alignment: .top) {
-      Image("zhuyaoyebg")
-        .resizable()
-        .ignoresSafeArea()
-
+    MelyYemianScaffold(alignment: .top) {
       ScrollView {
         VStack(spacing: 0) {
           headerView

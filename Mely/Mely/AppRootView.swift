@@ -11,35 +11,20 @@ enum MainRoute: Hashable {
   case community
   case chat
   case profile
-  /// 查看指定用户的个人中心
   case userProfile(userId: String)
-  /// 设置页（独立页面）
   case settings
-  /// 编辑用户信息（头像、昵称）
   case editProfile
-  /// 社区发布帖子
   case communityPostCreate
-  /// 社区帖子详情
   case communityPostDetail(postId: String)
-  /// 创建舞蹈挑战
   case challengeCreate
-  /// 挑战详情页
   case challengeDetail(challengeId: String)
-  /// 上传视频页（参与挑战）
   case uploadVideo(challengeId: String)
-  /// 视频详情页（Post）
   case videoDetail(videoId: String)
-  /// 钱包页（钻石余额与购买）
   case wallet
-  /// 健身舞蹈 AI 引导页（消耗钻石进入聊天）
   case aiGuide
-  /// 健身舞蹈 AI 提问/聊天页
   case aiChat
-  /// 用户列表（拉黑/关注/粉丝）
   case userList(UserListType)
-  /// 聊天详情（当前用户与某用户的对话）
   case chatDetail(conversationId: String)
-  /// 协议/H5 页面（用户协议、隐私政策等）
   case webProtocol(urlString: String, title: String)
 }
 

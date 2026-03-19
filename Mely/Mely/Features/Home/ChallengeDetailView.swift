@@ -48,11 +48,13 @@ struct ChallengeDetailView: View {
   )
 
   var body: some View {
-    ZStack {
-      Image("kgubofsruboqbg")
-        .resizable()
-        .ignoresSafeArea()
-
+    MelyYemianScaffold(
+      background: {
+        Image("kgubofsruboqbg")
+          .resizable()
+          .ignoresSafeArea()
+      }
+    ) {
       VStack(spacing: 0) {
         MelyTopBarView(
           title: "",

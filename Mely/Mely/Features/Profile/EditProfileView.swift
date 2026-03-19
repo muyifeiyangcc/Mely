@@ -32,11 +32,7 @@ struct EditProfileView: View {
   }
 
   var body: some View {
-    ZStack {
-      Image("zhuyaoyebg")
-        .resizable()
-        .ignoresSafeArea()
-
+    MelyYemianScaffold {
       VStack(spacing: 0) {
         navigationBar
 
