@@ -88,34 +88,20 @@ struct CommunityView: View {
         }
       }
     }
-    .overlay {
-      if showReportBlockSheet {
-        MelyReportBlockSheet(
-          isPresented: $showReportBlockSheet,
-          onReport: {
-            showReportBlockSheet = false
-            showReportSheet = true
-          },
-          onBlock: {
-            if let uid = reportBlockTargetUserId {
-              appDataStore.blockUser(uid: uid)
-              path.removeAll()
-            }
-            reportBlockTargetUserId = nil
-            showReportBlockSheet = false
-          }
-        )
-      }
-    }
-    .overlay {
-      if showReportSheet {
-        MelyReportSheet(
-          isPresented: $showReportSheet,
-          onSubmit: { _, _ in reportBlockTargetUserId = nil },
-          onCancel: { reportBlockTargetUserId = nil }
-        )
-      }
-    }
+    .blorepEJWPcVqZsNi6EP(
+      isbloCY4jaarVfF0wpY: $showReportBlockSheet,
+      isrepppE4EmwOSEs9Cl: $showReportSheet,
+      onOXhiQzKCNvCvG4Block: {
+        if let uid = reportBlockTargetUserId {
+          appDataStore.blockUser(uid: uid)
+          path.removeAll()
+        }
+        reportBlockTargetUserId = nil
+        showReportBlockSheet = false
+      },
+      onReportSubmit: { _, _ in reportBlockTargetUserId = nil },
+      onCancel: { reportBlockTargetUserId = nil }
+    )
     .navigationBarBackButtonHidden(true)
     #if DEBUG
       .enableInjection()

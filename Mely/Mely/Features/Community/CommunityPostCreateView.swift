@@ -28,26 +28,21 @@ struct CommunityPostCreateView: View {
   @State private var showImageSourcePicker: Bool = false
 
   var body: some View {
-    MelyYemianScaffold {
-      VStack(spacing: 0) {
-        topBar
+    CreatejLlpeiC5nAUAvPScaffold(
+      title: "Post",
+      primaryButtonTitle: "Post",
+      onBack: { dismiss.callAsFunction() },
+      onPrimaryTap: performPost
+    ) {
+      VStack(alignment: .leading, spacing: 24) {
+        imageArea
 
-        ScrollView(.vertical, showsIndicators: false) {
-          VStack(alignment: .leading, spacing: 24) {
-            imageArea
+        descriptionInput
 
-            descriptionInput
-
-            classificationSection
-          }
-          .padding(.horizontal, 20)
-          .padding(.top, 24)
-        }
-
-        Spacer(minLength: 0)
-
-        postButton
+        classificationSection
       }
+      .padding(.horizontal, 20)
+      .padding(.top, 24)
     }
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
@@ -68,34 +63,6 @@ struct CommunityPostCreateView: View {
     #if DEBUG
       .enableInjection()
     #endif
-  }
-
-  private var topBar: some View {
-    ZStack(alignment: .leading) {
-      HStack {
-        Button {
-          dismiss.callAsFunction()
-        } label: {
-          Image(systemName: "chevron.left")
-            .font(.system(size: 18))
-            .foregroundColor(.black)
-            .frame(width: 44, height: 44)
-            .background(Circle().fill(Color.white))
-        }
-        .padding(.leading, 20)
-
-        Spacer()
-
-        Text("Post")
-          .font(.title2.bold())
-          .foregroundColor(.white)
-
-        Spacer()
-
-        Color.clear
-          .frame(width: 44, height: 44)
-      }
-    }
   }
 
   private var imageArea: some View {
@@ -208,27 +175,6 @@ struct CommunityPostCreateView: View {
   private var canPost: Bool {
     selectedPostImage != nil
       && !descriptionText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-  }
-
-  private var postButton: some View {
-    Button {
-      performPost()
-    } label: {
-      Text("Post")
-        .font(.custom("Hanchansans-Medium", size: 20))
-        .foregroundColor(.black)
-        .frame(width: 200)
-        .padding(.vertical, 14)
-        .background(
-          Capsule()
-            .fill(Color(red: 203 / 255, green: 237 / 255, blue: 64 / 255))
-        )
-        // .opacity(canPost ? 1 : 0.6)
-    }
-    .buttonStyle(.plain)
-    // .disabled(!canPost)
-    .padding(.horizontal, 20)
-    .padding(.bottom, 14)
   }
 
   private func performPost() {

@@ -12,12 +12,12 @@ import SwiftUI
 /// - Parameters:
 ///   - isPresented: 控制弹窗显示/隐藏
 ///   - onReport: 点击举报回调
-///   - onBlock: 点击拉黑账户回调
+///   - onOXhiQzKCNvCvG4Block: 点击拉黑账户回调
 ///   - onCancel: 点击取消回调（可选）
 struct MelyReportBlockSheet: View {
   @Binding var isPresented: Bool
   let onReport: () -> Void
-  let onBlock: () -> Void
+  let onOXhiQzKCNvCvG4Block: () -> Void
   var onCancel: (() -> Void)?
 
   #if DEBUG
@@ -57,7 +57,7 @@ struct MelyReportBlockSheet: View {
 
           Button {
             isPresented = false
-            onBlock()
+            onOXhiQzKCNvCvG4Block()
           } label: {
             Text("Block account")
               .font(.custom("Hanchansans-Medium", size: 18))
@@ -119,7 +119,7 @@ struct MelyReportBlockSheet: View {
           MelyReportBlockSheet(
             isPresented: $show,
             onReport: { print("Report") },
-            onBlock: { print("Block") },
+            onOXhiQzKCNvCvG4Block: { print("Block") },
             onCancel: { print("Cancel") }
           )
         }

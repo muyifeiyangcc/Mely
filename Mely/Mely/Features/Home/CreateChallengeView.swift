@@ -26,24 +26,20 @@ struct CreateChallengeView: View {
   private let ruleLimit: Int = 50
 
   var body: some View {
-    MelyYemianScaffold {
-      VStack(spacing: 0) {
-        topBar
-
-        ScrollView(.vertical, showsIndicators: false) {
-          VStack(spacing: 30) {
-            coverSection
-            themeSection
-            ruleSection
-          }
-          .padding(.horizontal, 20)
-          .padding(.top, 24)
-        }
-
-        Spacer(minLength: 0)
-
-        createButton
+    CreatejLlpeiC5nAUAvPScaffold(
+      title: "Post",
+      primaryButtonTitle: "Create",
+      onBack: { dismiss.callAsFunction() },
+      onPrimaryTap: performCreate,
+      buttonBottomPadding: 20
+    ) {
+      VStack(spacing: 30) {
+        coverSection
+        themeSection
+        ruleSection
       }
+      .padding(.horizontal, 20)
+      .padding(.top, 24)
     }
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
@@ -65,35 +61,6 @@ struct CreateChallengeView: View {
     #if DEBUG
       .enableInjection()
     #endif
-  }
-
-  // MARK: - 顶部导航栏
-  private var topBar: some View {
-    ZStack(alignment: .leading) {
-      HStack {
-        Button {
-          dismiss.callAsFunction()
-        } label: {
-          Image(systemName: "chevron.left")
-            .font(.system(size: 18))
-            .foregroundColor(.black)
-            .frame(width: 44, height: 44)
-            .background(Circle().fill(Color.white))
-        }
-        .padding(.leading, 20)
-
-        Spacer()
-
-        Text("Post")
-          .font(.title2.bold())
-          .foregroundColor(.white)
-
-        Spacer()
-
-        Color.clear
-          .frame(width: 44, height: 44)
-      }
-    }
   }
 
   // MARK: - 封面上传
@@ -208,26 +175,6 @@ struct CreateChallengeView: View {
       .frame(height: 140)
 
     }
-  }
-
-  // MARK: - 创建按钮
-  private var createButton: some View {
-    Button {
-      performCreate()
-    } label: {
-      Text("Create")
-        .font(.custom("Hanchansans-Medium", size: 20))
-        .foregroundColor(.black)
-        .frame(width: 200)
-        .padding(.vertical, 14)
-        .background(
-          Capsule()
-            .fill(Color(red: 203 / 255, green: 237 / 255, blue: 64 / 255))
-        )
-    }
-    .buttonStyle(.plain)
-    .padding(.horizontal, 20)
-    .padding(.bottom, 20)
   }
 
   /// 图片和输入内容都填写完成后才能创建

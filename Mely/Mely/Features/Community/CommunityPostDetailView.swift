@@ -106,35 +106,21 @@ struct CommunityPostDetailView: View {
       // .offset(y: isEmojiPanelPresented ? -80 : 0)
 
     }
-    .overlay {
-      if showReportBlockSheet {
-        MelyReportBlockSheet(
-          isPresented: $showReportBlockSheet,
-          onReport: {
-            showReportBlockSheet = false
-            showReportSheet = true
-          },
-          onBlock: {
-            let target = reportBlockTargetUserId
-            if let uid = target {
-              appDataStore.blockUser(uid: uid)
-              path.removeAll()
-            }
-            reportBlockTargetUserId = nil
-            showReportBlockSheet = false
-          }
-        )
-      }
-    }
-    .overlay {
-      if showReportSheet {
-        MelyReportSheet(
-          isPresented: $showReportSheet,
-          onSubmit: { _, _ in reportBlockTargetUserId = nil },
-          onCancel: { reportBlockTargetUserId = nil }
-        )
-      }
-    }
+    .blorepEJWPcVqZsNi6EP(
+      isbloCY4jaarVfF0wpY: $showReportBlockSheet,
+      isrepppE4EmwOSEs9Cl: $showReportSheet,
+      onOXhiQzKCNvCvG4Block: {
+        let target = reportBlockTargetUserId
+        if let uid = target {
+          appDataStore.blockUser(uid: uid)
+          path.removeAll()
+        }
+        reportBlockTargetUserId = nil
+        showReportBlockSheet = false
+      },
+      onReportSubmit: { _, _ in reportBlockTargetUserId = nil },
+      onCancel: { reportBlockTargetUserId = nil }
+    )
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
     #if DEBUG

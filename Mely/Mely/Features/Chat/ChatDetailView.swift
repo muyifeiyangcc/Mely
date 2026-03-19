@@ -113,32 +113,18 @@ struct ChatDetailView: View {
         keyboardHeight = 0
       }
     }
-    .overlay {
-      if showReportBlockSheet {
-        MelyReportBlockSheet(
-          isPresented: $showReportBlockSheet,
-          onReport: {
-            showReportBlockSheet = false
-            showReportSheet = true
-          },
-          onBlock: {
-            if let uid = otherUserId {
-              appDataStore.blockUser(uid: uid)
-              path.removeAll()
-            }
-            showReportBlockSheet = false
-          }
-        )
-      }
-    }
-    .overlay {
-      if showReportSheet {
-        MelyReportSheet(
-          isPresented: $showReportSheet,
-          onSubmit: { _, _ in /* 举报已提交 */ }
-        )
-      }
-    }
+    .blorepEJWPcVqZsNi6EP(
+      isbloCY4jaarVfF0wpY: $showReportBlockSheet,
+      isrepppE4EmwOSEs9Cl: $showReportSheet,
+      onOXhiQzKCNvCvG4Block: {
+        if let uid = otherUserId {
+          appDataStore.blockUser(uid: uid)
+          path.removeAll()
+        }
+        showReportBlockSheet = false
+      },
+      onReportSubmit: { _, _ in /* 举报已提交 */ }
+    )
     .toolbar(.hidden, for: .navigationBar)
     .imageSourcePicker(
       isPresented: $showImageSourcePicker, onImagePicked: { handlePickedImage($0) }

@@ -36,29 +36,26 @@ struct UploadVideoView: View {
   )
 
   var body: some View {
-    MelyYemianScaffold {
-      VStack(spacing: 0) {
-        topBar
-
-        ScrollView(.vertical, showsIndicators: false) {
-          VStack(spacing: 30) {
-            uploadArea
-              .padding(.horizontal, 20)
-
-            paymentSection
-          }
-          .padding(.horizontal, 20)
-          .padding(.top, 24)
-        }
-        .scrollDismissesKeyboard(.immediately)
-
-        Spacer(minLength: 0)
-
-        postButton
+    CreatejLlpeiC5nAUAvPScaffold(
+      title: "Post",
+      primaryButtonTitle: "Post",
+      onBack: { dismiss.callAsFunction() },
+      onPrimaryTap: performPost,
+      buttonVerticalPadding: 15,
+      onBackgroundTap: {
+        UIApplication.shared.sendAction(
+          #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
       }
-    }
-    .onTapGesture {
-      UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    ) {
+      VStack(spacing: 30) {
+        uploadArea
+          .padding(.horizontal, 20)
+
+        paymentSection
+      }
+      .padding(.horizontal, 20)
+      .padding(.top, 24)
+      .scrollDismissesKeyboard(.immediately)
     }
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
@@ -73,35 +70,6 @@ struct UploadVideoView: View {
   private func handleVideoPicked(_ url: URL) {
     selectedVideoURL = url
     thumbnailImage = ImageStorageHelper.generateThumbnail(from: url)
-  }
-
-  // MARK: - 顶部导航栏
-  private var topBar: some View {
-    ZStack(alignment: .leading) {
-      HStack {
-        Button {
-          dismiss.callAsFunction()
-        } label: {
-          Image(systemName: "chevron.left")
-            .font(.system(size: 18))
-            .foregroundColor(.black)
-            .frame(width: 44, height: 44)
-            .background(Circle().fill(Color.white))
-        }
-        .padding(.leading, 20)
-
-        Spacer()
-
-        Text("Post")
-          .font(.title2.bold())
-          .foregroundColor(.white)
-
-        Spacer()
-
-        Color.clear
-          .frame(width: 44, height: 44)
-      }
-    }
   }
 
   // MARK: - 内容上传区域
@@ -172,27 +140,6 @@ struct UploadVideoView: View {
       .keyboardType(.numberPad)
       .submitLabel(.done)
     }
-  }
-
-  // MARK: - 发布按钮
-
-  private var postButton: some View {
-    Button {
-      performPost()
-    } label: {
-      Text("Post")
-        .font(.custom("Hanchansans-Medium", size: 20))
-        .foregroundColor(.black)
-        .frame(width: 200)
-        .padding(.vertical, 15)
-        .background(
-          Capsule()
-            .fill(Color(red: 203 / 255, green: 237 / 255, blue: 64 / 255))
-        )
-    }
-    .buttonStyle(.plain)
-    .padding(.horizontal, 20)
-    .padding(.bottom, 14)
   }
 
   private func performPost() {

@@ -286,11 +286,7 @@ final class AppDataStore: ObservableObject {
 
     // 1. 更新点赞数：该用户点赞过的帖子/视频需减少 likeCount
     for contentId in currentUser.likeIds {
-      if let idx = data.communityPosts.firstIndex(where: { $0.id == contentId }) {
-        data.communityPosts[idx].likeCount = max(0, data.communityPosts[idx].likeCount - 1)
-      } else if let idx = data.challengeVideos.firstIndex(where: { $0.id == contentId }) {
-        data.challengeVideos[idx].likeCount = max(0, data.challengeVideos[idx].likeCount - 1)
-      }
+      decrementLikeCount(contentId: contentId)
     }
 
     // 2. 该用户的帖子 ID（用于删除其帖子下的评论、以及帖子图片）
@@ -504,12 +500,7 @@ final class AppDataStore: ObservableObject {
     guard !data.users[userIndex].likeIds.contains(contentId) else { return }
 
     data.users[userIndex].likeIds.append(contentId)
-
-    if let postIndex = data.communityPosts.firstIndex(where: { $0.id == contentId }) {
-      data.communityPosts[postIndex].likeCount += 1
-    } else if let videoIndex = data.challengeVideos.firstIndex(where: { $0.id == contentId }) {
-      data.challengeVideos[videoIndex].likeCount += 1
-    }
+    incrementLikeCount(contentId: contentId)
     save()
   }
 
@@ -521,15 +512,45 @@ final class AppDataStore: ObservableObject {
     guard data.users[userIndex].likeIds.contains(contentId) else { return }
 
     data.users[userIndex].likeIds.removeAll { $0 == contentId }
-
-    if let postIndex = data.communityPosts.firstIndex(where: { $0.id == contentId }) {
-      let newCount = max(0, data.communityPosts[postIndex].likeCount - 1)
-      data.communityPosts[postIndex].likeCount = newCount
-    } else if let videoIndex = data.challengeVideos.firstIndex(where: { $0.id == contentId }) {
-      let newCount = max(0, data.challengeVideos[videoIndex].likeCount - 1)
-      data.challengeVideos[videoIndex].likeCount = newCount
-    }
+    decrementLikeCount(contentId: contentId)
     save()
+  }
+
+  // MARK: - 可点赞内容统一解析（帖子/视频单一路径）
+
+  private enum LikableContent {
+    case post(index: Int)
+    case video(index: Int)
+  }
+
+  private func resolveLikableContent(_ contentId: String) -> LikableContent? {
+    if let idx = data.communityPosts.firstIndex(where: { $0.id == contentId }) {
+      return .post(index: idx)
+    }
+    if let idx = data.challengeVideos.firstIndex(where: { $0.id == contentId }) {
+      return .video(index: idx)
+    }
+    return nil
+  }
+
+  private func incrementLikeCount(contentId: String) {
+    guard let content = resolveLikableContent(contentId) else { return }
+    switch content {
+    case .post(let index):
+      data.communityPosts[index].likeCount += 1
+    case .video(let index):
+      data.challengeVideos[index].likeCount += 1
+    }
+  }
+
+  private func decrementLikeCount(contentId: String) {
+    guard let content = resolveLikableContent(contentId) else { return }
+    switch content {
+    case .post(let index):
+      data.communityPosts[index].likeCount = max(0, data.communityPosts[index].likeCount - 1)
+    case .video(let index):
+      data.challengeVideos[index].likeCount = max(0, data.challengeVideos[index].likeCount - 1)
+    }
   }
 
   /// 添加社区图片帖子

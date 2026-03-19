@@ -77,32 +77,18 @@ struct VideoDetailView: View {
           .padding(.bottom, 20)
       }
     }
-    .overlay {
-      if showReportBlockSheet {
-        MelyReportBlockSheet(
-          isPresented: $showReportBlockSheet,
-          onReport: {
-            showReportBlockSheet = false
-            showReportSheet = true
-          },
-          onBlock: {
-            if let uid = video?.userId {
-              appDataStore.blockUser(uid: uid)
-              path.removeAll()
-            }
-            showReportBlockSheet = false
-          }
-        )
-      }
-    }
-    .overlay {
-      if showReportSheet {
-        MelyReportSheet(
-          isPresented: $showReportSheet,
-          onSubmit: { _, _ in /* 举报视频 */ }
-        )
-      }
-    }
+    .blorepEJWPcVqZsNi6EP(
+      isbloCY4jaarVfF0wpY: $showReportBlockSheet,
+      isrepppE4EmwOSEs9Cl: $showReportSheet,
+      onOXhiQzKCNvCvG4Block: {
+        if let uid = video?.userId {
+          appDataStore.blockUser(uid: uid)
+          path.removeAll()
+        }
+        showReportBlockSheet = false
+      },
+      onReportSubmit: { _, _ in /* 举报视频 */ }
+    )
     .overlay {
       if showInsufficientBalanceDialog {
         MelyAlertDialog(
