@@ -1,5 +1,5 @@
 //
-//  ChallengeDetailView.swift
+//  ChalldetNy2W04sqZPngXv.swift
 //  Mely
 //
 //  Created by yangyang on 2026/3/6.
@@ -7,29 +7,29 @@
 
 import SwiftUI
 
-struct ChallengeDetailView: View {
+struct ChalldetNy2W04sqZPngXv: View {
   @Binding var path: [MainRoute]
-  let challengeId: String
+  let chaidPpqAXLyzYjD1D7: String
 
   #if DEBUG
     @ObserveInjection var redraw
   #endif
 
   @Environment(\.dismiss) private var dismiss
-  @EnvironmentObject private var appDataStore: AppDataStore
+  @EnvironmentObject private var IhREo9o7adNPCE: MelystoreWpvugHy89HDWLR
 
-  @State private var showReportBlockSheet: Bool = false
-  @State private var showReportSheet: Bool = false
+  @State private var XlGSuBRPSqVSKS: Bool = false
+  @State private var sPE9jOtbIwmwn9i: Bool = false
 
-  private var challenge: DanceChallenge? {
-    appDataStore.filteredChallenges.first { $0.id == challengeId }
+  private var chaVbvERU1wSjPLlM: DancozZ6LtwXHtlqPu? {
+    IhREo9o7adNPCE.filchasD9OgZwYuwgrF4I.first { $0.id == chaidPpqAXLyzYjD1D7 }
   }
 
-  private var videos: [ChallengeVideo] {
-    appDataStore.filteredChallengeVideos.filter { $0.vCh4Ne7Lp == challengeId }
+  private var vdsHD4xmRgUomBTHI: [Chalvdngt3SE6MdwaZYu] {
+    IhREo9o7adNPCE.filvdosMDzuiVrv1HceiS.filter { $0.vCh4Ne7Lp == chaidPpqAXLyzYjD1D7 }
   }
 
-  private let headerGradient = LinearGradient(
+  private let i0NhJjfcOvitfc = LinearGradient(
     colors: [
       Color(red: 0.35, green: 0.85, blue: 0.5),
       Color(red: 0.2, green: 0.35, blue: 0.6),
@@ -38,7 +38,7 @@ struct ChallengeDetailView: View {
     endPoint: .bottomTrailing
   )
 
-  private let cardGradient = LinearGradient(
+  private let w5VWWvySzdSNsj = LinearGradient(
     colors: [
       Color(red: 0.6, green: 0.35, blue: 0.75),
       Color(red: 0.85, green: 0.4, blue: 0.65),
@@ -60,16 +60,15 @@ struct ChallengeDetailView: View {
           title: "",
           onBack: { dismiss() },
           onMoreTap:
-            challenge?.dUr4Mp7Ks != appDataStore.currentUser?.id
+            chaVbvERU1wSjPLlM?.dUr4Mp7Ks != IhREo9o7adNPCE.curp11O3LYjA9ooct?.id
             ? {
-              showReportBlockSheet = true
+              XlGSuBRPSqVSKS = true
             } : nil
         )
 
-        // 挑战信息卡片
-        topCard
+        tc3CE2WjgJYnihFi
 
-        if videos.isEmpty {
+        if vdsHD4xmRgUomBTHI.isEmpty {
           VStack {
             Spacer()
             EmptyZhanweiView()
@@ -78,30 +77,27 @@ struct ChallengeDetailView: View {
           .frame(width: .infinity, height: .infinity)
         } else {
           ScrollView {
-            // 视频网格
-            videoGrid
+            vdgkb88k6bpPjTrPW
               .padding(.horizontal, 16)
               .padding(.vertical, 16)
-            // .frame(minHeight: 400)
           }
         }
-        
-        // 底部参与挑战按钮
-        joinButton
+
+        jbnsMQUpBOXIP6Rk
 
       }
     }
     .blorepEJWPcVqZsNi6EP(
-      isbloCY4jaarVfF0wpY: $showReportBlockSheet,
-      isrepppE4EmwOSEs9Cl: $showReportSheet,
+      isbloCY4jaarVfF0wpY: $XlGSuBRPSqVSKS,
+      isrepppE4EmwOSEs9Cl: $sPE9jOtbIwmwn9i,
       onOXhiQzKCNvCvG4Block: {
-        if let uid = challenge?.dUr4Mp7Ks {
-          appDataStore.blockUser(uid: uid)
+        if let uid = chaVbvERU1wSjPLlM?.dUr4Mp7Ks {
+          IhREo9o7adNPCE.boQkspadWNHlX2WBuser(uid: uid)
           path.removeAll()
         }
-        showReportBlockSheet = false
+        XlGSuBRPSqVSKS = false
       },
-      onReportSubmit: { _, _ in /* 举报挑战 */ }
+      onReportSubmit: { _, _ in }
     )
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
@@ -110,34 +106,27 @@ struct ChallengeDetailView: View {
     #endif
   }
 
-  // MARK: - 顶部：返回 + 挑战信息卡片
-  private var topCard: some View {
+  private var tc3CE2WjgJYnihFi: some View {
     ZStack(alignment: .topTrailing) {
-      // 紫色-粉色渐变卡片
       Image("oxboyzczatlm")
         .resizable()
-        // .scaledToFill()
-        // .frame(width: .infinity, height: .infinity)
-        // .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .padding(.horizontal, 20)
         .padding(.top, 30)
 
-      // 闪电图标
       Image("bvvlvztdgkru_shandian")
         .resizable()
         .frame(width: 100, height: 100)
         .padding(.trailing, 16)
 
-      // 内容
       VStack {
-        if let challenge = challenge {
+        if let c0Q1aoGq7BpDKpL = chaVbvERU1wSjPLlM {
           HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 16) {
-              Text(challenge.dTt6Lf2Vb)
+              Text(c0Q1aoGq7BpDKpL.dTt6Lf2Vb)
                 .font(.custom("Hanchansans-Medium", size: 24).bold())
                 .foregroundColor(.white)
               Text(
-                challenge.dDe8Av3Jr
+                c0Q1aoGq7BpDKpL.dDe8Av3Jr
               )
               .lineLimit(2)
               .font(.custom("Hanchansans-Medium", size: 16))
@@ -160,22 +149,21 @@ struct ChallengeDetailView: View {
     .frame(width: .infinity, height: 210)
   }
 
-  // MARK: - 视频网格（每行 3 个）
-  private var videoGrid: some View {
-    let gridSpacing: CGFloat = 12
-    let columns = [
-      GridItem(.flexible(minimum: 0), spacing: gridSpacing, alignment: .top),
-      GridItem(.flexible(minimum: 0), spacing: gridSpacing, alignment: .top),
-      GridItem(.flexible(minimum: 0), spacing: gridSpacing, alignment: .top),
+  private var vdgkb88k6bpPjTrPW: some View {
+    let ESjOWgd6dJ1URq: CGFloat = 12
+    let UaFT0bosdf7ShR = [
+      GridItem(.flexible(minimum: 0), spacing: ESjOWgd6dJ1URq, alignment: .top),
+      GridItem(.flexible(minimum: 0), spacing: ESjOWgd6dJ1URq, alignment: .top),
+      GridItem(.flexible(minimum: 0), spacing: ESjOWgd6dJ1URq, alignment: .top),
     ]
-    return LazyVGrid(columns: columns, spacing: gridSpacing) {
-      ForEach(videos) { video in
+    return LazyVGrid(columns: UaFT0bosdf7ShR, spacing: ESjOWgd6dJ1URq) {
+      ForEach(vdsHD4xmRgUomBTHI) { video in
         Button {
           path.append(.videoDetail(videoId: video.id))
         } label: {
-          ChallengeVideoCell(
-            video: video,
-            isEffectivelyLocked: appDataStore.isVideoEffectivelyLocked(video)
+          ChelvdFnCTXHTDKfpcAZ(
+            vdWnKjZvB0CkeOuu: video,
+            islocujnG3ShBcnSQLM: IhREo9o7adNPCE.isvdoDkAmIFRsnF0ebX(video)
           )
           .frame(maxWidth: .infinity)
         }
@@ -185,10 +173,9 @@ struct ChallengeDetailView: View {
     .padding(.vertical, 8)
   }
 
-  // MARK: - 底部参与挑战按钮
-  private var joinButton: some View {
+  private var jbnsMQUpBOXIP6Rk: some View {
     Button {
-      path.append(.uploadVideo(challengeId: challengeId))
+      path.append(.uploadVideo(challengeId: chaidPpqAXLyzYjD1D7))
     } label: {
       Text("Join the challenge")
         .font(.custom("Hanchansans-Medium", size: 20))
@@ -206,24 +193,22 @@ struct ChallengeDetailView: View {
   }
 }
 
-// MARK: - 挑战视频单元格（已解锁 / 锁定）
-struct ChallengeVideoCell: View {
-  let video: ChallengeVideo
-  /// 对当前用户而言是否仍为锁定（需付费且未解锁）
-  let isEffectivelyLocked: Bool
-  private let thumbnailHeight: CGFloat = 142
-  private let cellHeight: CGFloat = 188
+struct ChelvdFnCTXHTDKfpcAZ: View {
+  let vdWnKjZvB0CkeOuu: Chalvdngt3SE6MdwaZYu
+  let islocujnG3ShBcnSQLM: Bool
+  private let pFGGBAcxY8aBC3: CGFloat = 142
+  private let tabBpm3EqvNMty: CGFloat = 188
 
   var body: some View {
     VStack(alignment: .leading, spacing: 3) {
       ZStack(alignment: .center) {
-        thumbnailView
-        if isEffectivelyLocked {
-          lockedOverlay
+        thumbuvoytZtTw4jbFp
+        if islocujnG3ShBcnSQLM {
+          locedkbWuttmZFNjflX
         }
       }
       .frame(maxWidth: .infinity)
-      .frame(height: thumbnailHeight)
+      .frame(height: pFGGBAcxY8aBC3)
       .clipShape(
         UnevenRoundedRectangle(
           topLeadingRadius: 16,
@@ -238,7 +223,7 @@ struct ChallengeVideoCell: View {
         Image("SB1tyFVKKZhI_xinfen")
           .resizable()
           .frame(width: 22, height: 22)
-        Text(video.likeCountFormatted)
+        Text(vdWnKjZvB0CkeOuu.likeCountFormatted)
           .font(.system(size: 13))
           .foregroundColor(Color(red: 255 / 255, green: 26 / 255, blue: 182 / 255))
       }
@@ -248,13 +233,13 @@ struct ChallengeVideoCell: View {
     }
     .background(.white)
     .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-    .frame(height: cellHeight, alignment: .top)
+    .frame(height: tabBpm3EqvNMty, alignment: .top)
   }
 
-  private var thumbnailView: some View {
+  private var thumbuvoytZtTw4jbFp: some View {
     Group {
-      if let name = video.vTn3Hw8Zc, !name.isEmpty {
-        SmartImageView.namedOrPath(name, placeholder: Image("dengxuanbg"))
+      if let nRFyNV0VP8Qx3p = vdWnKjZvB0CkeOuu.vTn3Hw8Zc, !nRFyNV0VP8Qx3p.isEmpty {
+        SmartImageView.namedOrPath(nRFyNV0VP8Qx3p, placeholder: Image("dengxuanbg"))
           .scaledToFill()
           .frame(maxWidth: .infinity, maxHeight: .infinity)
           .clipped()
@@ -262,15 +247,15 @@ struct ChallengeVideoCell: View {
         Color(red: 0.2, green: 0.2, blue: 0.3)
       }
     }
-    .blur(radius: isEffectivelyLocked ? 4 : 0)
+    .blur(radius: islocujnG3ShBcnSQLM ? 4 : 0)
   }
 
-  private var lockedOverlay: some View {
+  private var locedkbWuttmZFNjflX: some View {
     HStack(spacing: 4) {
       Image("mkirgxytewig_diamond")
         .resizable()
         .frame(width: 20, height: 20)
-      Text("-\(video.vUd5Rp2Xy ?? 0)")
+      Text("-\(vdWnKjZvB0CkeOuu.vUd5Rp2Xy ?? 0)")
         .font(.custom("Hanchansans-Medium", size: 14))
         .foregroundColor(.white)
     }

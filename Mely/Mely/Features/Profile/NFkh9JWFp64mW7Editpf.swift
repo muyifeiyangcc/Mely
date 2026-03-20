@@ -1,59 +1,58 @@
 //
-//  EditProfileView.swift
+//  NFkh9JWFp64mW7Editpf.swift
 //  Mely
 //
-//  编辑用户信息：头像、昵称
 //
 
 import SwiftUI
 
-struct EditProfileView: View {
-  @EnvironmentObject private var appDataStore: AppDataStore
+struct NFkh9JWFp64mW7Editpf: View {
+  @EnvironmentObject private var ZrHgJNvzd6foWp: MelystoreWpvugHy89HDWLR
   @Environment(\.dismiss) private var dismiss
   @Binding var path: [MainRoute]
 
-  @State private var nameText: String = ""
-  @State private var selectedAvatarImage: UIImage?
+  @State private var ntxt5NRAQtG5rntTBT: String = ""
+  @State private var seava0KwpPJW4iGEj8C: UIImage?
   @State private var pendingAvatarPath: String?
-  @State private var showImageSourcePicker: Bool = false
+  @State private var sspicKPdJQyGquWSfU0: Bool = false
 
-  private let accentGreen = Color(hex: "#CBED40")
+  private let acgDHmuQl9GJsxAZk = Color(hex: "#CBED40")
 
   #if DEBUG
     @ObserveInjection var redraw
   #endif
 
-  private var displayAvatar: (isImage: Bool, image: UIImage?, symbol: String)? {
-    if let img = selectedAvatarImage {
-      return (true, img, "")
+  private var acvaoA8Oh7pXAbIAxz: (isImage: Bool, image: UIImage?, symbol: String)? {
+    if let imgSOT8LlEPUkorcg = seava0KwpPJW4iGEj8C {
+      return (true, imgSOT8LlEPUkorcg, "")
     }
-    let symbol = pendingAvatarPath ?? appDataStore.currentUser?.uQd8Nv5tK ?? "mely_defava"
+    let symbol = pendingAvatarPath ?? ZrHgJNvzd6foWp.curp11O3LYjA9ooct?.uQd8Nv5tK ?? "mely_defava"
     return (false, nil, symbol)
   }
 
   var body: some View {
     MelyYemianScaffold {
       VStack(spacing: 0) {
-        navigationBar
+        navbn91ibdfEIz89SY
 
         VStack(spacing: 32) {
-          avatarSection
-          nameInputSection
+          avasfq78pgisZLKWOl
+          nmUjSmdc6OhKnDQw
         }
         .padding(.horizontal, 24)
         .padding(.top, 40)
 
         Spacer()
 
-        saveButton
+        savbtniKfc29qCq5ZsRs
           .padding(.bottom, 48)
       }
     }
     .onAppear {
-      nameText = appDataStore.currentUser?.uZp7Lm2cR ?? ""
+      ntxt5NRAQtG5rntTBT = ZrHgJNvzd6foWp.curp11O3LYjA9ooct?.uZp7Lm2cR ?? ""
     }
-    .imageSourcePicker(isPresented: $showImageSourcePicker) { image in
-      selectedAvatarImage = image
+    .imageSourcePicker(isPresented: $sspicKPdJQyGquWSfU0) { image in
+      seava0KwpPJW4iGEj8C = image
       if let path = ImageStorageHelper.saveAvatarImage(image) {
         pendingAvatarPath = path
       }
@@ -64,7 +63,7 @@ struct EditProfileView: View {
     #endif
   }
 
-  private var navigationBar: some View {
+  private var navbn91ibdfEIz89SY: some View {
     HStack {
       Button {
         if !path.isEmpty { path.removeLast() } else { dismiss() }
@@ -85,18 +84,18 @@ struct EditProfileView: View {
     .padding(.bottom, 4)
   }
 
-  private var avatarSection: some View {
+  private var avasfq78pgisZLKWOl: some View {
     Button {
-      showImageSourcePicker = true
+      sspicKPdJQyGquWSfU0 = true
     } label: {
       ZStack(alignment: .bottomTrailing) {
         ZStack {
           Circle()
-            .fill(accentGreen)
+            .fill(acgDHmuQl9GJsxAZk)
             .frame(width: 120, height: 120)
 
-          if let display = displayAvatar {
-            if display.isImage, let img = display.image {
+          if let nI1hBmfgN8iJPI = acvaoA8Oh7pXAbIAxz {
+            if nI1hBmfgN8iJPI.isImage, let img = nI1hBmfgN8iJPI.image {
               Image(uiImage: img)
                 .resizable()
                 .scaledToFill()
@@ -104,7 +103,7 @@ struct EditProfileView: View {
                 .clipShape(Circle())
             } else {
               SmartImageView.namedOrPath(
-                display.symbol,
+                nI1hBmfgN8iJPI.symbol,
                 placeholder: Image("mely_defava")
               )
               .scaledToFill()
@@ -128,13 +127,13 @@ struct EditProfileView: View {
     .buttonStyle(.plain)
   }
 
-  private var nameInputSection: some View {
+  private var nmUjSmdc6OhKnDQw: some View {
     VStack(alignment: .leading, spacing: 12) {
       Text("Name")
         .font(.custom("Hanchansans-Medium", size: 16))
         .foregroundColor(.white)
 
-      TextField("Please enter", text: $nameText)
+      TextField("Please enter", text: $ntxt5NRAQtG5rntTBT)
         .font(.custom("Hanchansans-Medium", size: 16))
         .foregroundColor(.white)
         .padding(.horizontal, 16)
@@ -147,9 +146,9 @@ struct EditProfileView: View {
     }
   }
 
-  private var saveButton: some View {
+  private var savbtniKfc29qCq5ZsRs: some View {
     Button {
-      performSave()
+      persav4QU02cJvYIzidN()
     } label: {
       Text("Save")
         .font(.custom("Hanchansans-Medium", size: 18))
@@ -158,18 +157,18 @@ struct EditProfileView: View {
         .padding(.vertical, 16)
         .background(
           RoundedRectangle(cornerRadius: 28, style: .continuous)
-            .fill(accentGreen)
+            .fill(acgDHmuQl9GJsxAZk)
         )
     }
     .buttonStyle(.plain)
     .padding(.horizontal, 24)
   }
 
-  private func performSave() {
-    let trimmedName = nameText.trimmingCharacters(in: .whitespacesAndNewlines)
-    guard !trimmedName.isEmpty || pendingAvatarPath != nil else { return }
-    appDataStore.updateCurrentUser(
-      name: trimmedName.isEmpty ? nil : trimmedName,
+  private func persav4QU02cJvYIzidN() {
+    let ArPTUYreUO3Q39 = ntxt5NRAQtG5rntTBT.trimmingCharacters(in: .whitespacesAndNewlines)
+    guard !ArPTUYreUO3Q39.isEmpty || pendingAvatarPath != nil else { return }
+    ZrHgJNvzd6foWp.updcurN1qgl1w1c1h58n(
+      name: ArPTUYreUO3Q39.isEmpty ? nil : ArPTUYreUO3Q39,
       avatarSymbol: pendingAvatarPath
     )
     if !path.isEmpty { path.removeLast() } else { dismiss() }

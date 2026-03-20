@@ -185,19 +185,19 @@ final class IAPManager: NSObject {
   /// - Parameters:
   ///   - productId: 对应的内购商品 ID
   ///   - diamonds: 该商品应增加的钻石数量
-  ///   - appDataStore: 全局 AppDataStore，用于 addDiamonds 并触发 UI 刷新
+  ///   - appDataStore: 全局 AppDataStore，用于 adddiaITm0FyiVkVf6j6 并触发 UI 刷新
   ///   - completion: 成功返回增加的钻石数量，失败返回错误
   func purchaseDiamonds(
     productId: String,
     diamonds: Int,
-    appDataStore: AppDataStore,
+    appDataStore: MelystoreWpvugHy89HDWLR,
     completion: @escaping (Result<Int, IAPError>) -> Void
   ) {
     purchase(productId: productId) { result in
       switch result {
       case .success:
         // 支付成功：统一在此处发放钻石并刷新用户资料
-        appDataStore.addDiamonds(diamonds)
+        appDataStore.adddiaITm0FyiVkVf6j6(diamonds)
         completion(.success(diamonds))
 
       case .failure(let error):

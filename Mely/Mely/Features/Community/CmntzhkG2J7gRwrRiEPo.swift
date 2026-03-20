@@ -1,5 +1,5 @@
 //
-//  CommunityView.swift
+//  CmntzhkG2J7gRwrRiEPo.swift
 //  Mely
 //
 //  Created by yangyang on 2026/3/5.
@@ -7,23 +7,22 @@
 
 import SwiftUI
 
-struct CommunityView: View {
-  @EnvironmentObject private var appDataStore: AppDataStore
+struct CmntzhkG2J7gRwrRiEPo: View {
+  @EnvironmentObject private var khmk7UUVVzV8xH: MelystoreWpvugHy89HDWLR
   @Environment(\.dismiss) private var dismiss
   @Binding var path: [MainRoute]
 
-  @State private var showReportBlockSheet: Bool = false
-  @State private var showReportSheet: Bool = false
-  @State private var reportBlockTargetUserId: String?
+  @State private var zcJNTu6a7JPrLC: Bool = false
+  @State private var spr44uyrds8ry9hQ7: Bool = false
+  @State private var tQfoEOpaMcxjHg: String?
 
   #if DEBUG
     @ObserveInjection var redraw
   #endif
 
-  /// 标签预设颜色（与设计图一致：绿、浅黄等）
-  private let tagColors: [Color] = [
-    Color(hex: "#CBED40"),  // 绿色 Daily
-    Color(red: 0.95, green: 0.85, blue: 0.4),  // 浅黄 Baby
+  private let AAoY4jFg3z1T8z: [Color] = [
+    Color(hex: "#CBED40"),
+    Color(red: 0.95, green: 0.85, blue: 0.4),
     Color(red: 0.4, green: 0.6, blue: 0.95),
   ]
 
@@ -57,7 +56,7 @@ struct CommunityView: View {
         }
         .padding(.horizontal, 20)
 
-        if appDataStore.filteredCommunityPosts.isEmpty {
+        if khmk7UUVVzV8xH.filpostsyoSdYIQh87ZAr.isEmpty {
           VStack {
             Spacer()
             EmptyZhanweiView()
@@ -67,16 +66,20 @@ struct CommunityView: View {
         } else {
           ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(spacing: 20) {
-              ForEach(appDataStore.filteredCommunityPosts) { post in
-                CommunityPostCard(
+              ForEach(khmk7UUVVzV8xH.filpostsyoSdYIQh87ZAr) { xYqmINSjRpX0KJ in
+                CpaMpDIlzProK1ZOA(
                   path: $path,
-                  post: post,
-                  user: appDataStore.data.adUr9Mz3Qc.first(where: { $0.id == post.pUp4Mx7Cs }),
-                  tagColors: tagColors,
-                  onCardTap: { path.append(.communityPostDetail(postId: post.id)) },
-                  onMoreTap: {
-                    reportBlockTargetUserId = post.pUp4Mx7Cs
-                    showReportBlockSheet = true
+                  pofZkHvcyDiX6dl9: xYqmINSjRpX0KJ,
+                  o4d7Zwj7OPRoJi: khmk7UUVVzV8xH.izHqrtotvfHu1g.adUr9Mz3Qc.first(where: {
+                    $0.id == xYqmINSjRpX0KJ.pUp4Mx7Cs
+                  }),
+                  AAoY4jFg3z1T8z: AAoY4jFg3z1T8z,
+                  oncrdg8A3Ophqze7d40: {
+                    path.append(.communityPostDetail(postId: xYqmINSjRpX0KJ.id))
+                  },
+                  onmoZW5XXOjPHYeRXv: {
+                    tQfoEOpaMcxjHg = xYqmINSjRpX0KJ.pUp4Mx7Cs
+                    zcJNTu6a7JPrLC = true
                   }
                 )
               }
@@ -89,18 +92,18 @@ struct CommunityView: View {
       }
     }
     .blorepEJWPcVqZsNi6EP(
-      isbloCY4jaarVfF0wpY: $showReportBlockSheet,
-      isrepppE4EmwOSEs9Cl: $showReportSheet,
+      isbloCY4jaarVfF0wpY: $zcJNTu6a7JPrLC,
+      isrepppE4EmwOSEs9Cl: $spr44uyrds8ry9hQ7,
       onOXhiQzKCNvCvG4Block: {
-        if let uid = reportBlockTargetUserId {
-          appDataStore.blockUser(uid: uid)
+        if let uid = tQfoEOpaMcxjHg {
+          khmk7UUVVzV8xH.boQkspadWNHlX2WBuser(uid: uid)
           path.removeAll()
         }
-        reportBlockTargetUserId = nil
-        showReportBlockSheet = false
+        tQfoEOpaMcxjHg = nil
+        zcJNTu6a7JPrLC = false
       },
-      onReportSubmit: { _, _ in reportBlockTargetUserId = nil },
-      onCancel: { reportBlockTargetUserId = nil }
+      onReportSubmit: { _, _ in tQfoEOpaMcxjHg = nil },
+      onCancel: { tQfoEOpaMcxjHg = nil }
     )
     .navigationBarBackButtonHidden(true)
     #if DEBUG
@@ -109,30 +112,26 @@ struct CommunityView: View {
   }
 }
 
-// MARK: - 单条社区帖子卡片（可复用）
-
-struct CommunityPostCard: View {
-  @EnvironmentObject private var appDataStore: AppDataStore
+struct CpaMpDIlzProK1ZOA: View {
+  @EnvironmentObject private var khmk7UUVVzV8xH: MelystoreWpvugHy89HDWLR
   @Binding var path: [MainRoute]
-  let post: CommunityPostModel
-  let user: UserModel?
-  let tagColors: [Color]
-  var onCardTap: (() -> Void)?
-  var onMoreTap: (() -> Void)?
+  let pofZkHvcyDiX6dl9: CPolpIKsl1mUtFVfy
+  let o4d7Zwj7OPRoJi: UserteYT4uBeg4ObJP?
+  let AAoY4jFg3z1T8z: [Color]
+  var oncrdg8A3Ophqze7d40: (() -> Void)?
+  var onmoZW5XXOjPHYeRXv: (() -> Void)?
 
   var body: some View {
     VStack(alignment: .leading, spacing: 0) {
-      // 用户信息行：头像、昵称、日期、更多（无 onTapGesture，保证按钮可点击）
       HStack(alignment: .center, spacing: 10) {
         Circle()
           .fill(Color.white.opacity(0.25))
           .overlay {
-            if let user = user {
+            if let Znwn0sVRbR2wTI = o4d7Zwj7OPRoJi {
               Button {
-                // 跳转到用户个人中心页
-                path.append(.userProfile(userId: user.id))
+                path.append(.userProfile(userId: Znwn0sVRbR2wTI.id))
               } label: {
-                UserAvatarView(avatarSymbol: user.uQd8Nv5tK, size: 40)
+                UserAvatarView(avatarSymbol: Znwn0sVRbR2wTI.uQd8Nv5tK, size: 40)
                   .clipShape(Circle())
               }
               .buttonStyle(.plain)
@@ -141,19 +140,19 @@ struct CommunityPostCard: View {
           .frame(width: 40, height: 40)
 
         VStack(alignment: .leading, spacing: 2) {
-          Text(user?.uZp7Lm2cR ?? "User")
+          Text(o4d7Zwj7OPRoJi?.uZp7Lm2cR ?? "User")
             .font(.subheadline.weight(.medium))
             .foregroundColor(.white)
-          Text(post.dateString)
+          Text(pofZkHvcyDiX6dl9.dateString)
             .font(.caption)
             .foregroundColor(.white.opacity(0.7))
         }
 
         Spacer()
 
-        if user?.id != appDataStore.currentUser?.id {
+        if o4d7Zwj7OPRoJi?.id != khmk7UUVVzV8xH.curp11O3LYjA9ooct?.id {
           Button {
-            onMoreTap?()
+            onmoZW5XXOjPHYeRXv?()
           } label: {
             Image(systemName: "ellipsis")
               .font(.body.weight(.medium))
@@ -168,23 +167,20 @@ struct CommunityPostCard: View {
       .padding(.top, 12)
       .padding(.bottom, 10)
 
-      // 帖子主图 + 标签区：点击进入详情（单独加 gesture，避免覆盖上方按钮）
       Group {
         Rectangle()
           .fill(Color.clear)
           .frame(height: 280)
           .frame(maxWidth: .infinity)
           .overlay {
-            SmartImageView.namedOrPath(post.pIn6Fw1Zd)
+            SmartImageView.namedOrPath(pofZkHvcyDiX6dl9.pIn6Fw1Zd)
           }
           .clipShape(RoundedRectangle(cornerRadius: 16))
           .padding(.horizontal, 12)
 
-        // 标签 + 互动区
         HStack(alignment: .center, spacing: 10) {
-          // 标签
           HStack(spacing: 8) {
-            ForEach(Array(post.pTg7Rx5Bn.enumerated()), id: \.offset) { index, tag in
+            ForEach(Array(pofZkHvcyDiX6dl9.pTg7Rx5Bn.enumerated()), id: \.offset) { index, tag in
               Text(tag)
                 .font(.custom("Hanchansans-Medium", size: 14))
                 .foregroundColor(.black)
@@ -192,11 +188,12 @@ struct CommunityPostCard: View {
                 .padding(.horizontal, 10)
                 .padding(.vertical, 5)
                 .background(
-                  RoundedRectangle(cornerRadius: 8).fill(tagColors[index % tagColors.count])
+                  RoundedRectangle(cornerRadius: 8).fill(
+                    AAoY4jFg3z1T8z[index % AAoY4jFg3z1T8z.count])
                 )
             }
 
-            Text(post.pDs2Hv8Qp)
+            Text(pofZkHvcyDiX6dl9.pDs2Hv8Qp)
               .font(.custom("Hanchansans-Medium", size: 14))
               .foregroundColor(.white)
               .lineLimit(1)
@@ -205,17 +202,15 @@ struct CommunityPostCard: View {
 
           Spacer()
 
-          // 评论、点赞（白底圆角）
           HStack(spacing: 16) {
             Button {
-              // 评论
             } label: {
               HStack(spacing: 4) {
                 Image("j3MSKYctddao_lunp")
                   .resizable()
                   .frame(width: 20, height: 20)
-                if post.pCc8Jt4Vm > 0 {
-                  Text("\(post.pCc8Jt4Vm)")
+                if pofZkHvcyDiX6dl9.pCc8Jt4Vm > 0 {
+                  Text("\(pofZkHvcyDiX6dl9.pCc8Jt4Vm)")
                     .font(.custom("Hanchansans-Medium", size: 13))
                 }
               }
@@ -223,25 +218,23 @@ struct CommunityPostCard: View {
             }
 
             Button {
-              if appDataStore.isLiked(post.id) {
-                appDataStore.unlikeContent(post.id)
+              if khmk7UUVVzV8xH.isl2Mk3WADzckzIvN(pofZkHvcyDiX6dl9.id) {
+                khmk7UUVVzV8xH.unlctnafBiiyIvDuaBKR(pofZkHvcyDiX6dl9.id)
               } else {
-                appDataStore.likeContent(post.id)
+                khmk7UUVVzV8xH.liekctnfMHSlTReaFYI7V(pofZkHvcyDiX6dl9.id)
               }
             } label: {
               HStack(spacing: 4) {
                 Image(
-                  appDataStore.isLiked(post.id) ? "n0d7NjDl3Zun_zanfen" : "n0d7NjDl3Zun_zanhei"
+                  khmk7UUVVzV8xH.isl2Mk3WADzckzIvN(pofZkHvcyDiX6dl9.id)
+                    ? "n0d7NjDl3Zun_zanfen" : "n0d7NjDl3Zun_zanhei"
                 )
                 .resizable()
                 .frame(width: 20, height: 20)
-                // if post.likeCount > 0 {
-                //   Text("\(post.likeCount)")
-                //     .font(.caption)
-                // }
               }
               .foregroundColor(
-                appDataStore.isLiked(post.id) ? Color(red: 1, green: 0.4, blue: 0.55) : .primary)
+                khmk7UUVVzV8xH.isl2Mk3WADzckzIvN(pofZkHvcyDiX6dl9.id)
+                  ? Color(red: 1, green: 0.4, blue: 0.55) : .primary)
             }
             .buttonStyle(.plain)
           }
@@ -258,7 +251,7 @@ struct CommunityPostCard: View {
       }
       .contentShape(Rectangle())
       .onTapGesture {
-        onCardTap?()
+        oncrdg8A3Ophqze7d40?()
       }
     }
     .background(

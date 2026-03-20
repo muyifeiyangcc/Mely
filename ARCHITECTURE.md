@@ -29,19 +29,19 @@
 
 在 `Mely/Mely/Mely` 下使用扁平的 feature-first 结构，每个功能模块自包含自己的 View 和就近状态。
 
-- `Features/Home/HomeView.swift`
+- `Features/Home/MhoshoutosPR9GnzvOjHw.swift`
   - 首页，示例性放置了标题、说明文案和一个“刷新”示例逻辑。
   - 使用 `@State` 就近管理刷新状态，不额外创建 ViewModel。
 
-- `Features/Community/CommunityView.swift`
+- `Features/Community/CmntzhkG2J7gRwrRiEPo.swift`
   - 社区页，顶部为标签筛选，下面是简单的列表占位数据。
   - `@State private var selectedTag` 就近管理当前选中的标签。
 
-- `Features/Chat/MessageView.swift`
+- `Features/Chat/Msg3ouu3bzLmqsqmr.swift`
   - 聊天页，包含消息列表 + 底部输入栏。
   - `@State private var inputText` 与 `messages`，逻辑与 UI 放在同一个文件。
 
-- `Features/Profile/ProfileView.swift`
+- `Features/Profile/Personouj3szwe9Ot9AX.swift`
   - 个人中心页，包含简单的用户信息卡片和设置项（示例性的深色模式开关等）。
   - 同样采用本地 `@State` 管理示例状态。
 

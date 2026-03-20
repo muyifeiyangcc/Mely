@@ -1,5 +1,5 @@
 //
-//  VideoDetailView.swift
+//  Vdet7QIifokraIERgO.swift
 //  Mely
 //
 //  Created by yangyang on 2026/3/9.
@@ -8,35 +8,34 @@
 import AVKit
 import SwiftUI
 
-struct VideoDetailView: View {
+struct Vdet7QIifokraIERgO: View {
   @Binding var path: [MainRoute]
-  let videoId: String
+  let vidVPgbGqZoYamqMK: String
 
   #if DEBUG
     @ObserveInjection var redraw
   #endif
 
   @Environment(\.dismiss) private var dismiss
-  @EnvironmentObject private var appDataStore: AppDataStore
+  @EnvironmentObject private var HfHdmxBWd72DHk: MelystoreWpvugHy89HDWLR
   @State private var player: AVPlayer?
-  @State private var isPlaying = false
-  @State private var showReportBlockSheet: Bool = false
-  @State private var showReportSheet: Bool = false
-  @State private var showInsufficientBalanceDialog: Bool = false
+  @State private var pingvjZzp50mMPqd33t = false
+  @State private var jilxbwUBaUit6U: Bool = false
+  @State private var qaYgFz3FwQQCSD: Bool = false
+  @State private var KJgqXJz5YaoNPA: Bool = false
 
-  private var video: ChallengeVideo? {
-    appDataStore.filteredChallengeVideos.first { $0.id == videoId }
+  private var vd8EcA8JTxeWSBa5: Chalvdngt3SE6MdwaZYu? {
+    HfHdmxBWd72DHk.filvdosMDzuiVrv1HceiS.first { $0.id == vidVPgbGqZoYamqMK }
   }
 
-  private var author: UserModel? {
-    guard let userId = video?.vUv6Fr1Qd else { return nil }
-    return appDataStore.data.adUr9Mz3Qc.first { $0.id == userId }
+  private var mzoS0e1ggXbSe6: UserteYT4uBeg4ObJP? {
+    guard let kktsfI7lH34b3c = vd8EcA8JTxeWSBa5?.vUv6Fr1Qd else { return nil }
+    return HfHdmxBWd72DHk.izHqrtotvfHu1g.adUr9Mz3Qc.first { $0.id == kktsfI7lH34b3c }
   }
 
-  /// 视频对当前用户而言是否仍为锁定（需付费且未解锁）
   private var isEffectivelyLocked: Bool {
-    guard let v = video else { return false }
-    return appDataStore.isVideoEffectivelyLocked(v)
+    guard let v = vd8EcA8JTxeWSBa5 else { return false }
+    return HfHdmxBWd72DHk.isvdoDkAmIFRsnF0ebX(v)
   }
 
   var body: some View {
@@ -44,55 +43,50 @@ struct VideoDetailView: View {
       Color(.black)
         .ignoresSafeArea()
 
-      // 视频背景（锁定时模糊）
-      videoBackground
+      vdbgq7g8YJNozwC0eY
 
       VStack(spacing: 0) {
-        // 顶部导航栏
         MelyTopBarView(
           title: "Post",
           onBack: { dismiss() },
           onMoreTap:
-            video?.vUv6Fr1Qd != appDataStore.currentUser?.id
+            vd8EcA8JTxeWSBa5?.vUv6Fr1Qd != HfHdmxBWd72DHk.curp11O3LYjA9ooct?.id
             ? {
-              showReportBlockSheet = true
+              jilxbwUBaUit6U = true
             } : nil
         )
         .padding(.top, 50)
 
         Spacer()
 
-        // 锁定时显示遮罩层
         if isEffectivelyLocked {
-          lockOverlay
+          lockH2m4MPXNjY4tiU
         } else {
-          // 未锁定时：可点击切换播放/暂停，仅在暂停时显示中央播放图标
-          videoTapOverlay
+          CxX0fALkRBTPRx
         }
 
         Spacer()
 
-        // 底部用户互动栏
-        bottomInteractionBar
+        qixEH3G6BxwXI6
           .padding(.bottom, 20)
       }
     }
     .blorepEJWPcVqZsNi6EP(
-      isbloCY4jaarVfF0wpY: $showReportBlockSheet,
-      isrepppE4EmwOSEs9Cl: $showReportSheet,
+      isbloCY4jaarVfF0wpY: $jilxbwUBaUit6U,
+      isrepppE4EmwOSEs9Cl: $qaYgFz3FwQQCSD,
       onOXhiQzKCNvCvG4Block: {
-        if let uid = video?.vUv6Fr1Qd {
-          appDataStore.blockUser(uid: uid)
+        if let uid = vd8EcA8JTxeWSBa5?.vUv6Fr1Qd {
+          HfHdmxBWd72DHk.boQkspadWNHlX2WBuser(uid: uid)
           path.removeAll()
         }
-        showReportBlockSheet = false
+        jilxbwUBaUit6U = false
       },
-      onReportSubmit: { _, _ in /* 举报视频 */ }
+      onReportSubmit: { _, _ in }
     )
     .overlay {
-      if showInsufficientBalanceDialog {
+      if KJgqXJz5YaoNPA {
         MelyAlertDialog(
-          isPresented: $showInsufficientBalanceDialog,
+          isPresented: $KJgqXJz5YaoNPA,
           text: "Sorry, your wallet balance is insufficient. Do you want to go for recharge?",
           iconName: "kuku3kywiTUzOpQ1",
           iconSize: 52,
@@ -104,63 +98,61 @@ struct VideoDetailView: View {
     .ignoresSafeArea()
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
-    .onAppear { setupPlayer() }
-    .onChange(of: videoId) { _, _ in setupPlayer() }
+    .onAppear { stupamU83wztsTwoB0() }
+    .onChange(of: vidVPgbGqZoYamqMK) { _, _ in stupamU83wztsTwoB0() }
     .onDisappear { player?.pause() }
     #if DEBUG
       .enableInjection()
     #endif
   }
 
-  private func setupPlayer() {
+  private func stupamU83wztsTwoB0() {
     player?.pause()
     player = nil
-    guard let v = video, !appDataStore.isVideoEffectivelyLocked(v),
-      let name = v.vVn7Px5Lm, !name.isEmpty,
-      let url = urlForVideoName(name)
+    guard let v = vd8EcA8JTxeWSBa5, !HfHdmxBWd72DHk.isvdoDkAmIFRsnF0ebX(v),
+      let n6m38trI7GQiOHo = v.vVn7Px5Lm, !n6m38trI7GQiOHo.isEmpty,
+      let url = DmoZw3CI5sd42D(n6m38trI7GQiOHo)
     else { return }
     let p = AVPlayer(url: url)
     player = p
     p.play()
-    isPlaying = true
+    pingvjZzp50mMPqd33t = true
   }
 
-  private func urlForVideoName(_ name: String) -> URL? {
-    // 优先尝试 Application Support 本地路径（用户上传视频）
-    if let url = ImageStorageHelper.resolveVideoURL(name) { return url }
-    // 回退到 Bundle 资源
-    let parts = name.split(separator: "/").map(String.init)
-    let resourceName = parts.last ?? name
-    let subdirectory = parts.count > 1 ? parts.dropLast().joined(separator: "/") : nil
+  private func DmoZw3CI5sd42D(_ n6m38trI7GQiOHo: String) -> URL? {
+    if let url = ImageStorageHelper.resolveVideoURL(n6m38trI7GQiOHo) { return url }
+    let p9WdPB2kLOSRLap = n6m38trI7GQiOHo.split(separator: "/").map(String.init)
+    let Gs5B9sIjBUu3hd = p9WdPB2kLOSRLap.last ?? n6m38trI7GQiOHo
+    let s2ZvgWw2UlnDgzF =
+      p9WdPB2kLOSRLap.count > 1 ? p9WdPB2kLOSRLap.dropLast().joined(separator: "/") : nil
     return Bundle.main.url(
-      forResource: resourceName, withExtension: "mp4", subdirectory: subdirectory)
-      ?? Bundle.main.url(forResource: resourceName, withExtension: "mp4")
+      forResource: Gs5B9sIjBUu3hd, withExtension: "mp4", subdirectory: s2ZvgWw2UlnDgzF)
+      ?? Bundle.main.url(forResource: Gs5B9sIjBUu3hd, withExtension: "mp4")
   }
 
-  // MARK: - 视频背景
-  private var videoBackground: some View {
+  private var vdbgq7g8YJNozwC0eY: some View {
     Group {
       if let p = player, !isEffectivelyLocked {
         GeometryReader { geo in
           let w = geo.size.width
           let h = geo.size.height
-          let videoAspect: CGFloat = 9 / 16  // 竖屏 9:16，横屏可改为 16/9
-          let viewW = w
-          let viewH = w / videoAspect
+          let videoAspect: CGFloat = 9 / 16
+          let XM1NIeM0gi4RvU = w
+          let fd2f7bqQ3OJDsb = w / videoAspect
           VideoPlayer(player: p)
             .disabled(true)
-            .frame(width: viewW, height: viewH)
+            .frame(width: XM1NIeM0gi4RvU, height: fd2f7bqQ3OJDsb)
             .frame(width: w, height: h)
             .clipped()
         }
-      } else if let name = video?.vTn3Hw8Zc, !name.isEmpty {
+      } else if let n3zo3pYli9Ow81g = vd8EcA8JTxeWSBa5?.vTn3Hw8Zc, !n3zo3pYli9Ow81g.isEmpty {
         ZStack {
           Rectangle()
             .fill(Color.clear)
             .frame(height: .infinity)
             .frame(maxWidth: .infinity)
             .overlay {
-              SmartImageView.namedOrPath(name, placeholder: Image("dengxuanbg"))
+              SmartImageView.namedOrPath(n3zo3pYli9Ow81g, placeholder: Image("dengxuanbg"))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .clipped()
                 .blur(radius: isEffectivelyLocked ? 5 : 0)
@@ -177,21 +169,18 @@ struct VideoDetailView: View {
     .ignoresSafeArea()
   }
 
-  // MARK: - 锁定遮罩层（锁形图标 + 解锁金额）
-  private var lockOverlay: some View {
+  private var lockH2m4MPXNjY4tiU: some View {
     ZStack(alignment: .bottom) {
-      // 锁形图标
       Image("apavyrcoicqv_lock")
         .resizable()
         .scaledToFit()
         .frame(width: 240, height: 240)
 
-      // 解锁金额横幅（绿色胶囊 + 钻石 -300）可点击
       Button {
-        if appDataStore.unlockVideo(videoId: videoId) {
-          setupPlayer()
+        if HfHdmxBWd72DHk.unlockVideo(videoId: vidVPgbGqZoYamqMK) {
+          stupamU83wztsTwoB0()
         } else {
-          showInsufficientBalanceDialog = true
+          KJgqXJz5YaoNPA = true
         }
       } label: {
         HStack(spacing: 6) {
@@ -199,7 +188,7 @@ struct VideoDetailView: View {
             .resizable()
             .scaledToFit()
             .frame(width: 50, height: 50)
-          Text("-\(video?.vUd5Rp2Xy ?? 0)")
+          Text("-\(vd8EcA8JTxeWSBa5?.vUd5Rp2Xy ?? 0)")
             .font(.custom("Hanchansans-Medium", size: 28))
             .foregroundColor(.black)
         }
@@ -217,27 +206,26 @@ struct VideoDetailView: View {
     .padding(.bottom, 40)
   }
 
-  // MARK: - 视频点击区域：点击切换播放/暂停，仅在暂停时显示中央播放图标
-  private var videoTapOverlay: some View {
+  private var CxX0fALkRBTPRx: some View {
     Color.clear
       .contentShape(Rectangle())
       .frame(maxWidth: .infinity, maxHeight: .infinity)
       .onTapGesture {
         guard let p = player else { return }
-        if isPlaying {
+        if pingvjZzp50mMPqd33t {
           p.pause()
-          isPlaying = false
+          pingvjZzp50mMPqd33t = false
         } else {
           p.play()
-          isPlaying = true
+          pingvjZzp50mMPqd33t = true
         }
       }
       .overlay {
-        if !isPlaying {
+        if !pingvjZzp50mMPqd33t {
           Button {
             guard let p = player else { return }
             p.play()
-            isPlaying = true
+            pingvjZzp50mMPqd33t = true
           } label: {
             ZStack {
               Circle()
@@ -262,17 +250,14 @@ struct VideoDetailView: View {
       }
   }
 
-  // MARK: - 底部互动栏（头像、Following、点赞）
-  private var bottomInteractionBar: some View {
+  private var qixEH3G6BxwXI6: some View {
     HStack(spacing: 12) {
-      // 用户头像
-      if let author {
+      if let mzoS0e1ggXbSe6 {
         Button {
-          // 跳转到用户个人中心页
-          let userId = author.id
-          path.append(.userProfile(userId: userId))
+          let uid96ah3MaMgKhpcs = mzoS0e1ggXbSe6.id
+          path.append(.userProfile(userId: uid96ah3MaMgKhpcs))
         } label: {
-          UserAvatarView(avatarSymbol: author.uQd8Nv5tK, size: 54)
+          UserAvatarView(avatarSymbol: mzoS0e1ggXbSe6.uQd8Nv5tK, size: 54)
             .clipShape(Circle())
             .background(
               Circle()
@@ -292,14 +277,13 @@ struct VideoDetailView: View {
         }
       }
 
-      // Following / Follow 按钮（作者本人不显示）
-      if let author, author.id != appDataStore.currentUser?.id {
-        let isFollowingAuthor = appDataStore.isFollowing(author.id)
+      if let mzoS0e1ggXbSe6, mzoS0e1ggXbSe6.id != HfHdmxBWd72DHk.curp11O3LYjA9ooct?.id {
+        let isFollowingAuthor = HfHdmxBWd72DHk.isfings9wxsR6YeqeKUh(mzoS0e1ggXbSe6.id)
         Button(isFollowingAuthor ? "Following" : "Follow") {
           if isFollowingAuthor {
-            appDataStore.unfollowUser(uid: author.id)
+            HfHdmxBWd72DHk.unfowtfG415dyvn173J(uid: mzoS0e1ggXbSe6.id)
           } else {
-            appDataStore.followUser(uid: author.id)
+            HfHdmxBWd72DHk.fowus97mjk3D9vlxCqB(uid: mzoS0e1ggXbSe6.id)
           }
         }
         .font(.custom("Hanchansans-Medium", size: 16))
@@ -310,23 +294,20 @@ struct VideoDetailView: View {
           RoundedRectangle(cornerRadius: 12, style: .continuous).fill(.white))
       }
 
-      // 点赞按钮
-      if let video {
-        let isLiked = appDataStore.isLiked(video.id)
+      if let vd8EcA8JTxeWSBa5 {
+        let islid9wJOVOoUsCvudK = HfHdmxBWd72DHk.isl2Mk3WADzckzIvN(vd8EcA8JTxeWSBa5.id)
         Button {
-          if isLiked {
-            appDataStore.unlikeContent(video.id)
+          if islid9wJOVOoUsCvudK {
+            HfHdmxBWd72DHk.unlctnafBiiyIvDuaBKR(vd8EcA8JTxeWSBa5.id)
           } else {
-            appDataStore.likeContent(video.id)
+            HfHdmxBWd72DHk.liekctnfMHSlTReaFYI7V(vd8EcA8JTxeWSBa5.id)
           }
         } label: {
           HStack(spacing: 4) {
-            Image(isLiked ? "SB1tyFVKKZhI_xinfen" : "SB1tyFVKKZhI_xinhui")
+            Image(islid9wJOVOoUsCvudK ? "SB1tyFVKKZhI_xinfen" : "SB1tyFVKKZhI_xinhui")
               .resizable()
               .frame(width: 24, height: 24)
-            // .font(.system(size: 14))
-            // .foregroundColor(isLiked ? Color(red: 1, green: 0.4, blue: 0.55) : .gray)
-            Text(video.likeCountFormatted)
+            Text(vd8EcA8JTxeWSBa5.likeCountFormatted)
               .font(.custom("Hanchansans-Medium", size: 16))
               .foregroundColor(.black)
           }
@@ -339,15 +320,5 @@ struct VideoDetailView: View {
     }
     .padding(.horizontal, 20)
     .padding(.bottom, 34)
-  }
-}
-
-#Preview {
-  NavigationStack {
-    VideoDetailView(
-      path: .constant([]),
-      videoId: AppData.makeSample().adCv5Jt8Lp[0].id
-    )
-    .environmentObject(AppDataStore())
   }
 }

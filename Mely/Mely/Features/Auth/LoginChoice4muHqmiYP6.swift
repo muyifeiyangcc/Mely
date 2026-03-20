@@ -1,8 +1,7 @@
 //
-//  LoginChoiceView.swift
+//  LoginChoice4muHqmiYP6.swift
 //  Mely
 //
-//  登录选择页：快速登录 & 邮箱登录。
 //
 
 import SwiftUI
@@ -12,21 +11,20 @@ struct WebProtocolRoute: Hashable {
   let title: String
 }
 
-struct LoginChoiceView: View {
-  @EnvironmentObject private var appDataStore: AppDataStore
+struct LoginChoice4muHqmiYP6: View {
+  @EnvironmentObject private var rkwSGN91B6dIT0: MelystoreWpvugHy89HDWLR
 
   #if DEBUG
     @ObserveInjection var redraw
   #endif
 
-  @State private var path = NavigationPath()
+  @State private var pathwZGTVguKFdZteU = NavigationPath()
   @State private var agreeLegal: Bool = true
-  @State private var isQuickLoginLoading: Bool = false
+  @State private var ialingAvvyaeDkwduBie: Bool = false
 
   var body: some View {
-    NavigationStack(path: $path) {
+    NavigationStack(path: $pathwZGTVguKFdZteU) {
       ZStack {
-        // 背景图
         Image("dengxuanbg")
           .resizable()
           .ignoresSafeArea()
@@ -34,7 +32,6 @@ struct LoginChoiceView: View {
         VStack {
           HStack {
             Spacer()
-            // 这里可以做成跳转到 EULA 详情，如有需要再扩展
             Text("EULA")
               .font(.custom("Hanchansans-Medium", size: 17))
               .padding(.horizontal, 14)
@@ -66,7 +63,7 @@ struct LoginChoiceView: View {
 
           VStack(spacing: 20) {
             Button {
-              path.append(EmailAuthMode.login)
+              pathwZGTVguKFdZteU.append(ZBhqAB7Yj4CCksAumod.locGG0oWaNjmDMcq)
             } label: {
               Text("Login by email")
                 .font(.custom("Hanchansans-Medium", size: 24))
@@ -82,20 +79,19 @@ struct LoginChoiceView: View {
             .padding(.horizontal, 36)
 
             Button {
-              guard !isQuickLoginLoading else { return }
+              guard !ialingAvvyaeDkwduBie else { return }
               Task {
-                isQuickLoginLoading = true
+                ialingAvvyaeDkwduBie = true
                 do {
                   try await Task.sleep(nanoseconds: 1_500_000_000)
                 } catch {
-                  // Ignore cancellation; we still attempt to proceed.
                 }
-                appDataStore.quickLogin()
-                isQuickLoginLoading = false
+                rkwSGN91B6dIT0.newB1HIkW9FtwqtKnlog()
+                ialingAvvyaeDkwduBie = false
               }
             } label: {
               Group {
-                if isQuickLoginLoading {
+                if ialingAvvyaeDkwduBie {
                   HStack(spacing: 10) {
                     ProgressView()
                       .progressViewStyle(CircularProgressViewStyle(tint: .white))
@@ -114,14 +110,14 @@ struct LoginChoiceView: View {
                   .fill(Color.black)
               )
             }
-            .disabled(!agreeLegal || isQuickLoginLoading)
+            .disabled(!agreeLegal || ialingAvvyaeDkwduBie)
             .padding(.horizontal, 36)
 
             HStack(spacing: 4) {
               Text("Don't have an account?")
                 .font(.subheadline)
               Button("Sign up") {
-                path.append(EmailAuthMode.signup)
+                pathwZGTVguKFdZteU.append(ZBhqAB7Yj4CCksAumod.supFE4eYtk9APWyCf)
               }
               .font(.subheadline.weight(.semibold))
             }
@@ -143,7 +139,7 @@ struct LoginChoiceView: View {
                 Text("Agree with ")
                   .font(.footnote)
                 Button {
-                  path.append(
+                  pathwZGTVguKFdZteU.append(
                     WebProtocolRoute(
                       urlString: "https://app.p2k1k490.link/users", title: "User Agreement"))
                 } label: {
@@ -154,7 +150,7 @@ struct LoginChoiceView: View {
                 Text(" and ")
                   .font(.footnote)
                 Button {
-                  path.append(
+                  pathwZGTVguKFdZteU.append(
                     WebProtocolRoute(
                       urlString: "https://app.p2k1k490.link/privacy", title: "Privacy Policy"))
                 } label: {
@@ -170,8 +166,8 @@ struct LoginChoiceView: View {
           .padding(.bottom, 40)
         }
       }
-      .navigationDestination(for: EmailAuthMode.self) { mode in
-        EmailAuthView(mode: mode)
+      .navigationDestination(for: ZBhqAB7Yj4CCksAumod.self) { mode in
+        CLpirad9sRc7EwLoginView(mode: mode)
       }
       .navigationDestination(for: WebProtocolRoute.self) { route in
         WebProtocolView(urlString: route.urlString, title: route.title, path: .constant([]))

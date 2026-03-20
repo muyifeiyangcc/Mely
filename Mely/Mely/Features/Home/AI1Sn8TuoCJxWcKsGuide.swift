@@ -1,25 +1,24 @@
 //
-//  AIGuideView.swift
+//  AI1Sn8TuoCJxWcKsGuide.swift
 //  Mely
 //
-//  健身舞蹈 AI 引导页：展示介绍与「消耗300钻石开始聊天」按钮，点击后跳转 AI 提问页
 //
 
 import SwiftUI
 
-struct AIGuideView: View {
+struct AI1Sn8TuoCJxWcKsGuide: View {
   @Binding var path: [MainRoute]
-  @EnvironmentObject private var appDataStore: AppDataStore
+  @EnvironmentObject private var a3u069RLQywrsrH: MelystoreWpvugHy89HDWLR
   @Environment(\.dismiss) private var dismiss
-  @State private var showInsufficientBalanceDialog = false
+  @State private var wihIsHiYjmlGqC = false
 
   #if DEBUG
     @ObserveInjection var redraw
   #endif
 
-  private let aiGreen = Color(hex: "#CBED40")
-  private let aiPink = Color(red: 255 / 255, green: 26 / 255, blue: 182 / 255)
-  private let darkGradient = LinearGradient(
+  private let aigSvtv3naRZJUD82 = Color(hex: "#CBED40")
+  private let aipNReqTSV9stRlWm = Color(red: 255 / 255, green: 26 / 255, blue: 182 / 255)
+  private let dargCpl7rkOeeh7GGM = LinearGradient(
     colors: [
       Color(red: 0.15, green: 0.18, blue: 0.35),
       Color(red: 0.08, green: 0.10, blue: 0.20),
@@ -38,25 +37,21 @@ struct AIGuideView: View {
       }
     ) {
       VStack(spacing: 0) {
-        // 标题 Fitness Dance / Q&A AI + 声波
-        titleSection
+        tsIK8z1DQcXGamTV
         Spacer(minLength: 20)
-        // 中部：介绍文案 + 星星
-        introSection
+        itsmHYhAE1karZHrr
         Spacer(minLength: 24)
-        // 底部：消耗300钻石按钮
-        chatButton
+        cbdBsipwGdSyTEWU
       }
       .padding(.bottom, 34)
 
-      // 顶部导航：返回
-      topBar
+      tp72CZkpi7Z61X3N
     }
     .toolbar(.hidden, for: .navigationBar)
     .overlay {
-      if showInsufficientBalanceDialog {
+      if wihIsHiYjmlGqC {
         MelyAlertDialog(
-          isPresented: $showInsufficientBalanceDialog,
+          isPresented: $wihIsHiYjmlGqC,
           text: "Sorry, your wallet balance is insufficient. Do you want to go for recharge?",
           iconName: "kuku3kywiTUzOpQ1",
           iconSize: 52,
@@ -70,7 +65,7 @@ struct AIGuideView: View {
     #endif
   }
 
-  private var topBar: some View {
+  private var tp72CZkpi7Z61X3N: some View {
     HStack(alignment: .top, spacing: 0) {
       Button {
         dismiss.callAsFunction()
@@ -87,9 +82,8 @@ struct AIGuideView: View {
     .padding(.horizontal, 20)
   }
 
-  private var titleSection: some View {
+  private var tsIK8z1DQcXGamTV: some View {
     ZStack(alignment: .top) {
-      // 标题
       HStack(alignment: .center, spacing: 0) {
         VStack(alignment: .leading, spacing: 4) {
           Text("Fitness Dance")
@@ -117,7 +111,6 @@ struct AIGuideView: View {
       .padding(.horizontal, 20)
       .padding(.top, 90)
 
-      // AI 头像
       HStack(alignment: .top) {
         Spacer()
 
@@ -137,7 +130,7 @@ struct AIGuideView: View {
     }
   }
 
-  private var introSection: some View {
+  private var itsmHYhAE1karZHrr: some View {
     VStack(spacing: 18) {
       HStack(spacing: 0) {
         Spacer()
@@ -169,9 +162,9 @@ struct AIGuideView: View {
     .padding(.horizontal, 24)
   }
 
-  private var chatButton: some View {
+  private var cbdBsipwGdSyTEWU: some View {
     Button {
-      startAIChat()
+      staitwAzqTicUYdevN()
     } label: {
       HStack(spacing: 8) {
         Image("mkirgxytewig_diamond")
@@ -190,23 +183,20 @@ struct AIGuideView: View {
       .padding(.vertical, 16)
       .background(
         Capsule()
-          .fill(aiGreen)
+          .fill(aigSvtv3naRZJUD82)
       )
     }
     .buttonStyle(.plain)
     .frame(width: 260, height: 50)
-    // .padding(.horizontal, 24)
-    // .disabled((appDataStore.currentUser?.diamonds ?? 0) < 300)
-    // .opacity((appDataStore.currentUser?.diamonds ?? 0) >= 300 ? 1 : 0.6)
   }
 
-  private func startAIChat() {
-    let balance = appDataStore.currentUser?.uDg2Jy5Wx ?? 0
-    if balance < 300 {
-      showInsufficientBalanceDialog = true
+  private func staitwAzqTicUYdevN() {
+    let wKxtRYd25bUiHx = a3u069RLQywrsrH.curp11O3LYjA9ooct?.uDg2Jy5Wx ?? 0
+    if wKxtRYd25bUiHx < 300 {
+      wihIsHiYjmlGqC = true
       return
     }
-    guard appDataStore.deductDiamonds(300) else { return }
+    guard a3u069RLQywrsrH.deductDiamonds(300) else { return }
     path.append(.aiChat)
   }
 }

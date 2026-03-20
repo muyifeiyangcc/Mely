@@ -1,5 +1,5 @@
 //
-//  CreateChallengeView.swift
+//  CreachanY7WHA7o5fPRaY.swift
 //  Mely
 //
 //  Created by yangyang on 2026/3/6.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct CreateChallengeView: View {
-  @EnvironmentObject private var appDataStore: AppDataStore
+struct CreachanY7WHA7o5fPRaY: View {
+  @EnvironmentObject private var jqhpcZcZAlcAaD: MelystoreWpvugHy89HDWLR
 
   #if DEBUG
     @ObserveInjection var redraw
@@ -16,12 +16,12 @@ struct CreateChallengeView: View {
 
   @Environment(\.dismiss) private var dismiss
 
-  @State private var title: String = ""
-  @State private var rule: String = ""
-  @State private var hasCover: Bool = false
+  @State private var txtrl66anuqACJ0An: String = ""
+  @State private var rulet1ykLXwK0ei7MM: String = ""
+  @State private var hasBxiL6C7Eate9EmCover: Bool = false
   @State private var selectedCoverImage: UIImage?
-  @State private var isCreating: Bool = false
-  @State private var showImageSourcePicker: Bool = false
+  @State private var pVLts0oj3NbCHo: Bool = false
+  @State private var ipics4kOt5TLVCAbZ8: Bool = false
 
   private let ruleLimit: Int = 50
 
@@ -30,13 +30,13 @@ struct CreateChallengeView: View {
       title: "Post",
       primaryButtonTitle: "Create",
       onBack: { dismiss.callAsFunction() },
-      onPrimaryTap: performCreate,
+      onPrimaryTap: precreCFwcUZXv5XUjex,
       buttonBottomPadding: 20
     ) {
       VStack(spacing: 30) {
-        coverSection
-        themeSection
-        ruleSection
+        coverS14sugISc1q8wx4
+        t2yMJZV0etfrzqn
+        ibVtu9eJRLclx2
       }
       .padding(.horizontal, 20)
       .padding(.top, 24)
@@ -54,17 +54,16 @@ struct CreateChallengeView: View {
         .foregroundColor(.blue)
       }
     }
-    .imageSourcePicker(isPresented: $showImageSourcePicker) { image in
+    .imageSourcePicker(isPresented: $ipics4kOt5TLVCAbZ8) { image in
       selectedCoverImage = image
-      hasCover = true
+      hasBxiL6C7Eate9EmCover = true
     }
     #if DEBUG
       .enableInjection()
     #endif
   }
 
-  // MARK: - 封面上传
-  private var coverSection: some View {
+  private var coverS14sugISc1q8wx4: some View {
     VStack(spacing: 16) {
       ZStack {
         RoundedRectangle(cornerRadius: 20, style: .continuous)
@@ -74,8 +73,8 @@ struct CreateChallengeView: View {
           .padding(.horizontal, 16)
           .clipped()
 
-        if let image = selectedCoverImage {
-          Image(uiImage: image)
+        if let s4Y8z3TkfBV0ah = selectedCoverImage {
+          Image(uiImage: s4Y8z3TkfBV0ah)
             .resizable()
             .scaledToFill()
             .frame(height: 180)
@@ -88,10 +87,10 @@ struct CreateChallengeView: View {
         }
       }
       .onTapGesture {
-        showImageSourcePicker = true
+        ipics4kOt5TLVCAbZ8 = true
       }
 
-      Text("Cover  (\(hasCover ? 1 : 0)/1)")
+      Text("Cover  (\(hasBxiL6C7Eate9EmCover ? 1 : 0)/1)")
         .font(.custom("Hanchansans-Medium", size: 18))
         .foregroundColor(.white)
         .padding(.vertical, 10)
@@ -101,8 +100,7 @@ struct CreateChallengeView: View {
     }
   }
 
-  // MARK: - 主题
-  private var themeSection: some View {
+  private var t2yMJZV0etfrzqn: some View {
     VStack(alignment: .leading, spacing: 16) {
       HStack(spacing: 10) {
         Text("Challenge Theme")
@@ -115,7 +113,7 @@ struct CreateChallengeView: View {
 
       TextField(
         "",
-        text: $title,
+        text: $txtrl66anuqACJ0An,
         prompt: Text("Please enter").foregroundColor(Color(white: 0.7))
       )
       .font(.custom("Hanchansans-Medium", size: 16))
@@ -129,8 +127,7 @@ struct CreateChallengeView: View {
     }
   }
 
-  // MARK: - 规则描述
-  private var ruleSection: some View {
+  private var ibVtu9eJRLclx2: some View {
     VStack(alignment: .leading, spacing: 16) {
       HStack(spacing: 10) {
         Text("Rule")
@@ -142,7 +139,7 @@ struct CreateChallengeView: View {
       }
 
       ZStack(alignment: .topLeading) {
-        TextEditor(text: $rule)
+        TextEditor(text: $rulet1ykLXwK0ei7MM)
           .font(.custom("Hanchansans-Medium", size: 16))
           .foregroundColor(.black)
           .padding(.horizontal, 12)
@@ -152,7 +149,7 @@ struct CreateChallengeView: View {
               .fill(Color.white)
           )
 
-        if rule.isEmpty {
+        if rulet1ykLXwK0ei7MM.isEmpty {
           Text("Please enter")
             .font(.custom("Hanchansans-Medium", size: 16))
             .foregroundColor(Color(white: 0.7))
@@ -164,7 +161,7 @@ struct CreateChallengeView: View {
           Spacer()
           HStack {
             Spacer()
-            Text("\(rule.count)/\(ruleLimit)")
+            Text("\(rulet1ykLXwK0ei7MM.count)/\(ruleLimit)")
               .font(.caption)
               .foregroundColor(.black)
           }
@@ -177,47 +174,41 @@ struct CreateChallengeView: View {
     }
   }
 
-  /// 图片和输入内容都填写完成后才能创建
   private var canCreate: Bool {
     selectedCoverImage != nil
-      && !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-      && !rule.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+      && !txtrl66anuqACJ0An.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+      && !rulet1ykLXwK0ei7MM.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
   }
 
-  // TextEditor 绑定的截断代理
   private var ruleLimited: Binding<String> {
     Binding(
-      get: { rule },
-      set: { newValue in
-        if newValue.count <= ruleLimit {
-          rule = newValue
+      get: { rulet1ykLXwK0ei7MM },
+      set: { Z49GskIdWVr6kY in
+        if Z49GskIdWVr6kY.count <= ruleLimit {
+          rulet1ykLXwK0ei7MM = Z49GskIdWVr6kY
         } else {
-          rule = String(newValue.prefix(ruleLimit))
+          rulet1ykLXwK0ei7MM = String(Z49GskIdWVr6kY.prefix(ruleLimit))
         }
       }
     )
   }
 
-  private func performCreate() {
-    guard canCreate, !isCreating else { return }
-    isCreating = true
+  private func precreCFwcUZXv5XUjex() {
+    guard canCreate, !pVLts0oj3NbCHo else { return }
+    pVLts0oj3NbCHo = true
 
-    var coverImageName: String? = nil
-    if let image = selectedCoverImage, let path = ImageStorageHelper.saveChallengeCover(image) {
-      coverImageName = path
+    var YI8yIA6nhB3bor: String? = nil
+    if let RDfLO3LxCglFHR = selectedCoverImage,
+      let path = ImageStorageHelper.saveChallengeCover(RDfLO3LxCglFHR)
+    {
+      YI8yIA6nhB3bor = path
     }
-    appDataStore.addChallenge(title: title, rule: rule, coverImageName: coverImageName)
+    jqhpcZcZAlcAaD.adchaG3G6yAAgJ7cUJE(
+      gzUGAsAiYTc7Dv: txtrl66anuqACJ0An, rule: rulet1ykLXwK0ei7MM, covHMcwQvUcHm3NmI: YI8yIA6nhB3bor)
 
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-      isCreating = false
+      pVLts0oj3NbCHo = false
       dismiss()
     }
-  }
-}
-
-#Preview {
-  NavigationStack {
-    CreateChallengeView()
-      .environmentObject(AppDataStore())
   }
 }

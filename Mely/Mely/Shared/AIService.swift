@@ -7,13 +7,11 @@
 
 import Foundation
 
-/// AI 聊天回复结果
 enum AIChatResult {
   case success(String)
   case failure(String)
 }
 
-/// AI 服务：仅实现聊天回复
 final class AIService {
   static let shared = AIService()
 

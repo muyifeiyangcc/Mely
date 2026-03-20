@@ -1,5 +1,5 @@
 //
-//  CommunityPostCreateView.swift
+//  Fapostr6rm5z92RxVRLB.swift
 //  Mely
 //
 //  Created by yangyang on 2026/3/6.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct CommunityPostCreateView: View {
-  @EnvironmentObject private var appDataStore: AppDataStore
+struct Fapostr6rm5z92RxVRLB: View {
+  @EnvironmentObject private var LIxRVi7JMb2hlv: MelystoreWpvugHy89HDWLR
   @Environment(\.dismiss) private var dismiss
 
   @Binding var path: [MainRoute]
@@ -17,29 +17,26 @@ struct CommunityPostCreateView: View {
     @ObserveInjection var redraw
   #endif
 
-  @State private var selectedTags: Set<String> = ["Daily"]
-  private let allTags: [String] = ["Daily", "Leisure", "Two-dimensional", "Other"]
+  @State private var Z5EbpBeVBJoAYC: Set<String> = ["Daily"]
+  private let albNrXnM6o2C0TFz: [String] = ["Daily", "Leisure", "Two-dimensional", "Other"]
 
-  /// 帖子描述输入
-  @State private var descriptionText: String = ""
-
-  /// 用户选择的帖子主图
-  @State private var selectedPostImage: UIImage?
-  @State private var showImageSourcePicker: Bool = false
+  @State private var d6J4nMklzcbnwMi: String = ""
+  @State private var zejK3vZt6UwLW8: UIImage?
+  @State private var PynFBnyzjS8hNk: Bool = false
 
   var body: some View {
     CreatejLlpeiC5nAUAvPScaffold(
       title: "Post",
       primaryButtonTitle: "Post",
       onBack: { dismiss.callAsFunction() },
-      onPrimaryTap: performPost
+      onPrimaryTap: prepoXvvE8MQ6JPsEV9
     ) {
       VStack(alignment: .leading, spacing: 24) {
-        imageArea
+        imgVtIobaeAfuJx20
 
-        descriptionInput
+        OXNuMhFGbYNLVy
 
-        classificationSection
+        c7RsMbLMgrA6Rbk
       }
       .padding(.horizontal, 20)
       .padding(.top, 24)
@@ -58,24 +55,22 @@ struct CommunityPostCreateView: View {
       }
     }
     .imageSourcePicker(
-      isPresented: $showImageSourcePicker, onImagePicked: { selectedPostImage = $0 }
+      isPresented: $PynFBnyzjS8hNk, onImagePicked: { zejK3vZt6UwLW8 = $0 }
     )
     #if DEBUG
       .enableInjection()
     #endif
   }
 
-  private var imageArea: some View {
+  private var imgVtIobaeAfuJx20: some View {
     HStack(spacing: 16) {
-      // 主图展示：选中图片或占位
       Group {
-        if let image = selectedPostImage {
-          Image(uiImage: image)
+        if let DhvLpzy8Bkvnby = zejK3vZt6UwLW8 {
+          Image(uiImage: DhvLpzy8Bkvnby)
             .resizable()
         } else {
-          // 点击上传图片：打开资源选择弹窗 → 权限 → 选择图片
           Button {
-            showImageSourcePicker = true
+            PynFBnyzjS8hNk = true
           } label: {
             ZStack {
               RoundedRectangle(cornerRadius: 20, style: .continuous)
@@ -101,8 +96,8 @@ struct CommunityPostCreateView: View {
     }
   }
 
-  private var descriptionInput: some View {
-    TextEditor(text: $descriptionText)
+  private var OXNuMhFGbYNLVy: some View {
+    TextEditor(text: $d6J4nMklzcbnwMi)
       .font(.custom("Hanchansans-Medium", size: 16))
       .foregroundColor(.white)
       .scrollContentBackground(.hidden)
@@ -115,7 +110,7 @@ struct CommunityPostCreateView: View {
           .fill(Color.black.opacity(0.7))
       )
       .overlay(alignment: .topLeading) {
-        if descriptionText.isEmpty {
+        if d6J4nMklzcbnwMi.isEmpty {
           Text("A wonderful description is more likely to attract attention.")
             .font(.custom("Hanchansans-Medium", size: 16))
             .foregroundColor(.white.opacity(0.6))
@@ -125,7 +120,7 @@ struct CommunityPostCreateView: View {
       }
   }
 
-  private var classificationSection: some View {
+  private var c7RsMbLMgrA6Rbk: some View {
     VStack(alignment: .leading, spacing: 16) {
       HStack(spacing: 6) {
         Text("Classification")
@@ -136,29 +131,26 @@ struct CommunityPostCreateView: View {
           .frame(width: 24, height: 24)
       }
 
-      // let gridItems = [GridItem(.flexible()), GridItem(.flexible())]
-
-      FlowLayout(spacing: 10) {
-        ForEach(allTags, id: \.self) { tag in
-          let isSelected = selectedTags.contains(tag)
+      Fwrapbma6dSLHNeX61H(spacing: 10) {
+        ForEach(albNrXnM6o2C0TFz, id: \.self) { q9g5kWPoEqnTDh in
+          let tqNJlUx6PHO1kC = Z5EbpBeVBJoAYC.contains(q9g5kWPoEqnTDh)
           Button {
-            if isSelected {
-              selectedTags.remove(tag)
+            if tqNJlUx6PHO1kC {
+              Z5EbpBeVBJoAYC.remove(q9g5kWPoEqnTDh)
             } else {
-              selectedTags.insert(tag)
+              Z5EbpBeVBJoAYC.insert(q9g5kWPoEqnTDh)
             }
           } label: {
-            Text(tag)
+            Text(q9g5kWPoEqnTDh)
               .font(.custom("Hanchansans-Medium", size: 16))
               .foregroundColor(.black)
               .padding(.horizontal, 10)
               .padding(.vertical, 12)
               .frame(minWidth: 90)
-              // .frame(maxWidth: .infinity, alignment: .center)
               .background(
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                   .fill(
-                    isSelected
+                    tqNJlUx6PHO1kC
                       ? Color(red: 203 / 255, green: 237 / 255, blue: 64 / 255)
                       : Color.white
                   )
@@ -171,25 +163,24 @@ struct CommunityPostCreateView: View {
     }
   }
 
-  /// 图片和描述都填写才能发布
-  private var canPost: Bool {
-    selectedPostImage != nil
-      && !descriptionText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+  private var kbCVqER9snQuJo: Bool {
+    zejK3vZt6UwLW8 != nil
+      && !d6J4nMklzcbnwMi.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
   }
 
-  private func performPost() {
-    guard canPost else { return }
+  private func prepoXvvE8MQ6JPsEV9() {
+    guard kbCVqER9snQuJo else { return }
 
-    let desc = descriptionText.trimmingCharacters(in: .whitespacesAndNewlines)
-    let tags = Array(selectedTags).sorted()
-    var imageName = "test"
-    if let image = selectedPostImage,
-      let savedPath = ImageStorageHelper.saveCommunityImage(image)
+    let axUu4LI97kUfkq = d6J4nMklzcbnwMi.trimmingCharacters(in: .whitespacesAndNewlines)
+    let cIqmDpTf1TAreg = Array(Z5EbpBeVBJoAYC).sorted()
+    var YWAJ88uS14p8rf = "test"
+    if let x0cQq4HXQxEmhc = zejK3vZt6UwLW8,
+      let savedPath = ImageStorageHelper.saveCommunityImage(x0cQq4HXQxEmhc)
     {
-      imageName = savedPath
+      YWAJ88uS14p8rf = savedPath
     }
-    appDataStore.addCommunityPost(imageName: imageName, tags: tags, description: desc)
-    // 返回社区广场
+    LIxRVi7JMb2hlv.addpovld91tRyZPL4dv(
+      img77fPMguhLib7Qy: YWAJ88uS14p8rf, tags: cIqmDpTf1TAreg, desipFMrUE7eWUztp: axUu4LI97kUfkq)
     if !path.isEmpty {
       path.removeLast()
     } else {
@@ -198,7 +189,7 @@ struct CommunityPostCreateView: View {
   }
 }
 
-struct FlowLayout: Layout {
+struct Fwrapbma6dSLHNeX61H: Layout {
 
   var spacing: CGFloat = 8
 
@@ -208,31 +199,31 @@ struct FlowLayout: Layout {
     cache: inout ()
   ) -> CGSize {
 
-    let maxWidth = proposal.width ?? 0
-    var width: CGFloat = 0
+    let u8O7yQk4b1E4Rx = proposal.width ?? 0
+    var w7U8v0uzXRQcISR: CGFloat = 0
     var height: CGFloat = 0
 
-    var rowWidth: CGFloat = 0
-    var rowHeight: CGFloat = 0
+    var rwQl6rcTfhZdkkgy: CGFloat = 0
+    var rhmrpi3cV12NPMQo: CGFloat = 0
 
     for view in subviews {
-      let size = view.sizeThatFits(.unspecified)
+      let lMKL3OG1oDYRS2 = view.sizeThatFits(.unspecified)
 
-      if rowWidth + size.width > maxWidth {
-        width = max(width, rowWidth)
-        height += rowHeight + spacing
-        rowWidth = size.width + spacing
-        rowHeight = size.height
+      if rwQl6rcTfhZdkkgy + lMKL3OG1oDYRS2.width > u8O7yQk4b1E4Rx {
+        w7U8v0uzXRQcISR = max(w7U8v0uzXRQcISR, rwQl6rcTfhZdkkgy)
+        height += rhmrpi3cV12NPMQo + spacing
+        rwQl6rcTfhZdkkgy = lMKL3OG1oDYRS2.width + spacing
+        rhmrpi3cV12NPMQo = lMKL3OG1oDYRS2.height
       } else {
-        rowWidth += size.width + spacing
-        rowHeight = max(rowHeight, size.height)
+        rwQl6rcTfhZdkkgy += lMKL3OG1oDYRS2.width + spacing
+        rhmrpi3cV12NPMQo = max(rhmrpi3cV12NPMQo, lMKL3OG1oDYRS2.height)
       }
     }
 
-    width = max(width, rowWidth)
-    height += rowHeight
+    w7U8v0uzXRQcISR = max(w7U8v0uzXRQcISR, rwQl6rcTfhZdkkgy)
+    height += rhmrpi3cV12NPMQo
 
-    return CGSize(width: width, height: height)
+    return CGSize(width: w7U8v0uzXRQcISR, height: height)
   }
 
   func placeSubviews(
@@ -244,25 +235,25 @@ struct FlowLayout: Layout {
 
     var x = bounds.minX
     var y = bounds.minY
-    var rowHeight: CGFloat = 0
+    var EwyiH4Tar3UK91: CGFloat = 0
 
     for view in subviews {
 
-      let size = view.sizeThatFits(.unspecified)
+      let IxF5UUtCfMnRUF = view.sizeThatFits(.unspecified)
 
-      if x + size.width > bounds.maxX {
+      if x + IxF5UUtCfMnRUF.width > bounds.maxX {
         x = bounds.minX
-        y += rowHeight + spacing
-        rowHeight = 0
+        y += EwyiH4Tar3UK91 + spacing
+        EwyiH4Tar3UK91 = 0
       }
 
       view.place(
         at: CGPoint(x: x, y: y),
-        proposal: ProposedViewSize(size)
+        proposal: ProposedViewSize(IxF5UUtCfMnRUF)
       )
 
-      x += size.width + spacing
-      rowHeight = max(rowHeight, size.height)
+      x += IxF5UUtCfMnRUF.width + spacing
+      EwyiH4Tar3UK91 = max(EwyiH4Tar3UK91, IxF5UUtCfMnRUF.height)
     }
   }
 }

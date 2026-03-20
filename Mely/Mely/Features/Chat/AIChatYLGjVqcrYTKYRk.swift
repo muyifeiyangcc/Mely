@@ -1,32 +1,29 @@
 //
-//  AIChatView.swift
+//  AIChatYLGjVqcrYTKYRk.swift
 //  Mely
 //
-//  健身舞蹈 AI 提问页：推荐问题卡片、欢迎语气泡、输入框，支持发送消息与 AI 对话（模拟回复）
 //
 
 import SwiftUI
 
-// MARK: - AI 聊天消息模型
-
-private struct AIChatMessage: Identifiable, Equatable {
+private struct AICtAhqMigsf3g8DWx: Identifiable, Equatable {
   let id: String
-  let text: String
+  let txtUi0OX2rjeesXjh: String
   let isFromUser: Bool
   let createdAt: Date
 
-  static func user(_ text: String) -> AIChatMessage {
-    AIChatMessage(id: UUID().uuidString, text: text, isFromUser: true, createdAt: Date())
+  static func user(_ text: String) -> AICtAhqMigsf3g8DWx {
+    AICtAhqMigsf3g8DWx(
+      id: UUID().uuidString, txtUi0OX2rjeesXjh: text, isFromUser: true, createdAt: Date())
   }
 
-  static func ai(_ text: String) -> AIChatMessage {
-    AIChatMessage(id: UUID().uuidString, text: text, isFromUser: false, createdAt: Date())
+  static func ai(_ text: String) -> AICtAhqMigsf3g8DWx {
+    AICtAhqMigsf3g8DWx(
+      id: UUID().uuidString, txtUi0OX2rjeesXjh: text, isFromUser: false, createdAt: Date())
   }
 }
 
-// MARK: - 推荐问题（可换一批）
-
-private let suggestedQuestions: [[String]] = [
+private let sugCkQag01rS7yut4: [[String]] = [
   [
     "What should I warm up before dancing?",
     "How can I improve my fitness dance?",
@@ -44,60 +41,57 @@ private let suggestedQuestions: [[String]] = [
   ],
 ]
 
-private let welcomeText =
+private let rGssTimIrJBy8j =
   "Let's start our conversation now~ Please feel free to ask questions, and I will do my best to meet your needs."
 
-private func randomAIReply(for userText: String) -> String {
-  let replies = [
+private func replyV8z4BQ1ojqP3uu(for userText: String) -> String {
+  let cmcFlJh2j8GB5l = [
     "Great question! For fitness dance, I recommend starting with 5–10 minutes of light cardio and dynamic stretches to get your body ready. Focus on your legs, hips, and arms. 🎶",
     "I'd be happy to help! Consistency is key—try to practice at least 3 times a week. Start with beginner routines and gradually increase intensity. You've got this! 💪",
     "Sure! A simple beginner routine could be: warm-up (5 min), basic steps (10 min), combination (10 min), cool-down (5 min). Adjust based on how you feel.",
     "That's a wonderful goal! Remember to listen to your body, stay hydrated, and have fun. Dance is not just exercise—it's expression! 🌟",
     "I'm here to support your fitness dance journey. Keep asking and we can build a plan that works for you. Let's dance together!",
   ]
-  return replies.randomElement() ?? replies[0]
+  return cmcFlJh2j8GB5l.randomElement() ?? cmcFlJh2j8GB5l[0]
 }
 
-struct AIChatView: View {
+struct AIChatYLGjVqcrYTKYRk: View {
   @Binding var path: [MainRoute]
-  @EnvironmentObject private var appDataStore: AppDataStore
+  @EnvironmentObject private var llEQBTQxlR8ETD: MelystoreWpvugHy89HDWLR
   @Environment(\.dismiss) private var dismiss
 
   #if DEBUG
     @ObserveInjection var redraw
   #endif
 
-  @State private var draftText: String = ""
-  @State private var messages: [AIChatMessage] = []
-  @State private var suggestedIndex: Int = 0
-  @State private var isAIReplying: Bool = false
-  @State private var keyboardHeight: CGFloat = 0
+  @State private var m1mbtVikRszkm8: String = ""
+  @State private var wIemTBaAkSG2tk: [AICtAhqMigsf3g8DWx] = []
+  @State private var sgidxmhN1RHfEFWdWeK: Int = 0
+  @State private var reingXhmTrjlj4ECLpJ: Bool = false
+  @State private var kbhoZrEZShh5SGQAV: CGFloat = 0
 
-  private let aiPink = Color(hex: "#FF1AB6")
-  private let aiGreen = Color(hex: "#CBED40")
+  private let aipJZGzDUbRJVGQyt = Color(hex: "#FF1AB6")
+  private let aigjXDBLyv08QTlTm = Color(hex: "#CBED40")
 
   var body: some View {
     MelyYemianScaffold {
       VStack(spacing: 0) {
-        topBar
+        eznJHgfhnjj2BC
 
         ScrollViewReader { proxy in
           ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-              // 白色卡片：You can ask me... + 推荐问题
-              suggestionCard
-              // 欢迎语气泡
-              welcomeBubble
+              sc68Eocplv85nA6q
+              hYYSre1rjQ2DyR
                 .padding(.top, 20)
                 .padding(.bottom, 16)
-              // 对话消息列表
-              ForEach(messages) { msg in
-                chatBubble(msg)
+              ForEach(wIemTBaAkSG2tk) { msg in
+                cbubrzbfxVKfJfURoj(msg)
                   .id(msg.id)
                   .padding(.bottom, 16)
               }
-              if isAIReplying {
-                TypingIndicatorView()
+              if reingXhmTrjlj4ECLpJ {
+                Typingv5sMWzE8rxoCi7()
                   .id("typing")
                   .padding(.bottom, 16)
               }
@@ -105,27 +99,26 @@ struct AIChatView: View {
             .padding(.horizontal, 20)
             .padding(.top, 12)
           }
-          .onChange(of: messages.count) { _, _ in
-            scrollToBottom(proxy: proxy)
+          .onChange(of: wIemTBaAkSG2tk.count) { _, _ in
+            scbwGIvujfkGBOig3(proxy: proxy)
           }
-          .onChange(of: isAIReplying) { _, v in
-            if v { scrollToBottom(proxy: proxy) }
+          .onChange(of: reingXhmTrjlj4ECLpJ) { _, v in
+            if v { scbwGIvujfkGBOig3(proxy: proxy) }
           }
         }
 
-        inputBar
+        iptSpweot67qNq9bt
       }
     }
-    // .ignoresSafeArea(edges: .bottom)
     .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification))
     { notification in
       guard let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
       else { return }
-      withAnimation(.easeOut(duration: 0.25)) { keyboardHeight = frame.height }
+      withAnimation(.easeOut(duration: 0.25)) { kbhoZrEZShh5SGQAV = frame.height }
     }
     .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification))
     { _ in
-      withAnimation(.easeOut(duration: 0.25)) { keyboardHeight = 0 }
+      withAnimation(.easeOut(duration: 0.25)) { kbhoZrEZShh5SGQAV = 0 }
     }
     .toolbar(.hidden, for: .navigationBar)
     #if DEBUG
@@ -133,7 +126,7 @@ struct AIChatView: View {
     #endif
   }
 
-  private var topBar: some View {
+  private var eznJHgfhnjj2BC: some View {
     HStack(alignment: .bottom) {
       Button {
         dismiss.callAsFunction()
@@ -156,11 +149,11 @@ struct AIChatView: View {
     .padding(.bottom, 8)
   }
 
-  private var suggestionCard: some View {
+  private var sc68Eocplv85nA6q: some View {
     VStack(alignment: .leading, spacing: 12) {
       Text("You can ask me something like:")
         .font(.custom("Hanchansans-Medium", size: 18))
-        .foregroundColor(aiPink)
+        .foregroundColor(aipJZGzDUbRJVGQyt)
 
       ZStack(alignment: .top) {
         HStack {
@@ -172,34 +165,33 @@ struct AIChatView: View {
 
           Spacer()
 
-          // // swap button
-          // Button {
-          //   withAnimation(.easeInOut(duration: 0.2)) {
-          //     suggestedIndex = (suggestedIndex + 1) % suggestedQuestions.count
-          //   }
-          // } label: {
-          //   HStack(spacing: 4) {
-          //     Image(systemName: "arrow.clockwise")
-          //       .font(.system(size: 14, weight: .semibold))
-          //     Text("Swap it out")
-          //       .font(.system(size: 14))
-          //   }
-          //   .foregroundColor(.black)
-          //   .padding(.horizontal, 12)
-          //   .padding(.vertical, 10)
-          //   .background(
-          //     Capsule()
-          //       .fill(aiGreen)
-          //   )
-          // }
+          Button {
+            withAnimation(.easeInOut(duration: 0.2)) {
+              sgidxmhN1RHfEFWdWeK = (sgidxmhN1RHfEFWdWeK + 1) % sugCkQag01rS7yut4.count
+            }
+          } label: {
+            HStack(spacing: 4) {
+              Image(systemName: "arrow.clockwise")
+                .font(.system(size: 14, weight: .semibold))
+              Text("Swap it out")
+                .font(.system(size: 14))
+            }
+            .foregroundColor(.black)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 10)
+            .background(
+              Capsule()
+                .fill(aigjXDBLyv08QTlTm)
+            )
+          }
         }
         .padding(.leading, 31)
         .padding(.trailing, 10)
 
         VStack(alignment: .leading, spacing: 18) {
-          ForEach(Array(currentSuggestions.enumerated()), id: \.offset) { _, q in
+          ForEach(Array(JhZXyJgsIy90rJ.enumerated()), id: \.offset) { _, q in
             Button {
-              sendText(q)
+              sendjKMYg2kZp1LQE5(q)
             } label: {
               Text(q)
                 .font(.system(size: 14, weight: .medium))
@@ -222,8 +214,6 @@ struct AIChatView: View {
         .background(
           Image("quejiaodejuxing")
             .resizable()
-            // .scaledToFill()
-            // .frame(width: .infinity, height: 230)
             .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         )
         .padding(.top, 70)
@@ -232,27 +222,26 @@ struct AIChatView: View {
     .padding(.horizontal, 16)
     .padding(.top, 16)
     .padding(.bottom, 20)
-    // .frame(height: 380)
     .background(
       RoundedRectangle(cornerRadius: 20, style: .continuous)
         .fill(Color.white)
     )
   }
 
-  private var currentSuggestions: [String] {
-    let list = suggestedQuestions[suggestedIndex]
-    return Array(list.prefix(3))
+  private var JhZXyJgsIy90rJ: [String] {
+    let bGetbXT1LVTZMm = sugCkQag01rS7yut4[sgidxmhN1RHfEFWdWeK]
+    return Array(bGetbXT1LVTZMm.prefix(3))
   }
 
-  private var welcomeBubble: some View {
+  private var hYYSre1rjQ2DyR: some View {
     HStack(alignment: .top, spacing: 0) {
-      Text(welcomeText)
+      Text(rGssTimIrJBy8j)
         .font(.system(size: 16, weight: .medium))
         .foregroundColor(.white)
         .padding(.horizontal, 14)
         .padding(.vertical, 12)
         .background(
-          Color(aiPink)
+          Color(aipJZGzDUbRJVGQyt)
         )
         .clipShape(
           UnevenRoundedRectangle(
@@ -269,39 +258,39 @@ struct AIChatView: View {
     }
   }
 
-  private func chatBubble(_ message: AIChatMessage) -> some View {
+  private func cbubrzbfxVKfJfURoj(_ M5ARlZhROxxstB: AICtAhqMigsf3g8DWx) -> some View {
     HStack(alignment: .top, spacing: 0) {
-      if message.isFromUser { Spacer(minLength: 48) }
-      Text(message.text)
+      if M5ARlZhROxxstB.isFromUser { Spacer(minLength: 48) }
+      Text(M5ARlZhROxxstB.txtUi0OX2rjeesXjh)
         .font(.system(size: 16, weight: .medium))
-        .foregroundColor(message.isFromUser ? .black : .white)
+        .foregroundColor(M5ARlZhROxxstB.isFromUser ? .black : .white)
         .padding(.horizontal, 14)
         .padding(.vertical, 12)
         .background(
-          Color(message.isFromUser ? aiGreen : aiPink)
+          Color(M5ARlZhROxxstB.isFromUser ? aigjXDBLyv08QTlTm : aipJZGzDUbRJVGQyt)
         )
         .clipShape(
           UnevenRoundedRectangle(
             topLeadingRadius: 12,
-            bottomLeadingRadius: message.isFromUser ? 12 : 0,
-            bottomTrailingRadius: message.isFromUser ? 0 : 12,
+            bottomLeadingRadius: M5ARlZhROxxstB.isFromUser ? 12 : 0,
+            bottomTrailingRadius: M5ARlZhROxxstB.isFromUser ? 0 : 12,
             topTrailingRadius: 12,
             style: .continuous
           )
         )
         .frame(
           maxWidth: UIScreen.main.bounds.width * 0.75,
-          alignment: message.isFromUser ? .trailing : .leading)
-      if !message.isFromUser { Spacer(minLength: 48) }
+          alignment: M5ARlZhROxxstB.isFromUser ? .trailing : .leading)
+      if !M5ARlZhROxxstB.isFromUser { Spacer(minLength: 48) }
     }
-    .frame(maxWidth: .infinity, alignment: message.isFromUser ? .trailing : .leading)
+    .frame(maxWidth: .infinity, alignment: M5ARlZhROxxstB.isFromUser ? .trailing : .leading)
   }
 
-  private var inputBar: some View {
+  private var iptSpweot67qNq9bt: some View {
     HStack(spacing: 12) {
       TextField(
         "",
-        text: $draftText,
+        text: $m1mbtVikRszkm8,
         prompt: Text("Just ask me...")
           .foregroundColor(.gray)
       )
@@ -317,8 +306,8 @@ struct AIChatView: View {
       )
 
       Button {
-        sendText(draftText.trimmingCharacters(in: .whitespacesAndNewlines))
-        draftText = ""
+        sendjKMYg2kZp1LQE5(m1mbtVikRszkm8.trimmingCharacters(in: .whitespacesAndNewlines))
+        m1mbtVikRszkm8 = ""
         UIApplication.shared.sendAction(
           #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
       } label: {
@@ -326,63 +315,60 @@ struct AIChatView: View {
           .font(.system(size: 26))
           .foregroundColor(.white)
       }
-      .disabled(draftText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+      .disabled(m1mbtVikRszkm8.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
     }
     .padding(.horizontal, 16)
     .padding(.top, 12)
-    .padding(.bottom, max(6, keyboardHeight > 0 ? 0 : 0))
-    // .padding(.bottom, max(6, keyboardHeight > 0 ? 0 : 24))
+    .padding(.bottom, max(6, kbhoZrEZShh5SGQAV > 0 ? 0 : 0))
     .background(Color.black)
   }
 
-  private func sendText(_ text: String) {
-    guard !text.isEmpty else { return }
-    let userMsg = AIChatMessage.user(text)
-    messages.append(userMsg)
-    isAIReplying = true
+  private func sendjKMYg2kZp1LQE5(_ waIlN02s9KyGk8: String) {
+    guard !waIlN02s9KyGk8.isEmpty else { return }
+    let userMsg = AICtAhqMigsf3g8DWx.user(waIlN02s9KyGk8)
+    wIemTBaAkSG2tk.append(userMsg)
+    reingXhmTrjlj4ECLpJ = true
 
     Task { @MainActor in
-      let result = await AIService.shared.sendChat(message: text)
-      let replyText: String
-      switch result {
+      let OMlkoyJndtJ87V = await AIService.shared.sendChat(message: waIlN02s9KyGk8)
+      let VVUSQ5qQq5K3R7: String
+      switch OMlkoyJndtJ87V {
       case .success(let aiText):
-        replyText = aiText
+        VVUSQ5qQq5K3R7 = aiText
       case .failure:
-        replyText = randomAIReply(for: text)
+        VVUSQ5qQq5K3R7 = replyV8z4BQ1ojqP3uu(for: waIlN02s9KyGk8)
       }
-      let aiMsg = AIChatMessage.ai(replyText)
+      let wGIvujfkGBOig3 = AICtAhqMigsf3g8DWx.ai(VVUSQ5qQq5K3R7)
       withAnimation(.easeOut(duration: 0.25)) {
-        messages.append(aiMsg)
-        isAIReplying = false
+        wIemTBaAkSG2tk.append(wGIvujfkGBOig3)
+        reingXhmTrjlj4ECLpJ = false
       }
     }
   }
 
-  private func scrollToBottom(proxy: ScrollViewProxy) {
+  private func scbwGIvujfkGBOig3(proxy: ScrollViewProxy) {
     withAnimation(.easeOut(duration: 0.2)) {
-      if isAIReplying {
+      if reingXhmTrjlj4ECLpJ {
         proxy.scrollTo("typing", anchor: .bottom)
-      } else if let last = messages.last {
+      } else if let last = wIemTBaAkSG2tk.last {
         proxy.scrollTo(last.id, anchor: .bottom)
       }
     }
   }
 }
 
-// MARK: - 输入中指示
-
-private struct TypingIndicatorView: View {
+private struct Typingv5sMWzE8rxoCi7: View {
   var body: some View {
     TimelineView(.periodic(from: .now, by: 0.4)) { context in
-      let sec = context.date.timeIntervalSinceReferenceDate
-      let dotCount = Int(sec / 0.4) % 3
+      let kOvPu4K0psg47j = context.date.timeIntervalSinceReferenceDate
+      let d7b1nbJ4UXVdPok = Int(kOvPu4K0psg47j / 0.4) % 3
       HStack(alignment: .top, spacing: 0) {
         HStack(spacing: 4) {
           ForEach(0..<3, id: \.self) { i in
             Circle()
               .fill(Color.white.opacity(0.9))
               .frame(width: 6, height: 6)
-              .opacity(i <= dotCount ? 1 : 0.4)
+              .opacity(i <= d7b1nbJ4UXVdPok ? 1 : 0.4)
           }
         }
         .padding(.horizontal, 14)

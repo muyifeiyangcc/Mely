@@ -1,5 +1,5 @@
 //
-//  MessageView.swift
+//  Msg3ouu3bzLmqsqmr.swift
 //  Mely
 //
 //  Created by yangyang on 2026/3/5.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct MessageView: View {
-  @EnvironmentObject private var appDataStore: AppDataStore
+struct Msg3ouu3bzLmqsqmr: View {
+  @EnvironmentObject private var qCY5SApnxN3jJs: MelystoreWpvugHy89HDWLR
   @Environment(\.dismiss) private var dismiss
   @Binding var path: [MainRoute]
 
@@ -40,7 +40,7 @@ struct MessageView: View {
         }
         .padding(.horizontal, 20)
 
-        if appDataStore.filteredConversations.isEmpty {
+        if qCY5SApnxN3jJs.filcvrsKNV3sVIZ1SzZc9.isEmpty {
           VStack {
             Spacer()
             EmptyZhanweiView()
@@ -51,16 +51,16 @@ struct MessageView: View {
         } else {
           ScrollView {
             LazyVStack(spacing: 20) {
-              ForEach(appDataStore.filteredConversations) { conversation in
+              ForEach(qCY5SApnxN3jJs.filcvrsKNV3sVIZ1SzZc9) { conversation in
                 NavigationLink {
-                  ChatDetailView(path: $path, conversationId: conversation.id)
+                  ChadetliLsrfCbqFVharView(path: $path, ihcqcoxwUEDEh7cid: conversation.id)
                 } label: {
-                  ChatListRowView(
-                    title: chatTitle(for: conversation),
-                    preview: chatPreview(for: conversation),
-                    timeText: chatTimeText(for: conversation),
-                    unreadCount: chatUnreadCount(for: conversation),
-                    avatarSymbol: chatAvatarSymbol(for: conversation)
+                  CharowstHKBKlBP88qUb(
+                    titkoGnF7OOqdabOR: ke6OUBiuc2OndD(for: conversation),
+                    preview: chapreIhfmVvxl8JiwmI(for: conversation),
+                    zthZR1W0C0cRru: ctxtMhmmQgg0biZzz1(for: conversation),
+                    ikmTo3cP78CDdQ: PQZdvKjHcxhWG0(for: conversation),
+                    RXNxzqgMa83k4i: FLPFYUXVtUX4tU(for: conversation)
                   )
                 }
                 .buttonStyle(.plain)
@@ -80,61 +80,62 @@ struct MessageView: View {
     #endif
   }
 
-  private func chatTitle(for conversation: ConversationModel) -> String {
-    guard let currentId = appDataStore.data.adCu1Zp6Hm else { return "Chat" }
-    let otherId = conversation.cPu3Ks1Zx.first { $0 != currentId }
-    guard let id = otherId,
-      let user = appDataStore.data.adUr9Mz3Qc.first(where: { $0.id == id })
+  private func ke6OUBiuc2OndD(for wlJ0cqHfjxflsJ: Convs8RlUjf8GEZRmYA) -> String {
+    guard let O6zjIRtQozXnhC = qCY5SApnxN3jJs.izHqrtotvfHu1g.adCu1Zp6Hm else { return "Chat" }
+    let EY84NKm9gJnloO = wlJ0cqHfjxflsJ.cPu3Ks1Zx.first { $0 != O6zjIRtQozXnhC }
+    guard let id = EY84NKm9gJnloO,
+      let PFEvCiKkSfzDPE = qCY5SApnxN3jJs.izHqrtotvfHu1g.adUr9Mz3Qc.first(where: { $0.id == id })
     else {
       return "Chat"
     }
-    return user.uZp7Lm2cR
+    return PFEvCiKkSfzDPE.uZp7Lm2cR
   }
 
-  private func chatAvatarSymbol(for conversation: ConversationModel) -> String {
-    guard let currentId = appDataStore.data.adCu1Zp6Hm else { return "person.crop.circle.fill" }
-    let otherId = conversation.cPu3Ks1Zx.first { $0 != currentId }
-    guard let id = otherId,
-      let user = appDataStore.data.adUr9Mz3Qc.first(where: { $0.id == id })
+  private func FLPFYUXVtUX4tU(for wlJ0cqHfjxflsJ: Convs8RlUjf8GEZRmYA) -> String {
+    guard let ZxRvYgq14SXfb3 = qCY5SApnxN3jJs.izHqrtotvfHu1g.adCu1Zp6Hm else {
+      return "person.crop.circle.fill"
+    }
+    let uINMke5XQTYB3P = wlJ0cqHfjxflsJ.cPu3Ks1Zx.first { $0 != ZxRvYgq14SXfb3 }
+    guard let id = uINMke5XQTYB3P,
+      let PFEvCiKkSfzDPE = qCY5SApnxN3jJs.izHqrtotvfHu1g.adUr9Mz3Qc.first(where: { $0.id == id })
     else {
       return "mely_defava"
     }
-    return user.uQd8Nv5tK
+    return PFEvCiKkSfzDPE.uQd8Nv5tK
   }
 
-  private func chatPreview(for conversation: ConversationModel) -> String {
-    guard let last = lastMessage(for: conversation) else {
+  private func chapreIhfmVvxl8JiwmI(for wlJ0cqHfjxflsJ: Convs8RlUjf8GEZRmYA) -> String {
+    guard let l139b5uF0HY6VzB = lastMessage(for: wlJ0cqHfjxflsJ) else {
       return ""
     }
-    return previewText(for: last)
+    return wFVktPqPu6Jd1m(for: l139b5uF0HY6VzB)
   }
 
-  private func chatTimeText(for conversation: ConversationModel) -> String {
-    let last = lastMessage(for: conversation)
-    guard let date = last?.mCt7He4Jn else { return "Yesterday" }
+  private func ctxtMhmmQgg0biZzz1(for c0efCname0MazrM: Convs8RlUjf8GEZRmYA) -> String {
+    let l139b5uF0HY6VzB = lastMessage(for: c0efCname0MazrM)
+    guard let d5gJ6dwr7QcwrIy = l139b5uF0HY6VzB?.mCt7He4Jn else { return "Yesterday" }
     let cal = Calendar.current
-    if cal.isDateInYesterday(date) { return "Yesterday" }
-    if cal.isDateInToday(date) { return "Today" }
+    if cal.isDateInYesterday(d5gJ6dwr7QcwrIy) { return "Yesterday" }
+    if cal.isDateInToday(d5gJ6dwr7QcwrIy) { return "Today" }
     let f = DateFormatter()
     f.dateFormat = "MM/dd"
-    return f.string(from: date)
+    return f.string(from: d5gJ6dwr7QcwrIy)
   }
 
-  private func chatUnreadCount(for conversation: ConversationModel) -> Int {
-    guard let currentId = appDataStore.data.adCu1Zp6Hm else { return 0 }
-    return conversation.cUc2Yp5Hd[currentId] ?? 0
+  private func PQZdvKjHcxhWG0(for k6suW3U2lkPUxD: Convs8RlUjf8GEZRmYA) -> Int {
+    guard let fkXTusfsBWJCDO = qCY5SApnxN3jJs.izHqrtotvfHu1g.adCu1Zp6Hm else { return 0 }
+    return k6suW3U2lkPUxD.cUc2Yp5Hd[fkXTusfsBWJCDO] ?? 0
   }
 
-  private func lastMessage(for conversation: ConversationModel) -> MessageModel? {
-    appDataStore.data.adMs8Lw4Ty
-      .filter { $0.mCv4Ne9Hr == conversation.id }
+  private func lastMessage(for k6suW3U2lkPUxD: Convs8RlUjf8GEZRmYA) -> MSgOumAbwJ0MP1dZO? {
+    qCY5SApnxN3jJs.izHqrtotvfHu1g.adMs8Lw4Ty
+      .filter { $0.mCv4Ne9Hr == k6suW3U2lkPUxD.id }
       .sorted(by: { $0.mCt7He4Jn < $1.mCt7He4Jn })
       .last
   }
 
-  // MARK: - Message Preview
-  private func previewText(for message: MessageModel) -> String {
-    switch message.mTy9Gh1Qb {
+  private func wFVktPqPu6Jd1m(for VgNMKydK226one: MSgOumAbwJ0MP1dZO) -> String {
+    switch VgNMKydK226one.mTy9Gh1Qb {
     case .emoji:
       return "[Emoji]"
     case .voice:
@@ -142,31 +143,26 @@ struct MessageView: View {
     case .image:
       return "[Image]"
     case .text:
-      // // 兼容旧数据：type 还是 .text 但 text 是 emoji 资源名
-      // if emojiOptions.contains(message.text) {
-      //   return "【emoji】"
-      // }
 
-      let trimmed = message.mTx2Fp8Vc.trimmingCharacters(in: .whitespacesAndNewlines)
+      let trimmed = VgNMKydK226one.mTx2Fp8Vc.trimmingCharacters(in: .whitespacesAndNewlines)
       return trimmed.isEmpty ? "" : trimmed
     }
   }
 }
 
-// MARK: - UI Pieces
-struct ChatListRowView: View {
-  let title: String
+struct CharowstHKBKlBP88qUb: View {
+  let titkoGnF7OOqdabOR: String
   let preview: String
-  let timeText: String
-  let unreadCount: Int
-  let avatarSymbol: String
+  let zthZR1W0C0cRru: String
+  let ikmTo3cP78CDdQ: Int
+  let RXNxzqgMa83k4i: String
 
   var body: some View {
     HStack(spacing: 12) {
       avatar
 
       VStack(alignment: .leading, spacing: 6) {
-        Text(title)
+        Text(titkoGnF7OOqdabOR)
           .font(.system(size: 18, weight: .semibold))
           .foregroundColor(.black)
 
@@ -179,12 +175,12 @@ struct ChatListRowView: View {
       Spacer(minLength: 10)
 
       VStack(alignment: .trailing, spacing: 10) {
-        Text(timeText)
+        Text(zthZR1W0C0cRru)
           .font(.system(size: 12, weight: .regular))
           .foregroundColor(.gray)
 
-        if unreadCount > 0 {
-          Text("\(unreadCount)")
+        if ikmTo3cP78CDdQ > 0 {
+          Text("\(ikmTo3cP78CDdQ)")
             .font(.system(size: 12, weight: .bold))
             .foregroundColor(.white)
             .frame(width: 22, height: 22)
@@ -212,12 +208,12 @@ struct ChatListRowView: View {
         )
         .frame(width: 46, height: 46)
 
-      UserAvatarView(avatarSymbol: avatarSymbol, size: 46)
+      UserAvatarView(avatarSymbol: RXNxzqgMa83k4i, size: 46)
     }
   }
 }
 
-struct ChatBackgroundView: View {
+struct Bg75AXIQ8yB32fx5: View {
   var body: some View {
     ZStack(alignment: .bottom) {
       LinearGradient(
@@ -229,40 +225,40 @@ struct ChatBackgroundView: View {
         endPoint: .bottomTrailing
       )
 
-      GridFloorView()
+      GrdveabuDTEHnPTCf()
         .frame(height: 260)
         .opacity(0.55)
     }
   }
 }
 
-struct GridFloorView: View {
+struct GrdveabuDTEHnPTCf: View {
   var body: some View {
-    GeometryReader { geo in
-      let w = geo.size.width
-      let h = geo.size.height
+    GeometryReader { mhF8IxZkDeHaTm in
+      let w = mhF8IxZkDeHaTm.size.width
+      let h = mhF8IxZkDeHaTm.size.height
 
       Canvas { ctx, _ in
-        var path = Path()
+        var QIuDS5pmKcXmnU = Path()
 
         let stepX: CGFloat = 26
         let stepY: CGFloat = 18
 
         var x: CGFloat = 0
         while x <= w {
-          path.move(to: CGPoint(x: x, y: 0))
-          path.addLine(to: CGPoint(x: x, y: h))
+          QIuDS5pmKcXmnU.move(to: CGPoint(x: x, y: 0))
+          QIuDS5pmKcXmnU.addLine(to: CGPoint(x: x, y: h))
           x += stepX
         }
 
         var y: CGFloat = 0
         while y <= h {
-          path.move(to: CGPoint(x: 0, y: y))
-          path.addLine(to: CGPoint(x: w, y: y))
+          QIuDS5pmKcXmnU.move(to: CGPoint(x: 0, y: y))
+          QIuDS5pmKcXmnU.addLine(to: CGPoint(x: w, y: y))
           y += stepY
         }
 
-        ctx.stroke(path, with: .color(.white.opacity(0.22)), lineWidth: 1)
+        ctx.stroke(QIuDS5pmKcXmnU, with: .color(.white.opacity(0.22)), lineWidth: 1)
       }
       .background(
         LinearGradient(

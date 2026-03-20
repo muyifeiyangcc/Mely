@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  Personouj3szwe9Ot9AX.swift
 //  Mely
 //
 //  Created by yangyang on 2026/3/5.
@@ -7,44 +7,43 @@
 
 import SwiftUI
 
-struct ProfileView: View {
-  @EnvironmentObject private var appDataStore: AppDataStore
-  @Environment(\.presentationMode) var presentationMode
+struct Personouj3szwe9Ot9AX: View {
+  @EnvironmentObject private var KEVEKJrKGZLAbj: MelystoreWpvugHy89HDWLR
+  @Environment(\.presentationMode) var q55RO0d3zIqjtb
   @Binding var path: [MainRoute]
 
-  // The user ID to display. If nil, it defaults to the current logged-in user.
-  var userId: String? = nil
+  var EoseNHMco4sgRUuid: String? = nil
 
-  private var targetUserId: String? {
-    userId ?? appDataStore.currentUser?.id
+  private var taruid2Sg5sI6pldAN9X: String? {
+    EoseNHMco4sgRUuid ?? KEVEKJrKGZLAbj.curp11O3LYjA9ooct?.id
   }
 
-  private var isCurrentUser: Bool {
-    guard let current = appDataStore.currentUser?.id, let target = targetUserId else {
+  private var iscurEBkozQ20RhjLpi: Bool {
+    guard let L87hYUrRiqE1D1 = KEVEKJrKGZLAbj.curp11O3LYjA9ooct?.id, let target = taruid2Sg5sI6pldAN9X
+    else {
       return false
     }
-    return current == target
+    return L87hYUrRiqE1D1 == target
   }
 
-  private var user: UserModel? {
-    guard let uid = targetUserId else { return nil }
-    return appDataStore.data.adUr9Mz3Qc.first(where: { $0.id == uid })
+  private var RgXM4H9N7aFqvk: UserteYT4uBeg4ObJP? {
+    guard let UnaEEIAkzIgnBi = taruid2Sg5sI6pldAN9X else { return nil }
+    return KEVEKJrKGZLAbj.izHqrtotvfHu1g.adUr9Mz3Qc.first(where: { $0.id == UnaEEIAkzIgnBi })
   }
 
-  private var posts: [CommunityPostModel] {
-    guard let uid = targetUserId else { return [] }
-    return appDataStore.filteredCommunityPosts.filter { $0.pUp4Mx7Cs == uid }
+  private var p3nTYYmHTquNBDx: [CPolpIKsl1mUtFVfy] {
+    guard let UnaEEIAkzIgnBi = taruid2Sg5sI6pldAN9X else { return [] }
+    return KEVEKJrKGZLAbj.filpostsyoSdYIQh87ZAr.filter { $0.pUp4Mx7Cs == UnaEEIAkzIgnBi }
   }
 
-  /// 标签预设颜色（与发现页 CommunityPostCard 一致）
-  private let tagColors: [Color] = [
+  private let tg9POrJX0sSTURuL: [Color] = [
     Color(hex: "#CBED40"),
     Color(red: 0.95, green: 0.85, blue: 0.4),
     Color(red: 0.4, green: 0.6, blue: 0.95),
   ]
 
-  @State private var showReportBlockSheet: Bool = false
-  @State private var showReportSheet: Bool = false
+  @State private var bbIuOsWNXLbj56: Bool = false
+  @State private var iUwnZ8tkYHln8b: Bool = false
 
   #if DEBUG
     @ObserveInjection var redraw
@@ -54,9 +53,9 @@ struct ProfileView: View {
     MelyYemianScaffold(alignment: .top) {
       ScrollView {
         VStack(spacing: 0) {
-          headerView
-          postSectionHeader
-          if posts.isEmpty {
+          gOHPU0oPZ33K9X
+          B82tyTlYhPP59V
+          if p3nTYYmHTquNBDx.isEmpty {
             VStack {
               Spacer()
               EmptyZhanweiView()
@@ -64,16 +63,15 @@ struct ProfileView: View {
             }
             .frame(width: .infinity, height: 300)
           } else {
-            postListView
+            pliRtpOcmx9Pi126V
           }
         }
       }
       .ignoresSafeArea(edges: .top)
 
-      // Custom Navigation Bar
       HStack {
         Button(action: {
-          presentationMode.wrappedValue.dismiss()
+          q55RO0d3zIqjtb.wrappedValue.dismiss()
         }) {
           Image(systemName: "chevron.left")
             .font(.system(size: 18))
@@ -84,7 +82,7 @@ struct ProfileView: View {
 
         Spacer()
 
-        if isCurrentUser {
+        if iscurEBkozQ20RhjLpi {
           Button(action: {
             path.append(.settings)
           }) {
@@ -96,7 +94,7 @@ struct ProfileView: View {
           }
         } else {
           Button(action: {
-            showReportBlockSheet = true
+            bbIuOsWNXLbj56 = true
           }) {
             Image(systemName: "ellipsis")
               .font(.system(size: 20, weight: .bold))
@@ -109,16 +107,16 @@ struct ProfileView: View {
       .padding(.horizontal, 20)
     }
     .blorepEJWPcVqZsNi6EP(
-      isbloCY4jaarVfF0wpY: $showReportBlockSheet,
-      isrepppE4EmwOSEs9Cl: $showReportSheet,
+      isbloCY4jaarVfF0wpY: $bbIuOsWNXLbj56,
+      isrepppE4EmwOSEs9Cl: $iUwnZ8tkYHln8b,
       onOXhiQzKCNvCvG4Block: {
-        if let uid = targetUserId {
-          appDataStore.blockUser(uid: uid)
+        if let uid = taruid2Sg5sI6pldAN9X {
+          KEVEKJrKGZLAbj.boQkspadWNHlX2WBuser(uid: uid)
           path.removeAll()
         }
-        showReportBlockSheet = false
+        bbIuOsWNXLbj56 = false
       },
-      onReportSubmit: { _, _ in /* 举报用户 */ }
+      onReportSubmit: { _, _ in }
     )
     .navigationBarHidden(true)
     #if DEBUG
@@ -126,11 +124,10 @@ struct ProfileView: View {
     #endif
   }
 
-  // MARK: - Header View
-  private var headerView: some View {
+  private var gOHPU0oPZ33K9X: some View {
     ZStack(alignment: .bottom) {
       SmartImageView.namedOrPath(
-        user?.uQd8Nv5tK ?? "mely_defava", placeholder: Image("mely_defava")
+        RgXM4H9N7aFqvk?.uQd8Nv5tK ?? "mely_defava", placeholder: Image("mely_defava")
       )
       .frame(maxWidth: .infinity)
       .frame(height: 300)
@@ -138,7 +135,6 @@ struct ProfileView: View {
       .cornerRadius(40, corners: [.bottomLeft, .bottomRight])
       .ignoresSafeArea()
 
-      // Background Gradient
       LinearGradient(
         gradient: Gradient(colors: [Color.clear, Color(hex: "#FF1AB6")]),
         startPoint: .top,
@@ -149,26 +145,24 @@ struct ProfileView: View {
 
       VStack(spacing: 16) {
         HStack(spacing: 16) {
-          // Avatar
           ZStack {
             Circle()
               .stroke(Color.white.opacity(0.5), lineWidth: 2)
               .frame(width: 94, height: 94)
 
-            UserAvatarView(avatarSymbol: user?.uQd8Nv5tK ?? "mely_defava", size: 80)
+            UserAvatarView(avatarSymbol: RgXM4H9N7aFqvk?.uQd8Nv5tK ?? "mely_defava", size: 80)
               .overlay(Circle().stroke(Color.white, lineWidth: 2))
           }
 
-          // Name
           HStack(spacing: 20) {
-            Text(user?.uZp7Lm2cR ?? "User")
+            Text(RgXM4H9N7aFqvk?.uZp7Lm2cR ?? "User")
               .font(.custom("Hanchansans-Medium", size: 24))
               .foregroundColor(.white)
 
-            if !isCurrentUser {
+            if !iscurEBkozQ20RhjLpi {
               Button {
-                guard let otherId = targetUserId,
-                  let convId = appDataStore.getOrCreateConversation(with: otherId)
+                guard let otherId = taruid2Sg5sI6pldAN9X,
+                  let convId = KEVEKJrKGZLAbj.getOrCreateConversation(with: otherId)
                 else { return }
                 path.append(.chatDetail(conversationId: convId))
               } label: {
@@ -187,15 +181,14 @@ struct ProfileView: View {
         }
         .padding(.horizontal, 20)
 
-        // Stats
         HStack(spacing: 0) {
           HStack(spacing: 20) {
-            if isCurrentUser {
+            if iscurEBkozQ20RhjLpi {
               Button {
-                path.append(.userList(.followers))
+                path.append(.userList(.fwhRmiekN92I0G5h))
               } label: {
                 VStack(spacing: 4) {
-                  Text("\(user?.uFm7Xr8Lp.count ?? 0)")
+                  Text("\(RgXM4H9N7aFqvk?.uFm7Xr8Lp.count ?? 0)")
                     .font(.custom("Hanchansans-Medium", size: 18))
                     .foregroundColor(.white)
                   Text("Followers")
@@ -210,10 +203,10 @@ struct ProfileView: View {
                 .frame(width: 2, height: 26)
 
               Button {
-                path.append(.userList(.following))
+                path.append(.userList(.foMMHt0OAJAUpn9v))
               } label: {
                 VStack(spacing: 4) {
-                  Text("\(user?.uFn3Te6Qb.count ?? 0)")
+                  Text("\(RgXM4H9N7aFqvk?.uFn3Te6Qb.count ?? 0)")
                     .font(.custom("Hanchansans-Medium", size: 18))
                     .foregroundColor(.white)
                   Text("Following")
@@ -224,7 +217,7 @@ struct ProfileView: View {
               .buttonStyle(.plain)
             } else {
               VStack(spacing: 4) {
-                Text("\(user?.uFm7Xr8Lp.count ?? 0)")
+                Text("\(RgXM4H9N7aFqvk?.uFm7Xr8Lp.count ?? 0)")
                   .font(.custom("Hanchansans-Medium", size: 18))
                   .foregroundColor(.white)
                 Text("Followers")
@@ -237,7 +230,7 @@ struct ProfileView: View {
                 .frame(width: 2, height: 26)
 
               VStack(spacing: 4) {
-                Text("\(user?.uFn3Te6Qb.count ?? 0)")
+                Text("\(RgXM4H9N7aFqvk?.uFn3Te6Qb.count ?? 0)")
                   .font(.custom("Hanchansans-Medium", size: 18))
                   .foregroundColor(.white)
                 Text("Following")
@@ -249,15 +242,14 @@ struct ProfileView: View {
 
           Spacer()
 
-          // Action Button
-          if isCurrentUser {
+          if iscurEBkozQ20RhjLpi {
             Button(action: { path.append(.wallet) }) {
               HStack {
                 Image("mkirgxytewig_diamond")
                   .resizable()
                   .frame(width: 24, height: 24)
                   .foregroundColor(.blue)
-                Text("\(user?.uDg2Jy5Wx ?? 0)")
+                Text("\(RgXM4H9N7aFqvk?.uDg2Jy5Wx ?? 0)")
                   .font(.custom("Hanchansans-Medium", size: 18))
                   .foregroundColor(.black)
               }
@@ -267,16 +259,17 @@ struct ProfileView: View {
               .cornerRadius(20)
             }
           } else {
-            let isFollowingTarget = (targetUserId.map { appDataStore.isFollowing($0) } ?? false)
+            let isfo4hwjh4tl3l0K0k =
+              (taruid2Sg5sI6pldAN9X.map { KEVEKJrKGZLAbj.isfings9wxsR6YeqeKUh($0) } ?? false)
             Button(action: {
-              guard let uid = targetUserId else { return }
-              if isFollowingTarget {
-                appDataStore.unfollowUser(uid: uid)
+              guard let uid = taruid2Sg5sI6pldAN9X else { return }
+              if isfo4hwjh4tl3l0K0k {
+                KEVEKJrKGZLAbj.unfowtfG415dyvn173J(uid: uid)
               } else {
-                appDataStore.followUser(uid: uid)
+                KEVEKJrKGZLAbj.fowus97mjk3D9vlxCqB(uid: uid)
               }
             }) {
-              Text(isFollowingTarget ? "Following" : "Follow")
+              Text(isfo4hwjh4tl3l0K0k ? "Following" : "Follow")
                 .font(.custom("Hanchansans-Medium", size: 17))
                 .foregroundColor(.black)
                 .padding(.horizontal, 18)
@@ -289,12 +282,10 @@ struct ProfileView: View {
         .padding(.horizontal, 30)
         .padding(.bottom, 30)
       }
-      // .padding(.top, 40)
     }
   }
 
-  // MARK: - Post Section Header
-  private var postSectionHeader: some View {
+  private var B82tyTlYhPP59V: some View {
     HStack {
       Text("Post")
         .font(.custom("Hanchansans-Medium", size: 24))
@@ -310,31 +301,29 @@ struct ProfileView: View {
     .padding(.bottom, 20)
   }
 
-  // MARK: - Post List View
-
-  private var postListView: some View {
+  private var pliRtpOcmx9Pi126V: some View {
     LazyVStack(spacing: 20) {
-      ForEach(posts) { post in
+      ForEach(p3nTYYmHTquNBDx) { post in
         NavigationLink(value: MainRoute.communityPostDetail(postId: post.id)) {
-          CommunityPostCard(
+          CpaMpDIlzProK1ZOA(
             path: $path,
-            post: post,
-            user: appDataStore.data.adUr9Mz3Qc.first(where: { $0.id == post.pUp4Mx7Cs }),
-            tagColors: tagColors
+            pofZkHvcyDiX6dl9: post,
+            o4d7Zwj7OPRoJi: KEVEKJrKGZLAbj.izHqrtotvfHu1g.adUr9Mz3Qc.first(where: { $0.id == post.pUp4Mx7Cs }
+            ),
+            AAoY4jFg3z1T8z: tg9POrJX0sSTURuL
           )
         }
         .buttonStyle(.plain)
       }
     }
     .padding(.horizontal, 16)
-    .padding(.bottom, 100)  // Bottom padding for tab bar
+    .padding(.bottom, 100)
   }
 }
 
-// Helper for rounded corners
 extension View {
-  func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-    clipShape(RoundedCorner(radius: radius, corners: corners))
+  func cornerRadius(_ ouj3szwe9Ot9AX: CGFloat, corners: UIRectCorner) -> some View {
+    clipShape(RoundedCorner(radius: ouj3szwe9Ot9AX, corners: corners))
   }
 }
 
@@ -352,7 +341,6 @@ struct RoundedCorner: Shape {
   }
 }
 
-// Helper for Hex Color
 extension Color {
   init(hex: String) {
     let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
@@ -363,11 +351,11 @@ extension Color {
     let g: UInt64
     let b: UInt64
     switch hex.count {
-    case 3:  // RGB (12-bit)
+    case 3:
       (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-    case 6:  // RGB (24-bit)
+    case 6:
       (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-    case 8:  // ARGB (32-bit)
+    case 8:
       (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
     default:
       (a, r, g, b) = (1, 1, 1, 0)

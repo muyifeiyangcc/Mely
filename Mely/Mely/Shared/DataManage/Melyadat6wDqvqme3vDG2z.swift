@@ -1,6 +1,6 @@
 import Foundation
 
-struct UserModel: Identifiable, Codable, Equatable {
+struct UserteYT4uBeg4ObJP: Identifiable, Codable, Equatable {
   let id: String
   var uZp7Lm2cR: String
   var uQd8Nv5tK: String
@@ -90,7 +90,7 @@ struct UserModel: Identifiable, Codable, Equatable {
   }
 }
 
-struct ConversationModel: Identifiable, Codable, Equatable {
+struct Convs8RlUjf8GEZRmYA: Identifiable, Codable, Equatable {
   let id: String
   let cPu3Ks1Zx: [String]
   var cLm6Er8Cv: String?
@@ -132,7 +132,7 @@ struct ConversationModel: Identifiable, Codable, Equatable {
   }
 }
 
-struct MessageModel: Identifiable, Codable, Equatable {
+struct MSgOumAbwJ0MP1dZO: Identifiable, Codable, Equatable {
   enum MessageType: String, Codable, Equatable {
     case text
     case emoji
@@ -216,7 +216,7 @@ struct MessageModel: Identifiable, Codable, Equatable {
   var isImage: Bool { mTy9Gh1Qb == .image }
 }
 
-struct DanceChallenge: Identifiable, Codable, Equatable {
+struct DancozZ6LtwXHtlqPu: Identifiable, Codable, Equatable {
   let id: String
   let dUr4Mp7Ks: String
   let dTt6Lf2Vb: String
@@ -282,7 +282,7 @@ struct DanceChallenge: Identifiable, Codable, Equatable {
   }
 }
 
-struct ChallengeVideo: Identifiable, Codable, Equatable {
+struct Chalvdngt3SE6MdwaZYu: Identifiable, Codable, Equatable {
   let id: String
   let vCh4Ne7Lp: String
   let vUv6Fr1Qd: String
@@ -357,7 +357,7 @@ struct ChallengeVideo: Identifiable, Codable, Equatable {
 
 }
 
-struct CommunityPostModel: Identifiable, Codable, Equatable {
+struct CPolpIKsl1mUtFVfy: Identifiable, Codable, Equatable {
   let id: String
   let pUp4Mx7Cs: String
   let pIn6Fw1Zd: String
@@ -483,14 +483,14 @@ struct CommunityCommentModel: Identifiable, Codable, Equatable {
   }
 }
 
-struct AppData: Codable, Equatable {
-  var adUr9Mz3Qc: [UserModel]
-  var adCh2Hx7Wn: [DanceChallenge]
-  var adCv5Jt8Lp: [ChallengeVideo]
-  var adPs6Gk1Rv: [CommunityPostModel]
+struct AdatJc1Zwhy2Od8kjZ: Codable, Equatable {
+  var adUr9Mz3Qc: [UserteYT4uBeg4ObJP]
+  var adCh2Hx7Wn: [DancozZ6LtwXHtlqPu]
+  var adCv5Jt8Lp: [Chalvdngt3SE6MdwaZYu]
+  var adPs6Gk1Rv: [CPolpIKsl1mUtFVfy]
   var adCm3Bc9Nx: [CommunityCommentModel]
-  var adCo7Df2Qs: [ConversationModel]
-  var adMs8Lw4Ty: [MessageModel]
+  var adCo7Df2Qs: [Convs8RlUjf8GEZRmYA]
+  var adMs8Lw4Ty: [MSgOumAbwJ0MP1dZO]
   var adCu1Zp6Hm: String?
   var adQk4Nr9Vx: String? = nil
   var adHa2Yt5Jb: Bool = false
@@ -519,13 +519,13 @@ struct AppData: Codable, Equatable {
   }
 
   init(
-    _ adUr9Mz3Qc: [UserModel],
-    _ adCh2Hx7Wn: [DanceChallenge],
-    _ adCv5Jt8Lp: [ChallengeVideo],
-    _ adPs6Gk1Rv: [CommunityPostModel],
+    _ adUr9Mz3Qc: [UserteYT4uBeg4ObJP],
+    _ adCh2Hx7Wn: [DancozZ6LtwXHtlqPu],
+    _ adCv5Jt8Lp: [Chalvdngt3SE6MdwaZYu],
+    _ adPs6Gk1Rv: [CPolpIKsl1mUtFVfy],
     _ adCm3Bc9Nx: [CommunityCommentModel],
-    _ adCo7Df2Qs: [ConversationModel],
-    _ adMs8Lw4Ty: [MessageModel],
+    _ adCo7Df2Qs: [Convs8RlUjf8GEZRmYA],
+    _ adMs8Lw4Ty: [MSgOumAbwJ0MP1dZO],
     _ adCu1Zp6Hm: String?,
     _ adQk4Nr9Vx: String? = nil,
     _ adHa2Yt5Jb: Bool = false
@@ -544,33 +544,33 @@ struct AppData: Codable, Equatable {
 
   init(from decoder: Decoder) throws {
     let c = try decoder.container(keyedBy: CodingKeys.self)
-    if let v = try? c.decode([UserModel].self, forKey: .adUr9Mz3Qc) {
+    if let v = try? c.decode([UserteYT4uBeg4ObJP].self, forKey: .adUr9Mz3Qc) {
       adUr9Mz3Qc = v
     } else {
-      adUr9Mz3Qc = try c.decode([UserModel].self, forKey: .legacyUsers)
+      adUr9Mz3Qc = try c.decode([UserteYT4uBeg4ObJP].self, forKey: .legacyUsers)
     }
     adCh2Hx7Wn =
-      (try? c.decodeIfPresent([DanceChallenge].self, forKey: .adCh2Hx7Wn))
-      ?? (try? c.decodeIfPresent([DanceChallenge].self, forKey: .legacyChallenges)) ?? []
+      (try? c.decodeIfPresent([DancozZ6LtwXHtlqPu].self, forKey: .adCh2Hx7Wn))
+      ?? (try? c.decodeIfPresent([DancozZ6LtwXHtlqPu].self, forKey: .legacyChallenges)) ?? []
     adCv5Jt8Lp =
-      (try? c.decodeIfPresent([ChallengeVideo].self, forKey: .adCv5Jt8Lp))
-      ?? (try? c.decodeIfPresent([ChallengeVideo].self, forKey: .legacyChallengeVideos)) ?? []
+      (try? c.decodeIfPresent([Chalvdngt3SE6MdwaZYu].self, forKey: .adCv5Jt8Lp))
+      ?? (try? c.decodeIfPresent([Chalvdngt3SE6MdwaZYu].self, forKey: .legacyChallengeVideos)) ?? []
     adPs6Gk1Rv =
-      (try? c.decodeIfPresent([CommunityPostModel].self, forKey: .adPs6Gk1Rv))
-      ?? (try? c.decodeIfPresent([CommunityPostModel].self, forKey: .legacyCommunityPosts)) ?? []
+      (try? c.decodeIfPresent([CPolpIKsl1mUtFVfy].self, forKey: .adPs6Gk1Rv))
+      ?? (try? c.decodeIfPresent([CPolpIKsl1mUtFVfy].self, forKey: .legacyCommunityPosts)) ?? []
     adCm3Bc9Nx =
       (try? c.decodeIfPresent([CommunityCommentModel].self, forKey: .adCm3Bc9Nx))
       ?? (try? c.decodeIfPresent([CommunityCommentModel].self, forKey: .legacyCommunityComments))
       ?? []
-    if let v = try? c.decode([ConversationModel].self, forKey: .adCo7Df2Qs) {
+    if let v = try? c.decode([Convs8RlUjf8GEZRmYA].self, forKey: .adCo7Df2Qs) {
       adCo7Df2Qs = v
     } else {
-      adCo7Df2Qs = try c.decode([ConversationModel].self, forKey: .legacyConversations)
+      adCo7Df2Qs = try c.decode([Convs8RlUjf8GEZRmYA].self, forKey: .legacyConversations)
     }
-    if let v = try? c.decode([MessageModel].self, forKey: .adMs8Lw4Ty) {
+    if let v = try? c.decode([MSgOumAbwJ0MP1dZO].self, forKey: .adMs8Lw4Ty) {
       adMs8Lw4Ty = v
     } else {
-      adMs8Lw4Ty = try c.decode([MessageModel].self, forKey: .legacyMessages)
+      adMs8Lw4Ty = try c.decode([MSgOumAbwJ0MP1dZO].self, forKey: .legacyMessages)
     }
     adCu1Zp6Hm =
       (try? c.decodeIfPresent(String.self, forKey: .adCu1Zp6Hm))

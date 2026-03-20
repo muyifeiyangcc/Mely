@@ -1,5 +1,5 @@
 //
-//  UserListView.swift
+//  FilulistxLM01tqmx9RvFN.swift
 //  Mely
 //
 //  Created by yangyang on 2026/3/11.
@@ -7,46 +7,44 @@
 
 import SwiftUI
 
-/// 用户列表类型：拉黑列表、关注列表、粉丝列表
-enum UserListType: Hashable {
-  case blocklist
-  case following
-  case followers
+enum UstzJWuwZtLDItVHl: Hashable {
+  case boU8usEO7k4XTyO4
+  case foMMHt0OAJAUpn9v
+  case fwhRmiekN92I0G5h
 
   var title: String {
     switch self {
-    case .blocklist: return "Blocklist"
-    case .following: return "Following"
-    case .followers: return "Followers"
+    case .boU8usEO7k4XTyO4: return "Blocklist"
+    case .foMMHt0OAJAUpn9v: return "Following"
+    case .fwhRmiekN92I0G5h: return "Followers"
     }
   }
 }
 
-struct UserListView: View {
-  @EnvironmentObject private var appDataStore: AppDataStore
+struct FilulistxLM01tqmx9RvFN: View {
+  @EnvironmentObject private var oRMseBC0wsL8zO: MelystoreWpvugHy89HDWLR
   @Environment(\.dismiss) private var dismiss
   @Binding var path: [MainRoute]
 
-  let listType: UserListType
+  let lstyKEt8B9er18SA63: UstzJWuwZtLDItVHl
 
-  private var currentUser: UserModel? {
-    appDataStore.currentUser
+  private var TvM5adRXwervyz: UserteYT4uBeg4ObJP? {
+    oRMseBC0wsL8zO.curp11O3LYjA9ooct
   }
 
-  /// 当前列表的用户 id 数组（关注/粉丝列表排除已拉黑用户）
-  private var userIds: [String] {
-    guard let user = currentUser else { return [] }
-    let blocked = Set(user.uBh9Ca1Zs)
-    switch listType {
-    case .blocklist: return user.uBh9Ca1Zs
-    case .following: return user.uFn3Te6Qb.filter { !blocked.contains($0) }
-    case .followers: return user.uFm7Xr8Lp.filter { !blocked.contains($0) }
+  private var RiLY4U8UtAJKjF: [String] {
+    guard let ur8IBdVjiT9UUK3p = TvM5adRXwervyz else { return [] }
+    let blocked = Set(ur8IBdVjiT9UUK3p.uBh9Ca1Zs)
+    switch lstyKEt8B9er18SA63 {
+    case .boU8usEO7k4XTyO4: return ur8IBdVjiT9UUK3p.uBh9Ca1Zs
+    case .foMMHt0OAJAUpn9v: return ur8IBdVjiT9UUK3p.uFn3Te6Qb.filter { !blocked.contains($0) }
+    case .fwhRmiekN92I0G5h: return ur8IBdVjiT9UUK3p.uFm7Xr8Lp.filter { !blocked.contains($0) }
     }
   }
 
-  private var users: [UserModel] {
-    userIds.compactMap { uid in
-      appDataStore.data.adUr9Mz3Qc.first { $0.id == uid }
+  private var usersBfGOefqZwrr7G8: [UserteYT4uBeg4ObJP] {
+    RiLY4U8UtAJKjF.compactMap { uid in
+      oRMseBC0wsL8zO.izHqrtotvfHu1g.adUr9Mz3Qc.first { $0.id == uid }
     }
   }
 
@@ -57,8 +55,8 @@ struct UserListView: View {
   var body: some View {
     MelyYemianScaffold {
       VStack(spacing: 0) {
-        navigationBar
-        if users.isEmpty {
+        bav9RbdMPbtSUG9Pa
+        if usersBfGOefqZwrr7G8.isEmpty {
           VStack {
             Spacer()
             EmptyZhanweiView()
@@ -67,7 +65,7 @@ struct UserListView: View {
           .padding(.bottom, 60)
           .frame(width: .infinity, height: .infinity)
         } else {
-          userListView
+          ustvGpET3dLNSp6qGT
         }
       }
     }
@@ -77,9 +75,7 @@ struct UserListView: View {
     #endif
   }
 
-  // MARK: - Navigation Bar
-
-  private var navigationBar: some View {
+  private var bav9RbdMPbtSUG9Pa: some View {
     ZStack {
       HStack {
         Button {
@@ -94,7 +90,7 @@ struct UserListView: View {
 
         Spacer()
 
-        Text(listType.title)
+        Text(lstyKEt8B9er18SA63.title)
           .font(.custom("Hanchansans-Medium", size: 20))
           .foregroundColor(.white)
 
@@ -108,25 +104,23 @@ struct UserListView: View {
     }
   }
 
-  // MARK: - User List
-
-  private var userListView: some View {
+  private var ustvGpET3dLNSp6qGT: some View {
     ScrollView {
       LazyVStack(spacing: 0) {
-        ForEach(users) { user in
-          userRow(user: user)
+        ForEach(usersBfGOefqZwrr7G8) { user in
+          uroJav04aG7l5hX6o(uY1UQ2rEegxEUx4: user)
         }
       }
       .padding(.horizontal, 20)
     }
   }
 
-  private func userRow(user: UserModel) -> some View {
+  private func uroJav04aG7l5hX6o(uY1UQ2rEegxEUx4: UserteYT4uBeg4ObJP) -> some View {
     HStack(spacing: 16) {
       Button {
-        path.append(.userProfile(userId: user.id))
+        path.append(.userProfile(userId: uY1UQ2rEegxEUx4.id))
       } label: {
-        UserAvatarView(avatarSymbol: user.uQd8Nv5tK, size: 52)
+        UserAvatarView(avatarSymbol: uY1UQ2rEegxEUx4.uQd8Nv5tK, size: 52)
           .overlay {
             Circle().stroke(Color.white, lineWidth: 3)
           }
@@ -134,24 +128,24 @@ struct UserListView: View {
       }
       .buttonStyle(.plain)
 
-      Text(user.uZp7Lm2cR)
+      Text(uY1UQ2rEegxEUx4.uZp7Lm2cR)
         .font(.custom("Hanchansans-Medium", size: 18))
         .foregroundColor(.white)
 
       Spacer()
 
-      actionButton(for: user)
+      actionButton(for: uY1UQ2rEegxEUx4)
     }
     .padding(.vertical, 12)
     .cornerRadius(14)
   }
 
   @ViewBuilder
-  private func actionButton(for user: UserModel) -> some View {
-    switch listType {
-    case .blocklist:
+  private func actionButton(for u5ngT13EcSj71yh: UserteYT4uBeg4ObJP) -> some View {
+    switch lstyKEt8B9er18SA63 {
+    case .boU8usEO7k4XTyO4:
       Button {
-        appDataStore.unblockUser(uid: user.id)
+        oRMseBC0wsL8zO.unbol09gWb9KvHD4JjV(uid: u5ngT13EcSj71yh.id)
       } label: {
         Text("Cancel")
           .font(.custom("Hanchansans-Medium", size: 16))
@@ -163,9 +157,9 @@ struct UserListView: View {
       }
       .buttonStyle(.plain)
 
-    case .following:
+    case .foMMHt0OAJAUpn9v:
       Button {
-        appDataStore.unfollowUser(uid: user.id)
+        oRMseBC0wsL8zO.unfowtfG415dyvn173J(uid: u5ngT13EcSj71yh.id)
       } label: {
         Image(systemName: "checkmark")
           .font(.system(size: 16, weight: .bold))
@@ -176,17 +170,17 @@ struct UserListView: View {
       }
       .buttonStyle(.plain)
 
-    case .followers:
-      let isFollowing = appDataStore.isFollowing(user.id)
+    case .fwhRmiekN92I0G5h:
+      let ifowDquL93Oyoias9i = oRMseBC0wsL8zO.isfings9wxsR6YeqeKUh(u5ngT13EcSj71yh.id)
       Button {
-        if isFollowing {
-          appDataStore.unfollowUser(uid: user.id)
+        if ifowDquL93Oyoias9i {
+          oRMseBC0wsL8zO.unfowtfG415dyvn173J(uid: u5ngT13EcSj71yh.id)
         } else {
-          appDataStore.followUser(uid: user.id)
+          oRMseBC0wsL8zO.fowus97mjk3D9vlxCqB(uid: u5ngT13EcSj71yh.id)
         }
       } label: {
         Group {
-          if isFollowing {
+          if ifowDquL93Oyoias9i {
             Image(systemName: "checkmark")
               .font(.system(size: 16, weight: .bold))
               .foregroundColor(.white)

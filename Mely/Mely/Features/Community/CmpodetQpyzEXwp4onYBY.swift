@@ -1,5 +1,5 @@
 //
-//  CommunityPostDetailView.swift
+//  CmpodetQpyzEXwp4onYBY.swift
 //  Mely
 //
 //  Created by yangyang on 2026/3/6.
@@ -7,40 +7,39 @@
 
 import SwiftUI
 
-let emojiOptions: [String] = [
+let emjisAHQtz5uCuPbbIu: [String] = [
   "aobfkwhdzahn1", "aobfkwhdzahn2", "aobfkwhdzahn3", "aobfkwhdzahn4", "aobfkwhdzahn5",
   "aobfkwhdzahn6",
 ]
 
-struct CommunityPostDetailView: View {
-  @EnvironmentObject private var appDataStore: AppDataStore
+struct CmpodetQpyzEXwp4onYBY: View {
+  @EnvironmentObject private var a0LnGRpMUTEb4cr: MelystoreWpvugHy89HDWLR
   @Environment(\.dismiss) private var dismiss
   @Binding var path: [MainRoute]
 
-  let postId: String
+  let pid9gUnNcPrwJPjHW: String
 
   #if DEBUG
     @ObserveInjection var redraw
   #endif
 
-  @State private var commentText: String = ""
+  @State private var kjnx8Uvi77E48vc: String = ""
   @State private var isEmojiPanelPresented: Bool = false
-  @State private var showReportBlockSheet: Bool = false
-  @State private var showReportSheet: Bool = false
-  /// 当前举报/拉黑的目标用户 id（顶部栏为帖子作者，评论项为评论作者）
-  @State private var reportBlockTargetUserId: String?
+  @State private var sreN4urCKrhJdenBf: Bool = false
+  @State private var srvYYbh6ra6662jjM: Bool = false
+  @State private var rtlF2o5WZoMahyXv: String?
 
-  private var post: CommunityPostModel? {
-    appDataStore.filteredCommunityPosts.first(where: { $0.id == postId })
+  private var popstE9bQRKjoXFrBEr: CPolpIKsl1mUtFVfy? {
+    a0LnGRpMUTEb4cr.filpostsyoSdYIQh87ZAr.first(where: { $0.id == pid9gUnNcPrwJPjHW })
   }
 
-  private var author: UserModel? {
-    guard let userId = post?.pUp4Mx7Cs else { return nil }
-    return appDataStore.data.adUr9Mz3Qc.first(where: { $0.id == userId })
+  private var aut2tvtfrs6kDO0fY: UserteYT4uBeg4ObJP? {
+    guard let userId = popstE9bQRKjoXFrBEr?.pUp4Mx7Cs else { return nil }
+    return a0LnGRpMUTEb4cr.izHqrtotvfHu1g.adUr9Mz3Qc.first(where: { $0.id == userId })
   }
 
-  private var comments: [CommunityCommentModel] {
-    appDataStore.filteredCommunityComments(postId: postId)
+  private var stmsAqn6NfSFbApR1C: [CommunityCommentModel] {
+    a0LnGRpMUTEb4cr.filcommsaK2Y3ya7K6GDsB(postId: pid9gUnNcPrwJPjHW)
   }
 
   var body: some View {
@@ -53,7 +52,7 @@ struct CommunityPostDetailView: View {
       }
     ) {
       VStack(spacing: 0) {
-        if let post {
+        if let popstE9bQRKjoXFrBEr {
           ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 20) {
               Rectangle()
@@ -61,7 +60,7 @@ struct CommunityPostDetailView: View {
                 .frame(height: UIScreen.main.bounds.height * 0.5)
                 .frame(maxWidth: .infinity)
                 .overlay {
-                  SmartImageView.namedOrPath(post.pIn6Fw1Zd)
+                  SmartImageView.namedOrPath(popstE9bQRKjoXFrBEr.pIn6Fw1Zd)
                 }
                 .clipShape(
                   UnevenRoundedRectangle(
@@ -74,16 +73,13 @@ struct CommunityPostDetailView: View {
                 )
                 .ignoresSafeArea()
 
-              authorSection(for: post)
+              athNGt8tfyOeeLaS2(for: popstE9bQRKjoXFrBEr)
                 .padding(.horizontal, 20)
-              commentsSection
+              n4PctP54OZhIFy
                 .padding(.horizontal, 20)
             }
             .padding(.bottom, 80)
           }
-        } else {
-          Text("帖子已不存在。")
-            .foregroundColor(.white)
         }
       }
       .ignoresSafeArea(edges: .top)
@@ -92,34 +88,33 @@ struct CommunityPostDetailView: View {
         MelyTopBarView(
           title: "",
           onBack: { dismiss() },
-          onMoreTap: post?.pUp4Mx7Cs != appDataStore.currentUser?.id
+          onMoreTap: popstE9bQRKjoXFrBEr?.pUp4Mx7Cs != a0LnGRpMUTEb4cr.curp11O3LYjA9ooct?.id
             ? {
-              reportBlockTargetUserId = post?.pUp4Mx7Cs
-              showReportBlockSheet = true
+              rtlF2o5WZoMahyXv = popstE9bQRKjoXFrBEr?.pUp4Mx7Cs
+              sreN4urCKrhJdenBf = true
             } : nil
         )
 
         Spacer()
       }
 
-      commentInputBar
-      // .offset(y: isEmojiPanelPresented ? -80 : 0)
+      AurQSBhGhb2mXw
 
     }
     .blorepEJWPcVqZsNi6EP(
-      isbloCY4jaarVfF0wpY: $showReportBlockSheet,
-      isrepppE4EmwOSEs9Cl: $showReportSheet,
+      isbloCY4jaarVfF0wpY: $sreN4urCKrhJdenBf,
+      isrepppE4EmwOSEs9Cl: $srvYYbh6ra6662jjM,
       onOXhiQzKCNvCvG4Block: {
-        let target = reportBlockTargetUserId
-        if let uid = target {
-          appDataStore.blockUser(uid: uid)
+        let F7A2v4SikT5Qm4 = rtlF2o5WZoMahyXv
+        if let uid = F7A2v4SikT5Qm4 {
+          a0LnGRpMUTEb4cr.boQkspadWNHlX2WBuser(uid: uid)
           path.removeAll()
         }
-        reportBlockTargetUserId = nil
-        showReportBlockSheet = false
+        rtlF2o5WZoMahyXv = nil
+        sreN4urCKrhJdenBf = false
       },
-      onReportSubmit: { _, _ in reportBlockTargetUserId = nil },
-      onCancel: { reportBlockTargetUserId = nil }
+      onReportSubmit: { _, _ in rtlF2o5WZoMahyXv = nil },
+      onCancel: { rtlF2o5WZoMahyXv = nil }
     )
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
@@ -128,23 +123,23 @@ struct CommunityPostDetailView: View {
     #endif
   }
 
-  private func authorSection(for post: CommunityPostModel) -> some View {
+  private func athNGt8tfyOeeLaS2(for A3TpMQLtoMUMZp: CPolpIKsl1mUtFVfy) -> some View {
     VStack(alignment: .leading, spacing: 12) {
       HStack(spacing: 10) {
-        if let author {
+        if let aut2tvtfrs6kDO0fY {
           Circle()
             .fill(Color.white.opacity(0.25))
             .overlay {
-              UserAvatarView(avatarSymbol: author.uQd8Nv5tK, size: 50)
+              UserAvatarView(avatarSymbol: aut2tvtfrs6kDO0fY.uQd8Nv5tK, size: 50)
                 .clipShape(Circle())
             }
             .frame(width: 50, height: 50)
 
           VStack(alignment: .leading, spacing: 4) {
-            Text(author.uZp7Lm2cR)
+            Text(aut2tvtfrs6kDO0fY.uZp7Lm2cR)
               .font(.custom("Hanchansans-Medium", size: 18))
               .foregroundColor(.white)
-            Text(post.dateString)
+            Text(A3TpMQLtoMUMZp.dateString)
               .font(.custom("Hanchansans-Medium", size: 13))
               .foregroundColor(.white.opacity(0.7))
           }
@@ -152,14 +147,13 @@ struct CommunityPostDetailView: View {
 
         Spacer()
 
-        // 关注/取关按钮（作者本人不显示）
-        if let author, author.id != appDataStore.currentUser?.id {
-          let isFollowingAuthor = appDataStore.isFollowing(author.id)
-          Button(isFollowingAuthor ? "Following" : "Follow") {
-            if isFollowingAuthor {
-              appDataStore.unfollowUser(uid: author.id)
+        if let aut2tvtfrs6kDO0fY, aut2tvtfrs6kDO0fY.id != a0LnGRpMUTEb4cr.curp11O3LYjA9ooct?.id {
+          let isfohW7WBRMEMW7nsb = a0LnGRpMUTEb4cr.isfings9wxsR6YeqeKUh(aut2tvtfrs6kDO0fY.id)
+          Button(isfohW7WBRMEMW7nsb ? "Following" : "Follow") {
+            if isfohW7WBRMEMW7nsb {
+              a0LnGRpMUTEb4cr.unfowtfG415dyvn173J(uid: aut2tvtfrs6kDO0fY.id)
             } else {
-              appDataStore.followUser(uid: author.id)
+              a0LnGRpMUTEb4cr.fowus97mjk3D9vlxCqB(uid: aut2tvtfrs6kDO0fY.id)
             }
           }
           .font(.custom("Hanchansans-Medium", size: 16))
@@ -173,14 +167,14 @@ struct CommunityPostDetailView: View {
         }
       }
 
-      Text(post.pDs2Hv8Qp)
+      Text(A3TpMQLtoMUMZp.pDs2Hv8Qp)
         .font(.custom("Hanchansans-Medium", size: 16))
         .foregroundColor(.white)
 
     }
   }
 
-  private var commentsSection: some View {
+  private var n4PctP54OZhIFy: some View {
     VStack(alignment: .leading, spacing: 12) {
       HStack(spacing: 6) {
         Text("Comments")
@@ -192,18 +186,18 @@ struct CommunityPostDetailView: View {
       }
       .padding(.bottom, 10)
 
-      if comments.isEmpty {
+      if stmsAqn6NfSFbApR1C.isEmpty {
         EmptyZhanweiView()
           .padding(.bottom, 40)
           .frame(width: .infinity, height: .infinity)
       } else {
-        ForEach(comments) { comment in
-          CommentRow(
-            comment: comment,
-            user: appDataStore.data.adUr9Mz3Qc.first { $0.id == comment.cmUc6Fr1Qx },
-            onMoreTap: {
-              reportBlockTargetUserId = comment.cmUc6Fr1Qx
-              showReportBlockSheet = true
+        ForEach(stmsAqn6NfSFbApR1C) { cm4KBiGtjxqNtPre in
+          Cv2JxLMIHCy1Dd(
+            JCkEARIElJTIwV: cm4KBiGtjxqNtPre,
+            urBVtuqDvvWrViAA: a0LnGRpMUTEb4cr.izHqrtotvfHu1g.adUr9Mz3Qc.first { $0.id == cm4KBiGtjxqNtPre.cmUc6Fr1Qx },
+            onqsurdAvUtLC03S: {
+              rtlF2o5WZoMahyXv = cm4KBiGtjxqNtPre.cmUc6Fr1Qx
+              sreN4urCKrhJdenBf = true
             }
           )
         }
@@ -211,7 +205,7 @@ struct CommunityPostDetailView: View {
     }
   }
 
-  private var commentInputBar: some View {
+  private var AurQSBhGhb2mXw: some View {
     VStack {
       if isEmojiPanelPresented {
         emojiPanel
@@ -222,7 +216,7 @@ struct CommunityPostDetailView: View {
         HStack {
           TextField(
             "",
-            text: $commentText,
+            text: $kjnx8Uvi77E48vc,
             prompt: Text("Add comment").foregroundColor(Color.gray)
           )
           .font(.custom("Hanchansans-Medium", size: 16))
@@ -232,7 +226,7 @@ struct CommunityPostDetailView: View {
           .submitLabel(.done)
 
           Button {
-            sendComment()
+            sendD3BjXIHOcdGed4()
             UIApplication.shared.sendAction(
               #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
           } label: {
@@ -246,8 +240,6 @@ struct CommunityPostDetailView: View {
         .clipShape(Capsule())
 
         Button {
-          // isEmojiPanelPresented.toggle()
-          // withAnimation(.spring(response: 0.1, dampingFraction: 0.9)) {
           withAnimation(.easeInOut(duration: 0.22)) {
             isEmojiPanelPresented.toggle()
           }
@@ -259,7 +251,6 @@ struct CommunityPostDetailView: View {
       }
       .padding(.horizontal, 16)
       .padding(.top, 10)
-      // .padding(.vertical, 10)
     }
     .background(
       Color(red: 255 / 255, green: 26 / 255, blue: 182 / 255)
@@ -270,14 +261,14 @@ struct CommunityPostDetailView: View {
   private var emojiPanel: some View {
     HStack(spacing: 16) {
       Spacer()
-      ForEach(emojiOptions, id: \.self) { emoji in
+      ForEach(emjisAHQtz5uCuPbbIu, id: \.self) { VPboxKpPpUzceS in
         Button {
-          appDataStore.addCommunityComment(text: emoji, to: postId)
+          a0LnGRpMUTEb4cr.adcomTrPX4Y7I4j3Xj0(txtBWCckiMBZeExKZ: VPboxKpPpUzceS, to: pid9gUnNcPrwJPjHW)
           withAnimation(.easeInOut(duration: 0.18)) {
             isEmojiPanelPresented = false
           }
         } label: {
-          Image(emoji)
+          Image(VPboxKpPpUzceS)
             .resizable()
             .frame(width: 36, height: 36)
         }
@@ -292,18 +283,18 @@ struct CommunityPostDetailView: View {
     )
   }
 
-  private func sendComment() {
-    guard !commentText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
-    appDataStore.addCommunityComment(text: commentText, to: postId)
-    commentText = ""
+  private func sendD3BjXIHOcdGed4() {
+    guard !kjnx8Uvi77E48vc.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
+    a0LnGRpMUTEb4cr.adcomTrPX4Y7I4j3Xj0(txtBWCckiMBZeExKZ: kjnx8Uvi77E48vc, to: pid9gUnNcPrwJPjHW)
+    kjnx8Uvi77E48vc = ""
   }
 }
 
-private struct CommentRow: View {
-  @EnvironmentObject private var appDataStore: AppDataStore
-  let comment: CommunityCommentModel
-  let user: UserModel?
-  var onMoreTap: (() -> Void)?
+private struct Cv2JxLMIHCy1Dd: View {
+  @EnvironmentObject private var a0LnGRpMUTEb4cr: MelystoreWpvugHy89HDWLR
+  let JCkEARIElJTIwV: CommunityCommentModel
+  let urBVtuqDvvWrViAA: UserteYT4uBeg4ObJP?
+  var onqsurdAvUtLC03S: (() -> Void)?
 
   var body: some View {
     VStack(spacing: 0) {
@@ -311,8 +302,8 @@ private struct CommentRow: View {
         Circle()
           .fill(Color.white.opacity(0.25))
           .overlay {
-            if let user {
-              UserAvatarView(avatarSymbol: user.uQd8Nv5tK, size: 38)
+            if let urBVtuqDvvWrViAA {
+              UserAvatarView(avatarSymbol: urBVtuqDvvWrViAA.uQd8Nv5tK, size: 38)
                 .clipShape(Circle())
             }
           }
@@ -320,14 +311,14 @@ private struct CommentRow: View {
 
         VStack(alignment: .leading, spacing: 8) {
           HStack {
-            Text(user?.uZp7Lm2cR ?? "Username")
+            Text(urBVtuqDvvWrViAA?.uZp7Lm2cR ?? "Username")
               .font(.custom("Hanchansans-Medium", size: 18))
               .foregroundColor(.white)
             Spacer()
 
-            if user?.id != appDataStore.currentUser?.id {
+            if urBVtuqDvvWrViAA?.id != a0LnGRpMUTEb4cr.curp11O3LYjA9ooct?.id {
               Button {
-                onMoreTap?()
+                onqsurdAvUtLC03S?()
               } label: {
                 Image(systemName: "ellipsis")
                   .font(.system(size: 22))
@@ -340,30 +331,28 @@ private struct CommentRow: View {
           }
           .padding(.bottom, 4)
 
-          if comment.cmTx3Hv8Pd.hasPrefix("aobfkwhdzahn") {
-            Image(comment.cmTx3Hv8Pd)
+          if JCkEARIElJTIwV.cmTx3Hv8Pd.hasPrefix("aobfkwhdzahn") {
+            Image(JCkEARIElJTIwV.cmTx3Hv8Pd)
               .resizable()
               .frame(width: 36, height: 36)
           } else {
-            Text(comment.cmTx3Hv8Pd)
+            Text(JCkEARIElJTIwV.cmTx3Hv8Pd)
               .font(.subheadline)
               .foregroundColor(.white)
               .fixedSize(horizontal: false, vertical: true)
           }
 
-          Text(comment.dateString)
+          Text(JCkEARIElJTIwV.dateString)
             .font(.custom("Hanchansans-Medium", size: 13))
             .foregroundColor(.white.opacity(0.6))
         }
         .padding(.top, 6)
       }
 
-      // 分割线
       Divider()
         .background(Color.white)
         .padding(.top, 16)
         .padding(.bottom, 6)
     }
-
   }
 }

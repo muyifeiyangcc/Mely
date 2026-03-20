@@ -1,5 +1,5 @@
 //
-//  SettingsView.swift
+//  Sets114ltB3Ta0kBrView.swift
 //  Mely
 //
 //  Created by yangyang on 2026/3/9.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct SettingsView: View {
-  @EnvironmentObject private var appDataStore: AppDataStore
+struct Sets114ltB3Ta0kBrView: View {
+  @EnvironmentObject private var jDJx8Eif8Jhc6D: MelystoreWpvugHy89HDWLR
   @Environment(\.dismiss) private var dismiss
   @Binding var path: [MainRoute]
-  @State private var showLogoutDialog = false
-  @State private var showDeleteAccountDialog = false
+  @State private var LeJW8Shjl6bm5p = false
+  @State private var ikXUKW1AoLoSe0 = false
 
   #if DEBUG
     @ObserveInjection var redraw
@@ -21,30 +21,37 @@ struct SettingsView: View {
   var body: some View {
     MelyYemianScaffold {
       VStack(spacing: 0) {
-        // 导航栏
-        navigationBar
+        navyNDQDI8WpOjq8b
 
         VStack {
           VStack(spacing: 12) {
-            settingsListItem(
-              imgName: "W0bVs3lHbdD2_eidt",
-              title: "Edit information",
+            setstnffVo41LTF2ap(
+              img8Avzsmj9kTxwau: "W0bVs3lHbdD2_eidt",
+              txtCp8olZdilUNBLo: "Edit information",
               action: { path.append(.editProfile) }
             )
-            settingsListItem(
-              imgName: "dsfnikrctqtc",
-              title: "User Agreement",
-              action: { path.append(.webProtocol(urlString: "https://app.p2k1k490.link/users", title: "User Agreement")) }
+            setstnffVo41LTF2ap(
+              img8Avzsmj9kTxwau: "dsfnikrctqtc",
+              txtCp8olZdilUNBLo: "User Agreement",
+              action: {
+                path.append(
+                  .webProtocol(
+                    urlString: "https://app.p2k1k490.link/users", title: "User Agreement"))
+              }
             )
-            settingsListItem(
-              imgName: "qzhmsmktdthf",
-              title: "Privacy Agreement",
-              action: { path.append(.webProtocol(urlString: "https://app.p2k1k490.link/privacy", title: "Privacy Agreement")) }
+            setstnffVo41LTF2ap(
+              img8Avzsmj9kTxwau: "qzhmsmktdthf",
+              txtCp8olZdilUNBLo: "Privacy Agreement",
+              action: {
+                path.append(
+                  .webProtocol(
+                    urlString: "https://app.p2k1k490.link/privacy", title: "Privacy Agreement"))
+              }
             )
-            settingsListItem(
-              imgName: "ypiwomsvrfunblo",
-              title: "Blocklist",
-              action: { path.append(.userList(.blocklist)) }
+            setstnffVo41LTF2ap(
+              img8Avzsmj9kTxwau: "ypiwomsvrfunblo",
+              txtCp8olZdilUNBLo: "Blocklist",
+              action: { path.append(.userList(.boU8usEO7k4XTyO4)) }
             )
           }
           .padding(.horizontal, 20)
@@ -52,11 +59,10 @@ struct SettingsView: View {
 
           Spacer()
 
-          // 底部按钮
-          if appDataStore.currentUser != nil {
+          if jDJx8Eif8Jhc6D.curp11O3LYjA9ooct != nil {
             VStack(spacing: 16) {
               Button {
-                showLogoutDialog = true
+                LeJW8Shjl6bm5p = true
               } label: {
                 Text("Log Out")
                   .font(.custom("Hanchansans-Medium", size: 18))
@@ -69,7 +75,7 @@ struct SettingsView: View {
               .buttonStyle(.plain)
 
               Button {
-                showDeleteAccountDialog = true
+                ikXUKW1AoLoSe0 = true
               } label: {
                 Text("Delete Account")
                   .font(.custom("Hanchansans-Medium", size: 18))
@@ -82,37 +88,36 @@ struct SettingsView: View {
               .buttonStyle(.plain)
             }
             .frame(width: 260)
-            // .padding(.horizontal, 56)
             .padding(.bottom, 48)
           }
         }
       }
     }
     .overlay {
-      if showLogoutDialog {
+      if LeJW8Shjl6bm5p {
         MelyAlertDialog(
-          isPresented: $showLogoutDialog,
+          isPresented: $LeJW8Shjl6bm5p,
           text: "Are you sure you want to log out?",
           iconName: "5dEuX0FQmCW3",
           iconSize: 68,
           btnText: "Confirm",
           onConfirm: {
-            appDataStore.logout()
+            jDJx8Eif8Jhc6D.logout7R5GwJBX0TvWiE()
             path.removeAll()
             dismiss()
           }
         )
       }
-      if showDeleteAccountDialog {
+      if ikXUKW1AoLoSe0 {
         MelyAlertDialog(
-          isPresented: $showDeleteAccountDialog,
+          isPresented: $ikXUKW1AoLoSe0,
           text: "Deleting the account will clear the account data. Are you sure to delete?",
           iconName: "HwDsxtkzn0MM",
           iconSize: 60,
           btnText: "Confirm",
           onConfirm: {
             path.removeAll()
-            appDataStore.deleteCurrentUser()
+            jDJx8Eif8Jhc6D.delOvJBGtG8mSWowf()
             dismiss()
           }
         )
@@ -124,7 +129,7 @@ struct SettingsView: View {
     #endif
   }
 
-  private var navigationBar: some View {
+  private var navyNDQDI8WpOjq8b: some View {
     HStack {
       Button {
         dismiss()
@@ -151,17 +156,19 @@ struct SettingsView: View {
     .padding(.bottom, 4)
   }
 
-  private func settingsListItem(imgName: String, title: String, action: @escaping () -> Void)
+  private func setstnffVo41LTF2ap(
+    img8Avzsmj9kTxwau: String, txtCp8olZdilUNBLo: String, action: @escaping () -> Void
+  )
     -> some View
   {
     Button(action: action) {
       HStack(spacing: 14) {
-        Image(imgName)
+        Image(img8Avzsmj9kTxwau)
           .resizable()
           .scaledToFit()
           .frame(width: 26, height: 26)
 
-        Text(title)
+        Text(txtCp8olZdilUNBLo)
           .font(.custom("Hanchansans-Medium", size: 17))
           .foregroundColor(.white)
 

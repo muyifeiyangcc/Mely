@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  MhoshoutosPR9GnzvOjHw.swift
 //  Mely
 //
 //  Created by yangyang on 2026/3/5.
@@ -7,45 +7,35 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct MhoshoutosPR9GnzvOjHw: View {
   @Binding var path: [MainRoute]
-  @EnvironmentObject private var appDataStore: AppDataStore
+  @EnvironmentObject private var bHtOTg1jCD0WmZ: MelystoreWpvugHy89HDWLR
 
   #if DEBUG
     @ObserveInjection var redraw
   #endif
 
-  @State private var searchText: String = ""
+  @State private var s8Ttn4DR5mxF7d7: String = ""
 
-  /// 挑战列表：先按拉黑过滤，再按搜索关键词过滤 title / description
-  private var challenges: [DanceChallenge] {
-    let base = appDataStore.filteredChallenges
-    let q = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-    guard !q.isEmpty else { return base }
-    return base.filter {
+  private var Bqk0DhBCQb7eMf: [DancozZ6LtwXHtlqPu] {
+    let TxxGGgE92KCiTe = bHtOTg1jCD0WmZ.filchasD9OgZwYuwgrF4I
+    let q = s8Ttn4DR5mxF7d7.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+    guard !q.isEmpty else { return TxxGGgE92KCiTe }
+    return TxxGGgE92KCiTe.filter {
       $0.dTt6Lf2Vb.lowercased().contains(q) || $0.dDe8Av3Jr.lowercased().contains(q)
     }
   }
-
-  private let topGradient = LinearGradient(
-    colors: [Color(red: 0.4, green: 0.85, blue: 0.55), Color(red: 0.25, green: 0.35, blue: 0.6)],
-    startPoint: .topLeading,
-    endPoint: .bottomTrailing
-  )
 
   var body: some View {
     MelyYemianScaffold {
       ScrollView(.vertical, showsIndicators: false) {
         VStack(alignment: .leading, spacing: 0) {
-          // 顶部信息栏 + 搜索
-          topBarAndSearch
+          fB1N9PmOCcE70zsear
 
-          // 中间 AI 面板
-          aiPanel
+          aiPanelIzuHTE6WZ72Ona
             .padding(.vertical, 20)
 
-          // 舞蹈挑战列表
-          challengeSection
+          chasudZ6Hxl7WKNHNp
         }
         .padding(.bottom, 100)
       }
@@ -56,11 +46,8 @@ struct HomeView: View {
     #endif
   }
 
-  // MARK: - 顶部信息栏与搜索
-
-  private var topBarAndSearch: some View {
+  private var fB1N9PmOCcE70zsear: some View {
     VStack(alignment: .leading, spacing: 12) {
-      // 状态栏下方：Logo + 右侧加号按钮
       HStack {
         Image("Melycaised")
           .resizable()
@@ -80,23 +67,20 @@ struct HomeView: View {
       .padding(.horizontal, 20)
       .padding(.top, 8)
 
-      // 搜索栏
       HStack(spacing: 10) {
         Image(systemName: "magnifyingglass")
           .font(.system(size: 20).bold())
           .foregroundColor(.white)
         TextField(
-          "", text: $searchText, prompt: Text("Search").foregroundColor(.white.opacity(0.6))
+          "", text: $s8Ttn4DR5mxF7d7, prompt: Text("Search").foregroundColor(.white.opacity(0.6))
         )
         .font(.custom("Hanchansans-Medium", size: 16))
         .foregroundColor(.white)
         .submitLabel(.search)
 
-        // 有输入内容的时候显示一个清空按钮
-        if !searchText.isEmpty {
+        if !s8Ttn4DR5mxF7d7.isEmpty {
           Button {
-            searchText = ""
-            // 收起键盘
+            s8Ttn4DR5mxF7d7 = ""
             UIApplication.shared.sendAction(
               #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
           } label: {
@@ -117,8 +101,7 @@ struct HomeView: View {
     }
   }
 
-  // MARK: - 中间 AI 面板
-  private var aiPanel: some View {
+  private var aiPanelIzuHTE6WZ72Ona: some View {
     HStack(alignment: .center, spacing: 0) {
       VStack(alignment: .leading, spacing: 4) {
         Text("Fitness Dance")
@@ -134,7 +117,6 @@ struct HomeView: View {
 
       Spacer()
 
-      // AI 头像
       Button {
         path.append(.aiGuide)
       } label: {
@@ -144,7 +126,6 @@ struct HomeView: View {
               .font(.custom("Hanchansans-Medium", size: 18))
               .foregroundColor(.black)
 
-            // 右箭头图标
             Image(systemName: "arrow.right")
               .font(.subheadline.weight(.semibold))
               .foregroundColor(.black)
@@ -176,8 +157,7 @@ struct HomeView: View {
     .padding(.horizontal, 20)
   }
 
-  // MARK: - 舞蹈挑战区
-  private var challengeSection: some View {
+  private var chasudZ6Hxl7WKNHNp: some View {
     VStack(alignment: .leading, spacing: 14) {
       HStack(spacing: 8) {
         Text("Fitness Dance Challenge")
@@ -191,7 +171,7 @@ struct HomeView: View {
       .padding(.horizontal, 20)
       .padding(.top, 20)
 
-      if challenges.isEmpty {
+      if Bqk0DhBCQb7eMf.isEmpty {
         HStack {
           Spacer()
           EmptyZhanweiView()
@@ -201,8 +181,8 @@ struct HomeView: View {
       } else {
         ScrollView(.horizontal, showsIndicators: false) {
           HStack(spacing: 20) {
-            ForEach(challenges) { challenge in
-              DanceChallengeCard(challenge: challenge) {
+            ForEach(Bqk0DhBCQb7eMf) { challenge in
+              SzEMlHR6IHY7nGDanca(fttwT1a9WqxBht: challenge) {
                 path.append(.challengeDetail(challengeId: challenge.id))
               }
             }
@@ -217,16 +197,15 @@ struct HomeView: View {
 
 }
 
-// MARK: - 舞蹈挑战卡片
-struct DanceChallengeCard: View {
-  let challenge: DanceChallenge
+struct SzEMlHR6IHY7nGDanca: View {
+  let fttwT1a9WqxBht: DancozZ6LtwXHtlqPu
   let onJoin: () -> Void
 
   var body: some View {
     ZStack(alignment: .center) {
       VStack {
         HStack {
-          Text(challenge.dTt6Lf2Vb)
+          Text(fttwT1a9WqxBht.dTt6Lf2Vb)
             .font(.custom("Hanchansans-Medium", size: 18))
             .foregroundColor(.white)
             .padding(.horizontal, 12)
@@ -251,7 +230,6 @@ struct DanceChallengeCard: View {
         .padding(.bottom, 12)
 
       }
-      // .frame(width: 200, height: 280)
       .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
 
     }
@@ -262,7 +240,7 @@ struct DanceChallengeCard: View {
     .buttonStyle(.plain)
     .frame(width: 220, height: 310)
     .background(
-      challengeCoverBackground
+      ChabgGBgqmm0onm9Yoy
         .frame(width: 220, height: 310)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
     )
@@ -270,17 +248,16 @@ struct DanceChallengeCard: View {
 
   }
 
-  /// 封面背景：SmartImageView 内部兼容 Asset 与持久化文件路径
   @ViewBuilder
-  private var challengeCoverBackground: some View {
-    if let name = challenge.dIn1Xy8Ck {
-      SmartImageView(resource: .namedOrPath(name), contentMode: .fill)
+  private var ChabgGBgqmm0onm9Yoy: some View {
+    if let ilHG2R0RsLCrkx = fttwT1a9WqxBht.dIn1Xy8Ck {
+      SmartImageView(resource: .namedOrPath(ilHG2R0RsLCrkx), contentMode: .fill)
     } else {
-      placeholderGradient
+      kCKHu6rAJ0KJMd
     }
   }
 
-  private var placeholderGradient: some View {
+  private var kCKHu6rAJ0KJMd: some View {
     LinearGradient(
       colors: [
         Color(red: 0.4, green: 0.35, blue: 0.6),

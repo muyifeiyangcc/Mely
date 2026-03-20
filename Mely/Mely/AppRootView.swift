@@ -23,7 +23,7 @@ enum MainRoute: Hashable {
   case wallet
   case aiGuide
   case aiChat
-  case userList(UserListType)
+  case userList(UstzJWuwZtLDItVHl)
   case chatDetail(conversationId: String)
   case webProtocol(urlString: String, title: String)
 }
@@ -33,20 +33,20 @@ struct AppRootView: View {
     @ObserveInjection var redraw
   #endif
 
-  @StateObject private var appDataStore = AppDataStore()
+  @StateObject private var appDataStore = MelystoreWpvugHy89HDWLR()
   @State private var path: [MainRoute] = []
 
   var body: some View {
     Group {
-      if !appDataStore.data.adHa2Yt5Jb {
-        EULAView()
-      } else if appDataStore.currentUser == nil {
-        LoginChoiceView()
+        if !appDataStore.izHqrtotvfHu1g.adHa2Yt5Jb {
+        EULAmLsaSpDjzzZTqsView()
+      } else if appDataStore.curp11O3LYjA9ooct == nil {
+        LoginChoice4muHqmiYP6()
       } else {
         NavigationStack(path: $path) {
-          HomeView(path: $path)
+          MhoshoutosPR9GnzvOjHw(path: $path)
             .overlay(alignment: .bottom) {
-              if path.isEmpty && appDataStore.showBlockSuccessToast {
+              if path.isEmpty && appDataStore.S2E4yyK8CsIEumtoast {
                 Text("Blocked successfully")
                   .font(.custom("Hanchansans-Medium", size: 15))
                   .foregroundColor(.black)
@@ -57,7 +57,7 @@ struct AppRootView: View {
                   .transition(.opacity.combined(with: .move(edge: .top)))
               }
             }
-            .animation(.easeInOut(duration: 0.25), value: appDataStore.showBlockSuccessToast)
+            .animation(.easeInOut(duration: 0.25), value: appDataStore.S2E4yyK8CsIEumtoast)
             .overlay(alignment: .bottomTrailing) {
               if path.isEmpty {
                 FloatingPageSwitcher { target in
@@ -71,39 +71,39 @@ struct AppRootView: View {
             .navigationDestination(for: MainRoute.self) { route in
               switch route {
               case .community:
-                CommunityView(path: $path)
+                CmntzhkG2J7gRwrRiEPo(path: $path)
               case .chat:
-                MessageView(path: $path)
+                Msg3ouu3bzLmqsqmr(path: $path)
               case .profile:
-                ProfileView(path: $path)
+                Personouj3szwe9Ot9AX(path: $path)
               case .userProfile(let userId):
-                ProfileView(path: $path, userId: userId)
+                Personouj3szwe9Ot9AX(path: $path, EoseNHMco4sgRUuid: userId)
               case .settings:
-                SettingsView(path: $path)
+                Sets114ltB3Ta0kBrView(path: $path)
               case .editProfile:
-                EditProfileView(path: $path)
+                NFkh9JWFp64mW7Editpf(path: $path)
               case .communityPostCreate:
-                CommunityPostCreateView(path: $path)
+                Fapostr6rm5z92RxVRLB(path: $path)
               case .communityPostDetail(let postId):
-                CommunityPostDetailView(path: $path, postId: postId)
+                CmpodetQpyzEXwp4onYBY(path: $path, pid9gUnNcPrwJPjHW: postId)
               case .challengeCreate:
-                CreateChallengeView()
+                CreachanY7WHA7o5fPRaY()
               case .challengeDetail(let challengeId):
-                ChallengeDetailView(path: $path, challengeId: challengeId)
+                ChalldetNy2W04sqZPngXv(path: $path, chaidPpqAXLyzYjD1D7: challengeId)
               case .uploadVideo(let challengeId):
-                UploadVideoView(path: $path, challengeId: challengeId)
+                UpdvdoS6ihyCxXzP8q3e(path: $path, chaidGv626ziV6BGf53: challengeId)
               case .videoDetail(let videoId):
-                VideoDetailView(path: $path, videoId: videoId)
+                Vdet7QIifokraIERgO(path: $path, vidVPgbGqZoYamqMK: videoId)
               case .wallet:
-                WalletView()
+                CoineCywyk67HOcjut()
               case .aiGuide:
-                AIGuideView(path: $path)
+                AI1Sn8TuoCJxWcKsGuide(path: $path)
               case .aiChat:
-                AIChatView(path: $path)
+                AIChatYLGjVqcrYTKYRk(path: $path)
               case .userList(let listType):
-                UserListView(path: $path, listType: listType)
+                FilulistxLM01tqmx9RvFN(path: $path, lstyKEt8B9er18SA63: listType)
               case .chatDetail(let conversationId):
-                ChatDetailView(path: $path, conversationId: conversationId)
+                ChadetliLsrfCbqFVharView(path: $path, ihcqcoxwUEDEh7cid: conversationId)
               case .webProtocol(let urlString, let title):
                 WebProtocolView(urlString: urlString, title: title, path: $path)
               }

@@ -1,14 +1,13 @@
 //
-//  EULAView.swift
+//  EULAmLsaSpDjzzZTqsView.swift
 //  Mely
 //
-//  展示并同意用户协议页面。
 //
 
 import SwiftUI
 
-struct EULAView: View {
-  @EnvironmentObject private var appDataStore: AppDataStore
+struct EULAmLsaSpDjzzZTqsView: View {
+  @EnvironmentObject private var appDataStore: MelystoreWpvugHy89HDWLR
   @State private var hasScrolledToBottom: Bool = false
 
   #if DEBUG
@@ -66,13 +65,11 @@ struct EULAView: View {
           }
           .background(Color.clear)
           .onAppear {
-            // 初次进入默认允许直接同意，不强制滚动到底
             hasScrolledToBottom = true
           }
 
           HStack(spacing: 16) {
             Button {
-              // 直接退出应用由系统控制，这里先不做处理
             } label: {
               Text("Cancel")
                 .font(.custom("Hanchansans-Medium", size: 20))

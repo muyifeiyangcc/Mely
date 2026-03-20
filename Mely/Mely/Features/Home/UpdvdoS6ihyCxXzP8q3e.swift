@@ -1,5 +1,5 @@
 //
-//  UploadVideoView.swift
+//  UpdvdoS6ihyCxXzP8q3e.swift
 //  Mely
 //
 //  Created by yangyang on 2026/3/6.
@@ -7,40 +7,29 @@
 
 import SwiftUI
 
-struct UploadVideoView: View {
+struct UpdvdoS6ihyCxXzP8q3e: View {
   @Binding var path: [MainRoute]
-  let challengeId: String
+  let chaidGv626ziV6BGf53: String
 
   #if DEBUG
     @ObserveInjection var redraw
   #endif
 
   @Environment(\.dismiss) private var dismiss
-  @EnvironmentObject private var appDataStore: AppDataStore
+  @EnvironmentObject private var Zt5iNFkioegZpw: MelystoreWpvugHy89HDWLR
 
-  @State private var paymentText: String = ""
-  @State private var isPosting: Bool = false
-  /// 选中的视频临时 URL（选择后尚未发布）
-  @State private var selectedVideoURL: URL?
-  /// 临时封面图（选择视频后生成，用于预览）
-  @State private var thumbnailImage: UIImage?
-  @State private var showVideoSourcePicker: Bool = false
-
-  private let headerGradient = LinearGradient(
-    colors: [
-      Color(red: 0.35, green: 0.85, blue: 0.5),
-      Color(red: 0.2, green: 0.35, blue: 0.6),
-    ],
-    startPoint: .topLeading,
-    endPoint: .bottomTrailing
-  )
+  @State private var mzlnHvlNVU98CS: String = ""
+  @State private var poing1wXBCYXxjhy90Z: Bool = false
+  @State private var vsurlHSmxq6oGW7xR1A: URL?
+  @State private var thuimg1jgoim57t64kKD: UIImage?
+  @State private var shvdopWLHYE8VsBFGOg: Bool = false
 
   var body: some View {
     CreatejLlpeiC5nAUAvPScaffold(
       title: "Post",
       primaryButtonTitle: "Post",
       onBack: { dismiss.callAsFunction() },
-      onPrimaryTap: performPost,
+      onPrimaryTap: perposKw4u98IvpEuqna,
       buttonVerticalPadding: 15,
       onBackgroundTap: {
         UIApplication.shared.sendAction(
@@ -48,10 +37,10 @@ struct UploadVideoView: View {
       }
     ) {
       VStack(spacing: 30) {
-        uploadArea
+        updaX1sYs0GwUZXlge
           .padding(.horizontal, 20)
 
-        paymentSection
+        pay6ad9u5DemD5FZo
       }
       .padding(.horizontal, 20)
       .padding(.top, 24)
@@ -59,30 +48,28 @@ struct UploadVideoView: View {
     }
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
-    .videoSourcePicker(isPresented: $showVideoSourcePicker) { url in
-      handleVideoPicked(url)
+    .videoSourcePicker(isPresented: $shvdopWLHYE8VsBFGOg) { url in
+      handvdouTcSYKythCGJ8G(url)
     }
     #if DEBUG
       .enableInjection()
     #endif
   }
 
-  private func handleVideoPicked(_ url: URL) {
-    selectedVideoURL = url
-    thumbnailImage = ImageStorageHelper.generateThumbnail(from: url)
+  private func handvdouTcSYKythCGJ8G(_ url: URL) {
+    vsurlHSmxq6oGW7xR1A = url
+    thuimg1jgoim57t64kKD = ImageStorageHelper.generateThumbnail(from: url)
   }
 
-  // MARK: - 内容上传区域
-  private var uploadArea: some View {
+  private var updaX1sYs0GwUZXlge: some View {
     Button {
-      showVideoSourcePicker = true
+      shvdopWLHYE8VsBFGOg = true
     } label: {
       Group {
-        if let thumb = thumbnailImage {
-          Image(uiImage: thumb)
+        if let uirFed9ASElC9Q = thuimg1jgoim57t64kKD {
+          Image(uiImage: uirFed9ASElC9Q)
             .resizable()
             .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-          // .scaledToFill()
         } else {
           VStack {
             Image("gfqjfrzfemtladd")
@@ -106,8 +93,7 @@ struct UploadVideoView: View {
     .buttonStyle(.plain)
   }
 
-  // MARK: - 支付（可选）
-  private var paymentSection: some View {
+  private var pay6ad9u5DemD5FZo: some View {
     VStack(alignment: .leading, spacing: 16) {
       HStack(spacing: 6) {
         Text("Payment")
@@ -126,7 +112,7 @@ struct UploadVideoView: View {
 
       TextField(
         "",
-        text: $paymentText,
+        text: $mzlnHvlNVU98CS,
         prompt: Text("Example 300").foregroundColor(Color(white: 0.7))
       )
       .font(.custom("Hanchansans-Medium", size: 16))
@@ -142,44 +128,40 @@ struct UploadVideoView: View {
     }
   }
 
-  private func performPost() {
-    guard !isPosting else { return }
-    guard let videoURL = selectedVideoURL else { return }
-    isPosting = true
+  private func perposKw4u98IvpEuqna() {
+    guard !poing1wXBCYXxjhy90Z else { return }
+    guard let axzUkjfx4zXpAd = vsurlHSmxq6oGW7xR1A else { return }
+    poing1wXBCYXxjhy90Z = true
 
-    // 1. 保存视频到 Application Support
-    guard let videoPath = ImageStorageHelper.saveVideo(from: videoURL) else {
-      isPosting = false
+    guard let v2kSls8T06eHhyN = ImageStorageHelper.saveVideo(from: axzUkjfx4zXpAd) else {
+      poing1wXBCYXxjhy90Z = false
       return
     }
 
-    // 2. 生成并保存封面
-    let thumbPath: String
-    if let thumb = ImageStorageHelper.generateThumbnail(from: videoURL),
-      let saved = ImageStorageHelper.saveChallengeVideoThumbnail(thumb)
+    let BBfJ4z2GEgi5uv: String
+    if let vgVlsYWvH2I4FX = ImageStorageHelper.generateThumbnail(from: axzUkjfx4zXpAd),
+      let saved = ImageStorageHelper.saveChallengeVideoThumbnail(vgVlsYWvH2I4FX)
     {
-      thumbPath = saved
-    } else if let thumb = thumbnailImage,
-      let saved = ImageStorageHelper.saveChallengeVideoThumbnail(thumb)
+      BBfJ4z2GEgi5uv = saved
+    } else if let vgVlsYWvH2I4FX = thuimg1jgoim57t64kKD,
+      let saved = ImageStorageHelper.saveChallengeVideoThumbnail(vgVlsYWvH2I4FX)
     {
-      thumbPath = saved
+      BBfJ4z2GEgi5uv = saved
     } else {
-      thumbPath = "test"  // 回退到占位
+      BBfJ4z2GEgi5uv = "test"
     }
 
-    // 3. 解析 Payment 钻石数（可选）
-    let diamonds = Int(paymentText.trimmingCharacters(in: .whitespaces)) ?? 0
-    let unlockCost = diamonds > 0 ? diamonds : nil
+    let daa1UOFaUSvrpf7t = Int(mzlnHvlNVU98CS.trimmingCharacters(in: .whitespaces)) ?? 0
+    let unlocWyoyMeUATYVU0 = daa1UOFaUSvrpf7t > 0 ? daa1UOFaUSvrpf7t : nil
 
-    // 4. 添加到 AppData
-    appDataStore.addChallengeVideo(
-      challengeId: challengeId,
-      videoRelativePath: videoPath,
-      thumbnailRelativePath: thumbPath,
-      unlockCostDiamonds: unlockCost
+    Zt5iNFkioegZpw.advdonqvuaQ5wP0xLwf(
+      LuHT6IbHDcGq0N: chaidGv626ziV6BGf53,
+      RJQh7nvW6vkfpu: v2kSls8T06eHhyN,
+      tum7xBLorz4Cj7VHZ: BBfJ4z2GEgi5uv,
+      FSS8h4RGqA6OZ0: unlocWyoyMeUATYVU0
     )
 
-    isPosting = false
+    poing1wXBCYXxjhy90Z = false
     if !path.isEmpty { path.removeLast() }
   }
 }
