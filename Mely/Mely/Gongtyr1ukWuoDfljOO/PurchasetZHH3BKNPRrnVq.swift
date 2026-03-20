@@ -9,12 +9,12 @@ import Foundation
 import StoreKit
 
 let daliangIDSvlxgxhaLelP5rt: [String] = [
-  "lvbsvhxcgcrvesor",
-  "dxismgcwewhrtezo",
-  "khtxlcejaxmqcsra",
-  "yadwwvxspgxwlndb",
-  "qnrcuelbtiuflyky",
-  "ymohxnvpkqxutvab",
+  "sxywitjctwntdimr",
+  "zbjlgkkikpncuegz",
+  "anramplctckvlz",
+  "ggtswccjgczpbtee",
+  "bsivtppskaimzd",
+  "ramndlyuqxnwwtou",
   "pulimqvcddkqzs",
   "gjocttgknqkvszyq",
   "nwjyzrjrfgkxhcce",
