@@ -105,7 +105,7 @@ struct AppRootView: View {
               case .chatDetail(let conversationId):
                 ChadetliLsrfCbqFVharView(path: $path, ihcqcoxwUEDEh7cid: conversationId)
               case .webProtocol(let urlString, let title):
-                WebProtocolView(urlString: urlString, title: title, path: $path)
+                WebProtocolView(urlsVN4aXHEEFJRMv: urlString, titGM8TgIi65xSys5: title, path: $path)
               }
             }
         }
