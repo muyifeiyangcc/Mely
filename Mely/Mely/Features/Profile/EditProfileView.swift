@@ -27,7 +27,7 @@ struct EditProfileView: View {
     if let img = selectedAvatarImage {
       return (true, img, "")
     }
-    let symbol = pendingAvatarPath ?? appDataStore.currentUser?.avatarSymbol ?? "mely_defava"
+    let symbol = pendingAvatarPath ?? appDataStore.currentUser?.uQd8Nv5tK ?? "mely_defava"
     return (false, nil, symbol)
   }
 
@@ -50,7 +50,7 @@ struct EditProfileView: View {
       }
     }
     .onAppear {
-      nameText = appDataStore.currentUser?.name ?? ""
+      nameText = appDataStore.currentUser?.uZp7Lm2cR ?? ""
     }
     .imageSourcePicker(isPresented: $showImageSourcePicker) { image in
       selectedAvatarImage = image

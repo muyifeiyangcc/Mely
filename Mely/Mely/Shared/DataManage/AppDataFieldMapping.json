@@ -1,0 +1,15 @@
+{
+  "model": "AppData",
+  "fields": {
+    "users": { "property": "adUr9Mz3Qc", "jsonKey": "ad_Ur9Mz3Qc", "legacyJsonKey": "users" },
+    "challenges": { "property": "adCh2Hx7Wn", "jsonKey": "ad_Ch2Hx7Wn", "legacyJsonKey": "challenges" },
+    "challengeVideos": { "property": "adCv5Jt8Lp", "jsonKey": "ad_Cv5Jt8Lp", "legacyJsonKey": "challengeVideos" },
+    "communityPosts": { "property": "adPs6Gk1Rv", "jsonKey": "ad_Ps6Gk1Rv", "legacyJsonKey": "communityPosts" },
+    "communityComments": { "property": "adCm3Bc9Nx", "jsonKey": "ad_Cm3Bc9Nx", "legacyJsonKey": "communityComments" },
+    "conversations": { "property": "adCo7Df2Qs", "jsonKey": "ad_Co7Df2Qs", "legacyJsonKey": "conversations" },
+    "messages": { "property": "adMs8Lw4Ty", "jsonKey": "ad_Ms8Lw4Ty", "legacyJsonKey": "messages" },
+    "currentUserId": { "property": "adCu1Zp6Hm", "jsonKey": "ad_Cu1Zp6Hm", "legacyJsonKey": "currentUserId" },
+    "quickLoginUserId": { "property": "adQk4Nr9Vx", "jsonKey": "ad_Qk4Nr9Vx", "legacyJsonKey": "quickLoginUserId" },
+    "hasAcceptedEULA": { "property": "adHa2Yt5Jb", "jsonKey": "ad_Ha2Yt5Jb", "legacyJsonKey": "hasAcceptedEULA" }
+  }
+}

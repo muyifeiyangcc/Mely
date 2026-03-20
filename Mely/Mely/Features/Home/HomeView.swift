@@ -23,7 +23,7 @@ struct HomeView: View {
     let q = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
     guard !q.isEmpty else { return base }
     return base.filter {
-      $0.title.lowercased().contains(q) || $0.description.lowercased().contains(q)
+      $0.dTt6Lf2Vb.lowercased().contains(q) || $0.dDe8Av3Jr.lowercased().contains(q)
     }
   }
 
@@ -226,7 +226,7 @@ struct DanceChallengeCard: View {
     ZStack(alignment: .center) {
       VStack {
         HStack {
-          Text(challenge.title)
+          Text(challenge.dTt6Lf2Vb)
             .font(.custom("Hanchansans-Medium", size: 18))
             .foregroundColor(.white)
             .padding(.horizontal, 12)
@@ -273,7 +273,7 @@ struct DanceChallengeCard: View {
   /// 封面背景：SmartImageView 内部兼容 Asset 与持久化文件路径
   @ViewBuilder
   private var challengeCoverBackground: some View {
-    if let name = challenge.imageName {
+    if let name = challenge.dIn1Xy8Ck {
       SmartImageView(resource: .namedOrPath(name), contentMode: .fill)
     } else {
       placeholderGradient

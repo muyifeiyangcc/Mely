@@ -1,0 +1,13 @@
+{
+  "model": "DanceChallenge",
+  "fields": {
+    "id": { "property": "id", "jsonKey": "d_Ac9Qe3Tw" },
+    "userId": { "property": "dUr4Mp7Ks", "jsonKey": "d_Ur4Mp7Ks" },
+    "title": { "property": "dTt6Lf2Vb", "jsonKey": "d_Tt6Lf2Vb" },
+    "imageName": { "property": "dIn1Xy8Ck", "jsonKey": "d_In1Xy8Ck" },
+    "isJoined": { "property": "dIj5Rs9Hp", "jsonKey": "d_Ij5Rs9Hp" },
+    "difficulty": { "property": "dDf7Wq4Zn", "jsonKey": "d_Df7Wq4Zn" },
+    "participantsCount": { "property": "dPc2Hg6Lm", "jsonKey": "d_Pc2Hg6Lm" },
+    "description": { "property": "dDe8Av3Jr", "jsonKey": "d_De8Av3Jr" }
+  }
+}

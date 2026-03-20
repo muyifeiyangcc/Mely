@@ -28,12 +28,12 @@ struct ProfileView: View {
 
   private var user: UserModel? {
     guard let uid = targetUserId else { return nil }
-    return appDataStore.data.users.first(where: { $0.id == uid })
+    return appDataStore.data.adUr9Mz3Qc.first(where: { $0.id == uid })
   }
 
   private var posts: [CommunityPostModel] {
     guard let uid = targetUserId else { return [] }
-    return appDataStore.filteredCommunityPosts.filter { $0.userId == uid }
+    return appDataStore.filteredCommunityPosts.filter { $0.pUp4Mx7Cs == uid }
   }
 
   /// 标签预设颜色（与发现页 CommunityPostCard 一致）
@@ -129,12 +129,14 @@ struct ProfileView: View {
   // MARK: - Header View
   private var headerView: some View {
     ZStack(alignment: .bottom) {
-      Image("test")
-        .resizable()
-        .scaledToFill()
-        .frame(height: 300)
-        .cornerRadius(40, corners: [.bottomLeft, .bottomRight])
-        .ignoresSafeArea()
+      SmartImageView.namedOrPath(
+        user?.uQd8Nv5tK ?? "mely_defava", placeholder: Image("mely_defava")
+      )
+      .frame(maxWidth: .infinity)
+      .frame(height: 300)
+      .clipped()
+      .cornerRadius(40, corners: [.bottomLeft, .bottomRight])
+      .ignoresSafeArea()
 
       // Background Gradient
       LinearGradient(
@@ -153,13 +155,13 @@ struct ProfileView: View {
               .stroke(Color.white.opacity(0.5), lineWidth: 2)
               .frame(width: 94, height: 94)
 
-            UserAvatarView(avatarSymbol: user?.avatarSymbol ?? "mely_defava", size: 80)
+            UserAvatarView(avatarSymbol: user?.uQd8Nv5tK ?? "mely_defava", size: 80)
               .overlay(Circle().stroke(Color.white, lineWidth: 2))
           }
 
           // Name
           HStack(spacing: 20) {
-            Text(user?.name ?? "User")
+            Text(user?.uZp7Lm2cR ?? "User")
               .font(.custom("Hanchansans-Medium", size: 24))
               .foregroundColor(.white)
 
@@ -193,7 +195,7 @@ struct ProfileView: View {
                 path.append(.userList(.followers))
               } label: {
                 VStack(spacing: 4) {
-                  Text("\(user?.followIds.count ?? 0)")
+                  Text("\(user?.uFm7Xr8Lp.count ?? 0)")
                     .font(.custom("Hanchansans-Medium", size: 18))
                     .foregroundColor(.white)
                   Text("Followers")
@@ -211,7 +213,7 @@ struct ProfileView: View {
                 path.append(.userList(.following))
               } label: {
                 VStack(spacing: 4) {
-                  Text("\(user?.followingIds.count ?? 0)")
+                  Text("\(user?.uFn3Te6Qb.count ?? 0)")
                     .font(.custom("Hanchansans-Medium", size: 18))
                     .foregroundColor(.white)
                   Text("Following")
@@ -222,7 +224,7 @@ struct ProfileView: View {
               .buttonStyle(.plain)
             } else {
               VStack(spacing: 4) {
-                Text("\(user?.followIds.count ?? 0)")
+                Text("\(user?.uFm7Xr8Lp.count ?? 0)")
                   .font(.custom("Hanchansans-Medium", size: 18))
                   .foregroundColor(.white)
                 Text("Followers")
@@ -235,7 +237,7 @@ struct ProfileView: View {
                 .frame(width: 2, height: 26)
 
               VStack(spacing: 4) {
-                Text("\(user?.followingIds.count ?? 0)")
+                Text("\(user?.uFn3Te6Qb.count ?? 0)")
                   .font(.custom("Hanchansans-Medium", size: 18))
                   .foregroundColor(.white)
                 Text("Following")
@@ -255,7 +257,7 @@ struct ProfileView: View {
                   .resizable()
                   .frame(width: 24, height: 24)
                   .foregroundColor(.blue)
-                Text("\(user?.diamonds ?? 0)")
+                Text("\(user?.uDg2Jy5Wx ?? 0)")
                   .font(.custom("Hanchansans-Medium", size: 18))
                   .foregroundColor(.black)
               }
@@ -317,7 +319,7 @@ struct ProfileView: View {
           CommunityPostCard(
             path: $path,
             post: post,
-            user: appDataStore.data.users.first(where: { $0.id == post.userId }),
+            user: appDataStore.data.adUr9Mz3Qc.first(where: { $0.id == post.pUp4Mx7Cs }),
             tagColors: tagColors
           )
         }

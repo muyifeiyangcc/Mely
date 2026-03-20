@@ -26,7 +26,7 @@ struct ChallengeDetailView: View {
   }
 
   private var videos: [ChallengeVideo] {
-    appDataStore.filteredChallengeVideos.filter { $0.challengeId == challengeId }
+    appDataStore.filteredChallengeVideos.filter { $0.vCh4Ne7Lp == challengeId }
   }
 
   private let headerGradient = LinearGradient(
@@ -60,7 +60,7 @@ struct ChallengeDetailView: View {
           title: "",
           onBack: { dismiss() },
           onMoreTap:
-            challenge?.userId != appDataStore.currentUser?.id
+            challenge?.dUr4Mp7Ks != appDataStore.currentUser?.id
             ? {
               showReportBlockSheet = true
             } : nil
@@ -95,7 +95,7 @@ struct ChallengeDetailView: View {
       isbloCY4jaarVfF0wpY: $showReportBlockSheet,
       isrepppE4EmwOSEs9Cl: $showReportSheet,
       onOXhiQzKCNvCvG4Block: {
-        if let uid = challenge?.userId {
+        if let uid = challenge?.dUr4Mp7Ks {
           appDataStore.blockUser(uid: uid)
           path.removeAll()
         }
@@ -133,11 +133,11 @@ struct ChallengeDetailView: View {
         if let challenge = challenge {
           HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 16) {
-              Text(challenge.title)
+              Text(challenge.dTt6Lf2Vb)
                 .font(.custom("Hanchansans-Medium", size: 24).bold())
                 .foregroundColor(.white)
               Text(
-                challenge.description
+                challenge.dDe8Av3Jr
               )
               .lineLimit(2)
               .font(.custom("Hanchansans-Medium", size: 16))
@@ -253,7 +253,7 @@ struct ChallengeVideoCell: View {
 
   private var thumbnailView: some View {
     Group {
-      if let name = video.thumbnailName, !name.isEmpty {
+      if let name = video.vTn3Hw8Zc, !name.isEmpty {
         SmartImageView.namedOrPath(name, placeholder: Image("dengxuanbg"))
           .scaledToFill()
           .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -270,7 +270,7 @@ struct ChallengeVideoCell: View {
       Image("mkirgxytewig_diamond")
         .resizable()
         .frame(width: 20, height: 20)
-      Text("-\(video.unlockCostDiamonds ?? 0)")
+      Text("-\(video.vUd5Rp2Xy ?? 0)")
         .font(.custom("Hanchansans-Medium", size: 14))
         .foregroundColor(.white)
     }

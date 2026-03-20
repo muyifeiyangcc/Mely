@@ -38,7 +38,7 @@ struct WalletView: View {
   ]
 
   private var currentDiamonds: Int {
-    appDataStore.currentUser?.diamonds ?? 0
+    appDataStore.currentUser?.uDg2Jy5Wx ?? 0
   }
 
   var body: some View {

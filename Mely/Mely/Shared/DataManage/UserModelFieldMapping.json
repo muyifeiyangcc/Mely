@@ -1,0 +1,17 @@
+{
+  "model": "UserModel",
+  "fields": {
+    "id": "u_Ax93kL0Q",
+    "name": "u_Zp7Lm2cR",
+    "avatarSymbol": "u_Qd8Nv5tK",
+    "email": "u_Es1Fw9Hb",
+    "password": "u_Pk6Tr3Yv",
+    "isQuickUser": "u_Iq4Uz7Mn",
+    "diamonds": "u_Dg2Jy5Wx",
+    "blockUids": "u_Bh9Ca1Zs",
+    "followIds": "u_Fm7Xr8Lp",
+    "followingIds": "u_Fn3Te6Qb",
+    "likeIds": "u_Lc5Vw2Kd",
+    "unlockedVideoIds": "u_Uv8Hp4Nj"
+  }
+}

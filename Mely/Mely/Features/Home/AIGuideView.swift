@@ -201,7 +201,7 @@ struct AIGuideView: View {
   }
 
   private func startAIChat() {
-    let balance = appDataStore.currentUser?.diamonds ?? 0
+    let balance = appDataStore.currentUser?.uDg2Jy5Wx ?? 0
     if balance < 300 {
       showInsufficientBalanceDialog = true
       return

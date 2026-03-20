@@ -150,68 +150,68 @@ struct ChatDetailView: View {
     guard
       let conversation = appDataStore.filteredConversations.first(where: { $0.id == conversationId }
       ),
-      let currentId = appDataStore.data.currentUserId
+      let currentId = appDataStore.data.adCu1Zp6Hm
     else { return nil }
-    return conversation.participantUserIds.first { $0 != currentId }
+    return conversation.cPu3Ks1Zx.first { $0 != currentId }
   }
 
   private var conversationTitle: String {
     guard let id = otherUserId,
-      let user = appDataStore.data.users.first(where: { $0.id == id })
+      let user = appDataStore.data.adUr9Mz3Qc.first(where: { $0.id == id })
     else { return "Chat" }
-    return user.name
+    return user.uZp7Lm2cR
   }
 
   private var meAvatarSymbol: String {
-    appDataStore.currentUser?.avatarSymbol ?? "mely_defava"
+    appDataStore.currentUser?.uQd8Nv5tK ?? "mely_defava"
   }
 
   private var otherAvatarSymbol: String {
     guard
       let conversation = appDataStore.filteredConversations.first(where: { $0.id == conversationId }
       ),
-      let currentId = appDataStore.data.currentUserId
+      let currentId = appDataStore.data.adCu1Zp6Hm
     else { return "mely_defava" }
-    let otherId = conversation.participantUserIds.first { $0 != currentId }
+      let otherId = conversation.cPu3Ks1Zx.first { $0 != currentId }
     guard let id = otherId,
-      let user = appDataStore.data.users.first(where: { $0.id == id })
+      let user = appDataStore.data.adUr9Mz3Qc.first(where: { $0.id == id })
     else {
       return "mely_defava"
     }
-    return user.avatarSymbol
+    return user.uQd8Nv5tK
   }
 
   private var persistedItems: [ChatItem] {
     let items: [ChatItem] =
-      appDataStore.data.messages
-      .filter { $0.conversationId == conversationId }
-      .sorted(by: { $0.createdAt < $1.createdAt })
+      appDataStore.data.adMs8Lw4Ty
+      .filter { $0.mCv4Ne9Hr == conversationId }
+      .sorted(by: { $0.mCt7He4Jn < $1.mCt7He4Jn })
       .map { msg -> ChatItem in
         let content: ChatItem.Content
 
-        switch msg.type {
+        switch msg.mTy9Gh1Qb {
         case .emoji:
-          content = .emojiImage(name: msg.text)
+          content = .emojiImage(name: msg.mTx2Fp8Vc)
         case .voice:
-          let seconds = msg.audioDurationSeconds ?? 0
-          let path = msg.audioPath ?? ""
+          let seconds = msg.mAd8Ls2Vq ?? 0
+          let path = msg.mAu3Nk6Ps ?? ""
           content = .audio(seconds: seconds, path: path)
         case .image:
           // 从持久化的 imagePath 取路径，再次进入聊天时据此显示图片
-          content = .image(path: msg.imagePath ?? msg.text)
+          content = .image(path: msg.mIm5Wr7Dz ?? msg.mTx2Fp8Vc)
         case .text:
-          if emojiOptions.contains(msg.text) {
-            content = .emojiImage(name: msg.text)
+          if emojiOptions.contains(msg.mTx2Fp8Vc) {
+            content = .emojiImage(name: msg.mTx2Fp8Vc)
           } else {
-            content = .text(msg.text)
+            content = .text(msg.mTx2Fp8Vc)
           }
         }
 
         return ChatItem(
           id: msg.id,
-          isMe: msg.userId == appDataStore.data.currentUserId,
+          isMe: msg.mUd6Ts3Kw == appDataStore.data.adCu1Zp6Hm,
           content: content,
-          timeText: timeText(from: msg.createdAt)
+          timeText: timeText(from: msg.mCt7He4Jn)
         )
       }
     return items

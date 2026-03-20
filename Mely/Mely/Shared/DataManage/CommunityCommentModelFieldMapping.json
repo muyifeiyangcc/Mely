@@ -1,0 +1,10 @@
+{
+  "model": "CommunityCommentModel",
+  "fields": {
+    "id": { "property": "id", "jsonKey": "cm_Ac9Qm2Ts" },
+    "postId": { "property": "cmPo4Ne7Lk", "jsonKey": "cm_Po4Ne7Lk" },
+    "userId": { "property": "cmUc6Fr1Qx", "jsonKey": "cm_Uc6Fr1Qx" },
+    "text": { "property": "cmTx3Hv8Pd", "jsonKey": "cm_Tx3Hv8Pd" },
+    "createdAt": { "property": "cmCt7Jz5Wn", "jsonKey": "cm_Ct7Jz5Wn" }
+  }
+}

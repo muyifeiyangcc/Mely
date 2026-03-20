@@ -29,8 +29,8 @@ struct VideoDetailView: View {
   }
 
   private var author: UserModel? {
-    guard let userId = video?.userId else { return nil }
-    return appDataStore.data.users.first { $0.id == userId }
+    guard let userId = video?.vUv6Fr1Qd else { return nil }
+    return appDataStore.data.adUr9Mz3Qc.first { $0.id == userId }
   }
 
   /// 视频对当前用户而言是否仍为锁定（需付费且未解锁）
@@ -53,7 +53,7 @@ struct VideoDetailView: View {
           title: "Post",
           onBack: { dismiss() },
           onMoreTap:
-            video?.userId != appDataStore.currentUser?.id
+            video?.vUv6Fr1Qd != appDataStore.currentUser?.id
             ? {
               showReportBlockSheet = true
             } : nil
@@ -81,7 +81,7 @@ struct VideoDetailView: View {
       isbloCY4jaarVfF0wpY: $showReportBlockSheet,
       isrepppE4EmwOSEs9Cl: $showReportSheet,
       onOXhiQzKCNvCvG4Block: {
-        if let uid = video?.userId {
+        if let uid = video?.vUv6Fr1Qd {
           appDataStore.blockUser(uid: uid)
           path.removeAll()
         }
@@ -116,7 +116,7 @@ struct VideoDetailView: View {
     player?.pause()
     player = nil
     guard let v = video, !appDataStore.isVideoEffectivelyLocked(v),
-      let name = v.videoName, !name.isEmpty,
+      let name = v.vVn7Px5Lm, !name.isEmpty,
       let url = urlForVideoName(name)
     else { return }
     let p = AVPlayer(url: url)
@@ -153,7 +153,7 @@ struct VideoDetailView: View {
             .frame(width: w, height: h)
             .clipped()
         }
-      } else if let name = video?.thumbnailName, !name.isEmpty {
+      } else if let name = video?.vTn3Hw8Zc, !name.isEmpty {
         ZStack {
           Rectangle()
             .fill(Color.clear)
@@ -199,7 +199,7 @@ struct VideoDetailView: View {
             .resizable()
             .scaledToFit()
             .frame(width: 50, height: 50)
-          Text("-\(video?.unlockCostDiamonds ?? 0)")
+          Text("-\(video?.vUd5Rp2Xy ?? 0)")
             .font(.custom("Hanchansans-Medium", size: 28))
             .foregroundColor(.black)
         }
@@ -272,7 +272,7 @@ struct VideoDetailView: View {
           let userId = author.id
           path.append(.userProfile(userId: userId))
         } label: {
-          UserAvatarView(avatarSymbol: author.avatarSymbol, size: 54)
+          UserAvatarView(avatarSymbol: author.uQd8Nv5tK, size: 54)
             .clipShape(Circle())
             .background(
               Circle()
@@ -346,7 +346,7 @@ struct VideoDetailView: View {
   NavigationStack {
     VideoDetailView(
       path: .constant([]),
-      videoId: AppData.makeSample().challengeVideos[0].id
+      videoId: AppData.makeSample().adCv5Jt8Lp[0].id
     )
     .environmentObject(AppDataStore())
   }

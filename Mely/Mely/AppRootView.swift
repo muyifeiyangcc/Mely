@@ -38,7 +38,7 @@ struct AppRootView: View {
 
   var body: some View {
     Group {
-      if !appDataStore.data.hasAcceptedEULA {
+      if !appDataStore.data.adHa2Yt5Jb {
         EULAView()
       } else if appDataStore.currentUser == nil {
         LoginChoiceView()

@@ -36,17 +36,17 @@ struct UserListView: View {
   /// 当前列表的用户 id 数组（关注/粉丝列表排除已拉黑用户）
   private var userIds: [String] {
     guard let user = currentUser else { return [] }
-    let blocked = Set(user.blockUids)
+    let blocked = Set(user.uBh9Ca1Zs)
     switch listType {
-    case .blocklist: return user.blockUids
-    case .following: return user.followingIds.filter { !blocked.contains($0) }
-    case .followers: return user.followIds.filter { !blocked.contains($0) }
+    case .blocklist: return user.uBh9Ca1Zs
+    case .following: return user.uFn3Te6Qb.filter { !blocked.contains($0) }
+    case .followers: return user.uFm7Xr8Lp.filter { !blocked.contains($0) }
     }
   }
 
   private var users: [UserModel] {
     userIds.compactMap { uid in
-      appDataStore.data.users.first { $0.id == uid }
+      appDataStore.data.adUr9Mz3Qc.first { $0.id == uid }
     }
   }
 
@@ -126,7 +126,7 @@ struct UserListView: View {
       Button {
         path.append(.userProfile(userId: user.id))
       } label: {
-        UserAvatarView(avatarSymbol: user.avatarSymbol, size: 52)
+        UserAvatarView(avatarSymbol: user.uQd8Nv5tK, size: 52)
           .overlay {
             Circle().stroke(Color.white, lineWidth: 3)
           }
@@ -134,7 +134,7 @@ struct UserListView: View {
       }
       .buttonStyle(.plain)
 
-      Text(user.name)
+      Text(user.uZp7Lm2cR)
         .font(.custom("Hanchansans-Medium", size: 18))
         .foregroundColor(.white)
 

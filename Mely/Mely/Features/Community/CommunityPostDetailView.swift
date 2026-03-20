@@ -35,8 +35,8 @@ struct CommunityPostDetailView: View {
   }
 
   private var author: UserModel? {
-    guard let userId = post?.userId else { return nil }
-    return appDataStore.data.users.first(where: { $0.id == userId })
+    guard let userId = post?.pUp4Mx7Cs else { return nil }
+    return appDataStore.data.adUr9Mz3Qc.first(where: { $0.id == userId })
   }
 
   private var comments: [CommunityCommentModel] {
@@ -61,7 +61,7 @@ struct CommunityPostDetailView: View {
                 .frame(height: UIScreen.main.bounds.height * 0.5)
                 .frame(maxWidth: .infinity)
                 .overlay {
-                  SmartImageView.namedOrPath(post.imageName)
+                  SmartImageView.namedOrPath(post.pIn6Fw1Zd)
                 }
                 .clipShape(
                   UnevenRoundedRectangle(
@@ -92,9 +92,9 @@ struct CommunityPostDetailView: View {
         MelyTopBarView(
           title: "",
           onBack: { dismiss() },
-          onMoreTap: post?.userId != appDataStore.currentUser?.id
+          onMoreTap: post?.pUp4Mx7Cs != appDataStore.currentUser?.id
             ? {
-              reportBlockTargetUserId = post?.userId
+              reportBlockTargetUserId = post?.pUp4Mx7Cs
               showReportBlockSheet = true
             } : nil
         )
@@ -135,13 +135,13 @@ struct CommunityPostDetailView: View {
           Circle()
             .fill(Color.white.opacity(0.25))
             .overlay {
-              UserAvatarView(avatarSymbol: author.avatarSymbol, size: 50)
+              UserAvatarView(avatarSymbol: author.uQd8Nv5tK, size: 50)
                 .clipShape(Circle())
             }
             .frame(width: 50, height: 50)
 
           VStack(alignment: .leading, spacing: 4) {
-            Text(author.name)
+            Text(author.uZp7Lm2cR)
               .font(.custom("Hanchansans-Medium", size: 18))
               .foregroundColor(.white)
             Text(post.dateString)
@@ -173,7 +173,7 @@ struct CommunityPostDetailView: View {
         }
       }
 
-      Text(post.description)
+      Text(post.pDs2Hv8Qp)
         .font(.custom("Hanchansans-Medium", size: 16))
         .foregroundColor(.white)
 
@@ -200,9 +200,9 @@ struct CommunityPostDetailView: View {
         ForEach(comments) { comment in
           CommentRow(
             comment: comment,
-            user: appDataStore.data.users.first { $0.id == comment.userId },
+            user: appDataStore.data.adUr9Mz3Qc.first { $0.id == comment.cmUc6Fr1Qx },
             onMoreTap: {
-              reportBlockTargetUserId = comment.userId
+              reportBlockTargetUserId = comment.cmUc6Fr1Qx
               showReportBlockSheet = true
             }
           )
@@ -312,7 +312,7 @@ private struct CommentRow: View {
           .fill(Color.white.opacity(0.25))
           .overlay {
             if let user {
-              UserAvatarView(avatarSymbol: user.avatarSymbol, size: 38)
+              UserAvatarView(avatarSymbol: user.uQd8Nv5tK, size: 38)
                 .clipShape(Circle())
             }
           }
@@ -320,7 +320,7 @@ private struct CommentRow: View {
 
         VStack(alignment: .leading, spacing: 8) {
           HStack {
-            Text(user?.name ?? "Username")
+            Text(user?.uZp7Lm2cR ?? "Username")
               .font(.custom("Hanchansans-Medium", size: 18))
               .foregroundColor(.white)
             Spacer()
@@ -340,12 +340,12 @@ private struct CommentRow: View {
           }
           .padding(.bottom, 4)
 
-          if comment.text.hasPrefix("aobfkwhdzahn") {
-            Image(comment.text)
+          if comment.cmTx3Hv8Pd.hasPrefix("aobfkwhdzahn") {
+            Image(comment.cmTx3Hv8Pd)
               .resizable()
               .frame(width: 36, height: 36)
           } else {
-            Text(comment.text)
+            Text(comment.cmTx3Hv8Pd)
               .font(.subheadline)
               .foregroundColor(.white)
               .fixedSize(horizontal: false, vertical: true)

@@ -81,25 +81,25 @@ struct MessageView: View {
   }
 
   private func chatTitle(for conversation: ConversationModel) -> String {
-    guard let currentId = appDataStore.data.currentUserId else { return "Chat" }
-    let otherId = conversation.participantUserIds.first { $0 != currentId }
+    guard let currentId = appDataStore.data.adCu1Zp6Hm else { return "Chat" }
+    let otherId = conversation.cPu3Ks1Zx.first { $0 != currentId }
     guard let id = otherId,
-      let user = appDataStore.data.users.first(where: { $0.id == id })
+      let user = appDataStore.data.adUr9Mz3Qc.first(where: { $0.id == id })
     else {
       return "Chat"
     }
-    return user.name
+    return user.uZp7Lm2cR
   }
 
   private func chatAvatarSymbol(for conversation: ConversationModel) -> String {
-    guard let currentId = appDataStore.data.currentUserId else { return "person.crop.circle.fill" }
-    let otherId = conversation.participantUserIds.first { $0 != currentId }
+    guard let currentId = appDataStore.data.adCu1Zp6Hm else { return "person.crop.circle.fill" }
+    let otherId = conversation.cPu3Ks1Zx.first { $0 != currentId }
     guard let id = otherId,
-      let user = appDataStore.data.users.first(where: { $0.id == id })
+      let user = appDataStore.data.adUr9Mz3Qc.first(where: { $0.id == id })
     else {
       return "mely_defava"
     }
-    return user.avatarSymbol
+    return user.uQd8Nv5tK
   }
 
   private func chatPreview(for conversation: ConversationModel) -> String {
@@ -111,7 +111,7 @@ struct MessageView: View {
 
   private func chatTimeText(for conversation: ConversationModel) -> String {
     let last = lastMessage(for: conversation)
-    guard let date = last?.createdAt else { return "Yesterday" }
+    guard let date = last?.mCt7He4Jn else { return "Yesterday" }
     let cal = Calendar.current
     if cal.isDateInYesterday(date) { return "Yesterday" }
     if cal.isDateInToday(date) { return "Today" }
@@ -121,20 +121,20 @@ struct MessageView: View {
   }
 
   private func chatUnreadCount(for conversation: ConversationModel) -> Int {
-    guard let currentId = appDataStore.data.currentUserId else { return 0 }
-    return conversation.unreadCountByUserId[currentId] ?? 0
+    guard let currentId = appDataStore.data.adCu1Zp6Hm else { return 0 }
+    return conversation.cUc2Yp5Hd[currentId] ?? 0
   }
 
   private func lastMessage(for conversation: ConversationModel) -> MessageModel? {
-    appDataStore.data.messages
-      .filter { $0.conversationId == conversation.id }
-      .sorted(by: { $0.createdAt < $1.createdAt })
+    appDataStore.data.adMs8Lw4Ty
+      .filter { $0.mCv4Ne9Hr == conversation.id }
+      .sorted(by: { $0.mCt7He4Jn < $1.mCt7He4Jn })
       .last
   }
 
   // MARK: - Message Preview
   private func previewText(for message: MessageModel) -> String {
-    switch message.type {
+    switch message.mTy9Gh1Qb {
     case .emoji:
       return "[Emoji]"
     case .voice:
@@ -147,7 +147,7 @@ struct MessageView: View {
       //   return "【emoji】"
       // }
 
-      let trimmed = message.text.trimmingCharacters(in: .whitespacesAndNewlines)
+      let trimmed = message.mTx2Fp8Vc.trimmingCharacters(in: .whitespacesAndNewlines)
       return trimmed.isEmpty ? "" : trimmed
     }
   }

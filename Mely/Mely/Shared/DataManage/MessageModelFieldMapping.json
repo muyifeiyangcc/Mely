@@ -1,0 +1,14 @@
+{
+  "model": "MessageModel",
+  "fields": {
+    "id": { "property": "id", "jsonKey": "m_Ax1Qz7Lp" },
+    "conversationId": { "property": "mCv4Ne9Hr", "jsonKey": "m_Cv4Ne9Hr" },
+    "userId": { "property": "mUd6Ts3Kw", "jsonKey": "m_Ud6Ts3Kw" },
+    "text": { "property": "mTx2Fp8Vc", "jsonKey": "m_Tx2Fp8Vc" },
+    "type": { "property": "mTy9Gh1Qb", "jsonKey": "m_Ty9Gh1Qb" },
+    "imagePath": { "property": "mIm5Wr7Dz", "jsonKey": "m_Im5Wr7Dz" },
+    "audioPath": { "property": "mAu3Nk6Ps", "jsonKey": "m_Au3Nk6Ps" },
+    "audioDurationSeconds": { "property": "mAd8Ls2Vq", "jsonKey": "m_Ad8Ls2Vq" },
+    "createdAt": { "property": "mCt7He4Jn", "jsonKey": "m_Ct7He4Jn" }
+  }
+}

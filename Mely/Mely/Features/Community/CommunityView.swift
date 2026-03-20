@@ -71,11 +71,11 @@ struct CommunityView: View {
                 CommunityPostCard(
                   path: $path,
                   post: post,
-                  user: appDataStore.data.users.first(where: { $0.id == post.userId }),
+                  user: appDataStore.data.adUr9Mz3Qc.first(where: { $0.id == post.pUp4Mx7Cs }),
                   tagColors: tagColors,
                   onCardTap: { path.append(.communityPostDetail(postId: post.id)) },
                   onMoreTap: {
-                    reportBlockTargetUserId = post.userId
+                    reportBlockTargetUserId = post.pUp4Mx7Cs
                     showReportBlockSheet = true
                   }
                 )
@@ -132,7 +132,7 @@ struct CommunityPostCard: View {
                 // 跳转到用户个人中心页
                 path.append(.userProfile(userId: user.id))
               } label: {
-                UserAvatarView(avatarSymbol: user.avatarSymbol, size: 40)
+                UserAvatarView(avatarSymbol: user.uQd8Nv5tK, size: 40)
                   .clipShape(Circle())
               }
               .buttonStyle(.plain)
@@ -141,7 +141,7 @@ struct CommunityPostCard: View {
           .frame(width: 40, height: 40)
 
         VStack(alignment: .leading, spacing: 2) {
-          Text(user?.name ?? "User")
+          Text(user?.uZp7Lm2cR ?? "User")
             .font(.subheadline.weight(.medium))
             .foregroundColor(.white)
           Text(post.dateString)
@@ -175,7 +175,7 @@ struct CommunityPostCard: View {
           .frame(height: 280)
           .frame(maxWidth: .infinity)
           .overlay {
-            SmartImageView.namedOrPath(post.imageName)
+            SmartImageView.namedOrPath(post.pIn6Fw1Zd)
           }
           .clipShape(RoundedRectangle(cornerRadius: 16))
           .padding(.horizontal, 12)
@@ -184,7 +184,7 @@ struct CommunityPostCard: View {
         HStack(alignment: .center, spacing: 10) {
           // 标签
           HStack(spacing: 8) {
-            ForEach(Array(post.tags.enumerated()), id: \.offset) { index, tag in
+            ForEach(Array(post.pTg7Rx5Bn.enumerated()), id: \.offset) { index, tag in
               Text(tag)
                 .font(.custom("Hanchansans-Medium", size: 14))
                 .foregroundColor(.black)
@@ -196,7 +196,7 @@ struct CommunityPostCard: View {
                 )
             }
 
-            Text(post.description)
+            Text(post.pDs2Hv8Qp)
               .font(.custom("Hanchansans-Medium", size: 14))
               .foregroundColor(.white)
               .lineLimit(1)
@@ -214,8 +214,8 @@ struct CommunityPostCard: View {
                 Image("j3MSKYctddao_lunp")
                   .resizable()
                   .frame(width: 20, height: 20)
-                if post.commentCount > 0 {
-                  Text("\(post.commentCount)")
+                if post.pCc8Jt4Vm > 0 {
+                  Text("\(post.pCc8Jt4Vm)")
                     .font(.custom("Hanchansans-Medium", size: 13))
                 }
               }
