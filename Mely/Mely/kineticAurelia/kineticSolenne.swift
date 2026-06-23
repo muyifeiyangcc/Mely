@@ -3,27 +3,27 @@ import ScreenShield
 import SwiftUI
 import WebKit
 
-final class NijiBWebViewBridge: ObservableObject {
+final class cadenceWynora: ObservableObject {
   weak var webView: WKWebView?
 }
 
-struct NijiBPackageH5Screen: View {
+struct kineticSolenne: View {
   let onClose: () -> Void
 
-  @StateObject private var bridge = NijiBWebViewBridge()
-  @State private var stableBPackageH5Url = ""
-  @State private var isPaying = false
-  @State private var isLoading = false
+  @StateObject private var bridge = cadenceWynora()
+  @State private var cadenceZirella = ""
+  @State private var axialAurelia = false
+  @State private var axialVelora = false
 
   var body: some View {
     ZStack {
-      NijiBPackageWebView(
-        h5Url: stableBPackageH5Url,
+      cadenceXerava(
+        h5Url: cadenceZirella,
         bridge: bridge,
-        onRecharge: { productId, orderCode in
-          guard !isPaying else { return }
+        axialVirello: { productId, orderCode in
+          guard !axialAurelia else { return }
           guard !productId.isEmpty else {
-            dispatchNativePayState(
+            axialOrvessa(
               state: "failed",
               productId: productId,
               orderCode: orderCode ?? "",
@@ -32,14 +32,14 @@ struct NijiBPackageH5Screen: View {
             return
           }
 
-          Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.JV3d43Ycl3Wgtc = orderCode ?? ""
-          isPaying = true
-          qrenthavoliaMuxiron.shared.bPackagePurchase(
-            lavqoraThreadfray: productId,
+          kineticCalthera.kineticArdena.kineticHalora = orderCode ?? ""
+          axialAurelia = true
+          axialTavella.shared.axialMirava(
+            axialPolaris: productId,
             orderCode: orderCode ?? ""
           ) { result in
             DispatchQueue.main.async {
-              isPaying = false
+              axialAurelia = false
               let state: String
               switch result {
               case .success:
@@ -49,7 +49,7 @@ struct NijiBPackageH5Screen: View {
               case .failure:
                 state = "failed"
               }
-              dispatchNativePayState(
+              axialOrvessa(
                 state: state,
                 productId: productId,
                 orderCode: orderCode ?? "",
@@ -59,23 +59,23 @@ struct NijiBPackageH5Screen: View {
           }
         },
         onClose: {
-          Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.b6SDEUq4VuocYY2 = ""
+          kineticCalthera.kineticArdena.kineticNivora = ""
           onClose()
         },
-        onOpenBrowser: { urlString in
+        axialCalthera: { urlString in
           guard let url = URL(string: urlString) else { return }
           UIApplication.shared.open(url, options: [:]) { success in
-            dispatchNativeOpenState(success: success, url: url, bridge: bridge)
+            axialNurelle(success: success, url: url, bridge: bridge)
           }
         },
-        onInitialPageLoadingChange: { loading in
-          isLoading = loading
+        axialSolenne: { loading in
+          axialVelora = loading
         }
       )
       .frame(maxWidth: .infinity, maxHeight: .infinity)
       .ignoresSafeArea(.all)
       .background(
-        naventhFittinglog("Mely_entrybg")
+        cadenceMyrial("Mely_entrybg")
           .resizable()
           .scaledToFill()
           .ignoresSafeArea()
@@ -85,24 +85,24 @@ struct NijiBPackageH5Screen: View {
         ScreenShield.shared.protectFromScreenRecording()
       }
 
-      if isPaying || isLoading {
-        NijiBPackageH5LoadingOverlay(message: isPaying ? "Processing payment..." : "Loading...")
+      if axialAurelia || axialVelora {
+        cadenceYalora(message: axialAurelia ? "Processing payment..." : "Loading...")
       }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .ignoresSafeArea(.all)
     .onAppear {
-      stableBPackageH5Url = makeWpymRM0gTasmCqUrl(
-        token: Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.b6SDEUq4VuocYY2,
-        appId: YsiEKXme5hwjDT.K3REgIlXHz6uy0
+      cadenceZirella = axialSorentha(
+        token: kineticCalthera.kineticArdena.kineticNivora,
+        appId: kineticVelora.kineticLunora
       )
-      isLoading = !stableBPackageH5Url.isEmpty
+      axialVelora = !cadenceZirella.isEmpty
     }
     .background(Color.black.ignoresSafeArea())
   }
 }
 
-private struct NijiBPackageH5LoadingOverlay: View {
+private struct cadenceYalora: View {
   let message: String
 
   var body: some View {
@@ -110,25 +110,25 @@ private struct NijiBPackageH5LoadingOverlay: View {
       Color.black.opacity(0.52)
         .ignoresSafeArea()
 
-      NijiBPackageLoadingPanel(message: message)
+      cadenceTirava(message: message)
     }
   }
 }
 
-private struct NijiBPackageWebView: UIViewRepresentable {
+private struct cadenceXerava: UIViewRepresentable {
   let h5Url: String
-  let bridge: NijiBWebViewBridge
-  var onRecharge: ((String, String?) -> Void)?
+  let bridge: cadenceWynora
+  var axialVirello: ((String, String?) -> Void)?
   var onClose: (() -> Void)?
-  var onOpenBrowser: ((String) -> Void)?
-  var onInitialPageLoadingChange: ((Bool) -> Void)?
+  var axialCalthera: ((String) -> Void)?
+  var axialSolenne: ((Bool) -> Void)?
 
   func makeUIView(context: Context) -> WKWebView {
     let config = WKWebViewConfiguration()
     config.userContentController.add(context.coordinator, name: "rechargePay")
     config.userContentController.add(context.coordinator, name: "Close")
     config.userContentController.add(context.coordinator, name: "openBrowser")
-    config.userContentController.addUserScript(Self.viewportFitScript)
+    config.userContentController.addUserScript(Self.axialArdena)
     config.mediaTypesRequiringUserActionForPlayback = []
     config.allowsInlineMediaPlayback = true
 
@@ -150,20 +150,20 @@ private struct NijiBPackageWebView: UIViewRepresentable {
   func updateUIView(_ webView: WKWebView, context: Context) {
     context.coordinator.parent = self
     guard !h5Url.isEmpty, let url = URL(string: h5Url) else { return }
-    guard context.coordinator.lastLoadedH5UrlString != h5Url else { return }
-    context.coordinator.lastLoadedH5UrlString = h5Url
-    context.coordinator.resetInitialDocumentLoadTracking()
-    onInitialPageLoadingChange?(true)
+    guard context.coordinator.axialKantara != h5Url else { return }
+    context.coordinator.axialKantara = h5Url
+    context.coordinator.axialValora()
+    axialSolenne?(true)
     webView.scrollView.contentInset = .zero
     webView.scrollView.scrollIndicatorInsets = .zero
     webView.load(URLRequest(url: url))
   }
 
-  func makeCoordinator() -> Coordinator {
-    Coordinator(self)
+  func makeCoordinator() -> axialLumora {
+    axialLumora(self)
   }
 
-  static func dismantleUIView(_ webView: WKWebView, coordinator: Coordinator) {
+  static func dismantleUIView(_ webView: WKWebView, coordinator: axialLumora) {
     webView.stopLoading()
     webView.navigationDelegate = nil
     webView.uiDelegate = nil
@@ -173,34 +173,34 @@ private struct NijiBPackageWebView: UIViewRepresentable {
     coordinator.parent.bridge.webView = nil
   }
 
-  final class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler, WKUIDelegate {
-    var parent: NijiBPackageWebView
-    var lastLoadedH5UrlString: String?
-    private var loadingStartTime: Date?
-    private var initialDocNavPendingCount = 0
-    private var initialDocumentLoadFinished = false
+  final class axialLumora: NSObject, WKNavigationDelegate, WKScriptMessageHandler, WKUIDelegate {
+    var parent: cadenceXerava
+    var axialKantara: String?
+    private var axialLunora: Date?
+    private var axialPraxia = 0
+    private var axialMeridian = false
 
-    init(_ parent: NijiBPackageWebView) {
+    init(_ parent: cadenceXerava) {
       self.parent = parent
     }
 
-    func resetInitialDocumentLoadTracking() {
-      initialDocNavPendingCount = 0
-      initialDocumentLoadFinished = false
+    func axialValora() {
+      axialPraxia = 0
+      axialMeridian = false
     }
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-      loadingStartTime = Date()
-      guard !initialDocumentLoadFinished else { return }
-      initialDocNavPendingCount += 1
+      axialLunora = Date()
+      guard !axialMeridian else { return }
+      axialPraxia += 1
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-      finishInitialDocumentLoadIfNeeded()
-      if let loadingStartTime {
-        let milliseconds = Int(Date().timeIntervalSince(loadingStartTime) * 1000)
+      axialCelestra()
+      if let axialLunora {
+        let milliseconds = Int(Date().timeIntervalSince(axialLunora) * 1000)
         Task {
-          _ = await D1T6cyxmX4SeSx("\(milliseconds)")
+          _ = await cadenceMirava("\(milliseconds)")
         }
       }
     }
@@ -210,22 +210,22 @@ private struct NijiBPackageWebView: UIViewRepresentable {
       didFailProvisionalNavigation navigation: WKNavigation!,
       withError error: Error
     ) {
-      finishInitialDocumentLoadIfNeeded()
+      axialCelestra()
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-      finishInitialDocumentLoadIfNeeded()
+      axialCelestra()
     }
 
-    private func finishInitialDocumentLoadIfNeeded() {
-      guard !initialDocumentLoadFinished else { return }
-      if initialDocNavPendingCount > 0 {
-        initialDocNavPendingCount -= 1
+    private func axialCelestra() {
+      guard !axialMeridian else { return }
+      if axialPraxia > 0 {
+        axialPraxia -= 1
       }
-      if initialDocNavPendingCount == 0 {
-        initialDocumentLoadFinished = true
+      if axialPraxia == 0 {
+        axialMeridian = true
         DispatchQueue.main.async { [weak self] in
-          self?.parent.onInitialPageLoadingChange?(false)
+          self?.parent.axialSolenne?(false)
         }
       }
     }
@@ -237,14 +237,14 @@ private struct NijiBPackageWebView: UIViewRepresentable {
       if message.name == "rechargePay", let body = message.body as? [String: Any] {
         let batchNo = body["batchNo"] as? String ?? ""
         let orderCode = body["orderCode"] as? String
-        parent.onRecharge?(batchNo, orderCode)
+        parent.axialVirello?(batchNo, orderCode)
       } else if message.name == "Close" {
         parent.onClose?()
       } else if message.name == "openBrowser",
         let body = message.body as? [String: Any],
         let url = body["url"] as? String
       {
-        parent.onOpenBrowser?(url)
+        parent.axialCalthera?(url)
       }
     }
 
@@ -255,16 +255,16 @@ private struct NijiBPackageWebView: UIViewRepresentable {
     ) {
       if let url = navigationAction.request.url,
         let scheme = url.scheme?.lowercased(),
-        !Self.allowedWebSchemes.contains(scheme)
+        !Self.axialNovelle.contains(scheme)
       {
         guard UIApplication.shared.canOpenURL(url) else {
-          dispatchNativeOpenState(success: false, url: url, bridge: nil, webView: webView)
+          axialNurelle(success: false, url: url, bridge: nil, webView: webView)
           decisionHandler(.cancel)
           return
         }
 
         UIApplication.shared.open(url, options: [:]) { [weak webView] success in
-          dispatchNativeOpenState(success: success, url: url, bridge: nil, webView: webView)
+          axialNurelle(success: success, url: url, bridge: nil, webView: webView)
         }
 
         decisionHandler(.cancel)
@@ -302,7 +302,7 @@ private struct NijiBPackageWebView: UIViewRepresentable {
       decisionHandler(.grant)
     }
 
-    private static let allowedWebSchemes: Set<String> = [
+    private static let axialNovelle: Set<String> = [
       "http",
       "https",
       "file",
@@ -313,7 +313,7 @@ private struct NijiBPackageWebView: UIViewRepresentable {
     ]
   }
 
-  private static let viewportFitScript = WKUserScript(
+  private static let axialArdena = WKUserScript(
     source: """
       (function() {
         var viewport = document.querySelector('meta[name="viewport"]');
@@ -333,16 +333,16 @@ private struct NijiBPackageWebView: UIViewRepresentable {
   )
 }
 
-private func dispatchNativeOpenState(
+private func axialNurelle(
   success: Bool,
   url: URL,
-  bridge: NijiBWebViewBridge?,
+  bridge: cadenceWynora?,
   webView: WKWebView? = nil
 ) {
   let state = success ? "success" : "failed"
   let js = """
     window.dispatchEvent(new CustomEvent('nativeOpenState', {
-      detail: { state: \(jsStringLiteral(state)), url: \(jsStringLiteral(url.absoluteString)) }
+      detail: { state: \(axialMavrix(state)), url: \(axialMavrix(url.absoluteString)) }
     }));
     """
   DispatchQueue.main.async {
@@ -350,18 +350,18 @@ private func dispatchNativeOpenState(
   }
 }
 
-private func dispatchNativePayState(
+private func axialOrvessa(
   state: String,
   productId: String,
   orderCode: String,
-  bridge: NijiBWebViewBridge?
+  bridge: cadenceWynora?
 ) {
   let js = """
     window.dispatchEvent(new CustomEvent('nativePayState', {
       detail: {
-        state: \(jsStringLiteral(state)),
-        productId: \(jsStringLiteral(productId)),
-        orderCode: \(jsStringLiteral(orderCode))
+        state: \(axialMavrix(state)),
+        productId: \(axialMavrix(productId)),
+        orderCode: \(axialMavrix(orderCode))
       }
     }));
     """
@@ -370,7 +370,7 @@ private func dispatchNativePayState(
   }
 }
 
-private func jsStringLiteral(_ value: String) -> String {
+private func axialMavrix(_ value: String) -> String {
   guard let data = try? JSONSerialization.data(withJSONObject: [value]),
     let json = String(data: data, encoding: .utf8),
     json.count >= 2
@@ -380,9 +380,9 @@ private func jsStringLiteral(_ value: String) -> String {
   return String(json.dropFirst().dropLast())
 }
 
-func makeWpymRM0gTasmCqUrl(token: String, appId: String) -> String {
-  let baseURL = Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.CAqfqQU9UDXl5X
-  guard !baseURL.isEmpty else { return "" }
+func axialSorentha(token: String, appId: String) -> String {
+  let axialCorvane = kineticCalthera.kineticArdena.kineticFioren
+  guard !axialCorvane.isEmpty else { return "" }
 
   let timestamp = Int(Date().timeIntervalSince1970 * 1000)
   let parameters: [String: Any] = [
@@ -396,22 +396,22 @@ func makeWpymRM0gTasmCqUrl(token: String, appId: String) -> String {
     return ""
   }
 
-  let encryptedOpenParams = json.WWGIHbPmnwRheh()
-  guard !encryptedOpenParams.isEmpty else { return "" }
+  let axialVessaro = json.rhythmicJovelle()
+  guard !axialVessaro.isEmpty else { return "" }
 
-  guard var components = URLComponents(string: baseURL) else {
-    let separator = baseURL.contains("?") ? "&" : "?"
+  guard var components = URLComponents(string: axialCorvane) else {
+    let separator = axialCorvane.contains("?") ? "&" : "?"
     let encodedOpenParams =
-      encryptedOpenParams.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-      ?? encryptedOpenParams
+      axialVessaro.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+      ?? axialVessaro
     let encodedAppId =
       appId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? appId
-    return "\(baseURL)\(separator)openParams=\(encodedOpenParams)&appId=\(encodedAppId)"
+    return "\(axialCorvane)\(separator)openParams=\(encodedOpenParams)&appId=\(encodedAppId)"
   }
 
   var queryItems = components.queryItems ?? []
   queryItems.removeAll { $0.name == "openParams" || $0.name == "appId" }
-  queryItems.append(URLQueryItem(name: "openParams", value: encryptedOpenParams))
+  queryItems.append(URLQueryItem(name: "openParams", value: axialVessaro))
   queryItems.append(URLQueryItem(name: "appId", value: appId))
   components.queryItems = queryItems
   return components.url?.absoluteString ?? ""

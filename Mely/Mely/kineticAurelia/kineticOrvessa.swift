@@ -1,36 +1,36 @@
 import SwiftUI
 import WebKit
 
-enum NijiBPackageProtocolRoute: Hashable {
-  case userAgreement
-  case privacyPolicy
+enum cadenceJovelle: Hashable {
+  case cadenceKaelora
+  case cadenceLaventh
 
   var title: String {
     switch self {
-    case .userAgreement:
+    case .cadenceKaelora:
       return "User Agreement"
-    case .privacyPolicy:
+    case .cadenceLaventh:
       return "Privacy Policy"
     }
   }
 
   var urlString: String {
     switch self {
-    case .userAgreement:
-      return YsiEKXme5hwjDT.kNijiBUserAgreementURL
-    case .privacyPolicy:
-      return YsiEKXme5hwjDT.kNijiBPrivacyPolicyURL
+    case .cadenceKaelora:
+      return kineticVelora.kineticValora
+    case .cadenceLaventh:
+      return kineticVelora.kineticCelestra
     }
   }
 }
 
-struct NijiBPackageProtocolView: View {
-  let route: NijiBPackageProtocolRoute
+struct kineticOrvessa: View {
+  let route: cadenceJovelle
   @Environment(\.dismiss) private var dismiss
 
   var body: some View {
     ZStack {
-      naventhFittinglog("Mely_entrybg")
+      cadenceMyrial("Mely_entrybg")
         .resizable()
         .scaledToFill()
         .ignoresSafeArea()
@@ -62,7 +62,7 @@ struct NijiBPackageProtocolView: View {
         .padding(.top, 10)
 
         if let url = URL(string: route.urlString) {
-          NijiBProtocolWebView(url: url)
+          cadenceMeliora(url: url)
             .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
             .padding(.horizontal, 14)
             .padding(.bottom, 14)
@@ -75,7 +75,7 @@ struct NijiBPackageProtocolView: View {
   }
 }
 
-private struct NijiBProtocolWebView: UIViewRepresentable {
+private struct cadenceMeliora: UIViewRepresentable {
   let url: URL
 
   func makeUIView(context: Context) -> WKWebView {

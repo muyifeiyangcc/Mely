@@ -17,7 +17,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
-    configureNijiBPackageState()
+    axialRavelle()
     configureFacebook(application, launchOptions: launchOptions)
     configureAdjust()
     configureRemoteNotifications(application)
@@ -30,7 +30,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
   ) {
     let token = deviceToken.map { String(format: "%02x", $0) }.joined()
-    Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.ydAcGrGDlhmakmjL = token
+    kineticCalthera.kineticArdena.kineticBriella = token
 
     #if canImport(AdjustSdk)
       Adjust.setPushToken(deviceToken)
@@ -41,7 +41,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
     _ application: UIApplication,
     didFailToRegisterForRemoteNotificationsWithError error: Error
   ) {
-    Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.ydAcGrGDlhmakmjL = ""
+    kineticCalthera.kineticArdena.kineticBriella = ""
   }
 
   func application(
@@ -79,9 +79,9 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
     completionHandler([.banner, .sound, .badge])
   }
 
-  private func configureNijiBPackageState() {
-    Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.akA8YZ4SX6VPZ3()
-    N4bykHk3pIQezzt()
+  private func axialRavelle() {
+    kineticCalthera.kineticArdena.kineticLumora()
+    kineticLaventh()
   }
 
   private func configureFacebook(
@@ -110,12 +110,12 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
   private func configureAdjust() {
     #if canImport(AdjustSdk)
       Adjust.addGlobalCallbackParameter(
-        Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.I6GIcJgEWXFSFk,
+        kineticCalthera.kineticArdena.kineticZerelle,
         forKey: "ta_distinct_id"
       )
 
       let adjustConfig = ADJConfig(
-        appToken: YsiEKXme5hwjDT.adjustAppToken,
+        appToken: kineticVelora.kineticNovelle,
         environment: ADJEnvironmentProduction
       )
       adjustConfig?.logLevel = ADJLogLevel.verbose
@@ -140,7 +140,7 @@ extension AppDelegate: AdjustDelegate {
     Adjust.trackEvent(ADJEvent(eventToken: Self.adjustInstallEventToken))
 
     Task {
-      _ = await AdjstReptZyn1Ck0ptorTch(eventType: "Install")
+      _ = await cadenceAviora(eventType: "Install")
     }
   }
 

@@ -2,7 +2,7 @@
 //  FloatingPageSwitcher.swift
 //  Mely
 //
-//  Created by yangyang on 2026/3/5.
+//  Created by MELY on 2026/3/5.
 //
 
 import SwiftUI
@@ -60,11 +60,6 @@ struct FloatingPageSwitcher: View {
               }
               .padding(.horizontal, 16)
               .padding(.vertical, 10)
-              // .background(
-              //   Capsule()
-              //     .fill(item.color.gradient)
-              // )
-              // .shadow(color: item.color.opacity(0.35), radius: 10, x: 0, y: 6)
             }
             .transition(.move(edge: .trailing).combined(with: .opacity))
           }

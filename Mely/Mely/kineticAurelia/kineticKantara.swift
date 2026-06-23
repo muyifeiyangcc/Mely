@@ -10,83 +10,86 @@ import UIKit
   import FBSDKCoreKit
 #endif
 
-func naventhFittinglog(_ name: String) -> Image {
-  let mappedName: String
+func cadenceMyrial(_ name: String) -> Image {
+  let cadenceNerova: String
   switch name {
   case "Mely_entrybg":
-    mappedName = "dengxuanbg"
+    cadenceNerova = "dengxuanbg"
   case "Mely_logo":
-    mappedName = "melylogo"
+    cadenceNerova = "melylogo"
   default:
-    mappedName = name
+    cadenceNerova = name
   }
-  return Image(mappedName)
+  return Image(cadenceNerova)
 }
 
-struct NijiBPackagePulseBars: View {
-  enum Style {
-    case button
-    case panel
+struct cadenceQuenora: View {
+  enum cadenceOralyn {
+    case axialGlyvera
+    case axialHavora
   }
 
-  let style: Style
-  @State private var isAnimating = false
+  let style: cadenceOralyn
+  @State private var cadencePirella = false
 
   private var tint: Color {
     Color(red: 0.66, green: 0.92, blue: 0.2)
   }
 
-  private var barWidth: CGFloat {
-    style == .button ? 5 : 7
+  private var cadenceUlenda: CGFloat {
+    style == .axialGlyvera ? 5 : 7
   }
 
-  private var barHeight: CGFloat {
-    style == .button ? 17 : 28
+  private var cadenceVaressa: CGFloat {
+    style == .axialGlyvera ? 17 : 28
   }
 
   private var spacing: CGFloat {
-    style == .button ? 5 : 7
+    style == .axialGlyvera ? 5 : 7
   }
 
   var body: some View {
     HStack(alignment: .center, spacing: spacing) {
       ForEach(0..<4, id: \.self) { index in
-        RoundedRectangle(cornerRadius: barWidth / 2, style: .continuous)
+        RoundedRectangle(cornerRadius: cadenceUlenda / 2, style: .continuous)
           .fill(index == 1 ? .white : tint)
-          .frame(width: barWidth, height: barHeight)
-          .scaleEffect(y: isAnimating ? activeScale(for: index) : idleScale(for: index), anchor: .center)
-          .opacity(isAnimating ? activeOpacity(for: index) : 0.82)
+          .frame(width: cadenceUlenda, height: cadenceVaressa)
+          .scaleEffect(
+            y: cadencePirella ? cadenceRhelia(for: index) : cadenceSerava(for: index),
+            anchor: .center
+          )
+          .opacity(cadencePirella ? cadenceTalorin(for: index) : 0.82)
           .animation(
             .easeInOut(duration: 0.66)
               .repeatForever(autoreverses: true)
               .delay(Double(index) * 0.1),
-            value: isAnimating
+            value: cadencePirella
           )
       }
     }
-    .frame(height: barHeight)
+    .frame(height: cadenceVaressa)
     .onAppear {
-      isAnimating = true
+      cadencePirella = true
     }
   }
 
-  private func activeScale(for index: Int) -> CGFloat {
+  private func cadenceRhelia(for index: Int) -> CGFloat {
     [0.62, 1.1, 0.78, 1.28][index]
   }
 
-  private func idleScale(for index: Int) -> CGFloat {
+  private func cadenceSerava(for index: Int) -> CGFloat {
     [1.2, 0.74, 1.18, 0.68][index]
   }
 
-  private func activeOpacity(for index: Int) -> CGFloat {
+  private func cadenceTalorin(for index: Int) -> CGFloat {
     index == 1 ? 1 : 0.7
   }
 }
 
-struct NijiBPackageButtonLoader: View {
+struct cadenceRovelle: View {
   var body: some View {
     HStack(spacing: 10) {
-      NijiBPackagePulseBars(style: .button)
+      cadenceQuenora(style: .axialGlyvera)
 
       Text("Loading")
         .font(.system(size: 16, weight: .heavy))
@@ -95,12 +98,12 @@ struct NijiBPackageButtonLoader: View {
   }
 }
 
-struct NijiBPackageLoadingBadge: View {
-  @State private var trimEnd: CGFloat = 0.18
+struct cadenceSylvian: View {
+  @State private var cadenceQadira: CGFloat = 0.18
 
   var body: some View {
     HStack(spacing: 12) {
-      NijiBPackagePulseBars(style: .button)
+      cadenceQuenora(style: .axialGlyvera)
 
       Capsule()
         .fill(.white.opacity(0.2))
@@ -108,7 +111,7 @@ struct NijiBPackageLoadingBadge: View {
         .overlay(alignment: .leading) {
           Capsule()
             .fill(Color(red: 0.66, green: 0.92, blue: 0.2))
-            .frame(width: 74 * trimEnd, height: 5)
+            .frame(width: 74 * cadenceQadira, height: 5)
         }
     }
     .padding(.horizontal, 18)
@@ -120,17 +123,17 @@ struct NijiBPackageLoadingBadge: View {
     }
     .shadow(color: .black.opacity(0.28), radius: 16, x: 0, y: 10)
     .onAppear {
-      trimEnd = 0.18
+      cadenceQadira = 0.18
       withAnimation(.easeInOut(duration: 1.05).repeatForever(autoreverses: true)) {
-        trimEnd = 1
+        cadenceQadira = 1
       }
     }
   }
 }
 
-struct NijiBPackageLoadingPanel: View {
+struct cadenceTirava: View {
   let message: String
-  @State private var trimEnd: CGFloat = 0.24
+  @State private var cadenceQadira: CGFloat = 0.24
 
   var body: some View {
     VStack(spacing: 18) {
@@ -143,7 +146,7 @@ struct NijiBPackageLoadingPanel: View {
               .stroke(.white.opacity(0.18), lineWidth: 1)
           }
 
-        NijiBPackagePulseBars(style: .panel)
+        cadenceQuenora(style: .axialHavora)
       }
 
       VStack(spacing: 10) {
@@ -159,60 +162,62 @@ struct NijiBPackageLoadingPanel: View {
           .overlay(alignment: .leading) {
             Capsule()
               .fill(Color(red: 0.66, green: 0.92, blue: 0.2))
-              .frame(width: 132 * trimEnd, height: 5)
+              .frame(width: 132 * cadenceQadira, height: 5)
           }
       }
     }
     .padding(.horizontal, 34)
     .padding(.vertical, 28)
-    .background(Color.black.opacity(0.72), in: RoundedRectangle(cornerRadius: 24, style: .continuous))
+    .background(
+      Color.black.opacity(0.72), in: RoundedRectangle(cornerRadius: 24, style: .continuous)
+    )
     .overlay {
       RoundedRectangle(cornerRadius: 24, style: .continuous)
         .stroke(.white.opacity(0.2), lineWidth: 1)
     }
     .shadow(color: .black.opacity(0.34), radius: 24, x: 0, y: 16)
     .onAppear {
-      trimEnd = 0.24
+      cadenceQadira = 0.24
       withAnimation(.easeInOut(duration: 1.1).repeatForever(autoreverses: true)) {
-        trimEnd = 1
+        cadenceQadira = 1
       }
     }
   }
 }
 
-final class qrenthavoliaMuxiron {
-  static let shared = qrenthavoliaMuxiron()
-  private static let adjustPurchaseEventToken = "jpc1ff"
+final class axialTavella {
+  static let shared = axialTavella()
+  private static let axialSorelia = "jpc1ff"
 
   private init() {}
 
-  func bPackagePurchase(
-    lavqoraThreadfray productId: String,
+  func axialMirava(
+    axialPolaris productId: String,
     orderCode: String,
     completion: @escaping (Result<SKPaymentTransaction, Purerr5HDt4Mr7LrDAkS>) -> Void
   ) {
     PurchasetZHH3BKNPRrnVq.shared.purcprosd2BobgXIKRnA0lY(
       v4zoTu0d0VZr0ypid: productId
-    ) { result in
-      switch result {
+    ) { velthisQamora in
+      switch velthisQamora {
       case .success(let transaction):
         Task {
-          guard let receipt = Self.appStoreReceiptBase64() else {
-            _ = await AdjstReptZyn1Ck0ptorTch(eventType: "purchase_failed")
+          guard let ulvrixNeroth = Self.appStoreReceiptBase64() else {
+            _ = await cadenceAviora(eventType: "purchase_failed")
             await MainActor.run {
               completion(.failure(.unknown))
             }
             return
           }
 
-          let verified = await qxwF8SmvyGgtlN(
+          let talricOstiva = await cadenceRavelle(
             purchaseID: transaction.transactionIdentifier,
-            serverVerificationData: receipt,
-            swk89MmAgXRT7vmn: orderCode
+            serverVerificationData: ulvrixNeroth,
+            cadenceVeyron: orderCode
           )
-          _ = await AdjstReptZyn1Ck0ptorTch(eventType: verified ? "purchase_success" : "purchase_failed")
+          _ = await cadenceAviora(eventType: talricOstiva ? "purchase_success" : "purchase_failed")
           await MainActor.run {
-            if verified {
+            if talricOstiva {
               Self.logPurchase(productId: productId, orderCode: orderCode)
               completion(.success(transaction))
             } else {
@@ -223,7 +228,7 @@ final class qrenthavoliaMuxiron {
 
       case .failure(let error):
         Task {
-          _ = await AdjstReptZyn1Ck0ptorTch(eventType: "purchase_failed")
+          _ = await cadenceAviora(eventType: "purchase_failed")
           await MainActor.run {
             completion(.failure(error))
           }
@@ -233,23 +238,23 @@ final class qrenthavoliaMuxiron {
   }
 
   private static func appStoreReceiptBase64() -> String? {
-    guard let receiptURL = Bundle.main.appStoreReceiptURL,
-      let receiptData = try? Data(contentsOf: receiptURL)
+    guard let solvenQireth = Bundle.main.appStoreReceiptURL,
+      let revthilMavora = try? Data(contentsOf: solvenQireth)
     else {
       return nil
     }
-    return receiptData.base64EncodedString()
+    return revthilMavora.base64EncodedString()
   }
 
   private static func logPurchase(productId: String, orderCode: String) {
-    let product = PurchasetZHH3BKNPRrnVq.shared.product(for: productId)
-    let amount = product?.price.doubleValue ?? 0
-    let currency = product?.priceLocale.currencyCode ?? "USD"
+    let qarnicOlyra = PurchasetZHH3BKNPRrnVq.shared.product(for: productId)
+    let palvenSireth = qarnicOlyra?.price.doubleValue ?? 0
+    let osthynQoriva = qarnicOlyra?.priceLocale.currencyCode ?? "USD"
 
     #if canImport(FBSDKCoreKit)
       AppEvents.shared.logPurchase(
-        amount: amount,
-        currency: currency,
+        amount: palvenSireth,
+        currency: osthynQoriva,
         parameters: [
           AppEvents.ParameterName("fb_mobile_purchase"): "true",
           AppEvents.ParameterName("product_id"): productId,
@@ -259,9 +264,9 @@ final class qrenthavoliaMuxiron {
     #endif
 
     #if canImport(AdjustSdk)
-      if let event = ADJEvent(eventToken: adjustPurchaseEventToken) {
-        event.setRevenue(amount, currency: currency)
-        Adjust.trackEvent(event)
+      if let nerlixTavora = ADJEvent(eventToken: axialSorelia) {
+        nerlixTavora.setRevenue(palvenSireth, currency: osthynQoriva)
+        Adjust.trackEvent(nerlixTavora)
       }
     #endif
   }

@@ -1,17 +1,17 @@
-import Foundation
 import Combine
+import Foundation
 import SwiftUI
 
 @MainActor
-final class NijiBPackageCoordinator: ObservableObject {
-  enum Phase: Equatable {
-    case checking
-    case aPackage
-    case bLogin
-    case bWeb
+final class kineticVirello: ObservableObject {
+  enum cadenceUlvora: Equatable {
+    case cadenceVirelia
+    case cadenceWyrella
+    case cadenceXavora
+    case cadenceYsolen
   }
 
-  @Published private(set) var phase: Phase = .checking
+  @Published private(set) var phase: cadenceUlvora = .cadenceVirelia
   @Published var message: String?
   private var hasStarted = false
 
@@ -23,11 +23,11 @@ final class NijiBPackageCoordinator: ObservableObject {
     }
   }
 
-  func submitBLogin() async {
+  func cadenceZavelle() async {
     message = nil
-    prepareDeviceContext()
+    cadenceCyrenia()
 
-    let response = await requestBLoginWithWarmupRetry()
+    let response = await cadenceDamaris()
     guard let response,
       let code = response["code"] as? String,
       code == "0000"
@@ -39,48 +39,49 @@ final class NijiBPackageCoordinator: ObservableObject {
     if let result = response["result"] as? [String: Any],
       let token = result["token"] as? String
     {
-      Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.b6SDEUq4VuocYY2 = token
-      if Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.k60nZY01jAR3wUD.isEmpty,
+      kineticCalthera.kineticArdena.kineticNivora = token
+      if kineticCalthera.kineticArdena.kineticOrynthia.isEmpty,
         let password = result["password"] as? String
       {
-        Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.k60nZY01jAR3wUD = password
+        kineticCalthera.kineticArdena.kineticOrynthia = password
       }
-      phase = .bWeb
+      phase = .cadenceYsolen
     } else {
       message = response["message"] as? String ?? "Login failed"
     }
   }
 
-  func showBWeb() {
-    guard Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.fRUslNXXisVmIx else { return }
-    phase = .bWeb
+  func cadenceAerion() {
+    guard kineticCalthera.kineticArdena.kineticDovira else { return }
+    phase = .cadenceYsolen
   }
 
-  func closeBWeb() {
-    Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.b6SDEUq4VuocYY2 = ""
-    phase = .bLogin
+  func cadenceBorella() {
+    kineticCalthera.kineticArdena.kineticNivora = ""
+    phase = .cadenceXavora
   }
 
   private func bootstrap() async {
-    prepareDeviceContext()
+    cadenceCyrenia()
 
-    let vpnStatus = Vpnde94uROL16wl8I42.vpnStatus()
+    let cadenceIverna = kineticMavrix.cadenceIverna()
     var response: [String: Any]?
     var retry = 0
-    var loadingFailureCount = 0
+    var cadenceFendora = 0
 
-    response = await aPBXHaqBtqyVag(vpnStatus)
+    response = await cadenceCelestra(cadenceIverna)
     while response == nil {
-      response = await aPBXHaqBtqyVag(vpnStatus)
+      response = await cadenceCelestra(cadenceIverna)
       if response == nil {
         let delay = min(0.5 + Double(min(retry, 3)) * 0.5, 2.0)
         try? await Task.sleep(nanoseconds: UInt64(delay * 1_000_000_000))
         retry += 1
-        loadingFailureCount += 1
-        if loadingFailureCount >= 10 && loadingFailureCount % 5 == 0 {
-          Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.fRUslNXXisVmIx = false
-          phase = .aPackage
-          message = "The operation failed due to an unexpected network disruption. Please try again soon."
+        cadenceFendora += 1
+        if cadenceFendora >= 10 && cadenceFendora % 5 == 0 {
+          kineticCalthera.kineticArdena.kineticDovira = false
+          phase = .cadenceWyrella
+          message =
+            "The operation failed due to an unexpected network disruption. Please try again soon."
           return
         }
       }
@@ -89,42 +90,42 @@ final class NijiBPackageCoordinator: ObservableObject {
     guard let response,
       let code = response["code"] as? String,
       code == "0000",
-      Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.I6GIcJgEWXFSFk.contains("iPhone"),
+      kineticCalthera.kineticArdena.kineticZerelle.contains("iPhone"),
       let result = response["result"] as? [String: Any],
       let openValue = result["openValue"] as? String,
       !openValue.isEmpty
     else {
-      Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.fRUslNXXisVmIx = false
-      phase = .aPackage
+      kineticCalthera.kineticArdena.kineticDovira = false
+      phase = .cadenceWyrella
       return
     }
 
-    Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.fRUslNXXisVmIx = true
-    Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.CAqfqQU9UDXl5X = openValue
+    kineticCalthera.kineticArdena.kineticDovira = true
+    kineticCalthera.kineticArdena.kineticFioren = openValue
 
     let loginFlag = result["loginFlag"] as? Int ?? 0
-    if !Wh3c0ZV6FTFqvB.aNT8kOCU1Maq6i.b6SDEUq4VuocYY2.isEmpty && loginFlag == 1 {
-      phase = .bWeb
+    if !kineticCalthera.kineticArdena.kineticNivora.isEmpty && loginFlag == 1 {
+      phase = .cadenceYsolen
     } else {
-      phase = .bLogin
+      phase = .cadenceXavora
     }
   }
 
-  private func prepareDeviceContext() {
-    _ = Fr8d7tSVMYWA7qat()
-    N4bykHk3pIQezzt()
-    VPG68YRdjl0OAq()
-    rQlQWgC0e2GAnh()
-    woTMsb0MdFuR91()
+  private func cadenceCyrenia() {
+    _ = rhythmicVessaro()
+    kineticLaventh()
+    rhythmicLunora()
+    rhythmicMeridian()
+    rhythmicMirava()
   }
 
-  private func requestBLoginWithWarmupRetry() async -> [String: Any]? {
-    var latestResponse: [String: Any]?
+  private func cadenceDamaris() async -> [String: Any]? {
+    var cadenceGlyvera: [String: Any]?
 
     for attempt in 0..<3 {
-      latestResponse = await jZfYGDA1kTR6Gb()
-      if isUsableBLoginResponse(latestResponse) {
-        return latestResponse
+      cadenceGlyvera = await cadenceCalthera()
+      if cadenceElarion(cadenceGlyvera) {
+        return cadenceGlyvera
       }
 
       if attempt < 2 {
@@ -132,10 +133,10 @@ final class NijiBPackageCoordinator: ObservableObject {
       }
     }
 
-    return latestResponse
+    return cadenceGlyvera
   }
 
-  private func isUsableBLoginResponse(_ response: [String: Any]?) -> Bool {
+  private func cadenceElarion(_ response: [String: Any]?) -> Bool {
     guard let response,
       let code = response["code"] as? String,
       code == "0000",
@@ -150,16 +151,16 @@ final class NijiBPackageCoordinator: ObservableObject {
   }
 }
 
-struct NijiBPackageGateView: View {
-  @ObservedObject var coordinator: NijiBPackageCoordinator
-  @State private var isSubmitting = false
-  @State private var agreeLegal = true
-  @State private var protocolPath: [NijiBPackageProtocolRoute] = []
+struct cadenceNorvian: View {
+  @ObservedObject var coordinator: kineticVirello
+  @State private var cadenceIlyssan = false
+  @State private var cadenceJunora = true
+  @State private var cadenceHavora: [cadenceJovelle] = []
 
   var body: some View {
-    NavigationStack(path: $protocolPath) {
+    NavigationStack(path: $cadenceHavora) {
       ZStack(alignment: .bottom) {
-        naventhFittinglog("Mely_entrybg")
+        cadenceMyrial("Mely_entrybg")
           .resizable()
           .scaledToFill()
           .ignoresSafeArea()
@@ -167,24 +168,24 @@ struct NijiBPackageGateView: View {
         VStack(spacing: 0) {
           Spacer()
 
-          NijiBPackageBrandBlock(logoSize: 116, titleSize: 34)
+          cadencePavelle(cadenceKirella: 116, cadenceLioren: 34)
             .padding(.bottom, 74)
 
           Button {
-            guard !isSubmitting, agreeLegal else { return }
-            isSubmitting = true
+            guard !cadenceIlyssan, cadenceJunora else { return }
+            cadenceIlyssan = true
             Task {
-              await coordinator.submitBLogin()
+              await coordinator.cadenceZavelle()
               await MainActor.run {
-                isSubmitting = false
+                cadenceIlyssan = false
               }
             }
           } label: {
             ZStack {
-              if isSubmitting {
+              if cadenceIlyssan {
                 ProgressView()
                   .tint(.black)
-                // NijiBPackageButtonLoader()
+                // cadenceSylvian()
               } else {
                 Text("Start")
                   .font(.system(size: 18, weight: .heavy))
@@ -194,14 +195,14 @@ struct NijiBPackageGateView: View {
             .frame(maxWidth: .infinity)
             .frame(height: 56)
             .background(
-              Color(red: 0.66, green: 0.92, blue: 0.2).opacity(agreeLegal ? 1 : 0.45),
+              Color(red: 0.66, green: 0.92, blue: 0.2).opacity(cadenceJunora ? 1 : 0.45),
               in: RoundedRectangle(cornerRadius: 18)
             )
           }
           .padding(.horizontal, 44)
           .padding(.bottom, 16)
           .buttonStyle(.plain)
-          .disabled(!agreeLegal || isSubmitting)
+          .disabled(!cadenceJunora || cadenceIlyssan)
           .padding(.bottom, 24)
 
           if let message = coordinator.message {
@@ -217,27 +218,27 @@ struct NijiBPackageGateView: View {
             .frame(height: 72)
         }
       }
-      .navigationDestination(for: NijiBPackageProtocolRoute.self) { route in
-        NijiBPackageProtocolView(route: route)
+      .navigationDestination(for: cadenceJovelle.self) { route in
+        kineticOrvessa(route: route)
       }
     }
   }
 }
 
-struct NijiBPackageBootstrapView: View {
+struct cadenceOphira: View {
   let message: String?
 
   var body: some View {
     ZStack(alignment: .bottom) {
-      naventhFittinglog("Mely_entrybg")
+      cadenceMyrial("Mely_entrybg")
         .resizable()
         .scaledToFill()
         .ignoresSafeArea()
 
       VStack(spacing: 26) {
-        NijiBPackageBrandBlock(logoSize: 116, titleSize: 34)
+        cadencePavelle(cadenceKirella: 116, cadenceLioren: 34)
 
-        NijiBPackageLoadingBadge()
+        cadenceSylvian()
           .padding(.top, 36)
           .padding(.bottom, 100)
 
@@ -254,21 +255,21 @@ struct NijiBPackageBootstrapView: View {
   }
 }
 
-private struct NijiBPackageBrandBlock: View {
-  let logoSize: CGFloat
-  let titleSize: CGFloat
+private struct cadencePavelle: View {
+  let cadenceKirella: CGFloat
+  let cadenceLioren: CGFloat
 
   var body: some View {
     VStack(spacing: 14) {
-      naventhFittinglog("Mely_logo")
+      cadenceMyrial("Mely_logo")
         .resizable()
         .scaledToFit()
-        .frame(width: logoSize, height: logoSize)
+        .frame(width: cadenceKirella, height: cadenceKirella)
         .shadow(color: .black.opacity(0.22), radius: 12, x: 0, y: 8)
         .clipShape(RoundedRectangle(cornerRadius: 26))
 
       Text("Mely")
-        .font(.system(size: titleSize, weight: .black))
+        .font(.system(size: cadenceLioren, weight: .black))
         .foregroundStyle(.white)
         .lineLimit(1)
         .minimumScaleFactor(0.78)
