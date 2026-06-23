@@ -13,6 +13,8 @@ import SwiftUI
 
 @main
 struct MelyApp: App {
+  @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+
   init() {
     #if DEBUG
       if let path = Bundle.main.path(forResource: "iOSInjection", ofType: "bundle")
@@ -21,9 +23,6 @@ struct MelyApp: App {
         Bundle(path: path)!.load()
       }
     #endif
-
-    // 初始化 StoreKit 内购（商品 ID 及加载逻辑封装在 PurchasetZHH3BKNPRrnVq 内部）
-    PurchasetZHH3BKNPRrnVq.shared.initialize()
   }
 
   var body: some Scene {

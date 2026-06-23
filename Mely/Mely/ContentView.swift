@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-/// 默认根视图在调试时可以通过注入切换，这里简单代理到 `AppRootView`。
+/// 默认根视图在调试时可以通过注入切换，这里先进入 A/B 包分流。
 struct ContentView: View {
   var body: some View {
-    AppRootView()
+    NijiABRootView()
   }
 }

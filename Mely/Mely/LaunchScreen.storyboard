@@ -18,12 +18,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="eNg-Om-d9W">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="eNg-Om-d9W">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="eNg-Om-d9W" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="4Ys-bY-9E2"/>
+                            <constraint firstItem="eNg-Om-d9W" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="ATE-BV-wRU"/>
+                            <constraint firstAttribute="trailing" secondItem="eNg-Om-d9W" secondAttribute="trailing" id="HJU-0C-L2K"/>
+                            <constraint firstAttribute="bottom" secondItem="eNg-Om-d9W" secondAttribute="bottom" id="gZq-3G-wkT"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -9,12 +9,18 @@ import Foundation
 import StoreKit
 
 let daliangIDSvlxgxhaLelP5rt: [String] = [
-  "sxywitjctwntdimr",
-  "zbjlgkkikpncuegz",
-  "anramplctckvlz",
-  "ggtswccjgczpbtee",
-  "bsivtppskaimzd",
-  "ramndlyuqxnwwtou",
+  "lvbsvhxcgcrvesor",
+  "dxismgcwewhrtezo",
+  "khtxlcejaxmqcsra",
+  "yadwwvxspgxwlndb",
+  "qnrcuelbtiuflyky",
+  "ymohxnvpkqxutvab",
+  // "sxywitjctwntdimr",
+  // "zbjlgkkikpncuegz",
+  // "anramplctckvlz",
+  // "ggtswccjgczpbtee",
+  // "bsivtppskaimzd",
+  // "ramndlyuqxnwwtou",
   "pulimqvcddkqzs",
   "gjocttgknqkvszyq",
   "nwjyzrjrfgkxhcce",
@@ -28,7 +34,8 @@ final class PurchasetZHH3BKNPRrnVq: NSObject {
   private(set) var SnqyWDawqsbujCpods: [String: SKProduct] = [:]
   private var Qh8juTIPbSivNg: SKProductsRequest?
   private var vbKoXGgUfycysl: ((Result<[SKProduct], Purerr5HDt4Mr7LrDAkS>) -> Void)?
-  private var iKeT4q54MVRWfB: [String: (Result<SKPaymentTransaction, Purerr5HDt4Mr7LrDAkS>) -> Void] = [:]
+  private var iKeT4q54MVRWfB:
+    [String: (Result<SKPaymentTransaction, Purerr5HDt4Mr7LrDAkS>) -> Void] = [:]
 
   private override init() {
     super.init()

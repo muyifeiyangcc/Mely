@@ -1,0 +1,9 @@
+platform :ios, '18.6'
+
+use_frameworks!
+
+target 'Mely' do
+  pod 'ScreenShield'
+  pod 'Adjust'
+  pod 'FBSDKCoreKit'
+end
