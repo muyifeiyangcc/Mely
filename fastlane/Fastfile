@@ -59,7 +59,7 @@ platform :ios do
     prepare_gym
     gym(
       workspace: "Mely/Mely.xcworkspace",     # 如果是 workspace 就用 workspace
-      scheme: ENV["SCHEME"],         # 一定要有
+      scheme: scheme,         # 一定要有
       clean: true,
 
       export_method: export_method,
