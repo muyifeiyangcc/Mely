@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		11DF003666B71DAA47A42657 /* Pods_Mely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02BA24C918261A3174397F8F /* Pods_Mely.framework */; };
-		DD5022712F59635D00CDD6B8 /* HotSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = DD5022702F59635D00CDD6B8 /* HotSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +72,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD5022712F59635D00CDD6B8 /* HotSwiftUI in Frameworks */,
 				11DF003666B71DAA47A42657 /* Pods_Mely.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,7 +154,6 @@
 			);
 			name = Mely;
 			packageProductDependencies = (
-				DD5022702F59635D00CDD6B8 /* HotSwiftUI */,
 			);
 			productName = Mely;
 			productReference = DDBAACBB2F595E2500E72DD2 /* Mely.app */;
@@ -237,7 +234,6 @@
 			mainGroup = DDBAACB22F595E2500E72DD2;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				DD50226F2F59635D00CDD6B8 /* XCRemoteSwiftPackageReference "HotSwiftUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DDBAACBC2F595E2500E72DD2 /* Products */;
@@ -499,7 +495,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-Xlinker",
@@ -536,7 +532,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mwanwokybbrq.Mely;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -674,24 +670,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		DD50226F2F59635D00CDD6B8 /* XCRemoteSwiftPackageReference "HotSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/johnno1962/HotSwiftUI";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.4;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		DD5022702F59635D00CDD6B8 /* HotSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DD50226F2F59635D00CDD6B8 /* XCRemoteSwiftPackageReference "HotSwiftUI" */;
-			productName = HotSwiftUI;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DDBAACB32F595E2500E72DD2 /* Project object */;
 }

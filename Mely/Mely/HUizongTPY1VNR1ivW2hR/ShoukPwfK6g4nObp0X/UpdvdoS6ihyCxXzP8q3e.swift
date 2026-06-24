@@ -11,10 +11,6 @@ struct UpdvdoS6ihyCxXzP8q3e: View {
   @Binding var path: [MainRoute]
   let chaidGv626ziV6BGf53: String
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   @Environment(\.dismiss) private var dismiss
   @EnvironmentObject private var Zt5iNFkioegZpw: MelystoreWpvugHy89HDWLR
 
@@ -51,9 +47,6 @@ struct UpdvdoS6ihyCxXzP8q3e: View {
     .videoSourcePicker(isPresented: $shvdopWLHYE8VsBFGOg) { url in
       handvdouTcSYKythCGJ8G(url)
     }
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private func handvdouTcSYKythCGJ8G(_ url: URL) {

@@ -48,10 +48,6 @@ struct FilulistxLM01tqmx9RvFN: View {
     }
   }
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   var body: some View {
     MelyYemianScaffold {
       VStack(spacing: 0) {
@@ -70,9 +66,6 @@ struct FilulistxLM01tqmx9RvFN: View {
       }
     }
     .navigationBarHidden(true)
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private var bav9RbdMPbtSUG9Pa: some View {

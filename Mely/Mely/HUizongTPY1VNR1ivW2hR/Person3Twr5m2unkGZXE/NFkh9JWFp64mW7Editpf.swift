@@ -18,10 +18,6 @@ struct NFkh9JWFp64mW7Editpf: View {
 
   private let acgDHmuQl9GJsxAZk = Color(hex: "#CBED40")
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   private var acvaoA8Oh7pXAbIAxz: (isImage: Bool, image: UIImage?, symbol: String)? {
     if let imgSOT8LlEPUkorcg = seava0KwpPJW4iGEj8C {
       return (true, imgSOT8LlEPUkorcg, "")
@@ -58,9 +54,6 @@ struct NFkh9JWFp64mW7Editpf: View {
       }
     }
     .navigationBarHidden(true)
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private var navbn91ibdfEIz89SY: some View {

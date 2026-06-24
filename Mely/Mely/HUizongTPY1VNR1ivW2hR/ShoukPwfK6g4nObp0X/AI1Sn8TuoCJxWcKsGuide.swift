@@ -12,10 +12,6 @@ struct AI1Sn8TuoCJxWcKsGuide: View {
   @Environment(\.dismiss) private var dismiss
   @State private var wihIsHiYjmlGqC = false
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   private let aigSvtv3naRZJUD82 = Color(hex: "#CBED40")
   private let aipNReqTSV9stRlWm = Color(red: 255 / 255, green: 26 / 255, blue: 182 / 255)
   private let dargCpl7rkOeeh7GGM = LinearGradient(
@@ -60,9 +56,6 @@ struct AI1Sn8TuoCJxWcKsGuide: View {
         )
       }
     }
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private var tp72CZkpi7Z61X3N: some View {

@@ -20,10 +20,6 @@ struct CoineCywyk67HOcjut: View {
   @State private var alrtOvKbTxDwBIMPLh: String?
   @State private var saRJWADOfgR7mR7n = false
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   private static let packages: [DiaSQxlUeucGab8kH] = [
     DiaSQxlUeucGab8kH(id: 0, diamiRCh7OLPItldoo: 400, prioXwazZVtOSYt0l: "PCHR8rs".melyDecoded),
     DiaSQxlUeucGab8kH(id: 1, diamiRCh7OLPItldoo: 800, prioXwazZVtOSYt0l: "PCDR8rs".melyDecoded),
@@ -72,9 +68,6 @@ struct CoineCywyk67HOcjut: View {
     } message: {
       if let msg = alrtOvKbTxDwBIMPLh { Text(msg) }
     }
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private var nav2Bzseiqq1giFDf: some View {

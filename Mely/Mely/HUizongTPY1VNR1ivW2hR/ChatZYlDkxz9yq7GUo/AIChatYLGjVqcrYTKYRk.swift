@@ -60,10 +60,6 @@ struct AIChatYLGjVqcrYTKYRk: View {
   @EnvironmentObject private var llEQBTQxlR8ETD: MelystoreWpvugHy89HDWLR
   @Environment(\.dismiss) private var dismiss
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   @State private var m1mbtVikRszkm8: String = ""
   @State private var wIemTBaAkSG2tk: [AICtAhqMigsf3g8DWx] = []
   @State private var sgidxmhN1RHfEFWdWeK: Int = 0
@@ -121,9 +117,6 @@ struct AIChatYLGjVqcrYTKYRk: View {
       withAnimation(.easeOut(duration: 0.25)) { kbhoZrEZShh5SGQAV = 0 }
     }
     .toolbar(.hidden, for: .navigationBar)
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private var eznJHgfhnjj2BC: some View {

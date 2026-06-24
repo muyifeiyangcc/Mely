@@ -11,10 +11,6 @@ struct MhoshoutosPR9GnzvOjHw: View {
   @Binding var path: [MainRoute]
   @EnvironmentObject private var bHtOTg1jCD0WmZ: MelystoreWpvugHy89HDWLR
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   @State private var s8Ttn4DR5mxF7d7: String = ""
 
   private var Bqk0DhBCQb7eMf: [DancozZ6LtwXHtlqPu] {
@@ -41,9 +37,6 @@ struct MhoshoutosPR9GnzvOjHw: View {
       }
     }
     .toolbar(.hidden, for: .navigationBar)
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private var fB1N9PmOCcE70zsear: some View {

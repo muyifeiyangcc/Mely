@@ -29,10 +29,6 @@ enum MainRoute: Hashable {
 }
 
 struct AppRootView: View {
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   @StateObject private var appDataStore = MelystoreWpvugHy89HDWLR()
   @State private var path: [MainRoute] = []
 
@@ -112,8 +108,5 @@ struct AppRootView: View {
       }
     }
     .environmentObject(appDataStore)
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 }

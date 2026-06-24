@@ -14,10 +14,6 @@ struct WebProtocolRoute: Hashable {
 struct LoginChoice4muHqmiYP6: View {
   @EnvironmentObject private var rkwSGN91B6dIT0: MelystoreWpvugHy89HDWLR
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   @State private var pathwZGTVguKFdZteU = NavigationPath()
   @State private var agreeLegal: Bool = true
   @State private var ialingAvvyaeDkwduBie: Bool = false
@@ -172,9 +168,6 @@ struct LoginChoice4muHqmiYP6: View {
       .navigationDestination(for: WebProtocolRoute.self) { route in
         WebProtocolView(urlsVN4aXHEEFJRMv: route.urlString, titGM8TgIi65xSys5: route.title, path: .constant([]))
       }
-      #if DEBUG
-        .enableInjection()
-      #endif
     }
   }
 }

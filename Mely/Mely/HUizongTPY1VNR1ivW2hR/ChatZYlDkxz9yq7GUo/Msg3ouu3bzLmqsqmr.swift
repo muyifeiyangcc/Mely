@@ -12,10 +12,6 @@ struct Msg3ouu3bzLmqsqmr: View {
   @Environment(\.dismiss) private var dismiss
   @Binding var path: [MainRoute]
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   var body: some View {
     MelyYemianScaffold {
       VStack(spacing: 12) {
@@ -75,9 +71,6 @@ struct Msg3ouu3bzLmqsqmr: View {
     }
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private func ke6OUBiuc2OndD(for wlJ0cqHfjxflsJ: Convs8RlUjf8GEZRmYA) -> String {

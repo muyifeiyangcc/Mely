@@ -12,10 +12,6 @@ struct Vdet7QIifokraIERgO: View {
   @Binding var path: [MainRoute]
   let vidVPgbGqZoYamqMK: String
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   @Environment(\.dismiss) private var dismiss
   @EnvironmentObject private var HfHdmxBWd72DHk: MelystoreWpvugHy89HDWLR
   @State private var player: AVPlayer?
@@ -101,9 +97,6 @@ struct Vdet7QIifokraIERgO: View {
     .onAppear { stupamU83wztsTwoB0() }
     .onChange(of: vidVPgbGqZoYamqMK) { _, _ in stupamU83wztsTwoB0() }
     .onDisappear { player?.pause() }
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private func stupamU83wztsTwoB0() {

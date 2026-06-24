@@ -12,10 +12,6 @@ struct FloatingPageSwitcher: View {
 
   @State private var isExpanded: Bool = false
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   private struct Item: Identifiable {
     let id = UUID()
     let route: MainRoute
@@ -85,8 +81,5 @@ struct FloatingPageSwitcher: View {
           .padding(.horizontal, 6)
       )
     }
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 }

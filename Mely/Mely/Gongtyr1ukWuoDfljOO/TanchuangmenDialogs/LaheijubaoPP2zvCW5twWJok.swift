@@ -12,10 +12,6 @@ struct LaheijubaoPP2zvCW5twWJok: View {
   let onOXhiQzKCNvCvG4Block: () -> Void
   var onCancel: (() -> Void)?
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   private let greRXeqvWKCvK5UUq = Color(hex: "#CBED40")
   private let pikRXeqvWKCvK5UUq = Color(hex: "#FF1AB6")
 
@@ -82,9 +78,6 @@ struct LaheijubaoPP2zvCW5twWJok: View {
       .padding(.horizontal, 16)
       .padding(.bottom, 16)
     }
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private func cn0qteEjPeH5JD1k() {

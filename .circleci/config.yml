@@ -36,13 +36,15 @@ jobs:
             - v1-bundle-
 
       - run:
-          name: Install Ruby 3.3.6 via rbenv
+          name: Setup Ruby
           command: |
-            brew install rbenv ruby-build
             eval "$(rbenv init -)"
+
             rbenv install 3.3.6 --skip-existing
             rbenv global 3.3.6
+
             ruby -v
+            gem -v
 
       - run:
           name: Install Bundler & Gems

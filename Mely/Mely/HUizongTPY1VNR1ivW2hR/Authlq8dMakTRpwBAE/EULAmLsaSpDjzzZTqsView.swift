@@ -10,10 +10,6 @@ struct EULAmLsaSpDjzzZTqsView: View {
   @EnvironmentObject private var appDataStore: MelystoreWpvugHy89HDWLR
   @State private var hasScrolledToBottom: Bool = false
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   var body: some View {
     ZStack {
       Image("sancaihebg")
@@ -102,8 +98,5 @@ struct EULAmLsaSpDjzzZTqsView: View {
         }
       }
     }
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 }

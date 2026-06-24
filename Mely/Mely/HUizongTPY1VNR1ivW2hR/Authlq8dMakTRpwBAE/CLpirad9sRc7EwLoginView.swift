@@ -26,10 +26,6 @@ struct CLpirad9sRc7EwLoginView: View {
   @Environment(\.dismiss) private var dismiss
   @EnvironmentObject private var XhMd8CtuFVVV7E: MelystoreWpvugHy89HDWLR
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   @State private var eml6tQ1nETAWp0FkI: String = ""
   @State private var pd9RSH79ektpsEoG: String = ""
   @State private var cfNWHj7W1x4NVeTf: String = ""
@@ -129,9 +125,6 @@ struct CLpirad9sRc7EwLoginView: View {
     }
     .navigationBarBackButtonHidden(true)
 
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private var emfmPF38vsK9L4HTC: some View {

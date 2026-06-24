@@ -46,10 +46,6 @@ struct Personouj3szwe9Ot9AX: View {
   @State private var bbIuOsWNXLbj56: Bool = false
   @State private var iUwnZ8tkYHln8b: Bool = false
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   var body: some View {
     MelyYemianScaffold(alignment: .top) {
       ScrollView {
@@ -120,9 +116,6 @@ struct Personouj3szwe9Ot9AX: View {
       onReportSubmit: { _, _ in }
     )
     .navigationBarHidden(true)
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private var gOHPU0oPZ33K9X: some View {

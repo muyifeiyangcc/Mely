@@ -14,10 +14,6 @@ struct Sets114ltB3Ta0kBrView: View {
   @State private var LeJW8Shjl6bm5p = false
   @State private var ikXUKW1AoLoSe0 = false
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   var body: some View {
     MelyYemianScaffold {
       VStack(spacing: 0) {
@@ -124,9 +120,6 @@ struct Sets114ltB3Ta0kBrView: View {
       }
     }
     .navigationBarHidden(true)
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private var navyNDQDI8WpOjq8b: some View {

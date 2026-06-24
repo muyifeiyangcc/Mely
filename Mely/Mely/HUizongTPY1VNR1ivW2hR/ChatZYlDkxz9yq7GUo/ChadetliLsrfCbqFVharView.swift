@@ -14,10 +14,6 @@ struct ChadetliLsrfCbqFVharView: View {
   @Environment(\.dismiss) private var dismiss
   @Binding var path: [MainRoute]
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   let ihcqcoxwUEDEh7cid: String
 
   @State private var fL2hKmbMmjLJ7Z: String = ""
@@ -140,9 +136,6 @@ struct ChadetliLsrfCbqFVharView: View {
         Text(ZkcmClqkEDZOvn)
       }
     }
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private var oiddMjbBBLASUsbIH: String? {

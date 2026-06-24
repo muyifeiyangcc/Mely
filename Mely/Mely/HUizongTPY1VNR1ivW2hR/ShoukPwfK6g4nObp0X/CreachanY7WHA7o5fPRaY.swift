@@ -10,10 +10,6 @@ import SwiftUI
 struct CreachanY7WHA7o5fPRaY: View {
   @EnvironmentObject private var jqhpcZcZAlcAaD: MelystoreWpvugHy89HDWLR
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   @Environment(\.dismiss) private var dismiss
 
   @State private var txtrl66anuqACJ0An: String = ""
@@ -58,9 +54,6 @@ struct CreachanY7WHA7o5fPRaY: View {
       selectedCoverImage = image
       hasBxiL6C7Eate9EmCover = true
     }
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private var coverS14sugISc1q8wx4: some View {

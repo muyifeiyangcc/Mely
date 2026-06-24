@@ -19,10 +19,6 @@ struct CmpodetQpyzEXwp4onYBY: View {
 
   let pid9gUnNcPrwJPjHW: String
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   @State private var kjnx8Uvi77E48vc: String = ""
   @State private var isEmojiPanelPresented: Bool = false
   @State private var sreN4urCKrhJdenBf: Bool = false
@@ -118,9 +114,6 @@ struct CmpodetQpyzEXwp4onYBY: View {
     )
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private func athNGt8tfyOeeLaS2(for A3TpMQLtoMUMZp: CPolpIKsl1mUtFVfy) -> some View {

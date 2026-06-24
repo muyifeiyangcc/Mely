@@ -34,10 +34,6 @@ struct DanjubaoxMNiJGX6R1RWxo: View {
   let onSubmit: (RepReaRuRbLVXQxhizQZ, String) -> Void
   var onCancel: (() -> Void)?
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   @State private var PS62nCSKXuaPZX: RepReaRuRbLVXQxhizQZ = .politicalSensitive
   @State private var QbAjmb0FTZbEmO: String = ""
 
@@ -150,9 +146,6 @@ struct DanjubaoxMNiJGX6R1RWxo: View {
         .foregroundColor(.blue)
       }
     }
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private func performCancel() {

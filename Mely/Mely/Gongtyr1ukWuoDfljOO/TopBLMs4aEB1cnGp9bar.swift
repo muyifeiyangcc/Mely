@@ -11,10 +11,6 @@ struct TopBLMs4aEB1cnGp9bar: View {
   let onfanGroV0pgM1ABvRj: () -> Void
   var onLahBc6gaE9DtSKKGe: (() -> Void)?
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   var body: some View {
     HStack {
       Button(action: onfanGroV0pgM1ABvRj) {
@@ -54,9 +50,6 @@ struct TopBLMs4aEB1cnGp9bar: View {
     }
     .padding(.horizontal, 20)
     .padding(.bottom, 10)
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 }
 

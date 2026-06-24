@@ -15,10 +15,6 @@ struct MealrtrV0ruPlF8vL7aYDialog: View {
   let onConfirm: () -> Void
   var onCancel: (() -> Void)?
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   private let genzzhaW6DbFsHYNl = Color(hex: "#CBED40")
 
   var body: some View {
@@ -82,9 +78,6 @@ struct MealrtrV0ruPlF8vL7aYDialog: View {
       .padding(.horizontal, 40)
     }
 
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private func cancelW0tmuLjQcqLfff() {

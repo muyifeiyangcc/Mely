@@ -11,10 +11,6 @@ struct ChalldetNy2W04sqZPngXv: View {
   @Binding var path: [MainRoute]
   let chaidPpqAXLyzYjD1D7: String
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   @Environment(\.dismiss) private var dismiss
   @EnvironmentObject private var IhREo9o7adNPCE: MelystoreWpvugHy89HDWLR
 
@@ -101,9 +97,6 @@ struct ChalldetNy2W04sqZPngXv: View {
     )
     .navigationBarBackButtonHidden(true)
     .toolbar(.hidden, for: .navigationBar)
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private var tc3CE2WjgJYnihFi: some View {

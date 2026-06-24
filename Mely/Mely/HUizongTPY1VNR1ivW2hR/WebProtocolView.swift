@@ -14,10 +14,6 @@ struct WebProtocolView: View {
   @Environment(\.dismiss) private var dismiss
   @Binding var path: [MainRoute]
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   var body: some View {
     MelyYemianScaffold {
       VStack(spacing: 0) {
@@ -39,9 +35,6 @@ struct WebProtocolView: View {
       .ignoresSafeArea()
     }
     .navigationBarHidden(true)
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 }
 

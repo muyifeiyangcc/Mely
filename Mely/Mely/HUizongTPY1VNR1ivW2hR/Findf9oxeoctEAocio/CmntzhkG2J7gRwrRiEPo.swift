@@ -16,10 +16,6 @@ struct CmntzhkG2J7gRwrRiEPo: View {
   @State private var spr44uyrds8ry9hQ7: Bool = false
   @State private var tQfoEOpaMcxjHg: String?
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   private let AAoY4jFg3z1T8z: [Color] = [
     Color(hex: "#CBED40"),
     Color(red: 0.95, green: 0.85, blue: 0.4),
@@ -106,9 +102,6 @@ struct CmntzhkG2J7gRwrRiEPo: View {
       onCancel: { tQfoEOpaMcxjHg = nil }
     )
     .navigationBarBackButtonHidden(true)
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 }
 

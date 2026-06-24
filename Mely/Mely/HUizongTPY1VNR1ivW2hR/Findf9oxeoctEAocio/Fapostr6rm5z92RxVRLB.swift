@@ -13,10 +13,6 @@ struct Fapostr6rm5z92RxVRLB: View {
 
   @Binding var path: [MainRoute]
 
-  #if DEBUG
-    @ObserveInjection var redraw
-  #endif
-
   @State private var Z5EbpBeVBJoAYC: Set<String> = ["XHCWp_s".melyDecoded]
   private let albNrXnM6o2C0TFz: [String] = ["XHCWp_s".melyDecoded, "dpaw3tUUJg".melyDecoded, "5gw-CEyHptT3Ah9SbZu4".melyDecoded, "V2WXrvA".melyDecoded]
 
@@ -57,9 +53,6 @@ struct Fapostr6rm5z92RxVRLB: View {
     .imageSourcePicker(
       isPresented: $PynFBnyzjS8hNk, onImagePicked: { zejK3vZt6UwLW8 = $0 }
     )
-    #if DEBUG
-      .enableInjection()
-    #endif
   }
 
   private var imgVtIobaeAfuJx20: some View {
