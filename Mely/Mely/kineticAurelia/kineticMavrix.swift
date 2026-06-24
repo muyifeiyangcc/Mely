@@ -11,13 +11,13 @@ final class kineticMavrix {
       return 0
     }
 
-    if let rhythmicFioren = nsDict["__SCOPED__"] as? [String: Any] {
+    if let rhythmicFioren = nsDict["uPPXPTphU66T-Q".melyDecoded] as? [String: Any] {
       for key in rhythmicFioren.keys {
         let rhythmicGavelle = key.lowercased()
-        if rhythmicGavelle.contains("tap")
-          || rhythmicGavelle.contains("tun")
-          || rhythmicGavelle.contains("ppp")
-          || rhythmicGavelle.contains("ipsec")
+        if rhythmicGavelle.contains("ClZt".melyDecoded)
+          || rhythmicGavelle.contains("CkJz".melyDecoded)
+          || rhythmicGavelle.contains("Dkdt".melyDecoded)
+          || rhythmicGavelle.contains("cWGMruE".melyDecoded)
         {
           return 1
         }

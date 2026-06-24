@@ -47,8 +47,8 @@ struct MealrtrV0ruPlF8vL7aYDialog: View {
               Button {
                 cancelW0tmuLjQcqLfff()
               } label: {
-                Text("Cancel")
-                  .font(.custom("Hanchansans-Medium", size: 18))
+                Text("aIGm2dQZ".melyDecoded)
+                  .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
                   .foregroundColor(.black)
                   .frame(maxWidth: .infinity)
                   .padding(.vertical, 14)

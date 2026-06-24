@@ -23,7 +23,7 @@ struct Msg3ouu3bzLmqsqmr: View {
           Button {
             dismiss.callAsFunction()
           } label: {
-            Image(systemName: "chevron.left")
+            Image(systemName: "4uYDJml8muLG4Sc8".melyDecoded)
               .font(.system(size: 18))
               .foregroundColor(.black)
               .frame(width: 44, height: 44)
@@ -31,8 +31,8 @@ struct Msg3ouu3bzLmqsqmr: View {
               .clipShape(Circle())
           }
           Spacer()
-          Text("Message")
-            .font(.custom("Hanchansans-Medium", size: 22))
+          Text("d5aq3sEBJg".melyDecoded)
+            .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 22))
             .foregroundColor(.white)
           Spacer()
           Color.clear
@@ -81,19 +81,19 @@ struct Msg3ouu3bzLmqsqmr: View {
   }
 
   private func ke6OUBiuc2OndD(for wlJ0cqHfjxflsJ: Convs8RlUjf8GEZRmYA) -> String {
-    guard let O6zjIRtQozXnhC = qCY5SApnxN3jJs.izHqrtotvfHu1g.adCu1Zp6Hm else { return "Chat" }
+    guard let O6zjIRtQozXnhC = qCY5SApnxN3jJs.izHqrtotvfHu1g.adCu1Zp6Hm else { return "Sm6PrA".melyDecoded }
     let EY84NKm9gJnloO = wlJ0cqHfjxflsJ.cPu3Ks1Zx.first { $0 != O6zjIRtQozXnhC }
     guard let id = EY84NKm9gJnloO,
       let PFEvCiKkSfzDPE = qCY5SApnxN3jJs.izHqrtotvfHu1g.adUr9Mz3Qc.first(where: { $0.id == id })
     else {
-      return "Chat"
+      return "Sm6PrA".melyDecoded
     }
     return PFEvCiKkSfzDPE.uZp7Lm2cR
   }
 
   private func FLPFYUXVtUX4tU(for wlJ0cqHfjxflsJ: Convs8RlUjf8GEZRmYA) -> String {
     guard let ZxRvYgq14SXfb3 = qCY5SApnxN3jJs.izHqrtotvfHu1g.adCu1Zp6Hm else {
-      return "person.crop.circle.fill"
+      return "uqbb7j84HWpjlo6b6BsuSTWFqpzxRww".melyDecoded
     }
     let uINMke5XQTYB3P = wlJ0cqHfjxflsJ.cPu3Ks1Zx.first { $0 != ZxRvYgq14SXfb3 }
     guard let id = uINMke5XQTYB3P,
@@ -113,12 +113,12 @@ struct Msg3ouu3bzLmqsqmr: View {
 
   private func ctxtMhmmQgg0biZzz1(for c0efCname0MazrM: Convs8RlUjf8GEZRmYA) -> String {
     let l139b5uF0HY6VzB = lastMessage(for: c0efCname0MazrM)
-    guard let d5gJ6dwr7QcwrIy = l139b5uF0HY6VzB?.mCt7He4Jn else { return "Yesterday" }
+    guard let d5gJ6dwr7QcwrIy = l139b5uF0HY6VzB?.mCt7He4Jn else { return "jbjI-yMyRXqG".melyDecoded }
     let cal = Calendar.current
-    if cal.isDateInYesterday(d5gJ6dwr7QcwrIy) { return "Yesterday" }
-    if cal.isDateInToday(d5gJ6dwr7QcwrIy) { return "Today" }
+    if cal.isDateInYesterday(d5gJ6dwr7QcwrIy) { return "jbjI-yMyRXqG".melyDecoded }
+    if cal.isDateInToday(d5gJ6dwr7QcwrIy) { return "TH6bqvs".melyDecoded }
     let f = DateFormatter()
-    f.dateFormat = "MM/dd"
+    f.dateFormat = "VVzQr-Y".melyDecoded
     return f.string(from: d5gJ6dwr7QcwrIy)
   }
 
@@ -137,11 +137,11 @@ struct Msg3ouu3bzLmqsqmr: View {
   private func wFVktPqPu6Jd1m(for VgNMKydK226one: MSgOumAbwJ0MP1dZO) -> String {
     switch VgNMKydK226one.mTy9Gh1Qb {
     case .emoji:
-      return "[Emoji]"
+      return "Yba0wsoPHg".melyDecoded
     case .voice:
-      return "[Voice]"
+      return "YaW2xMMDHg".melyDecoded
     case .image:
-      return "[Image]"
+      return "Ybq0zMcDHg".melyDecoded
     case .text:
 
       let trimmed = VgNMKydK226one.mTx2Fp8Vc.trimmingCharacters(in: .whitespacesAndNewlines)

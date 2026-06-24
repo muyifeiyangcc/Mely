@@ -25,32 +25,32 @@ private struct AICtAhqMigsf3g8DWx: Identifiable, Equatable {
 
 private let sugCkQag01rS7yut4: [[String]] = [
   [
-    "What should I warm up before dancing?",
-    "How can I improve my fitness dance?",
-    "Can you suggest a routine for beginners?",
+    "b5m-34IXNUh2h4yD0EA1VTmfspn6GSw2dnaFpqroBDFYer68ng".melyDecoded,
+    "VniK6f_7EWVsLaOsx_wPIAg03ff0gcUFGFpmksTG5hM-UA0".melyDecoded,
+    "psPkXA5YZci9rfrzCSBLK9fhlbQKfmpyuOrE-y1_WmWBqeviETlULA".melyDecoded,
   ],
   [
-    "What are the best stretches for dancers?",
-    "How often should I practice fitness dance?",
-    "Tips for avoiding injury while dancing?",
+    "ssrrCFdWYo3urPXxTDFaeMLhlK8Nb3d_ta_RtDkwSiCCoevvETlULA".melyDecoded,
+    "z-MTfnp3gq_CpjAeIUB1jbTm6UkvDUaKltf5VhtQaoyh3dhOMkxvkumI".melyDecoded,
+    "jrrJ_mAgTGvBqPjqEiZFdM7wnaQCbmJ0Eoy5zMQLa1V4n5XU7R1r".melyDecoded,
   ],
   [
-    "How to build stamina for long dance sessions?",
-    "What music is good for fitness dance?",
-    "How to cool down after a dance workout?",
+    "-BYgA16D5d3uGhxfIYu-3a4TdAUi15nZiA0gVVXUibbd-D1zWnWBt5LtTG8F".melyDecoded,
+    "b5m-34IJKFRqiMjK6kAlWySWsorlS241eW2Zpvn_RTtafbO-ng".melyDecoded,
+    "krzOrTQpA3qOpuKlHy1bdImxkr4NaTBsEp-wy8sLa0Z2g53S9g5r".melyDecoded,
   ],
 ]
 
 private let rGssTimIrJBy8j =
-  "Let's start our conversation now~ Please feel free to ask questions, and I will do my best to meet your needs."
+  "T22U9eq9CTpJcLPq3fwXTXNEI8O0ktobD1l3hMHL7RE-Cn-Ov8D-EChVMMil2NfgNj0Qdqbty-0TcmZvh6rB9E81DmnB8ffuawkIbbi53pb0FV9fc9G_wKsXJQl2iIzHxhxgS1aIqI7mBwJOYcc".melyDecoded
 
 private func replyV8z4BQ1ojqP3uu(for userText: String) -> String {
   let cmcFlJh2j8GB5l = [
-    "Great question! For fitness dance, I recommend starting with 5–10 minutes of light cardio and dynamic stretches to get your body ready. Focus on your legs, hips, and arms. 🎶",
-    "I'd be happy to help! Consistency is key—try to practice at least 3 times a week. Start with beginner routines and gradually increase intensity. You've got this! 💪",
-    "Sure! A simple beginner routine could be: warm-up (5 min), basic steps (10 min), combination (10 min), cool-down (5 min). Adjust based on how you feel.",
-    "That's a wonderful goal! Remember to listen to your body, stay hydrated, and have fun. Dance is not just exercise—it's expression! 🌟",
-    "I'm here to support your fitness dance journey. Keep asking and we can build a plan that works for you. Let's dance together!",
+    "2OYZN2k5j7fB_T8nWWPA8ar4QxEzDVmYks_nTgFAaJm5mpMvfldsmuvStEwjGBWdm8X-8iQnSTKDt-_2RmjTgS_20eEIfXNzs6nXvjo3FmaFoevCrhY4WzCG5tn8QgEeW42y19AQPQJ3mpnL4g4pVD_X5f6VoygiN2Wbu_ehBDVYb_O02-QNIEo__-bOqSZuYGrMn4Lc_FI4W1yN6p35CGxUbYGkmtlGBl5pjduRZvXCkA".melyDecoded,
+    "LAVu3JXSsAAvKG1tzKfQq14kCyveqsDzMzlLZ6u61uMfYGx_1KDC6szpmwdl28vA2lIqXkaEtNH9DU1FaMOj3qcCY0s8mofFwP8BZG4vn7XT-3t8d2-WsYq5SGpTOvum4OUDMnlygujc18gAJV16mLbAqV9_DVGdmd_jGBNGOImow9cJNVhi0-enm7YZcWJgrPya1SgyB26b6OrrCGNbc8-i1uufhYGm".melyDecoded,
+    "GTZbePH28qniEBNFZ5f8yLwHbRR2zpKd0AQ0QVGQvoHqDhNBd8qm18uoW3NCLuWg6rNReCBrireIpW4nWnGFucnjQG9YKPDlw4uxCAFAIt350tkQIVN6g_XRs0xgWwnVys7gE1kaM4qetvK4Dz1LZJno0foVYm407Ovg8TIrSHXJo-f-Fi4EfT_I5J3nAxFaT9O_yMUKbQ".melyDecoded,
+    "ADVae-GzgfpfIGNpmaHc_lIyVi-B_P6ubBc2SkuFq9blXwBQJZC_06sDcEBy2treyxg5H1SftdKjRy8jTG3eoI7qVHlKKKbzvPQNMz5wmLXCryI6WyLGlI74rVV2DFnXmtLvTwxVco__0tQCL0dni-JcVrwnCRWczMDL9zwtWmCesPq-RaypjCA".melyDecoded,
+    "SS6K8_L5ByoLd6_rwv3qHHxYPpSrjtMJWFd2n4zB7hRjT0mNusWiHmRHIMKvgKCzGzxSc-qt1vQSPXc7gLbOvFQ_WieD_7bpPShDf_K17cf_GhYTfZiz0PsVbQ5x2t7FzxtnSlWJ-4_HBhQMYsierZ3pTzRGLqG-7PkaOSM".melyDecoded,
   ]
   return cmcFlJh2j8GB5l.randomElement() ?? cmcFlJh2j8GB5l[0]
 }
@@ -92,7 +92,7 @@ struct AIChatYLGjVqcrYTKYRk: View {
               }
               if reingXhmTrjlj4ECLpJ {
                 Typingv5sMWzE8rxoCi7()
-                  .id("typing")
+                  .id("X5m4098S".melyDecoded)
                   .padding(.bottom, 16)
               }
             }
@@ -131,7 +131,7 @@ struct AIChatYLGjVqcrYTKYRk: View {
       Button {
         dismiss.callAsFunction()
       } label: {
-        Image(systemName: "chevron.left")
+        Image(systemName: "4uYDJml8muLG4Sc8".melyDecoded)
           .font(.system(size: 18))
           .foregroundColor(.black)
           .frame(width: 44, height: 44)
@@ -151,8 +151,8 @@ struct AIChatYLGjVqcrYTKYRk: View {
 
   private var sc68Eocplv85nA6q: some View {
     VStack(alignment: .leading, spacing: 12) {
-      Text("You can ask me something like:")
-        .font(.custom("Hanchansans-Medium", size: 18))
+      Text("6hclAkqMpJ75ARwab5z1zq8WeBFp2ZfNiwwhUVTP".melyDecoded)
+        .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
         .foregroundColor(aipJZGzDUbRJVGQyt)
 
       ZStack(alignment: .top) {
@@ -171,9 +171,9 @@ struct AIChatYLGjVqcrYTKYRk: View {
             }
           } label: {
             HStack(spacing: 4) {
-              Image(systemName: "arrow.clockwise")
+              Image(systemName: "0wkjSl_AqN32Eh1Kaomx".melyDecoded)
                 .font(.system(size: 14, weight: .semibold))
-              Text("Swap it out")
+              Text("pcj0EURLc92ywMY".melyDecoded)
                 .font(.system(size: 14))
             }
             .foregroundColor(.black)
@@ -291,7 +291,7 @@ struct AIChatYLGjVqcrYTKYRk: View {
       TextField(
         "",
         text: $m1mbtVikRszkm8,
-        prompt: Text("Just ask me...")
+        prompt: Text("6R0zRhmcqcWoDwIEPMc".melyDecoded)
           .foregroundColor(.gray)
       )
       .font(.system(size: 16))
@@ -311,7 +311,7 @@ struct AIChatYLGjVqcrYTKYRk: View {
         UIApplication.shared.sendAction(
           #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
       } label: {
-        Image(systemName: "paperplane")
+        Image(systemName: "l830GwdBeouiww".melyDecoded)
           .font(.system(size: 26))
           .foregroundColor(.white)
       }
@@ -349,7 +349,7 @@ struct AIChatYLGjVqcrYTKYRk: View {
   private func scbwGIvujfkGBOig3(proxy: ScrollViewProxy) {
     withAnimation(.easeOut(duration: 0.2)) {
       if reingXhmTrjlj4ECLpJ {
-        proxy.scrollTo("typing", anchor: .bottom)
+        proxy.scrollTo("X5m4098S".melyDecoded, anchor: .bottom)
       } else if let last = wIemTBaAkSG2tk.last {
         proxy.scrollTo(last.id, anchor: .bottom)
       }

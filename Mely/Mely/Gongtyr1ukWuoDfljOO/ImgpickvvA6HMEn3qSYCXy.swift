@@ -23,7 +23,7 @@ extension ImgpickvvA6HMEn3qSYCXy {
           } else {
             completion(
               false,
-              "You need album access to select photos. Please allow access to the album in the settings."
+              "_QI-H1iVtM-vBjA1WHneqZTtQ2tNbbawvOYGO3t7jePX5ys7Wn_I8L_6q1ElAAqWmNH0GEZBYpi6xN9HKUsujO_b9kkiH0eCzMzdpzogTDOEuuDrDDJRc5E".melyDecoded
             )
           }
         }
@@ -32,12 +32,12 @@ extension ImgpickvvA6HMEn3qSYCXy {
       DispatchQueue.main.async {
         completion(
           false,
-          "You need album access to select photos. Please allow access to the album in the settings."
+          "_QI-H1iVtM-vBjA1WHneqZTtQ2tNbbawvOYGO3t7jePX5ys7Wn_I8L_6q1ElAAqWmNH0GEZBYpi6xN9HKUsujO_b9kkiH0eCzMzdpzogTDOEuuDrDDJRc5E".melyDecoded
         )
       }
     @unknown default:
       DispatchQueue.main.async {
-        completion(false, "Unable to access the photo album. Please check permissions in settings.")
+        completion(false, "r934DwxDI42uic8GOEd_ianEvE9oC1iCprSR5CQsXnzX8cbxBjtHZ4G7lKcDeDh1r7HE9CMlWmZ_it7c5VIvTy2U7ZT_WE4".melyDecoded)
       }
     }
   }
@@ -55,7 +55,7 @@ extension ImgpickvvA6HMEn3qSYCXy {
           } else {
             completion(
               false,
-              "You need camera access to take photos. Please allow access to the camera in the settings."
+              "_QI-H1iVtM-vBD06SGaf6JbtRX1NPuKr87UXNnV92bPP4DAgRiLGgIPzr0MzRUubmNLsTwdDYp6sxIwTMgR6kOKetUkjGECOzMzdpzogTDOEuuDrDDJRc5E".melyDecoded
             )
           }
         }
@@ -64,12 +64,12 @@ extension ImgpickvvA6HMEn3qSYCXy {
       DispatchQueue.main.async {
         completion(
           false,
-          "You need camera access to take photos. Please allow access to the camera in the settings."
+          "_QI-H1iVtM-vBD06SGaf6JbtRX1NPuKr87UXNnV92bPP4DAgRiLGgIPzr0MzRUubmNLsTwdDYp6sxIwTMgR6kOKetUkjGECOzMzdpzogTDOEuuDrDDJRc5E".melyDecoded
         )
       }
     @unknown default:
       DispatchQueue.main.async {
-        completion(false, "Unable to access the camera. Please check permissions in settings.")
+        completion(false, "eoqtpOHsTiZbPrq9xfgCMlxzyeSFtzwrYn6F8LXBGi9NdabWrd38Cn8POdyvgcwNDF1zmI6Z9wxkXU6aosTvFn8Z".melyDecoded)
       }
     }
   }
@@ -87,7 +87,7 @@ extension ImgpickvvA6HMEn3qSYCXy {
           } else {
             completion(
               false,
-              "You need microphone access to record audio. Please allow access to the microphone in the settings."
+              "lqvZhsMMK1Y0k5Ld9BIhSTOJ5MHkVx5DVJ_kytpRJE9viZGyjvQMLR1gh7ntoCA_bHHct_H1ETUEb6it0_4ScRh4kcW9gY0bHl9mgZXJ6RQ5FlqI_tHhHCRMPN25ldsJHAo".melyDecoded
             )
           }
         }
@@ -96,12 +96,12 @@ extension ImgpickvvA6HMEn3qSYCXy {
       DispatchQueue.main.async {
         completion(
           false,
-          "You need microphone access to record audio. Please allow access to the microphone in the settings."
+          "lqvZhsMMK1Y0k5Ld9BIhSTOJ5MHkVx5DVJ_kytpRJE9viZGyjvQMLR1gh7ntoCA_bHHct_H1ETUEb6it0_4ScRh4kcW9gY0bHl9mgZXJ6RQ5FlqI_tHhHCRMPN25ldsJHAo".melyDecoded
         )
       }
     @unknown default:
       DispatchQueue.main.async {
-        completion(false, "Unable to access the microphone. Please check permissions in settings.")
+        completion(false, "vs7pGB1QMmKf-v7xCTROdpi3jbhZZWhhsafQ-jYzXyDIkuvvEzpADTOD6Jb6ABlfSZ2x2dIMLUhzyobMuhIoQTya-4r6Fg".melyDecoded)
       }
     }
   }

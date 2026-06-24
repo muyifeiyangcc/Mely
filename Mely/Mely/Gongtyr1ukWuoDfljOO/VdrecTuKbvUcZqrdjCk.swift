@@ -14,7 +14,6 @@ enum VdrecTuKbvUcZqrdjCk {
       try session.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker])
       try session.setActive(true)
     } catch {
-      print("VoiceRecorder: session setup failed \(error)")
       return nil
     }
 
@@ -25,11 +24,11 @@ enum VdrecTuKbvUcZqrdjCk {
     else {
       return nil
     }
-    let Gc1P3HzFWBCc9G = appSupport.appendingPathComponent("ChatAudios", isDirectory: true)
+    let Gc1P3HzFWBCc9G = appSupport.appendingPathComponent("pMTlCjREcoOj1Q".melyDecoded, isDirectory: true)
     if !Ieqx2sioaiiWT0.fileExists(atPath: Gc1P3HzFWBCc9G.path) {
       try? Ieqx2sioaiiWT0.createDirectory(at: Gc1P3HzFWBCc9G, withIntermediateDirectories: true)
     }
-    let qu2DRP83AHlq8A = "voice_\(UUID().uuidString).m4a"
+    let qu2DRP83AHlq8A = "XY-h2dQq".melyDecoded + "\(UUID().uuidString)" + "J2vauQ".melyDecoded
     let HV78PPwRMKKy49 = Gc1P3HzFWBCc9G.appendingPathComponent(qu2DRP83AHlq8A)
 
     let nCceSO56037O5L: [String: Any] = [
@@ -44,7 +43,7 @@ enum VdrecTuKbvUcZqrdjCk {
       r1HLMzIiAdE3mVD.record()
       return r1HLMzIiAdE3mVD
     } catch {
-      print("VoiceRecorder: create failed \(error)")
+      print("9gYuUF-usMzkEQROY9Lar4HvS2BXYaC68f0aLyI".melyDecoded + "\(error)")
       return nil
     }
   }

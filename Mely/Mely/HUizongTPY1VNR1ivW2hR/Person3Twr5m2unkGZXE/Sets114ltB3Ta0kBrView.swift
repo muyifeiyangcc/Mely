@@ -27,30 +27,30 @@ struct Sets114ltB3Ta0kBrView: View {
           VStack(spacing: 12) {
             setstnffVo41LTF2ap(
               img8Avzsmj9kTxwau: "W0bVs3lHbdD2_eidt",
-              txtCp8olZdilUNBLo: "Edit information",
+              txtCp8olZdilUNBLo: "GC5LYP-21uYJMmhtgKLI_Q".melyDecoded,
               action: { path.append(.editProfile) }
             )
             setstnffVo41LTF2ap(
               img8Avzsmj9kTxwau: "dsfnikrctqtc",
-              txtCp8olZdilUNBLo: "User Agreement",
+              txtCp8olZdilUNBLo: "9hslQBm8vdztBwpPfJ0".melyDecoded,
               action: {
                 path.append(
                   .webProtocol(
-                    urlString: "https://app.p2k1k490.link/users", title: "User Agreement"))
+                    urlString: "Kj9VZavklK4IMXYjg_jPo7pcNUI-z4Hb0VwsXkWUsA".melyDecoded, title: "9hslQBm8vdztBwpPfJ0".melyDecoded))
               }
             )
             setstnffVo41LTF2ap(
               img8Avzsmj9kTxwau: "qzhmsmktdthf",
-              txtCp8olZdilUNBLo: "Privacy Agreement",
+              txtCp8olZdilUNBLo: "PFdaca-r0LM2OGZ6gLHT7ks".melyDecoded,
               action: {
                 path.append(
                   .webProtocol(
-                    urlString: "https://app.p2k1k490.link/privacy", title: "Privacy Agreement"))
+                    urlString: "FEF3h42CtkwmX1TBpZ7tQWQCV2DY6eP5P3JLfa-2wPgG".melyDecoded, title: "PFdaca-r0LM2OGZ6gLHT7ks".melyDecoded))
               }
             )
             setstnffVo41LTF2ap(
               img8Avzsmj9kTxwau: "ypiwomsvrfunblo",
-              txtCp8olZdilUNBLo: "Blocklist",
+              txtCp8olZdilUNBLo: "lrHU7C0sSGiL".melyDecoded,
               action: { path.append(.userList(.boU8usEO7k4XTyO4)) }
             )
           }
@@ -64,8 +64,8 @@ struct Sets114ltB3Ta0kBrView: View {
               Button {
                 LeJW8Shjl6bm5p = true
               } label: {
-                Text("Log Out")
-                  .font(.custom("Hanchansans-Medium", size: 18))
+                Text("dpy-je8TNw".melyDecoded)
+                  .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
                   .foregroundColor(.black)
                   .frame(maxWidth: .infinity)
                   .padding(.vertical, 15)
@@ -77,8 +77,8 @@ struct Sets114ltB3Ta0kBrView: View {
               Button {
                 ikXUKW1AoLoSe0 = true
               } label: {
-                Text("Delete Account")
-                  .font(.custom("Hanchansans-Medium", size: 18))
+                Text("5w0sV02Y-u_rAQhffJ0".melyDecoded)
+                  .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
                   .foregroundColor(.white)
                   .frame(maxWidth: .infinity)
                   .padding(.vertical, 15)
@@ -97,10 +97,10 @@ struct Sets114ltB3Ta0kBrView: View {
       if LeJW8Shjl6bm5p {
         MealrtrV0ruPlF8vL7aYDialog(
           isPresented: $LeJW8Shjl6bm5p,
-          txtWMDdTAkCxZULWP: "Are you sure you want to log out?",
+          txtWMDdTAkCxZULWP: "PUdm14fX7EM0WlaK9dXpBS9BDz6Cpf74dDFUaOav1O9A".melyDecoded,
           icon3gPZhHp6BTieuR: "5dEuX0FQmCW3",
           isizeWAsPaANiuVvrHe: 68,
-          btn4fAFqnYJUrZa1u: "Confirm",
+          btn4fAFqnYJUrZa1u: "eZy3y8kULg".melyDecoded,
           onConfirm: {
             jDJx8Eif8Jhc6D.logout7R5GwJBX0TvWiE()
             path.removeAll()
@@ -111,10 +111,10 @@ struct Sets114ltB3Ta0kBrView: View {
       if ikXUKW1AoLoSe0 {
         MealrtrV0ruPlF8vL7aYDialog(
           isPresented: $ikXUKW1AoLoSe0,
-          txtWMDdTAkCxZULWP: "Deleting the account will clear the account data. Are you sure to delete?",
+          txtWMDdTAkCxZULWP: "0PgXKnJpj7yf4yQiHWWNu4jrWHwOKruj4KXwCwtJe9Oj19FfJF91j-rIqgAiFE6Gyo3KDRMQaIS6h-_iHzEefNjugr0SaHZ64w".melyDecoded,
           icon3gPZhHp6BTieuR: "HwDsxtkzn0MM",
           isizeWAsPaANiuVvrHe: 60,
-          btn4fAFqnYJUrZa1u: "Confirm",
+          btn4fAFqnYJUrZa1u: "eZy3y8kULg".melyDecoded,
           onConfirm: {
             path.removeAll()
             jDJx8Eif8Jhc6D.delOvJBGtG8mSWowf()
@@ -134,7 +134,7 @@ struct Sets114ltB3Ta0kBrView: View {
       Button {
         dismiss()
       } label: {
-        Image(systemName: "chevron.left")
+        Image(systemName: "4uYDJml8muLG4Sc8".melyDecoded)
           .font(.system(size: 18))
           .foregroundColor(.black)
           .frame(width: 44, height: 44)
@@ -143,8 +143,8 @@ struct Sets114ltB3Ta0kBrView: View {
 
       Spacer()
 
-      Text("Settings")
-        .font(.custom("Hanchansans-Medium", size: 24))
+      Text("lqfe6D45V3s".melyDecoded)
+        .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 24))
         .foregroundColor(.white)
 
       Spacer()
@@ -169,12 +169,12 @@ struct Sets114ltB3Ta0kBrView: View {
           .frame(width: 26, height: 26)
 
         Text(txtCp8olZdilUNBLo)
-          .font(.custom("Hanchansans-Medium", size: 17))
+          .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 17))
           .foregroundColor(.white)
 
         Spacer()
 
-        Image(systemName: "chevron.right")
+        Image(systemName: "8_ESNXhji_HJ-jczVQ".melyDecoded)
           .font(.system(size: 16, weight: .semibold))
           .foregroundColor(.white)
           .padding(.trailing, 5)

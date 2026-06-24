@@ -27,8 +27,8 @@ struct CreachanY7WHA7o5fPRaY: View {
 
   var body: some View {
     CreatejLlpeiC5nAUAvPScaffold(
-      title: "Post",
-      primaryButtonTitle: "Create",
+      title: "WWmdrA".melyDecoded,
+      primaryButtonTitle: "aJKt28UQ".melyDecoded,
       onBack: { dismiss.callAsFunction() },
       onPrimaryTap: precreCFwcUZXv5XUjex,
       buttonBottomPadding: 20
@@ -46,7 +46,7 @@ struct CreachanY7WHA7o5fPRaY: View {
     .toolbar {
       ToolbarItemGroup(placement: .keyboard) {
         Spacer()
-        Button("Done") {
+        Button("TWmAvQ".melyDecoded) {
           UIApplication.shared.sendAction(
             #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
@@ -90,8 +90,8 @@ struct CreachanY7WHA7o5fPRaY: View {
         ipics4kOt5TLVCAbZ8 = true
       }
 
-      Text("Cover  (\(hasBxiL6C7Eate9EmCover ? 1 : 0)/1)")
-        .font(.custom("Hanchansans-Medium", size: 18))
+      Text("hq3c-SV3ECA".melyDecoded + "\(hasBxiL6C7Eate9EmCover ? 1 : 0)" + "UQY0".melyDecoded)
+        .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
         .foregroundColor(.white)
         .padding(.vertical, 10)
         .padding(.horizontal, 14)
@@ -103,8 +103,8 @@ struct CreachanY7WHA7o5fPRaY: View {
   private var t2yMJZV0etfrzqn: some View {
     VStack(alignment: .leading, spacing: 16) {
       HStack(spacing: 10) {
-        Text("Challenge Theme")
-          .font(.custom("Hanchansans-Medium", size: 22))
+        Text("8RMwSUSLpdb8USJVZpex".melyDecoded)
+          .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 22))
           .foregroundColor(.white)
         Image("eaynmjbwgatf_star")
           .resizable()
@@ -114,9 +114,9 @@ struct CreachanY7WHA7o5fPRaY: View {
       TextField(
         "",
         text: $txtrl66anuqACJ0An,
-        prompt: Text("Please enter").foregroundColor(Color(white: 0.7))
+        prompt: Text("0eIDMWh21KnE8CQ6".melyDecoded).foregroundColor(Color(white: 0.7))
       )
-      .font(.custom("Hanchansans-Medium", size: 16))
+      .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 16))
       .foregroundColor(.black)
       .padding(.horizontal, 16)
       .padding(.vertical, 16)
@@ -130,8 +130,8 @@ struct CreachanY7WHA7o5fPRaY: View {
   private var ibVtu9eJRLclx2: some View {
     VStack(alignment: .leading, spacing: 16) {
       HStack(spacing: 10) {
-        Text("Rule")
-          .font(.custom("Hanchansans-Medium", size: 22))
+        Text("W3OCvQ".melyDecoded)
+          .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 22))
           .foregroundColor(.white)
         Image("eaynmjbwgatf_star")
           .resizable()
@@ -140,7 +140,7 @@ struct CreachanY7WHA7o5fPRaY: View {
 
       ZStack(alignment: .topLeading) {
         TextEditor(text: $rulet1ykLXwK0ei7MM)
-          .font(.custom("Hanchansans-Medium", size: 16))
+          .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 16))
           .foregroundColor(.black)
           .padding(.horizontal, 12)
           .padding(.vertical, 8)
@@ -150,8 +150,8 @@ struct CreachanY7WHA7o5fPRaY: View {
           )
 
         if rulet1ykLXwK0ei7MM.isEmpty {
-          Text("Please enter")
-            .font(.custom("Hanchansans-Medium", size: 16))
+          Text("0eIDMWh21KnE8CQ6".melyDecoded)
+            .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 16))
             .foregroundColor(Color(white: 0.7))
             .padding(.horizontal, 16)
             .padding(.vertical, 14)

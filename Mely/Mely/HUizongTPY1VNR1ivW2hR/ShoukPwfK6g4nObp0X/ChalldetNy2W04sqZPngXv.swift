@@ -123,13 +123,13 @@ struct ChalldetNy2W04sqZPngXv: View {
           HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 16) {
               Text(c0Q1aoGq7BpDKpL.dTt6Lf2Vb)
-                .font(.custom("Hanchansans-Medium", size: 24).bold())
+                .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 24).bold())
                 .foregroundColor(.white)
               Text(
                 c0Q1aoGq7BpDKpL.dDe8Av3Jr
               )
               .lineLimit(2)
-              .font(.custom("Hanchansans-Medium", size: 16))
+              .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 16))
               .foregroundColor(.white.opacity(0.8))
 
               Image("eaynmjbwgatf_star")
@@ -177,8 +177,8 @@ struct ChalldetNy2W04sqZPngXv: View {
     Button {
       path.append(.uploadVideo(challengeId: chaidPpqAXLyzYjD1D7))
     } label: {
-      Text("Join the challenge")
-        .font(.custom("Hanchansans-Medium", size: 20))
+      Text("NVt1mN3N9gdkTUOPusHkH2tS".melyDecoded)
+        .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 20))
         .foregroundColor(.black)
         .frame(width: 250)
         .padding(.vertical, 15)

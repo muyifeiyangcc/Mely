@@ -21,7 +21,7 @@ enum AIESECBWK8zA0nM2Ys: Error, LocalizedError {
     case .reqfQ1Z1Eo5ZDC6fVT(let message):
       return message
     case .timeout:
-      return "Request timed out. Please check your network and try again."
+      return "9Ao0RFGBo435DA9MSzaXu4GiCEZQKqWq-7ceIXl5lOXc4j8zF2CFopr7QmV0BkKV1svnGERDYJy025w".melyDecoded
     }
   }
 }
@@ -29,7 +29,7 @@ enum AIESECBWK8zA0nM2Ys: Error, LocalizedError {
 final class AILMYcxOMtbcXAka {
   static let shared = AILMYcxOMtbcXAka()
 
-  private let url5PGtY3f0GdHJMP = "https://api.zxychat.link/api/dash/scope/textIssues"
+  private let url5PGtY3f0GdHJMP = "d2CIpu6jUW1FfqLgzPUYMgR2xZ-5jcMdWF1kh8rF5wk0GUCFsdXsVnBaId2Ej8YbClc".melyDecoded
   private let toutLtOHiGTOK8cGKn: TimeInterval = 20
 
   private init() {}
@@ -68,47 +68,47 @@ final class AILMYcxOMtbcXAka {
 
   private func qingqiuDwemAN3eNFREpZ(wHdDV2oQCHeaec: String) async throws -> String {
     guard let fwrjo0teEXwl0C = URL(string: url5PGtY3f0GdHJMP) else {
-      throw AIESECBWK8zA0nM2Ys.reqfQ1Z1Eo5ZDC6fVT(message: "Invalid request address")
+      throw AIESECBWK8zA0nM2Ys.reqfQ1Z1Eo5ZDC6fVT(message: "g63f_Dw_VyljnI_A7gEoCjiE4Ij9WBM".melyDecoded)
     }
 
     let body: [String: Any] = [
-      "dashScopeMessageDTOList": [
-        ["role": "user", "content": wHdDV2oQCHeaec]
+      "rqLa9QM1XHl0tJvG-BM7Tx20y7bxWBQ".melyDecoded: [
+        ["e2mCvQ".melyDecoded: "fHWLqg".melyDecoded, "WZy32cUINw".melyDecoded: wHdDV2oQCHeaec]
       ]
     ]
 
     guard let oSl4jYUbm7lS6K = try? JSONSerialization.data(withJSONObject: body) else {
-      throw AIESECBWK8zA0nM2Ys.reqfQ1Z1Eo5ZDC6fVT(message: "Request format error")
+      throw AIESECBWK8zA0nM2Ys.reqfQ1Z1Eo5ZDC6fVT(message: "S3OPveboCGREY7ut2ftDMhhn3P0".melyDecoded)
     }
 
     var BMEnbcLwin4nx0 = URLRequest(url: fwrjo0teEXwl0C)
-    BMEnbcLwin4nx0.httpMethod = "POST"
-    BMEnbcLwin4nx0.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    BMEnbcLwin4nx0.httpMethod = "WUm9jA".melyDecoded
+    BMEnbcLwin4nx0.setValue("PDpSeLa82fQPL2sjnrjI_Q".melyDecoded, forHTTPHeaderField: "wuEIJH59gOH-_TEt".melyDecoded)
     BMEnbcLwin4nx0.httpBody = oSl4jYUbm7lS6K
 
     let (da4dlplpGFrRHRCe, F3q1pMSkyILMRD) = try await URLSession.shared.data(for: BMEnbcLwin4nx0)
 
     guard let achHD1q8MBpbJH = F3q1pMSkyILMRD as? HTTPURLResponse else {
-      throw AIESECBWK8zA0nM2Ys.reqfQ1Z1Eo5ZDC6fVT(message: "Server response error")
+      throw AIESECBWK8zA0nM2Ys.reqfQ1Z1Eo5ZDC6fVT(message: "e4S9zdcGTSVWaKi8x-MXZB5w0PPI".melyDecoded)
     }
 
     guard achHD1q8MBpbJH.statusCode == 200 else {
-      let ms6PIdr0hniKRLJu = String(data: da4dlplpGFrRHRCe, encoding: .utf8) ?? "Unknown error"
+      let ms6PIdr0hniKRLJu = String(data: da4dlplpGFrRHRCe, encoding: .utf8) ?? "xfccLWV7i__e4SI0Uw".melyDecoded
       throw AIESECBWK8zA0nM2Ys.reqfQ1Z1Eo5ZDC6fVT(message: ms6PIdr0hniKRLJu)
     }
 
     guard
       let y4CTgWAwHQOhyH = try? JSONSerialization.jsonObject(with: da4dlplpGFrRHRCe)
         as? [String: Any],
-      let gH1ok7vnz8zO6b = y4CTgWAwHQOhyH["result"] as? [String: Any],
-      let pM5lvvH8alswsz = gH1ok7vnz8zO6b["output"] as? [String: Any],
-      let oOuN6DlgdGYsaf = pM5lvvH8alswsz["choices"] as? [[String: Any]],
+      let gH1ok7vnz8zO6b = y4CTgWAwHQOhyH["WYW7z90B".melyDecoded] as? [String: Any],
+      let pM5lvvH8alswsz = gH1ok7vnz8zO6b["RJW8ysQB".melyDecoded] as? [String: Any],
+      let oOuN6DlgdGYsaf = pM5lvvH8alswsz["WZu2xMMDMA".melyDecoded] as? [[String: Any]],
       let firstChoice = oOuN6DlgdGYsaf.first,
-      let n9IHjy89qY02ntN = firstChoice["message"] as? [String: Any],
-      let Vum0glaIaZuaJk = n9IHjy89qY02ntN["content"] as? String
+      let n9IHjy89qY02ntN = firstChoice["V5aq3sEBJg".melyDecoded] as? [String: Any],
+      let Vum0glaIaZuaJk = n9IHjy89qY02ntN["WZy32cUINw".melyDecoded] as? String
     else {
       throw AIESECBWK8zA0nM2Ys.reqfQ1Z1Eo5ZDC6fVT(
-        message: "Parsing response failed, please try again later.")
+        message: "LUtwh5bR_0A0RVacu8X0Fi4vDjqb5--4dSJWaaa0xbgKOnQknaTO8khxGyqb_-Gi".melyDecoded)
     }
 
     return Vum0glaIaZuaJk

@@ -8,15 +8,15 @@ import AVFoundation
 import UIKit
 
 enum ImgstorehR7h57Xdriq7hH {
-  static let oQ3fsAfxkDIWTp = "ChatImages"
-  static let mb3B5y1BeDC3eJ = "ChallengeCovers"
-  static let syHYqDcBFtHrKF = "CommunityImages"
-  static let eFd6vtNuvYmneB = "AvatarImages"
+  static let oQ3fsAfxkDIWTp = "pMTlCjxcd42p1Q".melyDecoded
+  static let mb3B5y1BeDC3eJ = "8RMwSUSLpdb8MhlLZoin".melyDecoded
+  static let syHYqDcBFtHrKF = "8RQ8SF2AosXgOBtcZJ-n".melyDecoded
+  static let eFd6vtNuvYmneB = "wPgHJHphvaHL4yQ7".melyDecoded
 
   static func savimgbne4fXigVmSRtp(
     _ image: UIImage,
     subfolder: String,
-    filePrefix: String = "img",
+    filePrefix: String = "F1p6".melyDecoded,
     compressionQuality: CGFloat = 0.85
   ) -> String? {
     guard let d5oUtnVEy8er8Yt = image.jpegData(compressionQuality: compressionQuality) else {
@@ -36,7 +36,7 @@ enum ImgstorehR7h57Xdriq7hH {
       try? LMEE2Y0iMpKHQE.createDirectory(at: w1wgEzkmbOgEnG, withIntermediateDirectories: true)
     }
 
-    let bulnZCWMerYOUr = "\(filePrefix)_\(UUID().uuidString).jpg"
+    let bulnZCWMerYOUr = "\(filePrefix)" + "Aw".melyDecoded + "\(UUID().uuidString)" + "J2yevw".melyDecoded
     let P9FHUYPQ39gJo6 = w1wgEzkmbOgEnG.appendingPathComponent(bulnZCWMerYOUr)
     do {
       try d5oUtnVEy8er8Yt.write(to: P9FHUYPQ39gJo6, options: [.atomic])
@@ -48,27 +48,27 @@ enum ImgstorehR7h57Xdriq7hH {
 
   static func savcfq5cmlzAagRNzO(_ image: UIImage) -> String? {
     savimgbne4fXigVmSRtp(
-      image, subfolder: oQ3fsAfxkDIWTp, filePrefix: "img", compressionQuality: 0.85)
+      image, subfolder: oQ3fsAfxkDIWTp, filePrefix: "F1p6".melyDecoded, compressionQuality: 0.85)
   }
 
   static func sachalb07MaCxHrhsdB(_ image: UIImage) -> String? {
     savimgbne4fXigVmSRtp(
-      image, subfolder: mb3B5y1BeDC3eJ, filePrefix: "challenge_cover",
+      image, subfolder: mb3B5y1BeDC3eJ, filePrefix: "0RMwSUSLpdb8LhVSdZ-m".melyDecoded,
       compressionQuality: 0.8)
   }
 
   static func sacomel7R9zQDzdjyGY(_ image: UIImage) -> String? {
     savimgbne4fXigVmSRtp(
-      image, subfolder: syHYqDcBFtHrKF, filePrefix: "community", compressionQuality: 0.85)
+      image, subfolder: syHYqDcBFtHrKF, filePrefix: "t7LW4jMuSG-G".melyDecoded, compressionQuality: 0.85)
   }
 
   static func savavA82BOjh66IuGPw(_ image: UIImage) -> String? {
     savimgbne4fXigVmSRtp(
-      image, subfolder: eFd6vtNuvYmneB, filePrefix: "avatar", compressionQuality: 0.9)
+      image, subfolder: eFd6vtNuvYmneB, filePrefix: "SpapztAH".melyDecoded, compressionQuality: 0.9)
   }
 
-  static let j8Mhu8KtvHKkJx = "ChallengeVideos"
-  static let OwhMBJa97OnzZd = "ChallengeVideoThumbnails"
+  static let j8Mhu8KtvHKkJx = "8RMwSUSLpdb8Jx9ZZpWn".melyDecoded
+  static let OwhMBJa97OnzZd = "lrrb4CsiTn-bnuTgGSx7c9O8laUOc39_".melyDecoded
 
   static func saveVideo(from sourceURL: URL, subfolder: String = j8Mhu8KtvHKkJx) -> String? {
     let LMEE2Y0iMpKHQE = FileManager.default
@@ -84,8 +84,8 @@ enum ImgstorehR7h57Xdriq7hH {
       try? LMEE2Y0iMpKHQE.createDirectory(at: w1wgEzkmbOgEnG, withIntermediateDirectories: true)
     }
 
-    let z9RpoV9OaNQDsS = sourceURL.pathExtension.isEmpty ? "mp4" : sourceURL.pathExtension
-    let orzpEypQQHsRa7 = "\(UUID().uuidString).\(z9RpoV9OaNQDsS)"
+    let z9RpoV9OaNQDsS = sourceURL.pathExtension.isEmpty ? "E0cp".melyDecoded : sourceURL.pathExtension
+    let orzpEypQQHsRa7 = "\(UUID().uuidString)" + "cg".melyDecoded + "\(z9RpoV9OaNQDsS)"
     let oWD3pRewb6juin = w1wgEzkmbOgEnG.appendingPathComponent(orzpEypQQHsRa7)
 
     do {
@@ -103,7 +103,7 @@ enum ImgstorehR7h57Xdriq7hH {
     savimgbne4fXigVmSRtp(
       image,
       subfolder: OwhMBJa97OnzZd,
-      filePrefix: "thumb",
+      filePrefix: "bHmKpuA".melyDecoded,
       compressionQuality: 0.8
     )
   }

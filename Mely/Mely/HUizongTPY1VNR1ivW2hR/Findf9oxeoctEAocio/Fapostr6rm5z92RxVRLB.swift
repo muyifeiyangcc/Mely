@@ -17,8 +17,8 @@ struct Fapostr6rm5z92RxVRLB: View {
     @ObserveInjection var redraw
   #endif
 
-  @State private var Z5EbpBeVBJoAYC: Set<String> = ["Daily"]
-  private let albNrXnM6o2C0TFz: [String] = ["Daily", "Leisure", "Two-dimensional", "Other"]
+  @State private var Z5EbpBeVBJoAYC: Set<String> = ["XHCWp_s".melyDecoded]
+  private let albNrXnM6o2C0TFz: [String] = ["XHCWp_s".melyDecoded, "dpaw3tUUJg".melyDecoded, "5gw-CEyHptT3Ah9SbZu4".melyDecoded, "V2WXrvA".melyDecoded]
 
   @State private var d6J4nMklzcbnwMi: String = ""
   @State private var zejK3vZt6UwLW8: UIImage?
@@ -26,8 +26,8 @@ struct Fapostr6rm5z92RxVRLB: View {
 
   var body: some View {
     CreatejLlpeiC5nAUAvPScaffold(
-      title: "Post",
-      primaryButtonTitle: "Post",
+      title: "WWmdrA".melyDecoded,
+      primaryButtonTitle: "WWmdrA".melyDecoded,
       onBack: { dismiss.callAsFunction() },
       onPrimaryTap: prepoXvvE8MQ6JPsEV9
     ) {
@@ -46,7 +46,7 @@ struct Fapostr6rm5z92RxVRLB: View {
     .toolbar {
       ToolbarItemGroup(placement: .keyboard) {
         Spacer()
-        Button("Done") {
+        Button("TWmAvQ".melyDecoded) {
           UIApplication.shared.sendAction(
             #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
@@ -111,8 +111,8 @@ struct Fapostr6rm5z92RxVRLB: View {
       )
       .overlay(alignment: .topLeading) {
         if d6J4nMklzcbnwMi.isEmpty {
-          Text("A wonderful description is more likely to attract attention.")
-            .font(.custom("Hanchansans-Medium", size: 16))
+          Text("8F4hT0WHoc78AR0YZIK43LAUaxNq0ZmIwBVuVVx5ifTe9TI1RGbTs5WlQmtPJL6j9a4HJG92mrjD6y9m".melyDecoded)
+            .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 16))
             .foregroundColor(.white.opacity(0.6))
             .padding(16)
             .allowsHitTesting(false)
@@ -123,8 +123,8 @@ struct Fapostr6rm5z92RxVRLB: View {
   private var c7RsMbLMgrA6Rbk: some View {
     VStack(alignment: .leading, spacing: 16) {
       HStack(spacing: 6) {
-        Text("Classification")
-          .font(.custom("Hanchansans-Medium", size: 24))
+        Text("4AQhQUqUvMfrAxNDfYc".melyDecoded)
+          .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 24))
           .foregroundColor(.white)
         Image("eaynmjbwgatf_star")
           .resizable()

@@ -32,8 +32,8 @@ struct LoginChoice4muHqmiYP6: View {
         VStack {
           HStack {
             Spacer()
-            Text("EULA")
-              .font(.custom("Hanchansans-Medium", size: 17))
+            Text("TFOimQ".melyDecoded)
+              .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 17))
               .padding(.horizontal, 14)
               .padding(.vertical, 6)
               .background(.white, in: Capsule())
@@ -65,8 +65,8 @@ struct LoginChoice4muHqmiYP6: View {
             Button {
               pathwZGTVguKFdZteU.append(ZBhqAB7Yj4CCksAumod.locGG0oWaNjmDMcq)
             } label: {
-              Text("Login by email")
-                .font(.custom("Hanchansans-Medium", size: 24))
+              Text("7wcnW1fduNeoBwpLe4U".melyDecoded)
+                .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 24))
                 .foregroundColor(.black)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 14)
@@ -98,8 +98,8 @@ struct LoginChoice4muHqmiYP6: View {
                       .frame(width: 29, height: 29)
                   }
                 } else {
-                  Text("I'm new")
-                    .font(.custom("Hanchansans-Medium", size: 24))
+                  Text("c9S0jc4DNA".melyDecoded)
+                    .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 24))
                     .foregroundColor(.white)
                 }
               }
@@ -114,9 +114,9 @@ struct LoginChoice4muHqmiYP6: View {
             .padding(.horizontal, 36)
 
             HStack(spacing: 4) {
-              Text("Don't have an account?")
+              Text("f5-2jdVFKkd2j8_D9EEsViuc4IP9Bw".melyDecoded)
                 .font(.subheadline)
-              Button("Sign up") {
+              Button("aZq-w4ATMw".melyDecoded) {
                 pathwZGTVguKFdZteU.append(ZBhqAB7Yj4CCksAumod.supFE4eYtk9APWyCf)
               }
               .font(.subheadline.weight(.semibold))
@@ -127,7 +127,7 @@ struct LoginChoice4muHqmiYP6: View {
               Button {
                 agreeLegal.toggle()
               } label: {
-                Image(systemName: agreeLegal ? "checkmark.circle.fill" : "circle")
+                Image(systemName: agreeLegal ? "S4mq2NkZDCVYNbu62_MeIVVky_DW".melyDecoded : "SIm62d0Q".melyDecoded)
                   .foregroundColor(agreeLegal ? .black : .black)
                   .overlay(
                     Circle()
@@ -136,25 +136,25 @@ struct LoginChoice4muHqmiYP6: View {
               }
 
               HStack(spacing: 0) {
-                Text("Agree with ")
+                Text("t9jnBAECcJSp3ZI".melyDecoded)
                   .font(.footnote)
                 Button {
                   pathwZGTVguKFdZteU.append(
                     WebProtocolRoute(
-                      urlString: "https://app.p2k1k490.link/users", title: "User Agreement"))
+                      urlString: "Kj9VZavklK4IMXYjg_jPo7pcNUI-z4Hb0VwsXkWUsA".melyDecoded, title: "9hslQBm8vdztBwpPfJ0".melyDecoded))
                 } label: {
-                  Text("User Agreement")
+                  Text("9hslQBm8vdztBwpPfJ0".melyDecoded)
                     .font(.footnote.weight(.semibold))
                     .foregroundColor(.blue)
                 }
-                Text(" and ")
+                Text("OHCRr6I".melyDecoded)
                   .font(.footnote)
                 Button {
                   pathwZGTVguKFdZteU.append(
                     WebProtocolRoute(
-                      urlString: "https://app.p2k1k490.link/privacy", title: "Privacy Policy"))
+                      urlString: "FEF3h42CtkwmX1TBpZ7tQWQCV2DY6eP5P3JLfa-2wPgG".melyDecoded, title: "8xopRFieo47YDQtDcZA".melyDecoded))
                 } label: {
-                  Text("Privacy Policy")
+                  Text("8xopRFieo47YDQtDcZA".melyDecoded)
                     .font(.footnote.weight(.semibold))
                     .foregroundColor(.blue)
                 }

@@ -13,9 +13,9 @@ enum ZBhqAB7Yj4CCksAumod: Identifiable {
 
   var id: String {
     switch self {
-    case .locGG0oWaNjmDMcq: return "login"
-    case .supFE4eYtk9APWyCf: return "signup"
-    case .fgt881tEnmrdjQaCw: return "forgot"
+    case .locGG0oWaNjmDMcq: return "dH6Youw".melyDecoded
+    case .supFE4eYtk9APWyCf: return "WImv1MQF".melyDecoded
+    case .fgt881tEnmrdjQaCw: return "TY-63d4B".melyDecoded
     }
   }
 }
@@ -54,7 +54,7 @@ struct CLpirad9sRc7EwLoginView: View {
           Button {
             dismiss()
           } label: {
-            Image(systemName: "chevron.left")
+            Image(systemName: "4uYDJml8muLG4Sc8".melyDecoded)
               .font(.system(size: 18))
               .foregroundColor(.black)
               .frame(width: 44, height: 44)
@@ -89,7 +89,7 @@ struct CLpirad9sRc7EwLoginView: View {
           if mode == .locGG0oWaNjmDMcq {
             HStack {
               Spacer()
-              Button("Forgot?") {
+              Button("fJyrys8SfA".melyDecoded) {
                 mode = .fgt881tEnmrdjQaCw
                 pd9RSH79ektpsEoG = ""
                 cfNWHj7W1x4NVeTf = ""
@@ -136,10 +136,10 @@ struct CLpirad9sRc7EwLoginView: View {
 
   private var emfmPF38vsK9L4HTC: some View {
     HStack {
-      Image(systemName: "envelope.fill")
+      Image(systemName: "9fcBJmZjlbqV9Tk3TQ".melyDecoded)
         .foregroundColor(.black)
-      TextField("", text: $eml6tQ1nETAWp0FkI, prompt: Text("Email address").foregroundColor(.gray))
-        .font(.custom("Hanchansans-Medium", size: 16))
+      TextField("", text: $eml6tQ1nETAWp0FkI, prompt: Text("1fQWKmYshLvf4TUoUg".melyDecoded).foregroundColor(.gray))
+        .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 16))
         .textInputAutocapitalization(.never)
         .keyboardType(.emailAddress)
         .foregroundColor(.black)
@@ -152,7 +152,7 @@ struct CLpirad9sRc7EwLoginView: View {
 
   private var pdQRpDLzcTG2h36I: some View {
     HStack {
-      Image(systemName: "key.fill")
+      Image(systemName: "rqfTsjE-XGQ".melyDecoded)
         .foregroundColor(.black)
         .font(.system(size: 18))
         .padding(.leading, 5)
@@ -189,7 +189,7 @@ struct CLpirad9sRc7EwLoginView: View {
 
   private var cfpq8zNVf5l3Pldnz: some View {
     HStack {
-      Image(systemName: "key.fill")
+      Image(systemName: "rqfTsjE-XGQ".melyDecoded)
         .foregroundColor(.black)
         .font(.system(size: 18))
         .padding(.leading, 5)
@@ -209,7 +209,7 @@ struct CLpirad9sRc7EwLoginView: View {
         }
       }
       .foregroundColor(.black)
-      .font(.custom("Hanchansans-Medium", size: 16))
+      .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 16))
       .padding(.leading, 5)
 
       Button {
@@ -229,40 +229,40 @@ struct CLpirad9sRc7EwLoginView: View {
   private var txtpZxZwN7RfZ0b4T: String {
     switch mode {
     case .locGG0oWaNjmDMcq:
-      return "Welcome!"
+      return "kqfG_zg6VSk".melyDecoded
     case .supFE4eYtk9APWyCf:
-      return "Sign up"
+      return "aZq-w4ATMw".melyDecoded
     case .fgt881tEnmrdjQaCw:
-      return "Forget password"
+      return "9BQjQk2a68H4AgVKbIiw".melyDecoded
     }
   }
 
   private var pbt73LRh20fD43HjB: String {
     switch mode {
     case .locGG0oWaNjmDMcq:
-      return "Login"
+      return "VH6Youw".melyDecoded
     case .supFE4eYtk9APWyCf:
-      return "Sign up"
+      return "aZq-w4ATMw".melyDecoded
     case .fgt881tEnmrdjQaCw:
-      return "Save"
+      return "WmeYvQ".melyDecoded
     }
   }
 
   private var pph0Ke7rn1sBopB7N: String {
     switch mode {
     case .locGG0oWaNjmDMcq, .supFE4eYtk9APWyCf:
-      return "Password"
+      return "laPZ7yA4Qmw".melyDecoded
     case .fgt881tEnmrdjQaCw:
-      return "New password"
+      return "z-sRcGtyh7_d6zMs".melyDecoded
     }
   }
 
   private var cfpfZOpeLbzqNYiMf: String {
     switch mode {
     case .supFE4eYtk9APWyCf:
-      return "Password"
+      return "laPZ7yA4Qmw".melyDecoded
     case .fgt881tEnmrdjQaCw:
-      return "Confirm password"
+      return "HiVMcrat1aAWIXZ_g6TV9w".melyDecoded
     case .locGG0oWaNjmDMcq:
       return ""
     }
@@ -302,12 +302,12 @@ struct CLpirad9sRc7EwLoginView: View {
       } catch {
         er9FEPx028SNParU =
           (error as? MelystoreWpvugHy89HDWLR.AuErizHqrtotvfHu1g)?.errorDescription
-          ?? "Login failed, please try again later."
+          ?? "dJ64wsxEO0Zqh43HtUAyWC6T4YmqTTwqMHiQouPiRTNaZ7Wpjw".melyDecoded
       }
 
     case .supFE4eYtk9APWyCf:
       guard pd9RSH79ektpsEoG == cfNWHj7W1x4NVeTf else {
-        er9FEPx028SNParU = "The two passwords entered do not match."
+        er9FEPx028SNParU = "jrvcrTQxTDmRqP32DC1eftrwkaQcfmJoVtu1yogAJEU5nJfJ4BJ6".melyDecoded
         return
       }
       do {
@@ -317,12 +317,12 @@ struct CLpirad9sRc7EwLoginView: View {
       } catch {
         er9FEPx028SNParU =
           (error as? MelystoreWpvugHy89HDWLR.AuErizHqrtotvfHu1g)?.errorDescription
-          ?? "Registration failed, please try again later."
+          ?? "8wshWUiHps3-DQ5GMHGapp7oTzsTPqu9-OUbaHdpheTD6ygpVi-Ptp7wQSE".melyDecoded
       }
 
     case .fgt881tEnmrdjQaCw:
       guard pd9RSH79ektpsEoG == cfNWHj7W1x4NVeTf else {
-        er9FEPx028SNParU = "The two passwords entered do not match."
+        er9FEPx028SNParU = "jrvcrTQxTDmRqP32DC1eftrwkaQcfmJoVtu1yogAJEU5nJfJ4BJ6".melyDecoded
         return
       }
       do {
@@ -332,7 +332,7 @@ struct CLpirad9sRc7EwLoginView: View {
       } catch {
         er9FEPx028SNParU =
           (error as? MelystoreWpvugHy89HDWLR.AuErizHqrtotvfHu1g)?.errorDescription
-          ?? "Password reset failed, please try again later."
+          ?? "EylTYa6yyOpIMGJ5l72Fy7ECYRB1jMnK1xU5WUTFttT5Sg5Fe4ijlaQSYQh7lg".melyDecoded
       }
     }
   }

@@ -18,7 +18,7 @@ struct TopBLMs4aEB1cnGp9bar: View {
   var body: some View {
     HStack {
       Button(action: onfanGroV0pgM1ABvRj) {
-        Image(systemName: "chevron.left")
+        Image(systemName: "4uYDJml8muLG4Sc8".melyDecoded)
           .font(.system(size: 18))
           .foregroundColor(.black)
           .frame(width: 44, height: 44)
@@ -38,7 +38,7 @@ struct TopBLMs4aEB1cnGp9bar: View {
       Group {
         if let onLahBc6gaE9DtSKKGe {
           Button(action: onLahBc6gaE9DtSKKGe) {
-            Image(systemName: "ellipsis")
+            Image(systemName: "oK7G9SckWXs".melyDecoded)
               .font(.system(size: 18, weight: .semibold))
               .foregroundColor(.black)
               .frame(width: 44, height: 44)

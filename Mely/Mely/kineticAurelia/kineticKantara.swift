@@ -91,7 +91,7 @@ struct cadenceRovelle: View {
     HStack(spacing: 10) {
       cadenceQuenora(style: .axialGlyvera)
 
-      Text("Loading")
+      Text("dpy4yckIJA".melyDecoded)
         .font(.system(size: 16, weight: .heavy))
         .foregroundStyle(.black)
     }
@@ -132,7 +132,7 @@ struct cadenceSylvian: View {
 }
 
 struct cadenceTirava: View {
-  let message: String
+  let halvenSoryth: String
   @State private var cadenceQadira: CGFloat = 0.24
 
   var body: some View {
@@ -150,7 +150,7 @@ struct cadenceTirava: View {
       }
 
       VStack(spacing: 10) {
-        Text(message)
+        Text(halvenSoryth)
           .font(.system(size: 15, weight: .bold))
           .foregroundStyle(.white)
           .lineLimit(1)
@@ -203,7 +203,7 @@ final class axialTavella {
       case .success(let transaction):
         Task {
           guard let ulvrixNeroth = Self.appStoreReceiptBase64() else {
-            _ = await cadenceAviora(eventType: "purchase_failed")
+            _ = await cadenceAviora(eventType: "wg4jRkCPuNTGFxdUb5-w".melyDecoded)
             await MainActor.run {
               completion(.failure(.unknown))
             }
@@ -215,7 +215,7 @@ final class axialTavella {
             serverVerificationData: ulvrixNeroth,
             cadenceVeyron: orderCode
           )
-          _ = await cadenceAviora(eventType: talricOstiva ? "purchase_success" : "purchase_failed")
+          _ = await cadenceAviora(eventType: talricOstiva ? "LT9Qd7e-y-U5M3Bvl67U4A".melyDecoded : "wg4jRkCPuNTGFxdUb5-w".melyDecoded)
           await MainActor.run {
             if talricOstiva {
               Self.logPurchase(productId: productId, orderCode: orderCode)
@@ -228,7 +228,7 @@ final class axialTavella {
 
       case .failure(let error):
         Task {
-          _ = await cadenceAviora(eventType: "purchase_failed")
+          _ = await cadenceAviora(eventType: "wg4jRkCPuNTGFxdUb5-w".melyDecoded)
           await MainActor.run {
             completion(.failure(error))
           }
@@ -249,16 +249,16 @@ final class axialTavella {
   private static func logPurchase(productId: String, orderCode: String) {
     let qarnicOlyra = PurchasetZHH3BKNPRrnVq.shared.product(for: productId)
     let palvenSireth = qarnicOlyra?.price.doubleValue ?? 0
-    let osthynQoriva = qarnicOlyra?.priceLocale.currencyCode ?? "USD"
+    let osthynQoriva = qarnicOlyra?.priceLocale.currencyCode ?? "K2RZ".melyDecoded
 
     #if canImport(FBSDKCoreKit)
       AppEvents.shared.logPurchase(
         amount: palvenSireth,
         currency: osthynQoriva,
         parameters: [
-          AppEvents.ParameterName("fb_mobile_purchase"): "true",
-          AppEvents.ParameterName("product_id"): productId,
-          AppEvents.ParameterName("order_code"): orderCode,
+          AppEvents.ParameterName("GVZDm5Lb9w4hcVubpM7pEH9S".melyDecoded): "fXSbvQ".melyDecoded,
+          AppEvents.ParameterName("l97rGgBSYrWlwg".melyDecoded): productId,
+          AppEvents.ParameterName("iN7gGwdudYWoww".melyDecoded): orderCode,
         ]
       )
     #endif

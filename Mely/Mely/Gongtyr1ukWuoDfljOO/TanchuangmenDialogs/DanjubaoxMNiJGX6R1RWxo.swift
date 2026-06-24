@@ -6,12 +6,27 @@
 
 import SwiftUI
 
-enum RepReaRuRbLVXQxhizQZ: String, CaseIterable {
-  case politicalSensitive = "Political Sensitive"
-  case violentPornography = "Violent Pornography"
-  case advertisingHarassment = "Advertising Harassment"
-  case infringement = "Infringement"
-  case other = "Other"
+enum RepReaRuRbLVXQxhizQZ: CaseIterable {
+  case politicalSensitive
+  case violentPornography
+  case advertisingHarassment
+  case infringement
+  case other
+
+  var title: String {
+    switch self {
+    case .politicalSensitive:
+      "r9H9LBZrbL7r9OJTFnJkrPXc6hwIEme9pfU".melyDecoded.melyDecoded
+    case .violentPornography:
+      "oPuiLRF4aL_xh-YgC05gn_Xxt0APTgSjoPU".melyDecoded.melyDecoded
+    case .advertisingHarassment:
+      "1ggDV1PUh-zTQyFKarC8_vAcXDpX9IzrhikiVGW0".melyDecoded.melyDecoded
+    case .infringement:
+      "JAVjVZax8rkNdmtEwJifqw".melyDecoded.melyDecoded
+    case .other:
+      "bMGO9dIQAg".melyDecoded.melyDecoded
+    }
+  }
 }
 
 struct DanjubaoxMNiJGX6R1RWxo: View {
@@ -41,15 +56,15 @@ struct DanjubaoxMNiJGX6R1RWxo: View {
               Button {
                 PS62nCSKXuaPZX = reason
               } label: {
-                Text(reason.rawValue)
-                  .font(.custom("Hanchansans-Medium", size: 16))
+                Text(reason.title)
+                  .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 16))
                   .foregroundColor(.black)
                   .frame(maxWidth: .infinity, alignment: .center)
                   .padding(.horizontal, 16)
                   .padding(.vertical, 12)
                   .background(
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
-                      .fill(PS62nCSKXuaPZX == reason ? greRv7JKwHmGb99I7 : Color(hex: "#BFBFBF"))
+                      .fill(PS62nCSKXuaPZX == reason ? greRv7JKwHmGb99I7 : Color(hex: "GbGf7-YkBQ".melyDecoded))
                   )
               }
               .buttonStyle(.plain)
@@ -59,8 +74,8 @@ struct DanjubaoxMNiJGX6R1RWxo: View {
           .padding(.top, 55)
           ZStack(alignment: .topLeading) {
             if QbAjmb0FTZbEmO.isEmpty {
-              Text("Describe more clear reporting information")
-                .font(.custom("Hanchansans-Medium", size: 15))
+              Text("sNjoDBRJY57_2sMVOARtlOLfpAg8GEKAntHa6SloQH2RsObyBChfb9E".melyDecoded)
+                .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 15))
                 .foregroundColor(Color(white: 0.5))
                 .padding(.horizontal, 12)
                 .padding(.vertical, 12)
@@ -86,8 +101,8 @@ struct DanjubaoxMNiJGX6R1RWxo: View {
             Button {
               performCancel()
             } label: {
-              Text("Cancel")
-                .font(.custom("Hanchansans-Medium", size: 18))
+              Text("aIGm2dQZ".melyDecoded)
+                .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
                 .foregroundColor(.black)
                 .frame(maxWidth: 200)
                 .padding(.vertical, 14)
@@ -102,8 +117,8 @@ struct DanjubaoxMNiJGX6R1RWxo: View {
               isPresented = false
               onSubmit(PS62nCSKXuaPZX, QbAjmb0FTZbEmO)
             } label: {
-              Text("Submit")
-                .font(.custom("Hanchansans-Medium", size: 17))
+              Text("eJWq19gB".melyDecoded)
+                .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 17))
                 .foregroundColor(.white)
                 .frame(maxWidth: 200)
                 .padding(.vertical, 14)
@@ -127,7 +142,7 @@ struct DanjubaoxMNiJGX6R1RWxo: View {
     .toolbar {
       ToolbarItemGroup(placement: .keyboard) {
         Spacer()
-        Button("Done") {
+        Button("TWmAvQ".melyDecoded) {
           UIApplication.shared.sendAction(
             #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }

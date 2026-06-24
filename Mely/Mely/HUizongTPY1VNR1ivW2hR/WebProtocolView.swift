@@ -9,7 +9,7 @@ import WebKit
 
 struct WebProtocolView: View {
   let urlsVN4aXHEEFJRMv: String
-  var titGM8TgIi65xSys5: String = "User Agreement"
+  var titGM8TgIi65xSys5: String = "9hslQBm8vdztBwpPfJ0".melyDecoded
 
   @Environment(\.dismiss) private var dismiss
   @Binding var path: [MainRoute]
@@ -29,7 +29,7 @@ struct WebProtocolView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
           VStack(spacing: 12) {
-            Image(systemName: "exclamationmark.triangle")
+            Image(systemName: "sKrZ4CYqQWyXp-PpHTFENdKjnqoBfX9p".melyDecoded)
               .font(.system(size: 40))
               .foregroundColor(.orange)
           }

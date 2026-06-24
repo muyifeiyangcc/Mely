@@ -21,7 +21,7 @@ struct ImageLJIzgD4rpc6J6v: View {
 
   init(
     resource: ImgsorIVM3nYPMvS4mnn,
-    placeholder: Image = Image(systemName: "photo"),
+    placeholder: Image = Image(systemName: "aHmQv-0".melyDecoded),
     contentMode: ContentMode = .fill
   ) {
     self.resource = resource
@@ -116,29 +116,29 @@ struct ImageLJIzgD4rpc6J6v: View {
 }
 
 extension ImageLJIzgD4rpc6J6v {
-  static func asset(_ name: String, placeholder: Image = Image(systemName: "photo"))
+  static func asset(_ name: String, placeholder: Image = Image(systemName: "aHmQv-0".melyDecoded))
     -> ImageLJIzgD4rpc6J6v
   {
     ImageLJIzgD4rpc6J6v(resource: .assetHq6P3aCtQJzRcu(name: name), placeholder: placeholder)
   }
 
-  static func file(_ path: String, placeholder: Image = Image(systemName: "photo"))
+  static func file(_ path: String, placeholder: Image = Image(systemName: "aHmQv-0".melyDecoded))
     -> ImageLJIzgD4rpc6J6v
   {
     ImageLJIzgD4rpc6J6v(resource: .filemgaldkOrT8a2cb(path: path), placeholder: placeholder)
   }
 
-  static func namedOrPath(_ nameOrPath: String, placeholder: Image = Image(systemName: "photo"))
+  static func namedOrPath(_ nameOrPath: String, placeholder: Image = Image(systemName: "aHmQv-0".melyDecoded))
     -> ImageLJIzgD4rpc6J6v
   {
     ImageLJIzgD4rpc6J6v(resource: .namedOrPath(nameOrPath), placeholder: placeholder)
   }
 
-  static func url(_ url: URL, placeholder: Image = Image(systemName: "photo")) -> ImageLJIzgD4rpc6J6v {
+  static func url(_ url: URL, placeholder: Image = Image(systemName: "aHmQv-0".melyDecoded)) -> ImageLJIzgD4rpc6J6v {
     ImageLJIzgD4rpc6J6v(resource: .urlFgTYtCCvAT0yhP(url), placeholder: placeholder)
   }
 
-  static func url(_ urlString: String, placeholder: Image = Image(systemName: "photo"))
+  static func url(_ urlString: String, placeholder: Image = Image(systemName: "aHmQv-0".melyDecoded))
     -> ImageLJIzgD4rpc6J6v
   {
     if let url = URL(string: urlString) {
@@ -149,6 +149,6 @@ extension ImageLJIzgD4rpc6J6v {
   }
 
   static func uiImage(_ image: UIImage) -> ImageLJIzgD4rpc6J6v {
-    ImageLJIzgD4rpc6J6v(resource: .uiImage(image), placeholder: Image(systemName: "photo"))
+    ImageLJIzgD4rpc6J6v(resource: .uiImage(image), placeholder: Image(systemName: "aHmQv-0".melyDecoded))
   }
 }

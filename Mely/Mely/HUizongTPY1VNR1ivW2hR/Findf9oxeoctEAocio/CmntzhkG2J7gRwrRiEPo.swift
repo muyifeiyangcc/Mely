@@ -33,7 +33,7 @@ struct CmntzhkG2J7gRwrRiEPo: View {
           Button {
             dismiss()
           } label: {
-            Image(systemName: "chevron.left")
+            Image(systemName: "4uYDJml8muLG4Sc8".melyDecoded)
               .font(.system(size: 18))
               .foregroundColor(.black)
               .frame(width: 44, height: 44)
@@ -41,8 +41,8 @@ struct CmntzhkG2J7gRwrRiEPo: View {
           }
           Spacer()
 
-          Text("Circle Square")
-            .font(.custom("Hanchansans-Medium", size: 24))
+          Text("0_AFIGZpxYzK5jEpRA".melyDecoded)
+            .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 24))
             .foregroundColor(.white)
           Spacer()
 
@@ -140,7 +140,7 @@ struct CpaMpDIlzProK1ZOA: View {
           .frame(width: 40, height: 40)
 
         VStack(alignment: .leading, spacing: 2) {
-          Text(o4d7Zwj7OPRoJi?.uZp7Lm2cR ?? "User")
+          Text(o4d7Zwj7OPRoJi?.uZp7Lm2cR ?? "XHWLqg".melyDecoded)
             .font(.subheadline.weight(.medium))
             .foregroundColor(.white)
           Text(pofZkHvcyDiX6dl9.dateString)
@@ -154,7 +154,7 @@ struct CpaMpDIlzProK1ZOA: View {
           Button {
             onmoZW5XXOjPHYeRXv?()
           } label: {
-            Image(systemName: "ellipsis")
+            Image(systemName: "oK7G9SckWXs".melyDecoded)
               .font(.body.weight(.medium))
               .foregroundColor(.white)
               .frame(width: 30, height: 30)

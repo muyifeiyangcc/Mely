@@ -72,7 +72,7 @@ struct MhoshoutosPR9GnzvOjHw: View {
           .font(.system(size: 20).bold())
           .foregroundColor(.white)
         TextField(
-          "", text: $s8Ttn4DR5mxF7d7, prompt: Text("Search").foregroundColor(.white.opacity(0.6))
+          "", text: $s8Ttn4DR5mxF7d7, prompt: Text("eIWpyNId".melyDecoded).foregroundColor(.white.opacity(0.6))
         )
         .font(.custom("Hanchansans-Medium", size: 16))
         .foregroundColor(.white)
@@ -84,7 +84,7 @@ struct MhoshoutosPR9GnzvOjHw: View {
             UIApplication.shared.sendAction(
               #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
           } label: {
-            Image(systemName: "xmark.circle.fill")
+            Image(systemName: "FEhSdaXmyvoFPHh6y7rf7FM".melyDecoded)
               .font(.system(size: 20).bold())
               .foregroundColor(.white.opacity(0.7))
           }
@@ -104,12 +104,12 @@ struct MhoshoutosPR9GnzvOjHw: View {
   private var aiPanelIzuHTE6WZ72Ona: some View {
     HStack(alignment: .center, spacing: 0) {
       VStack(alignment: .leading, spacing: 4) {
-        Text("Fitness Dance")
-          .font(.custom("Hanchansans-Medium", size: 30))
+        Text("1vADLW9_lv__8j44RA".melyDecoded)
+          .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 30))
           .foregroundColor(.white)
           .tracking(-0.6)
-        Text("Q&A AI")
-          .font(.custom("Hanchansans-Medium", size: 30))
+        Text("esaJmvA8".melyDecoded)
+          .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 30))
           .foregroundColor(Color(red: 255 / 255, green: 26 / 255, blue: 182 / 255))
           .shadow(color: Color.white.opacity(0.28), radius: 4, x: 0, y: 2)
       }
@@ -122,11 +122,11 @@ struct MhoshoutosPR9GnzvOjHw: View {
       } label: {
         ZStack(alignment: .center) {
           HStack(spacing: 26) {
-            Text("Go")
-              .font(.custom("Hanchansans-Medium", size: 18))
+            Text("KEs".melyDecoded)
+              .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
               .foregroundColor(.black)
 
-            Image(systemName: "arrow.right")
+            Image(systemName: "l83nDhMMdZS63cY".melyDecoded)
               .font(.subheadline.weight(.semibold))
               .foregroundColor(.black)
           }
@@ -160,8 +160,8 @@ struct MhoshoutosPR9GnzvOjHw: View {
   private var chasudZ6Hxl7WKNHNp: some View {
     VStack(alignment: .leading, spacing: 14) {
       HStack(spacing: 8) {
-        Text("Fitness Dance Challenge")
-          .font(.custom("Hanchansans-Medium", size: 26))
+        Text("jKrd8zUlQClVmJDW7lIfQjiM6J_2TAU".melyDecoded)
+          .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 26))
           .foregroundColor(.white)
         Image("eaynmjbwgatf_star")
           .resizable()
@@ -206,7 +206,7 @@ struct SzEMlHR6IHY7nGDanca: View {
       VStack {
         HStack {
           Text(fttwT1a9WqxBht.dTt6Lf2Vb)
-            .font(.custom("Hanchansans-Medium", size: 18))
+            .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
             .foregroundColor(.white)
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
@@ -216,8 +216,8 @@ struct SzEMlHR6IHY7nGDanca: View {
         Spacer()
 
         Button(action: onJoin) {
-          Text("Join the challenge")
-            .font(.custom("Hanchansans-Medium", size: 17))
+          Text("NVt1mN3N9gdkTUOPusHkH2tS".melyDecoded)
+            .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 17))
             .foregroundColor(.black)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 10)
@@ -267,7 +267,7 @@ struct SzEMlHR6IHY7nGDanca: View {
       endPoint: .bottomTrailing
     )
     .overlay {
-      Image(systemName: "figure.dance")
+      Image(systemName: "5-cBJWl22qjL6iIt".melyDecoded)
         .font(.system(size: 44))
         .foregroundColor(.white.opacity(0.6))
     }

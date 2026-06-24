@@ -47,7 +47,7 @@ struct Vdet7QIifokraIERgO: View {
 
       VStack(spacing: 0) {
         TopBLMs4aEB1cnGp9bar(
-          ttYl57M7uFheos3o: "Post",
+          ttYl57M7uFheos3o: "WWmdrA".melyDecoded,
           onfanGroV0pgM1ABvRj: { dismiss() },
           onLahBc6gaE9DtSKKGe:
             vd8EcA8JTxeWSBa5?.vUv6Fr1Qd != HfHdmxBWd72DHk.curp11O3LYjA9ooct?.id
@@ -87,10 +87,10 @@ struct Vdet7QIifokraIERgO: View {
       if KJgqXJz5YaoNPA {
         MealrtrV0ruPlF8vL7aYDialog(
           isPresented: $KJgqXJz5YaoNPA,
-          txtWMDdTAkCxZULWP: "Sorry, your wallet balance is insufficient. Do you want to go for recharge?",
+          txtWMDdTAkCxZULWP: "5RAnU13O58TyAAAZaIek0qAIOARt05XHzQJtUH8qhrvG6Dw3Tn2Zo5PwDj5gOPy46fpFJnV8g-3Z6mIuIBZ-geeMulM_B0WLmdKi".melyDecoded,
           icon3gPZhHp6BTieuR: "kuku3kywiTUzOpQ1",
           isizeWAsPaANiuVvrHe: 52,
-          btn4fAFqnYJUrZa1u: "Confirm",
+          btn4fAFqnYJUrZa1u: "eZy3y8kULg".melyDecoded,
           onConfirm: { path.append(.wallet) }
         )
       }
@@ -126,8 +126,8 @@ struct Vdet7QIifokraIERgO: View {
     let s2ZvgWw2UlnDgzF =
       p9WdPB2kLOSRLap.count > 1 ? p9WdPB2kLOSRLap.dropLast().joined(separator: "/") : nil
     return Bundle.main.url(
-      forResource: Gs5B9sIjBUu3hd, withExtension: "mp4", subdirectory: s2ZvgWw2UlnDgzF)
-      ?? Bundle.main.url(forResource: Gs5B9sIjBUu3hd, withExtension: "mp4")
+      forResource: Gs5B9sIjBUu3hd, withExtension: "E0cp".melyDecoded, subdirectory: s2ZvgWw2UlnDgzF)
+      ?? Bundle.main.url(forResource: Gs5B9sIjBUu3hd, withExtension: "E0cp".melyDecoded)
   }
 
   private var vdbgq7g8YJNozwC0eY: some View {
@@ -231,7 +231,7 @@ struct Vdet7QIifokraIERgO: View {
               Circle()
                 .fill(.white)
                 .frame(width: 70, height: 70)
-              Image(systemName: "play.fill")
+              Image(systemName: "pLHa9mgmSHeT".melyDecoded)
                 .font(.system(size: 32))
                 .foregroundStyle(
                   LinearGradient(
@@ -279,7 +279,7 @@ struct Vdet7QIifokraIERgO: View {
 
       if let mzoS0e1ggXbSe6, mzoS0e1ggXbSe6.id != HfHdmxBWd72DHk.curp11O3LYjA9ooct?.id {
         let isFollowingAuthor = HfHdmxBWd72DHk.isfings9wxsR6YeqeKUh(mzoS0e1ggXbSe6.id)
-        Button(isFollowingAuthor ? "Following" : "Follow") {
+        Button(isFollowingAuthor ? "krLX4yk3SHWY".melyDecoded : "bY-k1t4C".melyDecoded) {
           if isFollowingAuthor {
             HfHdmxBWd72DHk.unfowtfG415dyvn173J(uid: mzoS0e1ggXbSe6.id)
           } else {

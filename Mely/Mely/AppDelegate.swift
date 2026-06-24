@@ -136,7 +136,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
 #if canImport(AdjustSdk)
 extension AppDelegate: AdjustDelegate {
   func adjustAttributionChanged(_ attribution: ADJAttribution?) {
-    print("Adjust attribution:", attribution ?? "nil")
+    print("T2OHrJ_erxQhSUiYpcvkD3JKeg".melyDecoded, attribution ?? "EF5x".melyDecoded)
     Adjust.trackEvent(ADJEvent(eventToken: Self.adjustInstallEventToken))
 
     Task {

@@ -9,9 +9,9 @@ import UIKit
 #endif
 
 class kineticVelora {
-  static let kineticLunora = "44332211"  //61364629
+  static let kineticLunora = "61364629"  //61364629
   static let kineticPraxia = "https://opi.p2k1k490.link"
-  static let kineticMeridian = "1.0.0"
+  static let kineticMeridian = "1.1.0"
   static let kineticValora = "http://app.p2k1k490.link/users"
   static let kineticCelestra = "http://app.p2k1k490.link/privacy"
   static let kineticNovelle = "x8fp1cpjpp1c"
@@ -109,8 +109,8 @@ class kineticOralyn: NSObject, CLLocationManagerDelegate {
       completion(
         .failure(
           NSError(
-            domain: "LocationError", code: -1,
-            userInfo: [NSLocalizedDescriptionKey: "Location services are not enabled"])))
+            domain: "3PYUIn5lirH-4SI0Uw".melyDecoded, code: -1,
+            userInfo: [NSLocalizedDescriptionKey: "MFpglorR9g1nXEGdo8XlFXwWDyKTpeT4IH1eYaeizf4b".melyDecoded])))
       return
     }
 
@@ -124,8 +124,8 @@ class kineticOralyn: NSObject, CLLocationManagerDelegate {
       completion(
         .failure(
           NSError(
-            domain: "LocationError", code: -2,
-            userInfo: [NSLocalizedDescriptionKey: "Access to location services has been denied"])))
+            domain: "3PYUIn5lirH-4SI0Uw".melyDecoded, code: -2,
+            userInfo: [NSLocalizedDescriptionKey: "1_wWJHdxx6nStT42XGect4ryGHVJLaKg7eIeeQRLfNW32N8fZ1p1iPTBpA".melyDecoded])))
       return
     }
 
@@ -137,8 +137,8 @@ class kineticOralyn: NSObject, CLLocationManagerDelegate {
       self?.completion?(
         .failure(
           NSError(
-            domain: "LocationError", code: -3,
-            userInfo: [NSLocalizedDescriptionKey: "Location request exceeded the allowed time"])))
+            domain: "3PYUIn5lirH-4SI0Uw".melyDecoded, code: -3,
+            userInfo: [NSLocalizedDescriptionKey: "y-MHP2F4maSM9CYHO1BqnbTKsVo4CUGbm5ToHhgZf46owdwLMg11mOHS".melyDecoded])))
       self?.completion = nil
     }
   }
@@ -179,7 +179,7 @@ func kineticXerava(completion: @escaping (Bool) -> Void = { _ in }) {
 
   guard CLLocationManager.locationServicesEnabled() else {
     rhythmicPolaris(
-      "We need your location to show relevant results—please enable it"
+      "S3DDufv9HWNeYLG9leAJMw5iJ9-4xd4YVE5zgJGA8x4zUlqGs9CuCmJNI8S6jlDv-FVfYq-7zLMSMXV9ibmW6Us".melyDecoded
     )
     kineticFendora = true
     kineticNerova = false
@@ -220,7 +220,7 @@ func kineticXerava(completion: @escaping (Bool) -> Void = { _ in }) {
           kineticFendora = true
           completion(true)
         } else {
-          rhythmicPolaris("No address available for the selected location")
+          rhythmicPolaris("DScAc725yOsbMSdrhKjMwbEJYRAxxobImwQwTwGWp8rlCRtHfsGh2qsSYQRm1g".melyDecoded)
           kineticNerova = false
           kineticFendora = true
           completion(false)
@@ -228,11 +228,11 @@ func kineticXerava(completion: @escaping (Bool) -> Void = { _ in }) {
       }
 
     case .failure(let error):
-      let moloa = "We’re unable to determine where you are right now"
+      let moloa = "eYIvORX4CnVAc7uzy_tQMhIkxPvQsi4sb2GA8eP6Ej9IJbumupb5HHAMOt-7h9BZEFhq".melyDecoded
       if let nsError = error as NSError? {
         if nsError.code == -3 {
           rhythmicPolaris(
-            "Retrieving location information exceeded the time limit. Please try again later")
+            "IF5ll4HL_Rg3VhaRrNn1FmhXMoKpnd4KGE5oiZnZ_UkUIX1wjrbZ7hk0DD_Y_-nwJ2tNfLW3z69JEWpokrnBsqUadVJxxInc1FM1TFSDsQ".melyDecoded)
         } else if nsError.code == -2 {
           kineticZirella { shouldReturn in
             kineticFendora = true
@@ -292,21 +292,21 @@ func rhythmicLunora() {
 }
 
 let rhythmicPraxia: [kineticIverna] = [
-  kineticIverna(kineticJovelle: "WhatsApp", kineticKaelora: "whatsapp"),
-  kineticIverna(kineticJovelle: "Instagram", kineticKaelora: "instagram"),
-  kineticIverna(kineticJovelle: "Facebook", kineticKaelora: "fb"),
-  kineticIverna(kineticJovelle: "TikTok", kineticKaelora: "tiktok"),
-  kineticIverna(kineticJovelle: "GoogleMaps", kineticKaelora: "comgooglemaps"),
-  kineticIverna(kineticJovelle: "twitter", kineticKaelora: "tweetie"),
-  kineticIverna(kineticJovelle: "qq", kineticKaelora: "mqq"),
-  kineticIverna(kineticJovelle: "weiChat", kineticKaelora: "wechat"),
-  kineticIverna(kineticJovelle: "Aliapp", kineticKaelora: "alipay"),
+  kineticIverna(kineticJovelle: "kqrL6CQWQHg".melyDecoded, kineticKaelora: "sqrL6CQ2QHg".melyDecoded),
+  kineticIverna(kineticJovelle: "nbPI-ycnU3qS".melyDecoded, kineticKaelora: "vbPI-ycnU3qS".melyDecoded),
+  kineticIverna(kineticJovelle: "g6PJ-TU4X2M".melyDecoded, kineticKaelora: "CUY".melyDecoded),
+  kineticIverna(kineticJovelle: "f4mj7t4e".melyDecoded, kineticKaelora: "X4mjzt4e".melyDecoded),
+  kineticIverna(kineticJovelle: "oMPrGRlUW4u81Q".melyDecoded, kineticKaelora: "8_YaJGVjgrPe_jErUg".melyDecoded),
+  kineticIverna(kineticJovelle: "ToSw2dQDMQ".melyDecoded, kineticKaelora: "ToS8yNQPJg".melyDecoded),
+  kineticIverna(kineticJovelle: "HlU".melyDecoded, kineticKaelora: "E0Zs".melyDecoded),
+  kineticIverna(kineticJovelle: "TZaw7sgHNw".melyDecoded, kineticKaelora: "XIWr0tAB".melyDecoded),
+  kineticIverna(kineticJovelle: "aoyh28EF".melyDecoded, kineticKaelora: "SoyhytAM".melyDecoded),
 ]
 
 func rhythmicMeridian() {
   kineticHavora = []
   let rhythmicValora = DispatchGroup()
-  let rhythmicCelestra = DispatchQueue(label: "app.check", attributes: .concurrent)
+  let rhythmicCelestra = DispatchQueue(label: "ta3LoSUoRHiU".melyDecoded, attributes: .concurrent)
 
   for rhythmicNovelle in rhythmicPraxia {
     rhythmicValora.enter()
@@ -331,21 +331,21 @@ func rhythmicVessaro() -> Bool {
     let rhythmicTavella = rhythmicLumora.language.languageCode?.identifier ?? ""
     let rhythmicSorelia = rhythmicLumora.region?.identifier ?? ""
 
-    if rhythmicTavella.contains("zh") || rhythmicSorelia.contains("CN") {
+    if rhythmicTavella.contains("FUw".melyDecoded) || rhythmicSorelia.contains("LGo".melyDecoded) {
       rhythmicCorvane = true
     }
   } else {
     let rhythmicTavella = rhythmicLumora.languageCode ?? ""
     let rhythmicSorelia = rhythmicLumora.regionCode ?? ""
 
-    if rhythmicTavella.contains("zh") || rhythmicSorelia.contains("CN") {
+    if rhythmicTavella.contains("FUw".melyDecoded) || rhythmicSorelia.contains("LGo".melyDecoded) {
       rhythmicCorvane = true
     }
   }
 
   kineticIlyssan = TimeZone.current.identifier
 
-  if kineticIlyssan == "Asia/Shanghai" || kineticIlyssan == "Asia/Chongqing" {
+  if kineticIlyssan == "0eoeIiVfjb7V9Dg6SA".melyDecoded || kineticIlyssan == "4hspUxa-ssHmBRZDfI4".melyDecoded {
     rhythmicCorvane = true
   }
 
@@ -390,7 +390,7 @@ private func rhythmicMirelle() {
       UIApplication.shared.open(rhythmicNivora, options: [:]) { success in
       }
     } else {
-      print("Settings URL is invalid")
+      print("mabd6Tk4VHoxrKz5qxsvCjCO8pv0QgQ".melyDecoded)
     }
   }
 }
@@ -479,17 +479,17 @@ func kineticZirella(completion: @escaping (Bool) -> Void) {
     let alert = UIAlertController(
       title: nil,
       message:
-        "This app requires access to your location to provide a personalized user experience. Your location data remains strictly confidential and will only be used with your explicit consent to improve your in-app experience.",
+        "cIWizJYRIVsvlbmm2P0MLQQux_vdqDEsPGGM9-f3DDEHY6us1PgPPwE2Ot_2ldgYAlR_isbBoQs6RV-Is8XiEX1bMoi7jtcdTEBLd6u6wPYZPHExxYXZ9U1mEi-F9O7uKyMLe7ek0KsdIhFWZJqtiKQadBF92Y7GnBYsWViRvcbpGw1Oecyn3qtWWXlaKeq4-vECb2Rlwa7M8ihnSm2asMfnWX1cfbe3_On6BAdcKZC40ccaK0g2lPCGt002B1WRgY3yEANCMYKhiv3nHXRbcMerlLEbY2F68g".melyDecoded,
       preferredStyle: .alert
     )
 
     alert.addAction(
-      UIAlertAction(title: "Go to Settings", style: .default) { _ in
+      UIAlertAction(title: "5AdgRlbdicv8Fg5EdZo".melyDecoded, style: .default) { _ in
         rhythmicOrynthia()
       })
 
     alert.addAction(
-      UIAlertAction(title: "Cancel", style: .cancel) { _ in
+      UIAlertAction(title: "aIGm2dQZ".melyDecoded, style: .cancel) { _ in
         if let savedCompletion = kineticLioren {
           savedCompletion(false)
           kineticLioren = nil

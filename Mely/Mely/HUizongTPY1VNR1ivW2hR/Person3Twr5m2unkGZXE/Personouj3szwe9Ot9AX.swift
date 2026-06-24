@@ -19,7 +19,8 @@ struct Personouj3szwe9Ot9AX: View {
   }
 
   private var iscurEBkozQ20RhjLpi: Bool {
-    guard let L87hYUrRiqE1D1 = KEVEKJrKGZLAbj.curp11O3LYjA9ooct?.id, let target = taruid2Sg5sI6pldAN9X
+    guard let L87hYUrRiqE1D1 = KEVEKJrKGZLAbj.curp11O3LYjA9ooct?.id,
+      let target = taruid2Sg5sI6pldAN9X
     else {
       return false
     }
@@ -73,7 +74,7 @@ struct Personouj3szwe9Ot9AX: View {
         Button(action: {
           q55RO0d3zIqjtb.wrappedValue.dismiss()
         }) {
-          Image(systemName: "chevron.left")
+          Image(systemName: "4uYDJml8muLG4Sc8".melyDecoded)
             .font(.system(size: 18))
             .foregroundColor(.black)
             .frame(width: 44, height: 44)
@@ -86,7 +87,7 @@ struct Personouj3szwe9Ot9AX: View {
           Button(action: {
             path.append(.settings)
           }) {
-            Image(systemName: "gearshape")
+            Image(systemName: "s7ja_TUoQGua".melyDecoded)
               .font(.system(size: 18))
               .foregroundColor(.black)
               .frame(width: 44, height: 44)
@@ -96,7 +97,7 @@ struct Personouj3szwe9Ot9AX: View {
           Button(action: {
             bbIuOsWNXLbj56 = true
           }) {
-            Image(systemName: "ellipsis")
+            Image(systemName: "oK7G9SckWXs".melyDecoded)
               .font(.system(size: 20, weight: .bold))
               .foregroundColor(.black)
               .padding(18)
@@ -155,8 +156,8 @@ struct Personouj3szwe9Ot9AX: View {
           }
 
           HStack(spacing: 20) {
-            Text(RgXM4H9N7aFqvk?.uZp7Lm2cR ?? "User")
-              .font(.custom("Hanchansans-Medium", size: 24))
+            Text(RgXM4H9N7aFqvk?.uZp7Lm2cR ?? "XHWLqg".melyDecoded)
+              .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 24))
               .foregroundColor(.white)
 
             if !iscurEBkozQ20RhjLpi {
@@ -166,7 +167,7 @@ struct Personouj3szwe9Ot9AX: View {
                 else { return }
                 path.append(.chatDetail(conversationId: convId))
               } label: {
-                Image(systemName: "envelope.fill")
+                Image(systemName: "9fcBJmZjlbqV9Tk3TQ".melyDecoded)
                   .foregroundColor(.black)
                   .padding(.horizontal, 12)
                   .padding(.vertical, 8)
@@ -189,10 +190,10 @@ struct Personouj3szwe9Ot9AX: View {
               } label: {
                 VStack(spacing: 4) {
                   Text("\(RgXM4H9N7aFqvk?.uFm7Xr8Lp.count ?? 0)")
-                    .font(.custom("Hanchansans-Medium", size: 18))
+                    .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
                     .foregroundColor(.white)
-                  Text("Followers")
-                    .font(.custom("Hanchansans-Medium", size: 14))
+                  Text("krLX4yk3RGmM".melyDecoded)
+                    .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 14))
                     .foregroundColor(.white.opacity(0.7))
                 }
               }
@@ -207,10 +208,10 @@ struct Personouj3szwe9Ot9AX: View {
               } label: {
                 VStack(spacing: 4) {
                   Text("\(RgXM4H9N7aFqvk?.uFn3Te6Qb.count ?? 0)")
-                    .font(.custom("Hanchansans-Medium", size: 18))
+                    .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
                     .foregroundColor(.white)
-                  Text("Following")
-                    .font(.custom("Hanchansans-Medium", size: 14))
+                  Text("krLX4yk3SHWY".melyDecoded)
+                    .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 14))
                     .foregroundColor(.white.opacity(0.7))
                 }
               }
@@ -218,10 +219,10 @@ struct Personouj3szwe9Ot9AX: View {
             } else {
               VStack(spacing: 4) {
                 Text("\(RgXM4H9N7aFqvk?.uFm7Xr8Lp.count ?? 0)")
-                  .font(.custom("Hanchansans-Medium", size: 18))
+                  .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
                   .foregroundColor(.white)
-                Text("Followers")
-                  .font(.custom("Hanchansans-Medium", size: 14))
+                Text("krLX4yk3RGmM".melyDecoded)
+                  .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 14))
                   .foregroundColor(.white.opacity(0.7))
               }
 
@@ -231,10 +232,10 @@ struct Personouj3szwe9Ot9AX: View {
 
               VStack(spacing: 4) {
                 Text("\(RgXM4H9N7aFqvk?.uFn3Te6Qb.count ?? 0)")
-                  .font(.custom("Hanchansans-Medium", size: 18))
+                  .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
                   .foregroundColor(.white)
-                Text("Following")
-                  .font(.custom("Hanchansans-Medium", size: 14))
+                Text("krLX4yk3SHWY".melyDecoded)
+                  .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 14))
                   .foregroundColor(.white.opacity(0.7))
               }
             }
@@ -250,7 +251,7 @@ struct Personouj3szwe9Ot9AX: View {
                   .frame(width: 24, height: 24)
                   .foregroundColor(.blue)
                 Text("\(RgXM4H9N7aFqvk?.uDg2Jy5Wx ?? 0)")
-                  .font(.custom("Hanchansans-Medium", size: 18))
+                  .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
                   .foregroundColor(.black)
               }
               .padding(.horizontal, 16)
@@ -269,8 +270,8 @@ struct Personouj3szwe9Ot9AX: View {
                 KEVEKJrKGZLAbj.fowus97mjk3D9vlxCqB(uid: uid)
               }
             }) {
-              Text(isfo4hwjh4tl3l0K0k ? "Following" : "Follow")
-                .font(.custom("Hanchansans-Medium", size: 17))
+              Text(isfo4hwjh4tl3l0K0k ? "krLX4yk3SHWY".melyDecoded : "bY-k1t4C".melyDecoded)
+                .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 17))
                 .foregroundColor(.black)
                 .padding(.horizontal, 18)
                 .padding(.vertical, 12)
@@ -287,8 +288,8 @@ struct Personouj3szwe9Ot9AX: View {
 
   private var B82tyTlYhPP59V: some View {
     HStack {
-      Text("Post")
-        .font(.custom("Hanchansans-Medium", size: 24))
+      Text("WWmdrA".melyDecoded)
+        .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 24))
         .foregroundColor(.white)
 
       Image("eaynmjbwgatf_star")
@@ -308,7 +309,9 @@ struct Personouj3szwe9Ot9AX: View {
           CpaMpDIlzProK1ZOA(
             path: $path,
             pofZkHvcyDiX6dl9: post,
-            o4d7Zwj7OPRoJi: KEVEKJrKGZLAbj.izHqrtotvfHu1g.adUr9Mz3Qc.first(where: { $0.id == post.pUp4Mx7Cs }
+            o4d7Zwj7OPRoJi: KEVEKJrKGZLAbj.izHqrtotvfHu1g.adUr9Mz3Qc.first(where: {
+              $0.id == post.pUp4Mx7Cs
+            }
             ),
             AAoY4jFg3z1T8z: tg9POrJX0sSTURuL
           )
@@ -346,27 +349,33 @@ extension Color {
     let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
     var int: UInt64 = 0
     Scanner(string: hex).scanHexInt64(&int)
-    let a: UInt64
-    let r: UInt64
-    let g: UInt64
-    let b: UInt64
+    let assmlfkilgroe: UInt64
+    let rbqagwzemmkgo: UInt64
+    let gwfdtugtwokvm: UInt64
+    let bknmtxxnvmovu: UInt64
     switch hex.count {
     case 3:
-      (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+      (assmlfkilgroe, rbqagwzemmkgo, gwfdtugtwokvm, bknmtxxnvmovu) = (
+        255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17
+      )
     case 6:
-      (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+      (assmlfkilgroe, rbqagwzemmkgo, gwfdtugtwokvm, bknmtxxnvmovu) = (
+        255, int >> 16, int >> 8 & 0xFF, int & 0xFF
+      )
     case 8:
-      (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+      (assmlfkilgroe, rbqagwzemmkgo, gwfdtugtwokvm, bknmtxxnvmovu) = (
+        int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF
+      )
     default:
-      (a, r, g, b) = (1, 1, 1, 0)
+      (assmlfkilgroe, rbqagwzemmkgo, gwfdtugtwokvm, bknmtxxnvmovu) = (1, 1, 1, 0)
     }
 
     self.init(
       .sRGB,
-      red: Double(r) / 255,
-      green: Double(g) / 255,
-      blue: Double(b) / 255,
-      opacity: Double(a) / 255
+      red: Double(rbqagwzemmkgo) / 255,
+      green: Double(gwfdtugtwokvm) / 255,
+      blue: Double(bknmtxxnvmovu) / 255,
+      opacity: Double(assmlfkilgroe) / 255
     )
   }
 }

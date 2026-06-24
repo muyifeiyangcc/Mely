@@ -31,8 +31,8 @@ struct LaheijubaoPP2zvCW5twWJok: View {
             isPresented = false
             onReport()
           } label: {
-            Text("Report")
-              .font(.custom("Hanchansans-Medium", size: 18))
+            Text("eYW41cMB".melyDecoded)
+              .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
               .foregroundColor(.white)
               .frame(width: 94, height: 94)
               .background(pikRXeqvWKCvK5UUq)
@@ -48,8 +48,8 @@ struct LaheijubaoPP2zvCW5twWJok: View {
             isPresented = false
             onOXhiQzKCNvCvG4Block()
           } label: {
-            Text("Block account")
-              .font(.custom("Hanchansans-Medium", size: 18))
+            Text("0vUYIGEshLzY_CU1VQ".melyDecoded)
+              .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
               .foregroundColor(.red)
               .multilineTextAlignment(.center)
               .frame(width: 94, height: 94)
@@ -66,8 +66,8 @@ struct LaheijubaoPP2zvCW5twWJok: View {
         Button {
           cn0qteEjPeH5JD1k()
         } label: {
-          Text("Cancel")
-            .font(.custom("Hanchansans-Medium", size: 18))
+          Text("aIGm2dQZ".melyDecoded)
+            .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
             .foregroundColor(.black)
             .frame(maxWidth: 240)
             .padding(.vertical, 14)

@@ -52,10 +52,10 @@ struct AI1Sn8TuoCJxWcKsGuide: View {
       if wihIsHiYjmlGqC {
         MealrtrV0ruPlF8vL7aYDialog(
           isPresented: $wihIsHiYjmlGqC,
-          txtWMDdTAkCxZULWP: "Sorry, your wallet balance is insufficient. Do you want to go for recharge?",
+          txtWMDdTAkCxZULWP: "5RAnU13O58TyAAAZaIek0qAIOARt05XHzQJtUH8qhrvG6Dw3Tn2Zo5PwDj5gOPy46fpFJnV8g-3Z6mIuIBZ-geeMulM_B0WLmdKi".melyDecoded,
           icon3gPZhHp6BTieuR: "kuku3kywiTUzOpQ1",
           isizeWAsPaANiuVvrHe: 52,
-          btn4fAFqnYJUrZa1u: "Confirm",
+          btn4fAFqnYJUrZa1u: "eZy3y8kULg".melyDecoded,
           onConfirm: { path.append(.wallet) }
         )
       }
@@ -70,7 +70,7 @@ struct AI1Sn8TuoCJxWcKsGuide: View {
       Button {
         dismiss.callAsFunction()
       } label: {
-        Image(systemName: "chevron.left")
+        Image(systemName: "4uYDJml8muLG4Sc8".melyDecoded)
           .font(.system(size: 18))
           .foregroundColor(.black)
           .frame(width: 44, height: 44)
@@ -86,12 +86,12 @@ struct AI1Sn8TuoCJxWcKsGuide: View {
     ZStack(alignment: .top) {
       HStack(alignment: .center, spacing: 0) {
         VStack(alignment: .leading, spacing: 4) {
-          Text("Fitness Dance")
-            .font(.custom("Hanchansans-Medium", size: 30))
+          Text("1vADLW9_lv__8j44RA".melyDecoded)
+            .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 30))
             .foregroundColor(.black)
             .tracking(-0.6)
-          Text("Q&A AI")
-            .font(.custom("Hanchansans-Medium", size: 30))
+          Text("esaJmvA8".melyDecoded)
+            .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 30))
             .foregroundColor(Color(red: 255 / 255, green: 26 / 255, blue: 182 / 255))
             .shadow(color: Color.white.opacity(0.28), radius: 4, x: 0, y: 2)
         }
@@ -142,7 +142,7 @@ struct AI1Sn8TuoCJxWcKsGuide: View {
       }
 
       Text(
-        "I can give you dance tips, help you develop a fitness dance plan, or chat with you about interesting things in dance. Whether you are a beginner or an expert, I am here to accompany you to improve and inspire you to challenge yourself. Tell me what you need and let's dance together! 🎶💪"
+        "YMat2d2rCz1Eefmpx-pTIxtrwPqbojYwciLGuP7_BGxTa7To1NLtCn5CO5eyzsERDVh7m5Cb-AUsT0zAqMPiGSYVPN3r5efxJX5Bab-rhOUVITF5gqje6wI0FTOG7PL7PS9Af_OfpN38GwoQYZHzw7sLYBo1lqjIxBouVUnTrcP_RABadTea75DoTH5dIKKqufkMaGJ13KHa_CwyTCPDnsr0Xi9DA12V0cr5QApAZ5O3xNAWOQdykPedr0hjF1qYm8n4HVMqQnDStffjGDZBYpq8jKpbYnAgoqbH_Dc2WmuP5PjnBQUoSj6LpdfHSwtUGZu7iNQTPVAilYbVuAEmUi7V8oHv5iM1ZTmF4O_iCj9fNKW3x-IfNwdvmqdTQdn--Zl8cg".melyDecoded
       )
       .font(.system(size: 17, weight: .medium))
       .foregroundColor(.white)
@@ -171,11 +171,11 @@ struct AI1Sn8TuoCJxWcKsGuide: View {
           .resizable()
           .scaledToFit()
           .frame(width: 28, height: 28)
-        Text("-300")
-          .font(.custom("Hanchansans-Medium", size: 20))
+        Text("JDXe6A".melyDecoded)
+          .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 20))
           .foregroundColor(.black)
-        Text("Chat")
-          .font(.custom("Hanchansans-Medium", size: 20))
+        Text("Sm6PrA".melyDecoded)
+          .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 20))
           .foregroundColor(.black)
           .padding(.leading, 6)
       }

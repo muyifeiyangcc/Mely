@@ -47,8 +47,8 @@ struct AppRootView: View {
           MhoshoutosPR9GnzvOjHw(path: $path)
             .overlay(alignment: .bottom) {
               if path.isEmpty && appDataStore.S2E4yyK8CsIEumtoast {
-                Text("Blocked successfully")
-                  .font(.custom("Hanchansans-Medium", size: 15))
+                Text("W3qRq-j-GGRReaqj3fwQMR953_Y".melyDecoded)
+                  .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 15))
                   .foregroundColor(.black)
                   .padding(.horizontal, 20)
                   .padding(.vertical, 12)

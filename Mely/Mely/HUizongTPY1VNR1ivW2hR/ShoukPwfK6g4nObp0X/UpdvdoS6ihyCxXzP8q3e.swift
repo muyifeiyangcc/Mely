@@ -26,8 +26,8 @@ struct UpdvdoS6ihyCxXzP8q3e: View {
 
   var body: some View {
     CreatejLlpeiC5nAUAvPScaffold(
-      title: "Post",
-      primaryButtonTitle: "Post",
+      title: "WWmdrA".melyDecoded,
+      primaryButtonTitle: "WWmdrA".melyDecoded,
       onBack: { dismiss.callAsFunction() },
       onPrimaryTap: perposKw4u98IvpEuqna,
       buttonVerticalPadding: 15,
@@ -96,14 +96,14 @@ struct UpdvdoS6ihyCxXzP8q3e: View {
   private var pay6ad9u5DemD5FZo: some View {
     VStack(alignment: .leading, spacing: 16) {
       HStack(spacing: 6) {
-        Text("Payment")
-          .font(.custom("Hanchansans-Medium", size: 22))
+        Text("apKgwMUINw".melyDecoded)
+          .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 22))
           .foregroundColor(.white)
         Image("mkirgxytewig_diamond")
           .resizable()
           .frame(width: 20, height: 20)
-        Text("(Optional)")
-          .font(.custom("Hanchansans-Medium", size: 16))
+        Text("z-P0ChxeeIugjw".melyDecoded)
+          .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 16))
           .foregroundColor(.white)
         Image("eaynmjbwgatf_star")
           .resizable()
@@ -113,9 +113,9 @@ struct UpdvdoS6ihyCxXzP8q3e: View {
       TextField(
         "",
         text: $mzlnHvlNVU98CS,
-        prompt: Text("Example 300").foregroundColor(Color(white: 0.7))
+        prompt: Text("s8f0DBROYt3uhYI".melyDecoded).foregroundColor(Color(white: 0.7))
       )
-      .font(.custom("Hanchansans-Medium", size: 16))
+      .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 16))
       .foregroundColor(.black)
       .padding(.horizontal, 16)
       .padding(.vertical, 16)

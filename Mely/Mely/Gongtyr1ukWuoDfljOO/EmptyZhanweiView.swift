@@ -15,7 +15,7 @@ struct EmptyZhanweiView: View {
           .resizable()
           .scaledToFit()
           .frame(width: 120, height: 120)
-        Text("No data is available.")
+        Text("Zo7v39MADHdaaPiy3_EbKBpgzvmU".melyDecoded)
           .font(.system(size: 16, weight: .semibold))
           .foregroundColor(.white.opacity(0.9))
       }

@@ -327,7 +327,7 @@ struct Chalvdngt3SE6MdwaZYu: Identifiable, Codable, Equatable {
     let c = try decoder.container(keyedBy: CodingKeys.self)
     id = try c.decode(String.self, forKey: .vAv9Qk2Ts)
     vCh4Ne7Lp = try c.decode(String.self, forKey: .vCh4Ne7Lp)
-    vUv6Fr1Qd = try c.decodeIfPresent(String.self, forKey: .vUv6Fr1Qd) ?? "u6"
+    vUv6Fr1Qd = try c.decodeIfPresent(String.self, forKey: .vUv6Fr1Qd) ?? "GhI".melyDecoded
     vTn3Hw8Zc = try c.decodeIfPresent(String.self, forKey: .vTn3Hw8Zc)
     vVn7Px5Lm = try c.decodeIfPresent(String.self, forKey: .vVn7Px5Lm)
     vLc1Gy9Ht = try c.decode(Int.self, forKey: .vLc1Gy9Ht)
@@ -424,7 +424,7 @@ struct CPolpIKsl1mUtFVfy: Identifiable, Codable, Equatable {
 
   var dateString: String {
     let f = DateFormatter()
-    f.dateFormat = "MM-dd"
+    f.dateFormat = "VVzSr-Y".melyDecoded
     return f.string(from: pCt1Nz6Hp)
   }
 }
@@ -478,7 +478,7 @@ struct CommunityCommentModel: Identifiable, Codable, Equatable {
 
   var dateString: String {
     let f = DateFormatter()
-    f.dateFormat = "MM-dd"
+    f.dateFormat = "VVzSr-Y".melyDecoded
     return f.string(from: cmCt7Jz5Wn)
   }
 }

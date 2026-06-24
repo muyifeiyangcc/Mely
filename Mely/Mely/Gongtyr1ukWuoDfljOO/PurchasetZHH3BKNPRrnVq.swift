@@ -9,18 +9,12 @@ import Foundation
 import StoreKit
 
 let daliangIDSvlxgxhaLelP5rt: [String] = [
-  "lvbsvhxcgcrvesor",
-  "dxismgcwewhrtezo",
-  "khtxlcejaxmqcsra",
-  "yadwwvxspgxwlndb",
-  "qnrcuelbtiuflyky",
-  "ymohxnvpkqxutvab",
-  // "sxywitjctwntdimr",
-  // "zbjlgkkikpncuegz",
-  // "anramplctckvlz",
-  // "ggtswccjgczpbtee",
-  // "bsivtppskaimzd",
-  // "ramndlyuqxnwwtou",
+  "sxywitjctwntdimr",
+  "zbjlgkkikpncuegz",
+  "anramplctckvlz",
+  "ggtswccjgczpbtee",
+  "bsivtppskaimzd",
+  "ramndlyuqxnwwtou",
   "pulimqvcddkqzs",
   "gjocttgknqkvszyq",
   "nwjyzrjrfgkxhcce",
@@ -52,7 +46,7 @@ final class PurchasetZHH3BKNPRrnVq: NSObject {
 
   func initialize() {
     guard canMakePayments() else {
-      print("[IAP] shezhangmeikaiqi")
+      print("YLmZ-vxFMU5lkIfD9AYgUCGY9IT4UQ".melyDecoded)
       return
     }
 
@@ -60,9 +54,9 @@ final class PurchasetZHH3BKNPRrnVq: NSObject {
       switch fTTyuJ2OmxVQgR {
       case .success(let products):
         let Aqhu80vMGqvqMC = products.map { $0.productIdentifier }
-        print("[IAP] \(Aqhu80vMGqvqMC)")
+        print("cKmJ6uxV".melyDecoded + "\(Aqhu80vMGqvqMC)")
       case .failure(let error):
-        print("[IAP] \(error.localizedDescription)")
+        print("cKmJ6uxV".melyDecoded + "\(error.localizedDescription)")
       }
     }
   }
@@ -149,23 +143,25 @@ enum Purerr5HDt4Mr7LrDAkS: LocalizedError {
   var errorDescription: String? {
     switch self {
     case .pdaV0gulrufBsrAQC:
-      return "This account or device is not eligible for in-app purchases."
+      return "5RY_UwuCp9_1AR9MIIi5n6YYbQ5g29fB2kYgV0cribjb-zAyRHrToZX3A3ZVe76w8a4WJWlwnK3Z4TJm"
+        .melyDecoded
     case .pnlO4gTt3s73TCOXT:
-      return "Product information is still in the process of loading."
+      return "utHmGQVVZ8mYt_j6GT9dftCvivoReCButqLN-Xg3VSGdqeOtAzhLcTSb_9L_RUhZVZK9xM4BbQ"
+        .melyDecoded
     case .pnf5OewPYsrU7GRfA:
-      return "We were unable to locate the requested product"
+      return "FC0AZbyv364dLGZonqyF2b9LYRpywZ3fmwQwTwGXp9f1DxxWf4XtxboccRhqzA".melyDecoded
     case .reqfQ1Z1Eo5ZDC6fVT(let error):
-      return "Product request failed: \(error.localizedDescription)"
+      return "haDV6DIkVDiMrfzxGTBbO8CwnqcKfiks".melyDecoded + "\(error.localizedDescription)"
     case .trafSq2XUhZ4Js2x4H(let error):
       if let e = error {
-        return "Purchase failed: \(e.localizedDescription)"
+        return "PFBBZKap2vZXOXV2ibnSuh8".melyDecoded + "\(e.localizedDescription)"
       } else {
-        return "Purchase failed: unknown error"
+        return "4w0iQUGMudu4FBZTbpyxh-AOcw5v347EiwU6SF6H".melyDecoded
       }
     case .cancelled:
-      return "Purchase cancelled"
+      return "L0FulZXY7QdkTUqAtcjtHWlT".melyDecoded
     case .unknown:
-      return "Unknown error"
+      return "xfccLWV7i__e4SI0Uw".melyDecoded
     }
   }
 }

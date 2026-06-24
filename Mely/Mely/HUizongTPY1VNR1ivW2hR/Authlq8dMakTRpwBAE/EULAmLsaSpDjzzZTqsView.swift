@@ -22,8 +22,8 @@ struct EULAmLsaSpDjzzZTqsView: View {
 
       VStack(spacing: 16) {
         HStack {
-          Text("EULA")
-            .font(.custom("Hanchansans-Medium", size: 24))
+          Text("TFOimQ".melyDecoded)
+            .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 24))
             .foregroundColor(.white)
         }
         .padding(.horizontal)
@@ -35,21 +35,21 @@ struct EULAmLsaSpDjzzZTqsView: View {
           ScrollView {
             VStack(alignment: .leading, spacing: 16) {
               Text(
-                "Welcome to Mely!"
+                "Ci9Od7Cy3aASLyVBkafesg".melyDecoded
               )
               .font(.system(size: 20))
               Text(
-                "To make a better place, the following content is not allowed inthe app in particular"
-              )
-              .font(.system(size: 20))
-              .lineSpacing(4)
-              Text(
-                "1.Any content about child harm, pornography related detrimental to children.\n2. Fake and harmful messages about recent or current events.\n3. Any violence,bullying content, publicly promotes pornography and other content."
+                "jbme5SIwWSSD7OvlDDtGZYqln64IQ0MQRZazgM0MKFB1g5jW50coUCyJ_on3Hh5bCYihzJPqADhda7y0iPYdMxJgg_7Lpn8pby6WsennHS9faKC6".melyDecoded
               )
               .font(.system(size: 20))
               .lineSpacing(4)
               Text(
-                "If we find any content including and not limited to the above violations your content will be deleted and account will bebanned. By clicking the above button,youagreeto the Terms of Use and Privacy Policy"
+                "4PD37jJjR3OUoPT2FGdKfc2oj-cAdn5krebG-SEGYBRik4ve5xghRiqN-t_pUxNBVYuikN8WIF5jiYTG5PYXbwZii_Tbpys8a3OQ5ompUmRkbaKlmO4NM0p90v3GgNocUVNzk5jC4xkpFFCar9L_X3BYOMKtipcHGwZtjYG5yfoGfHxmjbHH9BRPUHHb1_H5YThPf7e22u8PaGN9nJuixrwKKxR8wJPd1wJyCFOOvsjrDwVZOJ-x2KcaZwp4Zr-_4_AZJ3lilLTDtDA2RCeEq4r4SSdAMbm87Ogadg".melyDecoded
+              )
+              .font(.system(size: 20))
+              .lineSpacing(4)
+              Text(
+                "iKiG5z5zUmWEoKHpHg57TD2D_5L9WkdRV5Wy3ccSMkMijYfEuAEsQ2qZ-oLisio0MWqZ4P_rAXxbdr6uxacdNg1x2vPKsTk7KX-BreGL7xs8SFyevJ_kDnZJY92-1tsFDUtylZ-T9QIuBECLs7jO4UZtHD6f4qf6PDRfZq2-2KpCDnAgm6PK9EE8HSjL0ofVkR80T12G5N7vAAVXbsuy0LccfBVm24PHiRImXRNfiabf73k_Tj-mtJ-lQnFfdo-y6PgHM2IzpKPG7SIx".melyDecoded
               )
               .font(.system(size: 20))
               .lineSpacing(4)
@@ -71,22 +71,22 @@ struct EULAmLsaSpDjzzZTqsView: View {
           HStack(spacing: 16) {
             Button {
             } label: {
-              Text("Cancel")
-                .font(.custom("Hanchansans-Medium", size: 20))
+              Text("aIGm2dQZ".melyDecoded)
+                .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 20))
                 .foregroundColor(.black)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 15)
                 .background(
                   RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .fill(Color(hex: "#CBED40"))
+                    .fill(Color(hex: "GbCb6ORScw".melyDecoded))
                 )
             }
 
             Button {
               appDataStore.markEULAAccepted()
             } label: {
-              Text("I agree")
-                .font(.custom("Hanchansans-Medium", size: 20))
+              Text("c9O4ytIDJg".melyDecoded)
+                .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 20))
                 .foregroundColor(.black)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 15)

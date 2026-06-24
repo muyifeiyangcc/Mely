@@ -68,7 +68,7 @@ struct NFkh9JWFp64mW7Editpf: View {
       Button {
         if !path.isEmpty { path.removeLast() } else { dismiss() }
       } label: {
-        Image(systemName: "chevron.left")
+        Image(systemName: "4uYDJml8muLG4Sc8".melyDecoded)
           .font(.system(size: 18))
           .foregroundColor(.black)
           .frame(width: 44, height: 44)
@@ -117,7 +117,7 @@ struct NFkh9JWFp64mW7Editpf: View {
           .fill(Color.white)
           .frame(width: 36, height: 36)
           .overlay {
-            Image(systemName: "camera.fill")
+            Image(systemName: "ld74BBZDKZu02d4".melyDecoded)
               .font(.system(size: 16))
               .foregroundColor(.black)
           }
@@ -129,12 +129,12 @@ struct NFkh9JWFp64mW7Editpf: View {
 
   private var nmUjSmdc6OhKnDQw: some View {
     VStack(alignment: .leading, spacing: 12) {
-      Text("Name")
-        .font(.custom("Hanchansans-Medium", size: 16))
+      Text("R2eDvQ".melyDecoded)
+        .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 16))
         .foregroundColor(.white)
 
-      TextField("Please enter", text: $ntxt5NRAQtG5rntTBT)
-        .font(.custom("Hanchansans-Medium", size: 16))
+      TextField("0eIDMWh21KnE8CQ6".melyDecoded, text: $ntxt5NRAQtG5rntTBT)
+        .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 16))
         .foregroundColor(.white)
         .padding(.horizontal, 16)
         .padding(.vertical, 14)
@@ -150,8 +150,8 @@ struct NFkh9JWFp64mW7Editpf: View {
     Button {
       persav4QU02cJvYIzidN()
     } label: {
-      Text("Save")
-        .font(.custom("Hanchansans-Medium", size: 18))
+      Text("WmeYvQ".melyDecoded)
+        .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
         .foregroundColor(.black)
         .frame(maxWidth: .infinity)
         .padding(.vertical, 16)

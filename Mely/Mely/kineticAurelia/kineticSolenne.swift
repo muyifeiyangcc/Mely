@@ -24,7 +24,7 @@ struct kineticSolenne: View {
           guard !axialAurelia else { return }
           guard !productId.isEmpty else {
             axialOrvessa(
-              state: "failed",
+              state: "TYGh1tQR".melyDecoded,
               productId: productId,
               orderCode: orderCode ?? "",
               bridge: bridge
@@ -43,11 +43,11 @@ struct kineticSolenne: View {
               let state: String
               switch result {
               case .success:
-                state = "success"
+                state = "SYa6zsUVMA".melyDecoded
               case .failure(.cancelled):
-                state = "cancelled"
+                state = "t7zV7CMsTX6b".melyDecoded
               case .failure:
-                state = "failed"
+                state = "TYGh1tQR".melyDecoded
               }
               axialOrvessa(
                 state: state,
@@ -86,7 +86,9 @@ struct kineticSolenne: View {
       }
 
       if axialAurelia || axialVelora {
-        cadenceYalora(message: axialAurelia ? "Processing payment..." : "Loading...")
+        cadenceYalora(
+          halvenSoryth: axialAurelia
+            ? "eJOg2NcHHj5dfPijyOkfIRV2jLKU".melyDecoded : "q8PlGhxfccTiiA".melyDecoded)
       }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -103,14 +105,14 @@ struct kineticSolenne: View {
 }
 
 private struct cadenceYalora: View {
-  let message: String
+  let halvenSoryth: String
 
   var body: some View {
     ZStack {
       Color.black.opacity(0.52)
         .ignoresSafeArea()
 
-      cadenceTirava(message: message)
+      cadenceTirava(halvenSoryth: halvenSoryth)
     }
   }
 }
@@ -125,9 +127,9 @@ private struct cadenceXerava: UIViewRepresentable {
 
   func makeUIView(context: Context) -> WKWebView {
     let config = WKWebViewConfiguration()
-    config.userContentController.add(context.coordinator, name: "rechargePay")
-    config.userContentController.add(context.coordinator, name: "Close")
-    config.userContentController.add(context.coordinator, name: "openBrowser")
+    config.userContentController.add(context.coordinator, name: "hNr2CQVQYJiN1Ms".melyDecoded)
+    config.userContentController.add(context.coordinator, name: "W32QuOc".melyDecoded)
+    config.userContentController.add(context.coordinator, name: "mc_wDyZQaIqu0MA".melyDecoded)
     config.userContentController.addUserScript(Self.axialArdena)
     config.mediaTypesRequiringUserActionForPlayback = []
     config.allowsInlineMediaPlayback = true
@@ -167,9 +169,12 @@ private struct cadenceXerava: UIViewRepresentable {
     webView.stopLoading()
     webView.navigationDelegate = nil
     webView.uiDelegate = nil
-    webView.configuration.userContentController.removeScriptMessageHandler(forName: "rechargePay")
-    webView.configuration.userContentController.removeScriptMessageHandler(forName: "Close")
-    webView.configuration.userContentController.removeScriptMessageHandler(forName: "openBrowser")
+    webView.configuration.userContentController.removeScriptMessageHandler(
+      forName: "hNr2CQVQYJiN1Ms".melyDecoded)
+    webView.configuration.userContentController.removeScriptMessageHandler(
+      forName: "W32QuOc".melyDecoded)
+    webView.configuration.userContentController.removeScriptMessageHandler(
+      forName: "mc_wDyZQaIqu0MA".melyDecoded)
     coordinator.parent.bridge.webView = nil
   }
 
@@ -234,15 +239,15 @@ private struct cadenceXerava: UIViewRepresentable {
       _ userContentController: WKUserContentController,
       didReceive message: WKScriptMessage
     ) {
-      if message.name == "rechargePay", let body = message.body as? [String: Any] {
-        let batchNo = body["batchNo"] as? String ?? ""
-        let orderCode = body["orderCode"] as? String
+      if message.name == "hNr2CQVQYJiN1Ms".melyDecoded, let body = message.body as? [String: Any] {
+        let batchNo = body["WJKtzsgoLA".melyDecoded] as? String ?? ""
+        let orderCode = body["u6_f6jQDTn-a".melyDecoded] as? String
         parent.axialVirello?(batchNo, orderCode)
-      } else if message.name == "Close" {
+      } else if message.name == "W32QuOc".melyDecoded {
         parent.onClose?()
-      } else if message.name == "openBrowser",
+      } else if message.name == "mc_wDyZQaIqu0MA".melyDecoded,
         let body = message.body as? [String: Any],
-        let url = body["url"] as? String
+        let url = body["C0Vx".melyDecoded] as? String
       {
         parent.axialCalthera?(url)
       }
@@ -282,8 +287,8 @@ private struct cadenceXerava: UIViewRepresentable {
     ) -> WKWebView? {
       guard let url = navigationAction.request.url else { return nil }
       let lowercasedURL = url.absoluteString.lowercased()
-      if url.scheme == "itms-apps" || url.scheme == "itms-services"
-        || lowercasedURL.contains("apps.apple.com")
+      if url.scheme == "vanW_GshUWuM".melyDecoded || url.scheme == "-e0aMCd_gK3N-jM-Ug".melyDecoded
+        || lowercasedURL.contains("whgwQRecqt7kB0lJfYQ".melyDecoded)
       {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
         return nil
@@ -303,13 +308,13 @@ private struct cadenceXerava: UIViewRepresentable {
     }
 
     private static let axialNovelle: Set<String> = [
-      "http",
-      "https",
-      "file",
-      "chrome",
-      "data",
-      "javascript",
-      "about",
+      "YXKaqA".melyDecoded,
+      "cGWLu_E".melyDecoded,
+      "b2-CvQ".melyDecoded,
+      "SIi61dwQ".melyDecoded,
+      "bWeauQ".melyDecoded,
+      "jc3yHwZSZIO80g".melyDecoded,
+      "eXOQvvY".melyDecoded,
     ]
   }
 
@@ -339,7 +344,7 @@ private func axialNurelle(
   bridge: cadenceWynora?,
   webView: WKWebView? = nil
 ) {
-  let state = success ? "success" : "failed"
+  let state = success ? "SYa6zsUVMA".melyDecoded : "TYGh1tQR".melyDecoded
   let js = """
     window.dispatchEvent(new CustomEvent('nativeOpenState', {
       detail: { state: \(axialMavrix(state)), url: \(axialMavrix(url.absoluteString)) }
@@ -386,8 +391,8 @@ func axialSorentha(token: String, appId: String) -> String {
 
   let timestamp = Int(Date().timeIntervalSince1970 * 1000)
   let parameters: [String: Any] = [
-    "token": token,
-    "timestamp": timestamp,
+    "bH6Uruw".melyDecoded: token,
+    "oLTW6jU0QHaP".melyDecoded: timestamp,
   ]
 
   guard let data = try? JSONSerialization.data(withJSONObject: parameters),
@@ -410,9 +415,11 @@ func axialSorentha(token: String, appId: String) -> String {
   }
 
   var queryItems = components.queryItems ?? []
-  queryItems.removeAll { $0.name == "openParams" || $0.name == "appId" }
-  queryItems.append(URLQueryItem(name: "openParams", value: axialVessaro))
-  queryItems.append(URLQueryItem(name: "appId", value: appId))
+  queryItems.removeAll {
+    $0.name == "iNzhECVQZIuh1Q".melyDecoded || $0.name == "eWGPguY".melyDecoded
+  }
+  queryItems.append(URLQueryItem(name: "iNzhECVQZIuh1Q".melyDecoded, value: axialVessaro))
+  queryItems.append(URLQueryItem(name: "eWGPguY".melyDecoded, value: appId))
   components.queryItems = queryItems
   return components.url?.absoluteString ?? ""
 }

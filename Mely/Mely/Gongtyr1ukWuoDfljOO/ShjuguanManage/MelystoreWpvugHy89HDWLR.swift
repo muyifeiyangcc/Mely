@@ -2,7 +2,7 @@ import Combine
 import Foundation
 
 private enum AppDataStorage {
-  private static let key = "Mely_AppData"
+  private static let key = "zOsKKURShLzu5TUp".melyDecoded
 
   static func load() -> AdatJc1Zwhy2Od8kjZ? {
     guard let data = UserDefaults.standard.data(forKey: key) else { return nil }
@@ -53,24 +53,24 @@ final class MelystoreWpvugHy89HDWLR: ObservableObject {
   fileprivate static func defchab6gAGvtllPIir7() -> [DancozZ6LtwXHtlqPu] {
     return [
       DancozZ6LtwXHtlqPu(
-        "id1",
-        "u2",
-        "Home Beat Dance Workout",
+        "F1Ms".melyDecoded,
+        "GhY".melyDecoded,
+        "gqzE-HAUVmhl2brU5RE5Cg6P9pH3XhQ".melyDecoded,
         "q9V8ph41lXTH_tiao1",
         false,
-        "Medium",
+        "ZoWs08QY".melyDecoded,
         12_500,
-        "work on your muscles, it's important 🏋‍♀️"
+        "aHuOvb32EGJdYb68luAUIg971ML5xMQCUE80h4jR6QgoV12S_lUW9o_d2SQvZTWB16s".melyDecoded
       ),
       DancozZ6LtwXHtlqPu(
-        "id2",
-        "u4",
-        "uick Slim Dance Challenge",
+        "F1Mv".melyDecoded,
+        "GhA".melyDecoded,
+        "kcToFFZjfYKih9j2AzdbKPSmh7QSaGx4uQ".melyDecoded,
         "q9V8ph41lXTH_tiao2",
         false,
-        "Medium",
+        "ZoWs08QY".melyDecoded,
         12_500,
-        "Let’s bring this dance back for 2026"
+        "h6XceNHMQRZyiJbc7VEpTTGQpZn4RgJHA4qh0dJdPEF6wtWaoF8".melyDecoded
       ),
     ]
   }
@@ -151,11 +151,11 @@ final class MelystoreWpvugHy89HDWLR: ObservableObject {
     var errorDescription: String? {
       switch self {
       case .unfFC85yaKDytarCR:
-        return "The account does not exist. Please register first."
+        return "S3yZ9vz6HS1RYL_u0uIEIkx53sX1gdUfBEg6zrXN4xsvUxOUu8LgCnBaK4mrlccdGwo".melyDecoded
       case .eaeLFP7BXYUka0Wpm:
-        return "This email address is already registered. Please log in directly."
+        return "SH2KpL79FCJOY-Su0egUNRxlbtmlxcsbBlh6i5-A8x44Xl-TuNbrHCkeBsSrnMEKTElcYO6hx7MTNmZ6hqja-RE".melyDecoded
       case .wpWvt5azeUSWfZht:
-        return "Incorrect password, please try again."
+        return "cZ-8xNAWOER3y5jC6hM1WzmWvsz6VSsyY3zXt_j1RT5ccrm1jw".melyDecoded
       }
     }
   }
@@ -179,7 +179,7 @@ final class MelystoreWpvugHy89HDWLR: ObservableObject {
     let Wr9WXfGeOsPqyl = UqQJ7eQ5jcjmRq.suffix(4)
     let O1kPPN3xS9caFS = UserteYT4uBeg4ObJP(
       UUID().uuidString,
-      "Quick\(Wr9WXfGeOsPqyl)",
+      "SWSWqOk".melyDecoded + "\(Wr9WXfGeOsPqyl)",
       "mely_defava",
       nil,
       nil,
@@ -588,14 +588,14 @@ final class MelystoreWpvugHy89HDWLR: ObservableObject {
   }
 
   func adchaG3G6yAAgJ7cUJE(gzUGAsAiYTc7Dv: String, rule: String, covHMcwQvUcHm3NmI: String?) {
-    let c2iD2yx0Zssl4h3 = izHqrtotvfHu1g.adCu1Zp6Hm ?? "u1"
+    let c2iD2yx0Zssl4h3 = izHqrtotvfHu1g.adCu1Zp6Hm ?? "GhU".melyDecoded
     let challenge = DancozZ6LtwXHtlqPu(
       UUID().uuidString,
       c2iD2yx0Zssl4h3,
       gzUGAsAiYTc7Dv,
       covHMcwQvUcHm3NmI,
       false,
-      "Medium",
+      "ZoWs08QY".melyDecoded,
       0,
       rule
     )
@@ -630,23 +630,23 @@ final class MelystoreWpvugHy89HDWLR: ObservableObject {
   fileprivate static func defvdour78fT2fFvihde() -> [Chalvdngt3SE6MdwaZYu] {
     return [
       Chalvdngt3SE6MdwaZYu(
-        "cv1", "id1", "u2",
-        "I7SrplfHHwLH_feng1", "SKTyyB8jjAwN_pind1", 339,
+        "HUEs".melyDecoded, "F1Ms".melyDecoded, "GhY".melyDecoded,
+        "I7SrplfHHwLH_feng1", "LH9Ij4T7pggub1ygid3oH2gG".melyDecoded, 339,
         false,
         nil),
       Chalvdngt3SE6MdwaZYu(
-        "cv2", "id1", "u3",
-        "I7SrplfHHwLH_feng2", "SKTyyB8jjAwN_pind2", 124,
+        "HUEv".melyDecoded, "F1Ms".melyDecoded, "Ghc".melyDecoded,
+        "I7SrplfHHwLH_feng2", "LH9Ij4T7pggub1ygid3oH2gF".melyDecoded, 124,
         true,
         300),
       Chalvdngt3SE6MdwaZYu(
-        "cv3", "id2", "u4",
-        "I7SrplfHHwLH_feng3", "SKTyyB8jjAwN_pind3", 56,
+        "HUEu".melyDecoded, "F1Mv".melyDecoded, "GhA".melyDecoded,
+        "I7SrplfHHwLH_feng3", "LH9Ij4T7pggub1ygid3oH2gE".melyDecoded, 56,
         false,
         nil),
       Chalvdngt3SE6MdwaZYu(
-        "cv4", "id2", "u5",
-        "I7SrplfHHwLH_feng4", "SKTyyB8jjAwN_pind4", 770,
+        "HUEp".melyDecoded, "F1Mv".melyDecoded, "GhE".melyDecoded,
+        "I7SrplfHHwLH_feng4", "LH9Ij4T7pggub1ygid3oH2gD".melyDecoded, 770,
         true,
         300),
     ]
@@ -701,83 +701,83 @@ extension AdatJc1Zwhy2Od8kjZ {
   static func makeSample() -> AdatJc1Zwhy2Od8kjZ {
     let lAe1qkyDtNkCsbusers: [UserteYT4uBeg4ObJP] = [
       .init(
-        "u1",
-        "a4ll1e",
+        "GhU".melyDecoded,
+        "StSk1oAQ".melyDecoded,
         "Ja1iuGwTBJ8T_ava1",
-        "mely@gmail.com",
-        "123456"
+        "zg0sS3mat8_hDklJfYQ".melyDecoded,
+        "GtL7joRD".melyDecoded
       ),
       .init(
-        "u2",
-        "ouslife0",
+        "GhY".melyDecoded,
+        "qrfZ8D4xVTg".melyDecoded,
         "Ja1iuGwTBJ8T_ava2"
       ),
-      .init("u3", "wendydavid", "Ja1iuGwTBJ8T_ava3"),
-      .init("u4", "mcke", "Ja1iuGwTBJ8T_ava4"),
-      .init("u5", "Karolina", "Ja1iuGwTBJ8T_ava5"),
-      .init("u6", "Amily", "Ja1iuGwTBJ8T_ava6"),
-      .init("u7", "Iago", "Ja1iuGwTBJ8T_ava7"),
-      .init("u8", "Pulua", "Ja1iuGwTBJ8T_ava8"),
+      .init("Ghc".melyDecoded, "kMnqGgxVd5ylwg".melyDecoded, "Ja1iuGwTBJ8T_ava3"),
+      .init("GhA".melyDecoded, "ZGWFvQ".melyDecoded, "Ja1iuGwTBJ8T_ava4"),
+      .init("GhE".melyDecoded, "jqPY8zs-Xmk".melyDecoded, "Ja1iuGwTBJ8T_ava5"),
+      .init("GhI".melyDecoded, "WXyWp_s".melyDecoded, "Ja1iuGwTBJ8T_ava6"),
+      .init("GhM".melyDecoded, "QGeJtw".melyDecoded, "Ja1iuGwTBJ8T_ava7"),
+      .init("Ghw".melyDecoded, "SGSTvuM".melyDecoded, "Ja1iuGwTBJ8T_ava8"),
     ]
 
     let rYoDbpQbamNiKVcuid: String? = nil
 
     let ciee6dLFwqfsNJ = DateFormatter()
-    ciee6dLFwqfsNJ.dateFormat = "yyyy-MM-dd"
-    let aug1 = ciee6dLFwqfsNJ.date(from: "2025-08-01") ?? Date()
-    let mar4 = ciee6dLFwqfsNJ.date(from: "2025-03-04") ?? Date()
+    ciee6dLFwqfsNJ.dateFormat = "ntX9B1h8W8eowg".melyDecoded
+    let aug1 = ciee6dLFwqfsNJ.date(from: "1Zy2S1gBLsf8lw".melyDecoded) ?? Date()
+    let mar4 = ciee6dLFwqfsNJ.date(from: "1Zy2S1gBJcf8kg".melyDecoded) ?? Date()
     let cmposh7bTdv5CsEubxZ: [CPolpIKsl1mUtFVfy] = [
       .init(
-        "cp1", "u5", "jbTdcdQfTk5W_day11", "Leg day 🦵🏋️‍♀️",
-        ["Daily"], 0, 1, aug1),
+        "HUcs".melyDecoded, "GhE".melyDecoded, "jbTdcdQfTk5W_day11", "3fsRYG9infxKC_ft0JhkVA0ltOWj0zVRCWnW1w".melyDecoded,
+        ["XHCWp_s".melyDecoded], 0, 1, aug1),
       .init(
-        "cp2", "u6", "jbTdcdQfTk5W_day21",
-        "Body transformation from fat loss to muscle gain in one year",
-        ["Leisure"], 0, 1, aug1),
+        "HUcv".melyDecoded, "GhI".melyDecoded, "jbTdcdQfTk5W_day21",
+        "8xEyWQuXtt30BxdXcoqqy6sSdUdlzJjFiQAvTBNng6fBvC0_CHKGtJnpRj9cN7auoecIcHR9kezT4SA6".melyDecoded,
+        ["dpaw3tUUJg".melyDecoded], 0, 1, aug1),
       .init(
-        "cp3", "u7", "jbTdcdQfTk5W_day31",
-        "What I did to get a V-Shape",
-        ["Daily"], 12, 1, Date()),
+        "HUcu".melyDecoded, "GhM".melyDecoded, "jbTdcdQfTk5W_day31",
+        "0ecEJTRb16nE4WI9IBZ_i-GMqRYKQneRn8f4".melyDecoded,
+        ["XHCWp_s".melyDecoded], 12, 1, Date()),
       .init(
-        "cp4", "u8", "jbTdcdQfTk5W_day41",
-        "Late-night workout is my own medicine",
-        ["other"], 8, 1, Date()),
+        "HUcp".melyDecoded, "Ghw".melyDecoded, "jbTdcdQfTk5W_day41",
+        "dJCrzo8KNEBrn8jU9hIpWz6GsoX5GSMqMHaArarhADtScLm1xA".melyDecoded,
+        ["d2WXrvA".melyDecoded], 8, 1, Date()),
     ]
 
     let cocmsWareYcGP10Xiqt: [CommunityCommentModel] = [
       .init(
-        "cc1", "cp1", "u3",
-        "The scenery along the way seems very beautiful.", mar4),
-      .init("cc2", "cp2", "u4", "So beautiful ✨", mar4),
+        "HVQs".melyDecoded, "HUcs".melyDecoded, "Ghc".melyDecoded,
+        "BjNUJbutzv8cI289grbb7EZ4CCqFs-_kM2NaeLW7wKnnHAxMK5C5y6wUbRxtx84".melyDecoded, mar4),
+      .init("HVQv".melyDecoded, "HUcv".melyDecoded, "GhA".melyDecoded, "DiUCdrq-zfQPJnBg1Ck7Ow".melyDecoded, mar4),
       .init(
-        "cc3", "cp3", "u2", "Let's share our progress!", Date()
+        "HVQu".melyDecoded, "HUcu".melyDecoded, "GhY".melyDecoded, "qMj_WAUQYoOu1fm3AiFMKMe8ib8MaHFs_Q".melyDecoded, Date()
       ),
       .init(
-        "cc4", "cp4", "u5", "You're in great shape today. 💪",
+        "HVQp".melyDecoded, "HUcp".melyDecoded, "GhE".melyDecoded, "JVp20IzduQopD0OdsM3yUHxeDyCTpf74MDxCIeYwPgnV".melyDecoded,
         Date()),
     ]
 
     let covsXp52K6gTy4IKan: [Convs8RlUjf8GEZRmYA] = [
       .init(
-        "c1",
-        ["u1", "u2"],
+        "DBU".melyDecoded,
+        ["GhU".melyDecoded, "GhY".melyDecoded],
         nil,
-        ["u1": 1]
+        ["GhU".melyDecoded: 1]
       ),
       .init(
-        "c2",
-        ["u1", "u3"],
+        "DBY".melyDecoded,
+        ["GhU".melyDecoded, "Ghc".melyDecoded],
         nil,
-        ["u1": 1]
+        ["GhU".melyDecoded: 1]
       ),
     ]
 
     let mgsPa2genkxGj8zwq: [MSgOumAbwJ0MP1dZO] = [
       .init(
-        "m1",
-        "c1",
-        "u2",
-        "What new gadgets are you working on lately?",
+        "AhU".melyDecoded,
+        "DBU".melyDecoded,
+        "GhY".melyDecoded,
+        "wfcUNSRsgqqd8jM9WGOcrcX9SmMMJru8rvACKwdDYZL10tRRK19kg_Hd_w".melyDecoded,
         .text,
         nil,
         nil,
@@ -785,10 +785,10 @@ extension AdatJc1Zwhy2Od8kjZ {
         Date()
       ),
       .init(
-        "m2",
-        "c2",
-        "u3",
-        "The content you shared is very interesting!",
+        "AhY".melyDecoded,
+        "DBY".melyDecoded,
+        "Ghc".melyDecoded,
+        "wvcQYWdtianY-yZ5Rmmd_pb0WXRJO_Sg_acbPB5TL5y7yd8DIk1kj_PD4Q".melyDecoded,
         .text,
         nil,
         nil,

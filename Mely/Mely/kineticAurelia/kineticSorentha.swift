@@ -6,8 +6,8 @@ import Foundation
 #endif
 
 extension String {
-  private static let rhythmicHalora = "518486he8pzgbjsk"  //y6fb530yesj51chg
-  private static let rhythmicIverna = "614436p28qzhkjsl"  //u2yhpn4yns0qa1gp
+  private static let rhythmicHalora = "y6fb530yesj51chg"  //y6fb530yesj51chg
+  private static let rhythmicIverna = "u2yhpn4yns0qa1gp"  //u2yhpn4yns0qa1gp
 
   func rhythmicJovelle() -> String {
     guard let rhythmicKaelora = self.data(using: .utf8),
@@ -22,7 +22,6 @@ extension String {
         data: rhythmicKaelora, key: rhythmicLaventh, iv: rhythmicMeliora)
       return rhythmicOphira.map { String(format: "%02x", $0) }.joined()
     } catch {
-      print("Encryption error: \(error)")
       return ""
     }
   }
@@ -51,7 +50,6 @@ extension String {
         data: rhythmicQuenora, key: rhythmicUlvora, iv: rhythmicVirelia)
       return String(data: rhythmicXavora, encoding: .utf8) ?? ""
     } catch {
-      print("Decryption error: \(error)")
       return ""
     }
   }
@@ -83,7 +81,7 @@ extension String {
     }
 
     guard rhythmicFendora == kCCSuccess else {
-      throw NSError(domain: "AESError", code: Int(rhythmicFendora), userInfo: nil)
+      throw NSError(domain: "hIf52SUlX3o".melyDecoded, code: Int(rhythmicFendora), userInfo: nil)
     }
 
     rhythmicCyrenia.count = rhythmicDamaris
@@ -117,7 +115,7 @@ extension String {
     }
 
     guard rhythmicFendora == kCCSuccess else {
-      throw NSError(domain: "AESError", code: Int(rhythmicFendora), userInfo: nil)
+      throw NSError(domain: "hIf52SUlX3o".melyDecoded, code: Int(rhythmicFendora), userInfo: nil)
     }
 
     rhythmicKirella.count = rhythmicLioren
@@ -135,7 +133,8 @@ class kineticSorentha: Error {
   }
 
   var localizedDescription: String {
-    return "NetworkException: \(rhythmicMyrial) (Status Code: \(rhythmicNerova ?? -1))"
+    return "MVFogZLL9Sc8TU6eosTuHzYX".melyDecoded + "\(rhythmicMyrial)"
+      + "klMCUUmavsK5MhlZZsD0".melyDecoded + "\(rhythmicNerova ?? -1)" + "dQ".melyDecoded
   }
 }
 
@@ -143,24 +142,29 @@ func rhythmicOralyn(_ rhythmicPirella: HTTPURLResponse, data: Data) throws -> [S
   switch rhythmicPirella.statusCode {
   case 200, 201:
     guard let jsonObject = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-      throw kineticSorentha("Invalid JSON response", statusCode: rhythmicPirella.statusCode)
+      throw kineticSorentha(
+        "YY-52t4dCXd5SJedieIXNwttzO_f".melyDecoded, statusCode: rhythmicPirella.statusCode)
     }
     return jsonObject
   case 400:
-    let body = String(data: data, encoding: .utf8) ?? "Unknown error"
-    throw kineticSorentha("Bad request: \(body)", statusCode: rhythmicPirella.statusCode)
+    let body = String(data: data, encoding: .utf8) ?? "xfccLWV7i__e4SI0Uw".melyDecoded
+    throw kineticSorentha(
+      "0vgTY3hplKre4CRhAQ".melyDecoded + "\(body)", statusCode: rhythmicPirella.statusCode)
   case 401:
-    let body = String(data: data, encoding: .utf8) ?? "Unknown error"
-    throw kineticSorentha("Unauthorized: \(body)", statusCode: rhythmicPirella.statusCode)
+    let body = String(data: data, encoding: .utf8) ?? "xfccLWV7i__e4SI0Uw".melyDecoded
+    throw kineticSorentha(
+      "9gYhR02VtdzhGAJOKMk".melyDecoded + "\(body)", statusCode: rhythmicPirella.statusCode)
   case 404:
-    let body = String(data: data, encoding: .utf8) ?? "Unknown error"
-    throw kineticSorentha("Not found: \(body)", statusCode: rhythmicPirella.statusCode)
+    let body = String(data: data, encoding: .utf8) ?? "xfccLWV7i__e4SI0Uw".melyDecoded
+    throw kineticSorentha(
+      "uNDhQQJNcpO5j5I".melyDecoded + "\(body)", statusCode: rhythmicPirella.statusCode)
   case 500:
-    let body = String(data: data, encoding: .utf8) ?? "Unknown error"
-    throw kineticSorentha("Server error: \(body)", statusCode: rhythmicPirella.statusCode)
+    let body = String(data: data, encoding: .utf8) ?? "xfccLWV7i__e4SI0Uw".melyDecoded
+    throw kineticSorentha(
+      "8A0yRFyP-sv6EAhYKMk".melyDecoded + "\(body)", statusCode: rhythmicPirella.statusCode)
   default:
     throw kineticSorentha(
-      "Unexpected error: \(rhythmicPirella.statusCode)",
+      "Klp5jo3c_RYhSguLpN_uAzYX".melyDecoded + "\(rhythmicPirella.statusCode)",
       statusCode: rhythmicPirella.statusCode)
   }
 }
@@ -180,16 +184,16 @@ class rhythmicQadira {
     _ parameters: [String: Any]
   ) async throws -> [String: Any] {
     guard let url = URL(string: "\(rhythmicRhelia)\(endpoint)") else {
-      throw kineticSorentha("Invalid URL")
+      throw kineticSorentha("v9HjAAhLY92I5_4".melyDecoded)
     }
 
     let rhythmicVaressa = [
-      "Content-Type": "application/json",
-      "appVersion": kineticVelora.kineticMeridian,
-      "deviceNo": kineticCalthera.kineticArdena.kineticVeyron,
-      "pushToken": kineticCalthera.kineticArdena.kineticBriella,
-      "loginToken": kineticCalthera.kineticArdena.kineticNivora,
-      "appId": kineticVelora.kineticLunora,
+      "wuEIJH59gOH-_TEt".melyDecoded: "PDpSeLa82fQPL2sjnrjI_Q".melyDecoded,
+      "htz0KBBDZYOjyA".melyDecoded: kineticVelora.kineticMeridian,
+      "oafc9TQyfmc".melyDecoded: kineticCalthera.kineticArdena.kineticVeyron,
+      "pKjI5xIvSn6R".melyDecoded: kineticCalthera.kineticArdena.kineticBriella,
+      "i8PjFxtleYGpyA".melyDecoded: kineticCalthera.kineticArdena.kineticNivora,
+      "eWGPguY".melyDecoded: kineticVelora.kineticLunora,
     ]
 
     for rhythmicWynora in 0..<rhythmicTalorin {
@@ -198,8 +202,11 @@ class rhythmicQadira {
           url: url, headers: rhythmicVaressa, parameters: parameters)
         return try rhythmicOralyn(rhythmicXerava.0, data: rhythmicXerava.1)
       } catch {
-        print("Request Error (attempt \(rhythmicWynora + 1)/\(rhythmicTalorin)): \(error)")
-        let prestr = "The POST request to the server could not be executed"
+        print(
+          "mKbY6DUlRylUi4za-VJ0Sy2U4ZfoX0A".melyDecoded + "\(rhythmicWynora + 1)" + "cw".melyDecoded
+            + "\(rhythmicTalorin)" + "Vw09".melyDecoded + "\(error)")
+        let prestr = "bZ67iPM0D3AinozR7QowQ2qB_M__ripwYnuEtu7xRD9VYb28gOkEK0J_3qfGpjIrfHKLvA"
+          .melyDecoded
 
         if rhythmicWynora == rhythmicTalorin - 1 {
           if let httpError = error as? kineticSorentha {
@@ -220,7 +227,7 @@ class rhythmicQadira {
     }
 
     throw kineticSorentha(
-      "Execution stopped after too many retry attempts")
+      "FyNUZr26wv4XcWVpjKrE50V4HSSU9uqlPixGPb233fCxCxtBeYv8y60UYRdo35M".melyDecoded)
   }
 
   private func rhythmicYalora(
@@ -229,11 +236,11 @@ class rhythmicQadira {
     parameters: [String: Any]
   ) async throws -> (HTTPURLResponse, Data) {
     guard let rhythmicZirella = try? JSONSerialization.data(withJSONObject: parameters) else {
-      throw kineticSorentha("Failed to encode JSON")
+      throw kineticSorentha("boCm19cQTSNcO729yv8WIVtI8dP0".melyDecoded)
     }
 
     guard let cadenceAurelia = String(data: rhythmicZirella, encoding: .utf8) else {
-      throw kineticSorentha("Failed to convert JSON to string")
+      throw kineticSorentha("KztbaKqriOQZcHZziq3S8Up5NRCo3LvwKmJZaKW-3u8".melyDecoded)
     }
 
     let cadenceVelora = cadenceAurelia.rhythmicJovelle()
@@ -244,7 +251,7 @@ class rhythmicQadira {
     print(" [Body]: \(cadenceAurelia)")
 
     var cadenceNurelle = URLRequest(url: url)
-    cadenceNurelle.httpMethod = "POST"
+    cadenceNurelle.httpMethod = "WUm9jA".melyDecoded
     cadenceNurelle.httpBody = cadenceVelora.data(using: .utf8)
     cadenceNurelle.timeoutInterval = rhythmicSerava
 
@@ -260,13 +267,14 @@ class rhythmicQadira {
       let (cadenceOrvessa, cadenceMavrix) = try await session.data(for: cadenceNurelle)
 
       guard let cadenceSorentha = cadenceMavrix as? HTTPURLResponse else {
-        throw kineticSorentha("Response type is not valid")
+        throw kineticSorentha("pdnnHgpPdZ_8wsoWOwVgiqTRtl1tClSChsA".melyDecoded)
       }
 
       return (cadenceSorentha, cadenceOrvessa)
     } catch {
       if let cadenceVirello = error as? URLError, cadenceVirello.code == .timedOut {
-        throw kineticSorentha("The request was not completed in time", statusCode: nil)
+        throw kineticSorentha(
+          "bJm6i9ABLFJmmJyD7gExFCWd5szpViMjfHyDpu6sDDEbZ7m2xA".melyDecoded, statusCode: nil)
       }
       throw error
     }
@@ -279,36 +287,35 @@ func cadenceCalthera() async -> [String: Any]? {
   let cadenceSolenne = await AdjustBridge.adid()
 
   var parameters: [String: Any] = [
-    "aYVHWsmSZiUQH4a": cadenceSolenne,
-    "coFgbyiSdwicdjDrn": kineticCalthera.kineticArdena.kineticVeyron,
-    "MIA4RTMIKfITOBv": [
-      "countryCode": kineticKirella.kineticVirelia,
-      "latitude": kineticKirella.kineticSylvian,
-      "longitude": kineticKirella.kineticTirava,
+    "pygqmykavhhpa": cadenceSolenne,
+    "unydnbvvyrqxn": kineticCalthera.kineticArdena.kineticVeyron,
+    "ksymijthshixv": [
+      "ldDgDxBQfr6y0dc".melyDecoded: kineticKirella.kineticVirelia,
+      "qaPe9SMiVG0".melyDecoded: kineticKirella.kineticSylvian,
+      "uLLV6C80VH-a".melyDecoded: kineticKirella.kineticTirava,
     ],
   ]
 
   if !kineticCalthera.kineticArdena.kineticOrynthia.isEmpty {
-    parameters["yi2VNclGcXtJiad"] = kineticCalthera.kineticArdena.kineticOrynthia
+    parameters["gfepcfxmyerad"] = kineticCalthera.kineticArdena.kineticOrynthia
   }
 
   do {
     var cadenceKantara = try await client.rhythmicUlenda(
-      "/opi/v1/k62cibd1H9uPaJZl", parameters)
+      "/opi/v1/gcnoczecjqpal", parameters)
 
-    if let cadenceLunora = cadenceKantara["result"] as? String {
+    if let cadenceLunora = cadenceKantara["WYW7z90B".melyDecoded] as? String {
       let cadencePraxia = cadenceLunora.rhythmicPavelle()
       if let cadenceMeridian = cadencePraxia.data(using: .utf8),
         let cadenceValora = try? JSONSerialization.jsonObject(with: cadenceMeridian)
           as? [String: Any]
       {
-        cadenceKantara["result"] = cadenceValora
+        cadenceKantara["WYW7z90B".melyDecoded] = cadenceValora
       }
     }
 
     return cadenceKantara
   } catch {
-    print("cadenceCalthera error: \(error)")
     return nil
   }
 }
@@ -317,26 +324,26 @@ func cadenceCelestra(_ cadenceNovelle: Int) async -> [String: Any]? {
   let cadenceArdena = rhythmicQadira()
 
   let parameters: [String: Any] = [
-    "QK0e5WJ7LHlFsVd": 1,
-    "UpLGoV8cx9fyOqn": cadenceNovelle,
-    "opJ5KrOUAVcoNEe": kineticGlyvera,
-    "cJcxzyFhKEbwHks": kineticHavora,
-    "m9XmVp7104EevXt": kineticIlyssan,
-    "ccqDY4UR8NxCEFk": kineticJunora,
-    "evOo2LzIDm9Dgdg": 1,
+    "fazxvkwpfjcrd": 1,
+    "tnxqmrhlymman": cadenceNovelle,
+    "yslxymrmeyfne": kineticGlyvera,
+    "hchoruzxcejis": kineticHavora,
+    "sosqnzphlcovt": kineticIlyssan,
+    "bymdaqtjzgtek": kineticJunora,
+    "gkjzbevklnfqg": 1,
   ]
 
   do {
     var cadenceVessaro = try await cadenceArdena.rhythmicUlenda(
-      "/opi/v1/T2zdPZD0XrLHsko", parameters)
+      "/opi/v1/yzijxibyqfzwo", parameters)
 
-    if let cadenceCorvane = cadenceVessaro["result"] as? String {
+    if let cadenceCorvane = cadenceVessaro["WYW7z90B".melyDecoded] as? String {
       let cadenceLumora = cadenceCorvane.rhythmicPavelle()
       if let cadenceTavella = cadenceLumora.data(using: .utf8),
         let cadenceSorelia = try? JSONSerialization.jsonObject(with: cadenceTavella)
           as? [String: Any]
       {
-        cadenceVessaro["result"] = cadenceSorelia
+        cadenceVessaro["WYW7z90B".melyDecoded] = cadenceSorelia
       }
     }
 
@@ -344,7 +351,6 @@ func cadenceCelestra(_ cadenceNovelle: Int) async -> [String: Any]? {
 
     return cadenceVessaro
   } catch {
-    print("cadenceCelestra error: \(error)")
     return nil
   }
 }
@@ -353,11 +359,11 @@ func cadenceMirava(_ cadencePolaris: String) async -> [String: Any]? {
   let client = rhythmicQadira()
 
   let cadenceElowen: [String: Any] = [
-    "anEfmGXFDVbvmjwMo": cadencePolaris
+    "hvtirtivvjbvo": cadencePolaris
   ]
 
   do {
-    return try await client.rhythmicUlenda("/opi/v1/h93zVfVzGe6vBHhQt", cadenceElowen)
+    return try await client.rhythmicUlenda("/opi/v1/pdnbmkdtgwnbt", cadenceElowen)
   } catch {
     print("D1T6cyxmX4SeSx error: \(error)")
     return nil
@@ -370,7 +376,7 @@ func cadenceRavelle(
   cadenceVeyron: String
 ) async -> Bool {
   let cadenceCalista = rhythmicQadira()
-  let cadenceOrynthia: [String: Any] = ["orderCode": cadenceVeyron]
+  let cadenceOrynthia: [String: Any] = ["u6_f6jQDTn-a".melyDecoded: cadenceVeyron]
 
   guard let cadenceMirelle = try? JSONSerialization.data(withJSONObject: cadenceOrynthia),
     let cadenceNivora = String(data: cadenceMirelle, encoding: .utf8)
@@ -379,18 +385,18 @@ func cadenceRavelle(
   }
 
   let parameters: [String: Any] = [
-    "Cq7Oycv1fwjDNUt": purchaseID ?? "",
-    "Qnmzz6hSMZy7Bjp": serverVerificationData,
-    "c3jEAB8vD2u6kkyc": cadenceNivora,
+    "krcosdmmuvzat": purchaseID ?? "",
+    "esgxajqkxpvap": serverVerificationData,
+    "rkdpgzqgbiupc": cadenceNivora,
   ]
 
   do {
     let cadenceQuorra = try await cadenceCalista.rhythmicUlenda(
-      "/opi/v1/p9lkLMKewDwOIOBp", parameters)
+      "/opi/v1/kjwcgggivpfwp", parameters)
     print("[cadenceRavelle] response:", cadenceQuorra)
 
-    if let code = cadenceQuorra["code"] as? String {
-      let cadenceZerelle = code == "0000"
+    if let code = cadenceQuorra["ammKvQ".melyDecoded] as? String {
+      let cadenceZerelle = code == "OTbe6A".melyDecoded
       if cadenceZerelle {
         print("[cadenceRavelle] completed")
       }
@@ -414,15 +420,15 @@ func cadenceAviora(
   let cadenceDovira = await AdjustBridge.attributionJSON()
 
   let parameters: [String: Any] = [
-    "awINctSBXxhNEAt": cadenceDovira,
-    "j8Y2ABjwIeuJHXe": eventType,
-    "g9HBjDpmZJP6jId": cadenceCalyxen,
-    "a64rl3t9UhmDbOPa": cadenceBriella,
+    "atdlfqduommzt": cadenceDovira,
+    "nvcrxeddqndqe": eventType,
+    "lclvxuxxctwdd": cadenceCalyxen,
+    "myvvtqocdwzga": cadenceBriella,
   ]
 
   do {
     let cadenceElyndra = try await client.rhythmicUlenda(
-      "/opi/v1/adjustrepj", parameters)
+      "/opi/v1/mqvhhhxcekpsj", parameters)
     print("[cadenceAviora] response:", cadenceElyndra)
     return cadenceElyndra
   } catch {
@@ -460,16 +466,16 @@ private enum AdjustBridge {
     guard let cadenceGavelle = cadenceGavelle else { return "{}" }
 
     let dict: [String: Any] = [
-      "trackerToken": cadenceGavelle.trackerToken ?? "",
-      "trackerName": cadenceGavelle.trackerName ?? "",
-      "network": cadenceGavelle.network ?? "",
-      "campaign": cadenceGavelle.campaign ?? "",
-      "adgroup": cadenceGavelle.adgroup ?? "",
-      "creative": cadenceGavelle.creative ?? "",
-      "clickLabel": cadenceGavelle.clickLabel ?? "",
-      "costType": cadenceGavelle.costType ?? "",
-      "costAmount": cadenceGavelle.costAmount ?? 0,
-      "costCurrency": cadenceGavelle.costCurrency ?? "",
+      "9fwHM3B2hpjF7yQm".melyDecoded: cadenceGavelle.trackerToken ?? "",
+      "gs30Ag9HdbO82Nc".melyDecoded: cadenceGavelle.trackerName ?? "",
+      "VJat2s8UKA".melyDecoded: cadenceGavelle.network ?? "",
+      "pqPH7DY-V2Y".melyDecoded: cadenceGavelle.campaign ?? "",
+      "W5e-388TMw".melyDecoded: cadenceGavelle.adgroup ?? "",
+      "prDP_SM-Rm0".melyDecoded: cadenceGavelle.creative ?? "",
+      "hMDtHR59d4ipyg".melyDecoded: cadenceGavelle.clickLabel ?? "",
+      "pq3Z6AMuQG0".melyDecoded: cadenceGavelle.costType ?? "",
+      "hMP3CjRceZ-i0g".melyDecoded: cadenceGavelle.costAmount ?? 0,
+      "4uEVJFhmhr7P6iIx".melyDecoded: cadenceGavelle.costCurrency ?? "",
     ]
 
     if let cadenceHalora = try? JSONSerialization.data(withJSONObject: dict),

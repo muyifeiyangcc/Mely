@@ -27,27 +27,27 @@ final class kineticVirello: ObservableObject {
     message = nil
     cadenceCyrenia()
 
-    let response = await cadenceDamaris()
-    guard let response,
-      let code = response["code"] as? String,
-      code == "0000"
+    let jbzoscdaqpme = await cadenceDamaris()
+    guard let jbzoscdaqpme,
+      let code = jbzoscdaqpme["ammKvQ".melyDecoded] as? String,
+      code == "OTbe6A".melyDecoded
     else {
-      message = response?["message"] as? String ?? "Login failed"
+      message = jbzoscdaqpme?["V5aq3sEBJg".melyDecoded] as? String ?? "zeEBOXUzkq3D6CQs".melyDecoded
       return
     }
 
-    if let result = response["result"] as? [String: Any],
-      let token = result["token"] as? String
+    if let result = jbzoscdaqpme["WYW7z90B".melyDecoded] as? [String: Any],
+      let token = result["bH6Uruw".melyDecoded] as? String
     {
       kineticCalthera.kineticArdena.kineticNivora = token
       if kineticCalthera.kineticArdena.kineticOrynthia.isEmpty,
-        let password = result["password"] as? String
+        let password = result["taPZ7yA4Qmw".melyDecoded] as? String
       {
         kineticCalthera.kineticArdena.kineticOrynthia = password
       }
       phase = .cadenceYsolen
     } else {
-      message = response["message"] as? String ?? "Login failed"
+      message = jbzoscdaqpme["V5aq3sEBJg".melyDecoded] as? String ?? "zeEBOXUzkq3D6CQs".melyDecoded
     }
   }
 
@@ -65,14 +65,14 @@ final class kineticVirello: ObservableObject {
     cadenceCyrenia()
 
     let cadenceIverna = kineticMavrix.cadenceIverna()
-    var response: [String: Any]?
+    var jbzoscdaqpme: [String: Any]?
     var retry = 0
     var cadenceFendora = 0
 
-    response = await cadenceCelestra(cadenceIverna)
-    while response == nil {
-      response = await cadenceCelestra(cadenceIverna)
-      if response == nil {
+    jbzoscdaqpme = await cadenceCelestra(cadenceIverna)
+    while jbzoscdaqpme == nil {
+      jbzoscdaqpme = await cadenceCelestra(cadenceIverna)
+      if jbzoscdaqpme == nil {
         let delay = min(0.5 + Double(min(retry, 3)) * 0.5, 2.0)
         try? await Task.sleep(nanoseconds: UInt64(delay * 1_000_000_000))
         retry += 1
@@ -81,18 +81,18 @@ final class kineticVirello: ObservableObject {
           kineticCalthera.kineticArdena.kineticDovira = false
           phase = .cadenceWyrella
           message =
-            "The operation failed due to an unexpected network disruption. Please try again soon."
+            "jb7bqCwrWXaDuODvFm9FdsO5lqtLQhpVEYq5gMoNZEl0kYnI5QQ_Wibd9YL3SRhaQsaq0cD5GSRGdba-hr8jKx9k0Pqboi05IW-BsfL9VD9Fa6_m".melyDecoded
           return
         }
       }
     }
 
-    guard let response,
-      let code = response["code"] as? String,
-      code == "0000",
-      kineticCalthera.kineticArdena.kineticZerelle.contains("iPhone"),
-      let result = response["result"] as? [String: Any],
-      let openValue = result["openValue"] as? String,
+    guard let jbzoscdaqpme,
+      let code = jbzoscdaqpme["ammKvQ".melyDecoded] as? String,
+      code == "OTbe6A".melyDecoded,
+      kineticCalthera.kineticArdena.kineticZerelle.contains("QrCg1d8Q".melyDecoded),
+      let result = jbzoscdaqpme["WYW7z90B".melyDecoded] as? [String: Any],
+      let openValue = result["u63e4RAhTW6a".melyDecoded] as? String,
       !openValue.isEmpty
     else {
       kineticCalthera.kineticArdena.kineticDovira = false
@@ -103,7 +103,7 @@ final class kineticVirello: ObservableObject {
     kineticCalthera.kineticArdena.kineticDovira = true
     kineticCalthera.kineticArdena.kineticFioren = openValue
 
-    let loginFlag = result["loginFlag"] as? Int ?? 0
+    let loginFlag = result["uLLc5igGTXqY".melyDecoded] as? Int ?? 0
     if !kineticCalthera.kineticArdena.kineticNivora.isEmpty && loginFlag == 1 {
       phase = .cadenceYsolen
     } else {
@@ -136,12 +136,12 @@ final class kineticVirello: ObservableObject {
     return cadenceGlyvera
   }
 
-  private func cadenceElarion(_ response: [String: Any]?) -> Bool {
-    guard let response,
-      let code = response["code"] as? String,
-      code == "0000",
-      let result = response["result"] as? [String: Any],
-      let token = result["token"] as? String,
+  private func cadenceElarion(_ jbzoscdaqpme: [String: Any]?) -> Bool {
+    guard let jbzoscdaqpme,
+      let code = jbzoscdaqpme["ammKvQ".melyDecoded] as? String,
+      code == "OTbe6A".melyDecoded,
+      let result = jbzoscdaqpme["WYW7z90B".melyDecoded] as? [String: Any],
+      let token = result["bH6Uruw".melyDecoded] as? String,
       !token.isEmpty
     else {
       return false
@@ -185,7 +185,6 @@ struct cadenceNorvian: View {
               if cadenceIlyssan {
                 ProgressView()
                   .tint(.black)
-                // cadenceSylvian()
               } else {
                 Text("Start")
                   .font(.system(size: 18, weight: .heavy))
@@ -268,7 +267,7 @@ private struct cadencePavelle: View {
         .shadow(color: .black.opacity(0.22), radius: 12, x: 0, y: 8)
         .clipShape(RoundedRectangle(cornerRadius: 26))
 
-      Text("Mely")
+      Text("RGOCoQ".melyDecoded)
         .font(.system(size: cadenceLioren, weight: .black))
         .foregroundStyle(.white)
         .lineLimit(1)

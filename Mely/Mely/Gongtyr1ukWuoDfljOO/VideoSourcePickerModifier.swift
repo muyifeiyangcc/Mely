@@ -8,23 +8,23 @@ import SwiftUI
 
 struct SourcePickerConfig {
   var dialogTitle: String
-  var dialogMessage: String = "Choose from photo library or camera"
-  var alertTitle: String = "Permission Required"
-  var galleryButtonTitle: String = "Gallery"
-  var cameraButtonTitle: String = "Camera"
-  var cancelButtonTitle: String = "Cancel"
+  var dialogMessage: String = "XX-Spu__XyNXYqfhx-YPIgI03Oe2lc0DDx96k8TB5hA4R1M".melyDecoded
+  var alertTitle: String = "XmKftIXZ_Bw6Uxqjos_lD29BJA".melyDecoded
+  var galleryButtonTitle: String = "fZK1wcUUOg".melyDecoded
+  var cameraButtonTitle: String = "aIGl38MU".melyDecoded
+  var cancelButtonTitle: String = "aIGm2dQZ".melyDecoded
   var alertConfirmTitle: String
   var showSettingsButton: Bool = true
-  var settingsButtonTitle: String = "Go to Settings"
+  var settingsButtonTitle: String = "5AdgRlbdicv8Fg5EdZo".melyDecoded
 
   static let imageDefault = SourcePickerConfig(
-    dialogTitle: "Select image source",
-    alertConfirmTitle: "Cancel"
+    dialogTitle: "XWKBvI_erxw4XF2U583_E29HJQ".melyDecoded,
+    alertConfirmTitle: "aIGm2dQZ".melyDecoded
   )
 
   static let videoDefault = SourcePickerConfig(
-    dialogTitle: "Select video source",
-    alertConfirmTitle: "Confirm"
+    dialogTitle: "XWKBvI_erwM8WV-e583_E29HJQ".melyDecoded,
+    alertConfirmTitle: "eZy3y8kULg".melyDecoded
   )
 }
 

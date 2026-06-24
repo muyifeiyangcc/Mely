@@ -8,9 +8,9 @@ enum cadenceJovelle: Hashable {
   var title: String {
     switch self {
     case .cadenceKaelora:
-      return "User Agreement"
+      return "9hslQBm8vdztBwpPfJ0".melyDecoded
     case .cadenceLaventh:
-      return "Privacy Policy"
+      return "8xopRFieo47YDQtDcZA".melyDecoded
     }
   }
 
@@ -40,7 +40,7 @@ struct kineticOrvessa: View {
           Button {
             dismiss()
           } label: {
-            Image(systemName: "chevron.left")
+            Image(systemName: "4uYDJml8muLG4Sc8".melyDecoded)
               .font(.system(size: 18, weight: .semibold))
               .foregroundStyle(.white)
               .frame(width: 44, height: 44)

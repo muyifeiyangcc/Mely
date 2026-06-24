@@ -128,13 +128,13 @@ struct ChadetliLsrfCbqFVharView: View {
     .imageSourcePicker(
       isPresented: $LWlRg7fl3zFJi9ssp, onImagePicked: { hpEgZ6jfUA7uLLXf($0) }
     )
-    .alert("Permission Required", isPresented: $svpWFle0fef9L6Plo) {
-      Button("Go to Settings") {
+    .alert("XmKftIXZ_Bw6Uxqjos_lD29BJA".melyDecoded, isPresented: $svpWFle0fef9L6Plo) {
+      Button("5AdgRlbdicv8Fg5EdZo".melyDecoded) {
         if let url = URL(string: UIApplication.openSettingsURLString) {
           UIApplication.shared.open(url)
         }
       }
-      Button("Cancel", role: .cancel) {}
+      Button("aIGm2dQZ".melyDecoded, role: .cancel) {}
     } message: {
       if let ZkcmClqkEDZOvn = vpd4rsZK4TVDFPXbo {
         Text(ZkcmClqkEDZOvn)
@@ -160,7 +160,7 @@ struct ChadetliLsrfCbqFVharView: View {
     guard let id06yBk4Xmp3bIrZ = oiddMjbBBLASUsbIH,
       let S6JKnZe3hBCwz9 = j8G57MljwM2a4l.izHqrtotvfHu1g.adUr9Mz3Qc.first(where: { $0.id == id06yBk4Xmp3bIrZ }
       )
-    else { return "Chat" }
+    else { return "Sm6PrA".melyDecoded }
     return S6JKnZe3hBCwz9.uZp7Lm2cR
   }
 
@@ -231,7 +231,7 @@ struct ChadetliLsrfCbqFVharView: View {
 
   private func xUyaofrpBB77vO(from pvD46UvH6CuVxz: Date) -> String {
     let f = DateFormatter()
-    f.dateFormat = "h:mm a"
+    f.dateFormat = "Q9ql15EU".melyDecoded
     return f.string(from: pvD46UvH6CuVxz)
   }
 
@@ -300,7 +300,7 @@ private struct ComfgobkQuxbadosUView: View {
               if isvoCweAuEOrDlhNEq { isemoBAxzAmK8uXF9QN = false }
             }
           } label: {
-            Image(systemName: isvoCweAuEOrDlhNEq ? "keyboard" : "mic.fill")
+            Image(systemName: isvoCweAuEOrDlhNEq ? "rqfT_jg2Qmw".melyDecoded : "qKvJsjE-XGQ".melyDecoded)
               .font(.system(size: 22, weight: .semibold))
               .foregroundColor(.white)
           }
@@ -309,7 +309,7 @@ private struct ComfgobkQuxbadosUView: View {
             TextField(
               "",
               text: $text,
-              prompt: Text("Add content")
+              prompt: Text("t9vxQQdNaYm428Y".melyDecoded)
                 .foregroundColor(Color(white: 0.65))
             )
             .textFieldStyle(.plain)
@@ -328,7 +328,7 @@ private struct ComfgobkQuxbadosUView: View {
               if isemoBAxzAmK8uXF9QN { isvoCweAuEOrDlhNEq = false }
             }
           } label: {
-            Image(systemName: "face.smiling")
+            Image(systemName: "5-8FNTVgmaXG7S8v".melyDecoded)
               .font(.system(size: 28))
               .foregroundColor(.white)
           }
@@ -340,7 +340,7 @@ private struct ComfgobkQuxbadosUView: View {
               onphon6EtjoEsQGYArk()
             }
           } label: {
-            Image(systemName: canSendText ? "paperplane.fill" : "photo")
+            Image(systemName: canSendText ? "whohQFqep9D3FFhbapa4".melyDecoded : "aHmQv-0".melyDecoded)
               .font(.system(size: 26))
               .foregroundColor(.white)
           }
@@ -427,7 +427,7 @@ private struct BigfX60ILmqqamWTB: View {
         .fill(.white.opacity(ir8JcKWaKOzs4xsP ? (XBoqXQXfAxMLB0 ? 0.7 : 0.4) : 0.4))
         .frame(width: 42, height: 42)
 
-      Image(systemName: "mic.fill")
+      Image(systemName: "qKvJsjE-XGQ".melyDecoded)
         .font(.system(size: 20, weight: .bold))
         .foregroundColor(Color(red: 255 / 255, green: 26 / 255, blue: 182 / 255))
     }
@@ -550,7 +550,7 @@ private struct VbuVNgXh5SaakivIP: View {
       playback.toggle(url: URL(fileURLWithPath: rs2IZOBLYd7pomvi))
     } label: {
       HStack(spacing: 10) {
-        Image(systemName: playback.HBAp4fbnhEy2Z8 ? "stop.fill" : "play.fill")
+        Image(systemName: playback.HBAp4fbnhEy2Z8 ? "p6nU_2gmSHeT".melyDecoded : "pLHa9mgmSHeT".melyDecoded)
           .font(.system(size: 16, weight: .semibold))
           .foregroundColor(isWyY8MbQNatzIjnMe ? .black.opacity(0.8) : .white.opacity(0.9))
           .frame(width: 18, height: 18)
@@ -655,7 +655,7 @@ private struct VeaX3Ewrqii3HkCbu: View {
           .fill(NaSuf3ZBukxrG3)
         ImageLJIzgD4rpc6J6v(
           resource: .filemgaldkOrT8a2cb(path: path),
-          placeholder: Image(systemName: "photo"),
+          placeholder: Image(systemName: "aHmQv-0".melyDecoded),
           contentMode: .fill
         )
         .foregroundStyle(.white.opacity(0.9))
@@ -671,7 +671,7 @@ private struct VeaX3Ewrqii3HkCbu: View {
               ? Color(red: 0.72, green: 0.86, blue: 0.24)
               : Color(red: 0.96, green: 0.23, blue: 0.64))
 
-        Image(systemName: "photo")
+        Image(systemName: "aHmQv-0".melyDecoded)
           .font(.system(size: 38, weight: .semibold))
           .foregroundColor(.white.opacity(0.9))
       }

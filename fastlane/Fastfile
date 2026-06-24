@@ -58,7 +58,7 @@ platform :ios do
     on_match
     prepare_gym
     gym(
-      project: "Mely/Mely.xcodeproj",     # 如果是 workspace 就用 workspace
+      workspace: "Mely/Mely.xcworkspace",     # 如果是 workspace 就用 workspace
       scheme: scheme,         # 一定要有
       clean: true,
 

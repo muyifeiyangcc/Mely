@@ -149,7 +149,7 @@ struct CmpodetQpyzEXwp4onYBY: View {
 
         if let aut2tvtfrs6kDO0fY, aut2tvtfrs6kDO0fY.id != a0LnGRpMUTEb4cr.curp11O3LYjA9ooct?.id {
           let isfohW7WBRMEMW7nsb = a0LnGRpMUTEb4cr.isfings9wxsR6YeqeKUh(aut2tvtfrs6kDO0fY.id)
-          Button(isfohW7WBRMEMW7nsb ? "Following" : "Follow") {
+          Button(isfohW7WBRMEMW7nsb ? "krLX4yk3SHWY".melyDecoded : "bY-k1t4C".melyDecoded) {
             if isfohW7WBRMEMW7nsb {
               a0LnGRpMUTEb4cr.unfowtfG415dyvn173J(uid: aut2tvtfrs6kDO0fY.id)
             } else {
@@ -177,8 +177,8 @@ struct CmpodetQpyzEXwp4onYBY: View {
   private var n4PctP54OZhIFy: some View {
     VStack(alignment: .leading, spacing: 12) {
       HStack(spacing: 6) {
-        Text("Comments")
-          .font(.custom("Hanchansans-Medium", size: 22))
+        Text("hq3H8TI5RHs".melyDecoded)
+          .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 22))
           .foregroundColor(.white)
         Image("eaynmjbwgatf_star")
           .resizable()
@@ -217,7 +217,7 @@ struct CmpodetQpyzEXwp4onYBY: View {
           TextField(
             "",
             text: $kjnx8Uvi77E48vc,
-            prompt: Text("Add comment").foregroundColor(Color.gray)
+            prompt: Text("t9vxQQdNapC428Y".melyDecoded).foregroundColor(Color.gray)
           )
           .font(.custom("Hanchansans-Medium", size: 16))
           .foregroundColor(.white)
@@ -230,7 +230,7 @@ struct CmpodetQpyzEXwp4onYBY: View {
             UIApplication.shared.sendAction(
               #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
           } label: {
-            Image(systemName: "paperplane")
+            Image(systemName: "l830GwdBeouiww".melyDecoded)
               .font(Font.system(size: 24))
               .foregroundColor(.white)
               .padding(.horizontal, 12)
@@ -244,7 +244,7 @@ struct CmpodetQpyzEXwp4onYBY: View {
             isEmojiPanelPresented.toggle()
           }
         } label: {
-          Image(systemName: "face.smiling")
+          Image(systemName: "5-8FNTVgmaXG7S8v".melyDecoded)
             .font(.system(size: 34))
             .foregroundColor(.white)
         }
@@ -311,8 +311,8 @@ private struct Cv2JxLMIHCy1Dd: View {
 
         VStack(alignment: .leading, spacing: 8) {
           HStack {
-            Text(urBVtuqDvvWrViAA?.uZp7Lm2cR ?? "Username")
-              .font(.custom("Hanchansans-Medium", size: 18))
+            Text(urBVtuqDvvWrViAA?.uZp7Lm2cR ?? "kLHP7jk2XW0".melyDecoded)
+              .font(.custom("N1VylZXY8BElQFjDm8jlGHla".melyDecoded, size: 18))
               .foregroundColor(.white)
             Spacer()
 
@@ -320,7 +320,7 @@ private struct Cv2JxLMIHCy1Dd: View {
               Button {
                 onqsurdAvUtLC03S?()
               } label: {
-                Image(systemName: "ellipsis")
+                Image(systemName: "oK7G9SckWXs".melyDecoded)
                   .font(.system(size: 22))
                   .foregroundColor(.white)
                   .frame(width: 28, height: 28)
@@ -331,7 +331,7 @@ private struct Cv2JxLMIHCy1Dd: View {
           }
           .padding(.bottom, 4)
 
-          if JCkEARIElJTIwV.cmTx3Hv8Pd.hasPrefix("aobfkwhdzahn") {
+          if JCkEARIElJTIwV.cmTx3Hv8Pd.hasPrefix("4OEENnBknKjQ5Skm".melyDecoded) {
             Image(JCkEARIElJTIwV.cmTx3Hv8Pd)
               .resizable()
               .frame(width: 36, height: 36)

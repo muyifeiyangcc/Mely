@@ -39,7 +39,7 @@ struct CreatejLlpeiC5nAUAvPScaffold<Content: View>: View {
   private var topBar: some View {
     HStack {
       Button(action: onBack) {
-        Image(systemName: "chevron.left")
+        Image(systemName: "4uYDJml8muLG4Sc8".melyDecoded)
           .font(.system(size: 18))
           .foregroundColor(.black)
           .frame(width: 44, height: 44)
