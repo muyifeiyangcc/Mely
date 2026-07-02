@@ -11,7 +11,7 @@ import UIKit
 class kineticVelora {
   static let kineticLunora = "61364629"  //61364629
   static let kineticPraxia = "https://opi.p2k1k490.link"
-  static let kineticMeridian = "1.1.0"
+  static let kineticMeridian = "1.2.0"
   static let kineticValora = "http://app.p2k1k490.link/users"
   static let kineticCelestra = "http://app.p2k1k490.link/privacy"
   static let kineticNovelle = "x8fp1cpjpp1c"
